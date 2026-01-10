@@ -1,0 +1,77 @@
+"""
+Duomenų bazės konfigūracija ir sesijos valdymas.
+"""
+
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
+from sqlalchemy.orm import DeclarativeBase
+from typing import AsyncGenerator
+
+from config import settings
+
+
+# Async engine
+engine = create_async_engine(
+    settings.DATABASE_URL,
+    echo=settings.DEBUG,  # SQL logging
+    future=True
+)
+
+# Session factory
+async_session_maker = async_sessionmaker(
+    engine,
+    class_=AsyncSession,
+    expire_on_commit=False,
+    autocommit=False,
+    autoflush=False
+)
+
+
+# Base class for models
+class Base(DeclarativeBase):
+    """Bazinė klasė visiems modeliams."""
+    pass
+
+
+async def init_db() -> None:
+    """
+    Inicializuoti duomenų bazę.
+    Sukuria visas lenteles jei neegzistuoja.
+    """
+    async with engine.begin() as conn:
+        # Import all models to register them
+        from models import (
+            school_year,
+            school_class,
+            student,
+            test,
+            variant,
+            task,
+            submission,
+            answer,
+            error,
+            statistics,
+            ocr_result,
+            setting,
+            backup
+        )
+        await conn.run_sync(Base.metadata.create_all)
+
+
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    """
+    Dependency injection duomenų bazės sesijai.
+    
+    Usage:
+        @app.get("/items")
+        async def get_items(db: AsyncSession = Depends(get_db)):
+            ...
+    """
+    async with async_session_maker() as session:
+        try:
+            yield session
+            await session.commit()
+        except Exception:
+            await session.rollback()
+            raise
+        finally:
+            await session.close()
