@@ -1,253 +1,254 @@
-<p align="center">
-  <h1 align="center">📐 Matematikos Mokytojo Asistentas<br><sub>Math Teacher Assistant</sub></h1>
-  <p align="center">
-    Moderni programa, padedanti matematikos mokytojams automatizuoti kontrolinių tikrinimą<br>
-    <em>A modern tool helping math teachers automate exam grading</em>
-  </p>
-</p>
+# 🧮 Matematikos Mokytojo Asistentas
 
-<p align="center">
-  <img src="https://img.shields.io/badge/status-in%20development-yellow" alt="Status"/>
-  <img src="https://img.shields.io/badge/version-0.1.0-blue" alt="Version"/>
-  <img src="https://img.shields.io/badge/python-3.11+-3776AB?logo=python&logoColor=white" alt="Python"/>
-  <img src="https://img.shields.io/badge/react-18-61DAFB?logo=react&logoColor=white" alt="React"/>
-  <img src="https://img.shields.io/badge/license-Private-red" alt="License"/>
-</p>
+> **AI sistema Lietuvos matematikos mokytojams**: automatinis kontrolinių tikrinimas ir kūrimas nuo 5 iki 12 klasės.
 
 ---
 
-## 🇱🇹 Lietuviškai
+## 🎯 Ką daro ši sistema?
 
-### 🎯 Apie projektą
+### 1. Tikrina mokinių kontrolinius darbus
 
-Šis įrankis sukurtas **matematikos mokytojams**, padedantis:
-- **Sutaupyti laiką** — vietoj ~4 val. vienos klasės kontrolinio tikrinimas užtrunka ~30–60 min
-- **Pagerinti kokybę** — automatinis klaidų aptikimas ir paaiškinimų generavimas lietuvių kalba
-- **Sekti progresą** — statistika pagal mokinius, klases ir temas
+```
+Skanuoti mokinių darbai → DI Vision OCR → Matematinis tikrinimas → Įvertinimas su paaiškinimais
+```
 
-### ✨ Pagrindinės funkcijos
+- **DI Vision OCR** — atpažįsta ranka rašytą matematiką (Gemini Vision / OpenAI Vision / Novita Vision)
+- **SymPy + WolframAlpha** — tiksliai tikrina sprendimus ir atsakymus
+- **Gemini AI** — paaiškina klaidas lietuviškai, su naudingais patarimais
+- **PDF ataskaitos** — su įvertinimu, klaidų analize ir rekomendacijomis
+
+### 2. Kuria kontrolinius darbus
+
+```
+Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas PDF
+```
+
+- **Pagal LT programą** — 8 JSON failai su oficialiu matematikos turiniu (5-12 kl.)
+- **Algoritminis generavimas** — 3490 eilučių generatorius su teisingais atsakymais ir lietuvių kalbos linksniavimais
+- **Gemini AI generavimas** — tekstiniai uždaviniai su curriculum kontekstu
+- **HuggingFace bazė** — ~870K uždavinių: GSM8K, Competition Math, NuminaMath, MathInstruct
+- **Lokalizacija** — automatinis vertimas EN→LT su kultūriniu adaptavimu (vardai, valiuta, vienetai)
+- **PDF su QR** — alignment markeriai, atsakymų dėžutės, variantai, mokytojo versija
+
+---
+
+## ✨ Pagrindinės funkcijos
 
 | Funkcija | Aprašymas |
 |----------|-----------|
-| 📷 **OCR nuskaitymas** | Ranka rašytų darbų atpažinimas (Gemini Vision / OpenAI Vision) |
-| 🧮 **Matematikos tikrinimas** | Automatinis sprendimų tikrinimas (SymPy + WolframAlpha) |
-| 🤖 **AI paaiškinimai** | Klaidų paaiškinimas lietuvių kalba (Google Gemini) |
-| 📊 **Statistika** | Progreso sekimas pagal mokinius ir klases |
-| 📄 **PDF ataskaitos** | Automatinis ataskaitų generavimas mokiniams ir klasėms |
-| 📝 **Kontrolinių generavimas** | AI pagalba kuriant naujus kontrolinius darbus |
-| 🔒 **GDPR** | Mokinių duomenų anonimizavimas prieš siunčiant į AI |
+| 📷 **DI Vision OCR** | Atpažįsta ranka rašytus mokinių darbus — supranta braukymus, stulpelinius skaičiavimus, mišrų turinį |
+| ✅ **Matematinis tikrinimas** | SymPy → Newton API → WolframAlpha → Gemini AI (4 lygių hierarchija) |
+| 💬 **Klaidų paaiškinimai** | AI paaiškinimai lietuviškai su konkrečiais sprendimo žingsniais |
+| 📝 **Kontrolinių generavimas** | Pagal oficialią LT programą, su dviem generavimo metodais |
+| 📚 **Uždavinių bazė** | ~870K uždavinių iš HuggingFace + algoritminis generatorius |
+| 🇱🇹 **Lokalizacija** | Automatinis EN→LT vertimas su kultūriniu adaptavimu |
+| 📊 **Ataskaitos** | PDF su įvertinimu, klaidų statistika, rekomendacijomis |
+| 🔢 **LaTeX ir KaTeX** | Matematinių formulių renderinimas |
+| 📄 **PDF kontroliniai** | OCR-optimizuoti lapai su alignment markeriais ir QR kodais |
 
-### 🏗️ Technologijos
+---
 
-```
-Backend:      Python 3.11+ · FastAPI · SQLAlchemy 2.0 · SQLite
-Frontend:     React 18 · TypeScript · Vite · TailwindCSS · shadcn/ui
-OCR:          Gemini Vision · OpenAI Vision · Novita Vision
-AI:           Google Gemini (paaiškinimai, generavimas)
-Matematika:   SymPy (lokalus) · Newton API · WolframAlpha (backup)
-```
+## 🛠️ Technologijos
 
-### 🚀 Greitas startas
+### Backend
+| Komponentas | Technologija |
+|------------|--------------|
+| Framework | Python 3.11, FastAPI, Uvicorn |
+| Duomenų bazė | SQLAlchemy 2.0, SQLite (aiosqlite) |
+| Matematika | SymPy, Newton API, WolframAlpha |
+| OCR | Gemini Vision, OpenAI Vision, Novita Vision |
+| AI | Google Gemini (paaiškinimai, generavimas, lokalizacija) |
+| PDF | ReportLab (kontrolinių lapai), QR kodai |
+| Migracijos | Alembic |
 
-**Reikalavimai:** Windows 10/11, Python 3.11+, Node.js 18+
+### Frontend
+| Komponentas | Technologija |
+|------------|--------------|
+| Framework | React 18, TypeScript, Vite |
+| UI | TailwindCSS, shadcn/ui, Radix UI |
+| Formulės | KaTeX, react-katex |
+| Grafika | Recharts (grafikai), Lucide (ikonos) |
+| HTTP | Axios |
 
-```batch
-:: 1. Klonuoti repozitoriją
-git clone https://github.com/olandasf/math-assistant.git
-cd math-assistant
+### Duomenų šaltiniai
+| Šaltinis | Aprašymas |
+|----------|-----------|
+| Matematikos programa | 8 JSON failai (grade_5..12.json) — oficiali LT programa |
+| GSM8K | 8500 žodinių uždavinių (6-8 kl.) |
+| Competition Math | Olimpiadiniai uždaviniai (10-12 kl.) |
+| NuminaMath-CoT | ~860K olimpiadinių su Chain of Thought (8-12 kl.) |
+| MathInstruct | ~260K įvairių uždavinių instrukcijų formatu (6-12 kl.) |
 
-:: 2. Pirminis nustatymas (tik pirmą kartą)
-SETUP.bat
+---
 
-:: 3. Paleisti programą
-START.bat
-```
-
-Sistema automatiškai:
-- ✅ Patikrina priklausomybes
-- ✅ Paleidžia backend serverį (port 8000)
-- ✅ Paleidžia frontend serverį (port 5173)
-- ✅ Atidaro naršyklę
-
-### ⚙️ Konfigūracija
-
-Sukurkite `.env` failą iš `.env.example` ir užpildykite API raktus:
-
-```env
-# Google Gemini (OCR + AI paaiškinimai)
-GOOGLE_GEMINI_API_KEY=your_gemini_key
-
-# WolframAlpha (backup skaičiavimams)
-WOLFRAM_ALPHA_APP_ID=your_wolfram_app_id
-```
-
-### 📁 Projekto struktūra
+## 📁 Projekto struktūra
 
 ```
-math-assistant/
-├── backend/              # Python FastAPI serveris
-│   ├── routers/          # API endpoints (14 routerių)
-│   ├── models/           # SQLAlchemy modeliai (15)
-│   ├── services/         # Verslo logika (19 servisų)
-│   │   └── ocr/          # OCR tiekėjai (Gemini, OpenAI, Novita)
-│   ├── ai/               # Google Gemini AI klientas
-│   ├── math_checker/     # SymPy + WolframAlpha + Newton
-│   ├── schemas/          # Pydantic schemos
-│   └── utils/            # GDPR anonymizer, curriculum
-├── frontend/             # React 18 aplikacija
-│   └── src/
-│       ├── pages/        # 15 puslapių
-│       ├── components/   # UI komponentai (shadcn/ui)
-│       ├── api/          # API sluoksnis (axios + React Query)
-│       └── stores/       # Zustand state
-├── database/             # SQLite duomenų bazė
-├── docs/                 # Dokumentacija
-├── SETUP.bat             # Pirminis nustatymas
-├── START.bat             # Paleidimas
-├── STOP.bat              # Sustabdymas
-└── CHECK.bat             # Sistemos patikrinimas
+├── backend/
+│   ├── routers/          ← 14 API endpoint'ų (klasės, mokiniai, testai, OCR, ...)
+│   ├── models/           ← 15 SQLAlchemy modelių
+│   ├── services/
+│   │   ├── ocr/          ← DI Vision OCR (Gemini, OpenAI, Novita)
+│   │   ├── test_generator.py       ← Kontrolinių generavimas (2107 eil.)
+│   │   ├── math_problem_bank.py    ← Algoritminis generatorius (3490 eil.)
+│   │   ├── huggingface_loader.py   ← HuggingFace dataset'ų įkroviklis
+│   │   ├── task_translator.py      ← EN→LT lokalizacija
+│   │   └── exam_sheet_generator.py ← PDF kontrolinių lapai (1284 eil.)
+│   ├── utils/
+│   │   ├── curriculum.py           ← LT matematikos programa
+│   │   ├── curriculum_loader.py    ← JSON programos įkroviklis
+│   │   └── topics.py              ← 48 matematikos temų
+│   └── math_checker/     ← SymPy + WolframAlpha + Newton API
+├── frontend/
+│   ├── src/pages/         ← Dashboard, Classes, Tests, Upload, Review, ...
+│   ├── src/components/    ← UI komponentai (shadcn/ui)
+│   └── src/api/           ← API servisai
+├── Matematikos programa/  ← JSON failai pagal klases (5-12)
+├── docs/                  ← 14 dokumentacijos failų
+├── database/              ← SQLite DB
+├── uploads/               ← Mokinių darbai (ne git)
+└── exports/               ← Sugeneruotos ataskaitos (ne git)
 ```
 
 ---
 
-## 🇬🇧 English
+## 🚀 Paleidimas
 
-### 🎯 About
+### Reikalavimai
+- Python 3.11+
+- Node.js 18+
+- API raktai: Gemini (būtinas), WolframAlpha (rekomenduojamas)
 
-**Math Teacher Assistant** is a modern application designed to help math teachers automate the process of grading handwritten student exams.
-
-**Key benefits:**
-- **Save time** — reduce grading from ~4 hours to ~30–60 minutes per class
-- **Improve quality** — automatic error detection with AI-generated explanations
-- **Track progress** — statistics by student, class, and topic
-
-### ✨ Features
-
-| Feature | Description |
-|---------|-------------|
-| 📷 **OCR scanning** | Handwritten work recognition (Gemini Vision / OpenAI Vision) |
-| 🧮 **Math verification** | Automatic solution checking (SymPy + WolframAlpha) |
-| 🤖 **AI explanations** | Error explanations in Lithuanian (Google Gemini) |
-| 📊 **Statistics** | Progress tracking by student and class |
-| 📄 **PDF reports** | Auto-generated reports for students and classes |
-| 📝 **Test generation** | AI-assisted creation of new math tests |
-| 🔒 **GDPR compliance** | Student data anonymization before sending to AI |
-
-### 🏗️ Tech Stack
-
-```
-Backend:      Python 3.11+ · FastAPI · SQLAlchemy 2.0 · SQLite
-Frontend:     React 18 · TypeScript · Vite · TailwindCSS · shadcn/ui
-OCR:          Gemini Vision · OpenAI Vision · Novita Vision
-AI:           Google Gemini (explanations, generation)
-Math:         SymPy (local) · Newton API · WolframAlpha (backup)
-```
-
-### 🚀 Quick Start
-
-**Requirements:** Windows 10/11, Python 3.11+, Node.js 18+
-
-```batch
-:: 1. Clone the repository
-git clone https://github.com/olandasf/math-assistant.git
-cd math-assistant
-
-:: 2. Initial setup (first time only)
-SETUP.bat
-
-:: 3. Start the application
-START.bat
-```
-
-The system will automatically:
-- ✅ Check dependencies
-- ✅ Start the backend server (port 8000)
-- ✅ Start the frontend dev server (port 5173)
-- ✅ Open the browser
-
-### ⚙️ Configuration
-
-Create a `.env` file from `.env.example` and fill in your API keys:
-
-```env
-# Google Gemini (OCR + AI explanations)
-GOOGLE_GEMINI_API_KEY=your_gemini_key
-
-# WolframAlpha (backup calculations)
-WOLFRAM_ALPHA_APP_ID=your_wolfram_app_id
-```
-
-### 📁 Project Structure
-
-```
-math-assistant/
-├── backend/              # Python FastAPI server
-│   ├── routers/          # API endpoints (14 routers)
-│   ├── models/           # SQLAlchemy models (15)
-│   ├── services/         # Business logic (19 services)
-│   │   └── ocr/          # OCR providers (Gemini, OpenAI, Novita)
-│   ├── ai/               # Google Gemini AI client
-│   ├── math_checker/     # SymPy + WolframAlpha + Newton
-│   ├── schemas/          # Pydantic schemas
-│   └── utils/            # GDPR anonymizer, curriculum
-├── frontend/             # React 18 application
-│   └── src/
-│       ├── pages/        # 15 pages
-│       ├── components/   # UI components (shadcn/ui)
-│       ├── api/          # API layer (axios + React Query)
-│       └── stores/       # Zustand state management
-├── database/             # SQLite database
-├── docs/                 # Documentation
-├── SETUP.bat             # Initial setup
-├── START.bat             # Start servers
-├── STOP.bat              # Stop servers
-└── CHECK.bat             # System health check
-```
-
-### Manual Start
+### Backend
 
 ```powershell
-# Terminal 1 — Backend
 cd backend
+python -m venv venv
 .\venv\Scripts\Activate
-uvicorn main:app --reload --port 8000
+pip install -r requirements.txt
+alembic upgrade head
+uvicorn main:app --reload
+```
 
-# Terminal 2 — Frontend
+### Frontend
+
+```powershell
 cd frontend
+npm install
 npm run dev
 ```
 
-Open in browser: http://localhost:5173
+### Konfigūracija
+
+Sukurkite `.env` failą `backend/` kataloge:
+
+```env
+GEMINI_API_KEY=your_key_here
+WOLFRAM_ALPHA_APP_ID=your_app_id_here
+DATABASE_URL=sqlite+aiosqlite:///./database/math_assistant.db
+```
+
+OCR tiekėjų API raktai konfigūruojami per programos nustatymus.
 
 ---
 
-## 📖 Documentation
+## 📋 Kodėl DI Vision, o ne tradicinis OCR?
 
-| Document | Description |
-|----------|-------------|
-| `docs/PROJECT.md` | Project vision & requirements |
-| `docs/TECHNICAL_SPEC.md` | Technical specifications |
-| `docs/OCR_ARCHITECTURE.md` | OCR architecture |
-| `docs/UI_DESIGN.md` | UI/UX design spec |
-| `docs/DATABASE.md` | Database schema (15 tables) |
-| `docs/API_INTEGRATIONS.md` | External API integrations |
-| `docs/TASKS.md` | Task list & progress |
+Mokinių (5-12 kl.) ranka rašyti darbai yra **netvarkingi**: braukymai, taisymai, stulpeliniai skaičiavimai, piešiniai šalia formulių. Tradiciniai OCR sprendimai (Tesseract, Google Cloud Vision, MathPix) nesugeba:
+
+- Skirti braukymą nuo galutinio atsakymo
+- Suprasti stulpelinę dalybą
+- Atpažinti lietuvišką formatą ("Ats.", "Nr.", "Sprendimas:")
+
+**DI Vision modeliai** (Gemini, OpenAI, Novita) yra multimodalūs — jie supranta **kontekstą**, ne tik simbolius. Detaliau: [`docs/OCR_ARCHITECTURE.md`](docs/OCR_ARCHITECTURE.md).
 
 ---
 
-## 👤 Target User
+## 🔒 Saugumo pastabos
 
-- **Who:** Math teacher (single user)
-- **Grades:** 5–8 (occasionally 10), ~150 students, 5 classes
-- **Language:** 100% Lithuanian UI
-- **Goal:** Reduce grading time from ~4h to ~30–60min
-
----
-
-## 📄 License
-
-This project is private and intended for personal use.
+- 🔐 API raktai saugomi SQLite duomenų bazėje (rekomenduojama šifruoti produkcijoje)
+- 📛 Mokinių vardai anonimizuojami prieš siunčiant į AI API
+- 🚫 Autentifikacija dar neįdiegta (development režimas)
+- 📄 GDPR — asmeniniai duomenys neišsiunčiami į trečiųjų šalių serverius nepakeisti
 
 ---
 
-<p align="center"><strong>Built with ❤️ for math teachers — Sukurta su ❤️ matematikos mokytojams</strong></p>
+## 📄 Licencija
+
+Privatus projektas. © 2025-2026
+
+---
+
+# 🧮 Math Teacher Assistant
+
+> **AI system for Lithuanian math teachers**: automatic exam grading and creation for grades 5-12.
+
+---
+
+## 🎯 What does this system do?
+
+### 1. Grades student exams
+
+```
+Scanned student work → AI Vision OCR → Math verification → Report with explanations
+```
+
+- **AI Vision OCR** — recognizes handwritten math (Gemini Vision / OpenAI Vision / Novita Vision)
+- **SymPy + WolframAlpha** — precisely verifies solutions and answers
+- **Gemini AI** — explains errors in Lithuanian with helpful tips
+- **PDF reports** — with grades, error analysis, and recommendations
+
+### 2. Creates math exams
+
+```
+Grade + Topic + Difficulty → Problem generation → OCR-optimized PDF
+```
+
+- **Aligned with Lithuanian curriculum** — 8 JSON files with official math content (grades 5-12)
+- **Algorithmic generation** — 3490-line generator with correct answers and Lithuanian grammar
+- **Gemini AI generation** — word problems with curriculum context
+- **HuggingFace problem bank** — ~870K problems: GSM8K, Competition Math, NuminaMath, MathInstruct
+- **Localization** — automatic EN→LT translation with cultural adaptation (names, currency, units)
+- **PDF with QR** — alignment markers, answer boxes, variants, teacher version
+
+---
+
+## ✨ Core features
+
+| Feature | Description |
+|---------|-------------|
+| 📷 **AI Vision OCR** | Recognizes handwritten student work — handles cross-outs, column calculations, mixed content |
+| ✅ **Math verification** | SymPy → Newton API → WolframAlpha → Gemini AI (4-tier hierarchy) |
+| 💬 **Error explanations** | AI explanations in Lithuanian with concrete solution steps |
+| 📝 **Exam generation** | Based on official Lithuanian math curriculum, two generation methods |
+| 📚 **Problem bank** | ~870K problems from HuggingFace + algorithmic generator |
+| 🇱🇹 **Localization** | Automatic EN→LT translation with cultural adaptation |
+| 📊 **Reports** | PDF with grades, error statistics, recommendations |
+| 📄 **PDF exams** | OCR-optimized sheets with alignment markers and QR codes |
+
+---
+
+## 🛠️ Tech stack
+
+- **Backend:** Python 3.11, FastAPI, SQLAlchemy, SQLite
+- **Frontend:** React 18, TypeScript, Vite, TailwindCSS, shadcn/ui
+- **Math:** SymPy, Newton API, WolframAlpha, KaTeX
+- **OCR:** Gemini Vision, OpenAI Vision, Novita Vision (AI Vision, not traditional OCR)
+- **AI:** Google Gemini (explanations, generation, localization)
+- **Data:** HuggingFace datasets, Lithuanian curriculum JSON files
+
+---
+
+## 📋 Why AI Vision instead of traditional OCR?
+
+Student handwriting (grades 5-12) is **messy**: cross-outs, corrections, column calculations, drawings mixed with formulas. Traditional OCR (Tesseract, Google Cloud Vision, MathPix) fails at:
+
+- Distinguishing cross-outs from final answers
+- Understanding column long division
+- Recognizing Lithuanian format ("Ats.", "Nr.", "Sprendimas:")
+
+**AI Vision models** (Gemini, OpenAI, Novita) are multimodal — they understand **context**, not just symbols. Details: [`docs/OCR_ARCHITECTURE.md`](docs/OCR_ARCHITECTURE.md).
+
+---
+
+*Last updated: 2026-03-13*

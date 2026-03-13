@@ -1,26 +1,35 @@
-# 🔍 OCR Architektūra - Gemini Vision
+# 🔍 OCR Architektūra — DI Vision
 
-**Atnaujinta:** 2026-01-16
+**Atnaujinta:** 2026-03-13
 
 ---
 
 ## 📋 Apžvalga
 
-Sistema naudoja **supaprastintą OCR architektūrą** su vienu šaltiniu:
+Sistema naudoja **DI (dirbtinio intelekto) Vision modelius** vietoj tradicinių OCR sprendimų.
+Tai sąmoningas architektūrinis sprendimas — žr. [Kodėl ne tradicinis OCR?](#-kodėl-ne-tradicinis-ocr)
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    MOKINIO DARBAS                       │
-│                   (PDF / Nuotrauka)                     │
+│                    MOKINIO DARBAS                        │
+│                   (PDF / Nuotrauka)                      │
 └─────────────────────┬───────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────┐
-│              GEMINI VISION ("AKYS")                     │
-│  • Multimodalus AI - supranta kontekstą                 │
-│  • Ignoruoja braukymus ir stulpelinius skaičiavimus     │
+│           DI VISION TIEKĖJAI ("AKYS")                   │
+│                                                         │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐    │
+│  │ Gemini       │ │ OpenAI GPT   │ │ Novita       │    │
+│  │ Vision       │ │ Vision       │ │ Vision       │    │
+│  │ (default)    │ │ (alternatyva)│ │ (alternatyva)│    │
+│  └──────────────┘ └──────────────┘ └──────────────┘    │
+│                                                         │
+│  • Multimodalūs AI — supranta kontekstą                 │
+│  • Ignoruoja braukymus ir taisymus                      │
 │  • Grąžina struktūrizuotą JSON su užduotimis            │
 │  • Lietuvių kalbos palaikymas                           │
+│  • Fallback mechanizmas tarp tiekėjų                    │
 └─────────────────────┬───────────────────────────────────┘
                       │
                       ▼
@@ -29,20 +38,37 @@ Sistema naudoja **supaprastintą OCR architektūrą** su vienu šaltiniu:
 │  • 100% tikslus matematikos tikrinimas                  │
 │  • Simbolinė algebra                                    │
 │  • Klaidos tipo identifikavimas                         │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│             GEMINI AI (PAAIŠKINIMAI)                    │
+│  • Klaidos paaiškinimas lietuvių kalba                  │
+│  • Patarimai kaip ištaisyti                             │
 └─────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🗑️ Pašalinti komponentai
+## ❓ Kodėl ne tradicinis OCR?
 
-Šie OCR servisai buvo **pašalinti** kaip nereikalingi:
+Projekto tikslinė auditorija — **mokiniai nuo 5 iki 12 klasės**. Jų ranka rašyti darbai turi specifinių iššūkių, su kuriais tradiciniai OCR sprendimai (MathPix, Google Cloud Vision, Tesseract) nesusitvarko:
+
+| Iššūkis | Tradicinis OCR | DI Vision |
+|---------|----------------|-----------|
+| **Netvarkingas raštas** — 11-metis rašo kitaip nei suaugęs | ❌ Prastas atpažinimas | ✅ Supranta kontekstą |
+| **Braukymai ir taisymai** — mokiniai dažnai taiso atsakymus | ❌ Bando atpažinti viską | ✅ Ignoruoja braukymus, paima galutinį |
+| **Stulpeliniai skaičiavimai** — dalyba, daugyba "stulpeliu" | ❌ Neskiria nuo atsakymo | ✅ Skiria darbo eigą nuo atsakymo |
+| **Mišrus turinys** — piešiniai, formulės, tekstas viename lape | ❌ Painioja tipus | ✅ Supranta kiekvieną elementą atskirai |
+| **Lietuviška matematika** — "Ats.", "Sprendimas:", "Nr." | ❌ Neatpažįsta struktūros | ✅ Supranta lietuvišką formatą |
+
+### Pašalinti komponentai
 
 | Failas | Priežastis |
 |--------|------------|
-| `tesseract_ocr.py` | Lokalus OCR - prastas matematikos atpažinimas |
-| `google_vision.py` | Cloud Vision API - perteklinis, Gemini geriau |
-| `mathpix_client.py` | Mokamas servisas - Gemini nemokamas su Vertex AI |
+| `tesseract_ocr.py` | Lokalus OCR — prastas ranka rašyto teksto atpažinimas |
+| `google_vision.py` | Cloud Vision API — neatpažįsta braukymų konteksto |
+| `mathpix_client.py` | Mokamas, optimizuotas tipografiniams šriftams, ne ranka rašytiems |
 
 ---
 
@@ -51,30 +77,38 @@ Sistema naudoja **supaprastintą OCR architektūrą** su vienu šaltiniu:
 ```
 backend/services/ocr/
 ├── __init__.py          # Eksportai
-├── gemini_vision.py     # Pagrindinis OCR servisas
-└── ocr_service.py       # Wrapper su vieninga sąsaja
+├── ocr_service.py       # Pagrindinis OCR servisas (dispatcher + fallback)
+├── gemini_vision.py     # Google Gemini Vision (37 KB)
+├── openai_vision.py     # OpenAI GPT-4 Vision (21 KB)
+└── novita_vision.py     # Novita AI Vision (22 KB)
 ```
 
 ---
 
-## 🔧 Gemini Vision konfigūracija
+## 🔧 Tiekėjų konfigūracija
 
-### Vertex AI (rekomenduojama)
-
-```python
-# Automatiškai naudoja credentials failą
-# backend/mtematika-471410-e4cb6af744ea.json
-```
-
-### API Key (alternatyva)
+Aktyvus tiekėjas pasirenkamas per **nustatymus UI** arba duomenų bazės lentelę `settings`:
 
 ```python
-# Saugomas duomenų bazėje: settings.gemini_api_key
+# OCR tiekėjas saugomas DB:
+# settings.ocr_provider = "gemini" | "openai" | "novita"
 ```
+
+Kiekvienas tiekėjas turi savo API raktą (`gemini_api_key`, `openai_api_key`, `novita_api_key`), saugomą `settings` lentelėje.
+
+### Fallback logika
+
+```
+Pasirinktas tiekėjas → Jei nepavyko → Gemini Vision (default fallback)
+```
+
+Jei nei vienas tiekėjas nepasiekiamas, grąžinamas tuščias `OCRResult` su `warnings`.
 
 ---
 
-## 📤 OCR Rezultato formatas
+## 📤 OCR rezultato formatas
+
+### JSON (struktūrizuotas)
 
 ```json
 {
@@ -89,13 +123,22 @@ backend/services/ocr/
 }
 ```
 
-### LaTeX formatas
+### LaTeX
 
 Užduotys atskiriamos `§§§` separatoriumi:
 
 ```
-1a) -\frac{5}{2} \cdot (-\frac{3}{13}) = 12 Ats. 12§§§1b) \frac{2}{3} \cdot (-16) = ? Ats. -368
+1a) -\frac{5}{2} \cdot (-\frac{3}{13}) = 12 Ats. 12§§§1b) ...
 ```
+
+---
+
+## 🔑 Principas: AI NIEKADA neskaičiuoja
+
+> **AI Vision = „Akys"** — tik transkribuoja tai, ką mato lape.
+> **SymPy = „Smegenys"** — tikrina matematiką 100% tiksliai.
+>
+> Šis atskyrimas užtikrina, kad AI haluciacijos neįtakoja tikrinimo rezultatų.
 
 ---
 
@@ -103,21 +146,9 @@ Užduotys atskiriamos `§§§` separatoriumi:
 
 Sistema automatiškai pašalina dublikatus keliose vietose:
 
-1. **gemini_vision.py** - JSON lygmenyje
-2. **upload.py** - sujungiant puslapius
-3. **WorkReviewPage.tsx** - frontend'e
-
----
-
-## 📊 Privalumai
-
-| Aspektas | Senas (Multi-OCR) | Naujas (Gemini Only) |
-|----------|-------------------|----------------------|
-| Kompleksiškumas | Aukštas | Žemas |
-| Palaikymas | Sudėtingas | Paprastas |
-| Tikslumas | Vidutinis | Aukštas |
-| Kaina | Mokama (MathPix) | Nemokama (Vertex AI) |
-| Konteksto supratimas | Ne | Taip |
+1. **gemini_vision.py** — JSON lygmenyje
+2. **upload.py** — sujungiant puslapius
+3. **WorkReviewPage.tsx** — frontende
 
 ---
 
@@ -129,10 +160,12 @@ from services.ocr import get_ocr_service
 ocr = get_ocr_service()
 result = await ocr.recognize("image.png")
 
-print(result.text)   # Atpažintas tekstas
-print(result.latex)  # LaTeX formatas
+print(result.text)       # Atpažintas tekstas
+print(result.latex)      # LaTeX formatas
+print(result.source)     # "gemini" | "openai" | "novita"
+print(result.confidence) # 0.0 - 1.0
 ```
 
 ---
 
-*Dokumentas atnaujintas: 2026-01-16*
+*Dokumentas atnaujintas: 2026-03-13*
