@@ -107,7 +107,33 @@ Jei sesijos metu kyla problemų ar yra svarbių pastabų, įrašyti čia:
 | Data | Pastaba | Statusas |
 |------|---------|----------|
 | 2026-01-10 | Projektas pradėtas | ✅ |
+| 2026-01-11 | UI dizainas pagerintas (Fury-like) | ✅ |
+| 2026-01-11 | Gemini, SymPy, PDF, statistika sukurta | ✅ |
+| 2026-01-12 | Newton API integruotas (nemokamas matematikos API) | ✅ |
+| 2026-01-12 | Gemini modelis pakeistas į `gemini-2.5-pro-preview` | ✅ |
+| 2026-01-12 | Hibridinis tikrinimo workflow: SymPy→Newton→Wolfram→Gemini | ✅ |
+| 2026-01-12 | AI kontrolinių generavimas su Gemini | ✅ |
 
 ---
 
-**Paskutinis atnaujinimas:** 2026-01-10
+## 🎯 Dabartinis fokusas
+
+**Projekto progresas: ~78% užbaigta**
+
+✅ **Baigta:**
+- Backend infrastruktūra (FastAPI, SQLAlchemy)
+- Frontend UI (React, TailwindCSS, shadcn/ui)
+- CRUD operacijos (mokiniai, klasės, kontroliniai)
+- OCR servisai (MathPix, Google Vision, Tesseract)
+- Matematikos tikrinimas (SymPy + Newton API + WolframAlpha)
+- AI paaiškinimai ir kontrolinių generavimas (Gemini)
+- PDF ataskaitos ir statistika
+
+⏳ **Liko:**
+- Testavimas (unit, integration, E2E)
+- Vartotojo dokumentacija
+- Deploy ir instaliacijos skriptas
+
+---
+
+**Paskutinis atnaujinimas:** 2026-01-12

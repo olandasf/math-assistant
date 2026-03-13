@@ -1,0 +1,116 @@
+{
+  "grade": 5,
+  "description": "Pagal NŠA Bendrąją programą (5-6 kl. koncentras, pirmieji metai)",
+  "curriculum_source": "matematika.docx",
+  "topics": [
+    {
+      "id": "naturalieji_skaiciai",
+      "title": "Natūralieji skaičiai ir veiksmai",
+      "subtopics": [
+        {
+          "id": "natural_ops",
+          "name": "Veiksmai su natūraliaisiais skaičiais (milijonas)",
+          "difficulty_rules": {
+            "EASY": "Sudėtis ir atimtis stulpeliu (be perėjimo per skyrių)",
+            "MEDIUM": "Daugyba ir dalyba (iš vienaženklio/dviženklio), veiksmų tvarka",
+            "HARD": "Tekstiniai uždaviniai su keliais veiksmais, lygties sudarymas"
+          }
+        },
+        {
+          "id": "rounding",
+          "name": "Apvalinimas ir dideli skaičiai",
+          "difficulty_rules": {
+            "EASY": "Skaityti ir užrašyti skaičius iki milijono",
+            "MEDIUM": "Apvalinti iki nurodyto skyriaus (dešimčių, šimtų)",
+            "HARD": "Įvertinti sumą/skirtumą 'iš akies' (apytikslis skaičiavimas)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "desimtaines_trupmenos",
+      "title": "Dešimtainės trupmenos (Pagrindinė 5 kl. tema)",
+      "subtopics": [
+        {
+          "id": "decimal_structure",
+          "name": "Dešimtainių trupmenų skaitymas ir lyginimas",
+          "difficulty_rules": {
+            "EASY": "Palyginti dvi trupmenas (pvz. 2,5 ir 2,05)",
+            "MEDIUM": "Surikiuoti trupmenas didėjimo tvarka"
+          }
+        },
+        {
+          "id": "decimal_ops",
+          "name": "Veiksmai su dešimtainėmis trupmenomis",
+          "difficulty_rules": {
+            "EASY": "Sudėtis ir atimtis (kablelis po kableliu)",
+            "MEDIUM": "Daugyba ir dalyba iš natūraliojo skaičiaus",
+            "HARD": "Dalyba iš dešimtainės trupmenos, tekstiniai uždaviniai (pinigai, svoris)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "paprastosios_trupmenos",
+      "title": "Paprastosios trupmenos (Įvadas)",
+      "subtopics": [
+        {
+          "id": "fraction_concept",
+          "name": "Trupmenos supratimas ir vaizdavimas",
+          "difficulty_rules": {
+            "EASY": "Nuspalvinti dalį figūros pagal trupmeną",
+            "MEDIUM": "Mišrieji skaičiai ir netaisyklingosios trupmenos"
+          }
+        },
+        {
+          "id": "fraction_same_denom",
+          "name": "Veiksmai su vienodais vardikliais",
+          "difficulty_rules": {
+            "EASY": "Sudėtis/Atimtis kai vardikliai vienodi (be sveikųjų)",
+            "MEDIUM": "Mišriųjų skaičių sudėtis (vienodi vardikliai)",
+            "HARD": "Tekstinis uždavinys: 'Suvalgė 2/7 torto, kiek liko?'"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometrija_basic",
+      "title": "Geometrijos pradmenys",
+      "subtopics": [
+        {
+          "id": "angles",
+          "name": "Kampai ir jų matavimas",
+          "difficulty_rules": {
+            "EASY": "Atpažinti kampo rūšį (status, smailus, bukas)",
+            "MEDIUM": "Išmatuoti kampą matlankiu (tikslumas 5°)",
+            "HARD": "Apskaičiuoti kampą be matavimo (gretutiniai, kryžminiai)"
+          }
+        },
+        {
+          "id": "perimeter_area",
+          "name": "Stačiakampio plotas ir perimetras",
+          "difficulty_rules": {
+            "EASY": "Pagal formulę P=2(a+b), S=a*b (sveiki skaičiai)",
+            "MEDIUM": "Atvirkštinis: duotas plotas, rasti kraštinę",
+            "HARD": "Sudėtinės figūros plotas (padalijant į stačiakampius)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lygtys_basic",
+      "title": "Raidiniai reiškiniai ir lygtys",
+      "subtopics": [
+        {
+          "id": "simple_equations",
+          "name": "Paprastosios lygtys",
+          "difficulty_rules": {
+            "EASY": "Rasti x: x + 15 = 30",
+            "MEDIUM": "Rasti x: 2x + 5 = 15 (su natūraliaisiais)",
+            "HARD": "Sudaryti lygtį pagal tekstą ('Galvoju skaičių...')"
+          }
+        }
+      ]
+    }
+  ]
+}

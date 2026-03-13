@@ -1,0 +1,181 @@
+{
+  "curriculum_year": 2026,
+  "country": "Lithuania",
+  "subject": "Mathematics",
+  "grades": {
+    "5": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {"title": "Natūralieji skaičiai iki milijardo", "skills": ["Skaityti, rašyti, lyginti", "Apvalinti iki dešimčių, šimtų, tūkstančių"]},
+            {"title": "Veiksmai su natūraliaisiais skaičiais", "skills": ["Sudėtis, atimtis, daugyba, dalyba stulpeliu", "Veiksmų eiliškumas su skliaustais"]},
+            {"title": "Paprastosios trupmenos", "skills": ["Trupmenos dalis, mišrieji skaičiai", "Sudėtis ir atimtis su vienodais vardikliais"]},
+            {"title": "Dešimtainės trupmenos", "skills": ["Skaitymas, rašymas, lyginimas", "Sudėtis ir atimtis"]}
+          ]
+        },
+        {
+          "title": "Geometrija ir matavimai",
+          "subtopics": [
+            {"title": "Kampai", "skills": ["Matuoti matlankiu", "Brėžti nurodyto didumo kampus"]},
+            {"title": "Plokštumos figūros", "skills": ["Trikampis, kvadratas, stačiakampis", "Perimetro skaičiavimas"]}
+          ]
+        }
+      ]
+    },
+    "6": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {"title": "Sveikieji skaičiai", "skills": ["Neigiamieji skaičiai skaičių tiesėje", "Veiksmai su sveikaisiais skaičiais"]},
+            {"title": "Dalumas", "skills": ["Dalumo požymiai (2, 3, 5, 9, 10)", "DBD ir MBK radimas"]},
+            {"title": "Veiksmai su trupmenomis", "skills": ["Paprastųjų trupmenų daugyba ir dalyba", "Dešimtainių trupmenų daugyba ir dalyba"]}
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Procentai", "skills": ["Skaičiaus procento radimas", "Procentų taikymas kasdienybėje"]},
+            {"title": "Proporcijos", "skills": ["Pagrindinė proporcijos savybė", "Tiesioginis proporcingumas"]}
+          ]
+        }
+      ]
+    },
+    "7": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {"title": "Racionalieji skaičiai", "skills": ["Visi veiksmai su racionaliaisiais skaičiais", "Skaičių aibės"]},
+            {"title": "Laipsniai", "skills": ["Laipsnis su natūraliuoju rodikliu", "Daugybos ir dalybos savybės"]}
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Raidiniai reiškiniai", "skills": ["Panašiųjų narių sutraukimas", "Skliaustų atskleidimas"]},
+            {"title": "Tiesinės lygtys", "skills": ["Lygčių sprendimas", "Tekstinių uždavinių sprendimas sudarant lygtį"]}
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {"title": "Tiesės ir kampai", "skills": ["Gretutiniai ir kryžminiai kampai", "Lygiagrečios tiesės"]}
+          ]
+        }
+      ]
+    },
+    "8": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {"title": "Kvadratinės šaknys", "skills": ["Šaknies traukimas", "Iracionalieji skaičiai"]},
+            {"title": "Standartinė skaičiaus išraiška", "skills": ["Skaičių rašymas pavidalu a * 10^n"]}
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Sutrumpinto dauginimo formulės", "skills": ["(a±b)^2", "a^2-b^2"]},
+            {"title": "Tiesinė funkcija", "skills": ["Grafiko braižymas", "Savybių analizė"]}
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {"title": "Pitagoro teorema", "skills": ["Taikymas stačiajam trikampiui", "Atstumas tarp taškų"]},
+            {"title": "Trikampiai", "skills": ["Trikampių lygumo požymiai", "Trikampio nelygybė"]}
+          ]
+        }
+      ]
+    },
+    "9": {
+      "topics": [
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Kvadratinės lygtys", "skills": ["Diskriminantas", "Vijeto teorema", "Nepilnosios lygtys"]},
+            {"title": "Lygčių sistemos", "skills": ["Keitimo ir sudėties būdai", "Grafinis sprendimas"]}
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {"title": "Apskritimas", "skills": ["Liestinės savybė", "Įbrėžtiniai ir centriniai kampai"]},
+            {"title": "Panašumas", "skills": ["Trikampių panašumo požymiai", "Talio teorema"]}
+          ]
+        }
+      ]
+    },
+    "10": {
+      "topics": [
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Kvadratinė funkcija", "skills": ["Parabolės viršūnė", "Grafiko transformacijos"]},
+            {"title": "Nelygybės", "skills": ["Kvadratinės nelygybės", "Intervalų metodas"]}
+          ]
+        },
+        {
+          "title": "Duomenys ir tikimybės",
+          "subtopics": [
+            {"title": "Statistika", "skills": ["Imtis, dažnis, vidurkis, mediana", "Duomenų sklaidos rodikliai"]},
+            {"title": "Tikimybės", "skills": ["Klasikinis apibrėžimas", "Nepriklausomi įvykiai"]}
+          ]
+        }
+      ]
+    },
+    "11": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {"title": "Laipsniai ir šaknys", "skills": ["n-tojo laipsnio šaknys", "Laipsnis su racionaliuoju rodikliu"]},
+            {"title": "Logaritmai", "skills": ["Logaritmo apibrėžimas", "Savybės", "Logaritminės lygtys"]}
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Trigonometrija", "skills": ["Vienetinis apskritimas", "Trigonometrinės funkcijos", "Lygtys"]},
+            {"title": "Rodiklinės funkcijos", "skills": ["Savybės", "Rodiklinės lygtys ir nelygybės"]}
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {"title": "Vektoriai plokštumoje", "skills": ["Veiksmai su vektoriais", "Skaliarinė sandauga"]}
+          ]
+        }
+      ]
+    },
+    "12": {
+      "topics": [
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {"title": "Išvestinės", "skills": ["Išvestinių skaičiavimo taisyklės", "Funkcijų tyrimas", "Optimizavimo uždaviniai"]},
+            {"title": "Integralai", "skills": ["Pirmykštė funkcija", "Apibrėžtinis integralas", "Plotų skaičiavimas"]},
+            {"title": "Sekos ir progresijos", "skills": ["Aritmetinė ir geometrinė progresijos", "Nykstamoji geometrinė progresija"]}
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {"title": "Stereometrija", "skills": ["Briaunainiai ir sukiniai", "Paviršiaus plotai ir tūriai"]},
+            {"title": "Vektoriai erdvėje", "skills": ["Koordinatės erdvėje", "Veiksmai"]}
+          ]
+        },
+        {
+          "title": "Duomenys ir tikimybės",
+          "subtopics": [
+            {"title": "Kombinatorika", "skills": ["Gretiniai, deriniai, kėliniai"]},
+            {"title": "Tikimybių teorija", "skills": ["Sąlyginė tikimybė", "Bernulio formulė"]}
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    MATEMATIKOS MOKYTOJO ASISTENTAS                           ║
+║                            GREITAS STARTAS                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+                         🚀 PIRMĄ KARTĄ NAUDOJANT
+═══════════════════════════════════════════════════════════════════════════════
+
+1️⃣  Du kartus spustelėkite: SETUP.bat
+    ⏱️  Trukmė: 5-10 minučių
+    📦 Įdiegs visas reikalingas priklausomybes
+
+2️⃣  Du kartus spustelėkite: START.bat
+    ⏱️  Trukmė: 30-60 sekundžių
+    🌐 Automatiškai atidarys naršyklę
+
+3️⃣  Programoje eikite į "Nustatymai"
+    🔑 Įveskite Google Gemini API raktą
+    📝 Gaukite: https://aistudio.google.com/
+
+═══════════════════════════════════════════════════════════════════════════════
+                         📅 KASDIENINIS NAUDOJIMAS
+═══════════════════════════════════════════════════════════════════════════════
+
+▶️  PALEISTI:   Du kartus spustelėkite START.bat
+⏹️  SUSTABDYTI: Du kartus spustelėkite STOP.bat
+
+═══════════════════════════════════════════════════════════════════════════════
+                         🔧 JEI KAŽKAS NEVEIKIA
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Du kartus spustelėkite: CHECK.bat
+   ✅ Patikrina ar viskas gerai
+
+2. Jei rodo problemas:
+   - Paleiskite SETUP.bat iš naujo
+   - Tada CHECK.bat
+   - Tada START.bat
+
+═══════════════════════════════════════════════════════════════════════════════
+                         📚 DAUGIAU INFORMACIJOS
+═══════════════════════════════════════════════════════════════════════════════
+
+📄 NAUDOJIMO_INSTRUKCIJA.txt - Išsami instrukcija
+📄 README.md - Projekto aprašymas
+📄 docs/SCRIPTS.md - Skriptų dokumentacija
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Sėkmės! 📐✨

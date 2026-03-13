@@ -11,7 +11,7 @@ from database import Base
 
 class SchoolYear(Base):
     """Mokslo metai (pvz., 2025-2026)."""
-    
+
     __tablename__ = "school_years"
 
     id = Column(Integer, primary_key=True, index=True)

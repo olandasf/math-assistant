@@ -1,0 +1,285 @@
+{
+  "curriculum_year": 2026,
+  "country": "Lithuania",
+  "subject": "Mathematics",
+  "grades": {
+    "5": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {
+              "title": "Natūralieji skaičiai iki milijardo",
+              "skills": ["Skaityti ir rašyti skaičius", "Lyginti ir rikiuoti", "Apvalinti iki nurodyto skyriaus"],
+              "levels": {"patenkinamas": "Skaito skaičius iki 1000", "pagrindinis": "Apvalina iki tūkstančių", "aukštesnysis": "Sprendžia logines užduotis su dideliais skaičiais"},
+              "examples": [{"level": "easy", "question": "Užrašykite skaičių: penki tūkstančiai du šimtai", "answer": "5200"}]
+            },
+            {
+              "title": "Veiksmai su natūraliaisiais skaičiais",
+              "skills": ["Sudėtis ir atimtis stulpeliu", "Daugyba ir dalyba", "Veiksmų eiliškumas"],
+              "common_errors": [{"error": "Dalyba iš nulio", "distractor_logic": "Pateikti 0 kaip rezultatą"}]
+            },
+            {
+              "title": "Paprastosios trupmenos",
+              "skills": ["Trupmenos sąvoka", "Trupmenų lyginimas su vienodais vardikliais", "Mišrieji skaičiai"]
+            },
+            {
+              "title": "Dešimtainės trupmenos",
+              "skills": ["Skaitymas ir rašymas", "Lyginimas", "Sudėtis ir atimtis"]
+            }
+          ]
+        },
+        {
+          "title": "Geometrija ir matavimai",
+          "subtopics": [
+            {
+              "title": "Plokštumos figūros",
+              "skills": ["Atpažinti trikampį, kvadratą, stačiakampį", "Skaičiuoti perimetrą"]
+            },
+            {
+              "title": "Kampai",
+              "skills": ["Matuoti matlankiu", "Rūšiuoti kampus"]
+            }
+          ]
+        }
+      ]
+    },
+    "6": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {
+              "title": "Sveikieji skaičiai",
+              "skills": ["Neigiamieji skaičiai", "Veiksmai su sveikaisiais skaičiais", "Modulis"]
+            },
+            {
+              "title": "Daugikliai ir kartotiniai",
+              "skills": ["Dalumo požymiai (2, 3, 5, 9, 10)", "DBD ir MBK", "Pirminiai skaičiai"]
+            },
+            {
+              "title": "Veiksmai su trupmenomis",
+              "skills": ["Daugyba ir dalyba iš natūraliojo skaičiaus", "Bendravardiklinimas"]
+            }
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Procentai",
+              "skills": ["Skaičiaus procento radimas", "Procento išraiška trupmena"]
+            }
+          ]
+        }
+      ]
+    },
+    "7": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {
+              "title": "Racionalieji skaičiai",
+              "skills": ["Veiksmai su racionaliaisiais skaičiais", "Skaičių tiesė"]
+            },
+            {
+              "title": "Laipsniai",
+              "skills": ["Laipsnis su natūraliuoju rodikliu", "Savybės"]
+            }
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Raidiniai reiškiniai",
+              "skills": ["Reiškinio reikšmės skaičiavimas", "Panašiųjų narių sutraukimas"]
+            },
+            {
+              "title": "Tiesinės lygtys",
+              "skills": ["Lygčių sprendimas", "Tekstinių uždavinių sudarymas"]
+            }
+          ]
+        }
+      ]
+    },
+    "8": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {
+              "title": "Kvadratinės šaknys",
+              "skills": ["Sąvoka", "Apskaičiavimas", "Iracionalieji skaičiai"]
+            }
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Sutrumpinto dauginimo formulės",
+              "skills": ["Kvadratų skirtumas", "Sumos/skirtumo kvadratas"]
+            },
+            {
+              "title": "Funkcijos",
+              "skills": ["Tiesinė funkcija", "Grafikas", "Savybės"]
+            }
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {
+              "title": "Pitagoro teorema",
+              "skills": ["Taikymas stačiajam trikampiui"]
+            }
+          ]
+        }
+      ]
+    },
+    "9": {
+      "topics": [
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Kvadratinės lygtys",
+              "skills": ["Diskriminantas", "Sprendinių formulės", "Nepilnosios lygtys"]
+            },
+            {
+              "title": "Lygčių sistemos",
+              "skills": ["Keitimo būdas", "Sudėties būdas"]
+            }
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {
+              "title": "Apskritimas ir skritulys",
+              "skills": ["Ilgis", "Plotas", "Išpjova"]
+            },
+            {
+              "title": "Trikampių panašumas",
+              "skills": ["Požymiai", "Taikymas"]
+            }
+          ]
+        }
+      ]
+    },
+    "10": {
+      "topics": [
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Kvadratinė funkcija",
+              "skills": ["Grafikas (parabolė)", "Viršūnės radimas", "Savybės"]
+            },
+            {
+              "title": "Nelygybės",
+              "skills": ["Tiesinės nelygybės", "Kvadratinės nelygybės", "Intervalų metodas"]
+            }
+          ]
+        },
+        {
+          "title": "Duomenys ir tikimybės",
+          "subtopics": [
+            {
+              "title": "Statistika",
+              "skills": ["Vidurkis", "Mediana", "Moda", "Imtis"]
+            },
+            {
+              "title": "Tikimybės",
+              "skills": ["Klasikinis apibrėžimas", "Bandymas", "Įvykis"]
+            }
+          ]
+        }
+      ]
+    },
+    "11-12_bendrasis": {
+      "topics": [
+        {
+          "title": "Skaičiai ir skaičiavimai",
+          "subtopics": [
+            {
+              "title": "Logaritmai",
+              "skills": ["Sąvoka", "Savybės", "Logaritminės lygtys"]
+            }
+          ]
+        },
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Išvestinės",
+              "skills": ["Taisyklės", "Liestinė", "Ekstremumai"]
+            },
+            {
+              "title": "Progresijos",
+              "skills": ["Aritmetinė", "Geometrinė"]
+            }
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {
+              "title": "Stereometrija",
+              "skills": ["Prizmė", "Piramidė", "Ritinys", "Kūgis", "Rutulys"]
+            }
+          ]
+        }
+      ]
+    },
+    "11-12_isplestinis": {
+      "topics": [
+        {
+          "title": "Modeliai ir sąryšiai",
+          "subtopics": [
+            {
+              "title": "Trigonometrija",
+              "skills": ["Formulės", "Lygtys", "Funkcijos"]
+            },
+            {
+              "title": "Išvestinės ir integralai",
+              "skills": ["Sudėtinės funkcijos išvestinė", "Pirmykštė funkcija", "Apibrėžtinis integralas", "Plotų skaičiavimas"]
+            },
+            {
+              "title": "Rodiklinės ir logaritminės funkcijos",
+              "skills": ["Savybės", "Lygtys", "Nelygybės"]
+            }
+          ]
+        },
+        {
+          "title": "Geometrija",
+          "subtopics": [
+            {
+              "title": "Vektoriai erdvėje",
+              "skills": ["Veiksmai", "Skaliarinė sandauga", "Koordinatės"]
+            },
+            {
+              "title": "Stereometrija (gilinta)",
+              "skills": ["Pjūviai", "Kampai tarp tiesių ir plokštumų"]
+            }
+          ]
+        },
+        {
+          "title": "Duomenys ir tikimybės",
+          "subtopics": [
+            {
+              "title": "Kombinatorika",
+              "skills": ["Gretiniai", "Deriniai", "Kėliniai"]
+            },
+            {
+              "title": "Tikimybių teorija",
+              "skills": ["Sąlyginė tikimybė", "Bernulio formulė"]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

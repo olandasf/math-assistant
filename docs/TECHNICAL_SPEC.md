@@ -50,9 +50,9 @@
 ### 1.5 AI / NLP
 | Įrankis | Paskirtis |
 |---------|-----------|
-| **Google Gemini API** | Klaidų aiškinimas, tekstiniai uždaviniai |
-| **Google Vertex AI** | Alternatyva Gemini |
+| **Google Gemini API** | Klaidų aiškinimas, tekstiniai uždaviniai, kontrolinių generavimas |
 | **WolframAlpha API** | Sudėtingi matematikos tikrinimai |
+| **Newton API** | Paprastos matematikos operacijos (nemokamas) |
 
 ### 1.6 PDF ir eksportas
 | Biblioteka | Paskirtis |

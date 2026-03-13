@@ -1,0 +1,57 @@
+[
+  {
+    "source": "competition_math",
+    "source_id": "math_train_prealgebra_0",
+    "question": "Megan has lost Fatima's phone number. Megan knows that the first three digits are either 296 or 299. The remaining four digits are 0, 1, 6 and 7, but she isn't sure of the order of these digits. If Megan randomly dials a seven-digit number that meets these conditions, what is the probability that she dials Fatima's correct number? Express your answer as a common fraction.",
+    "answer": "There are 2 different ways in which Megan can type the first three numbers. There are $4! = 24$ different orderings of the digits 0, 1, 6 and 7 for the last four digits. So, there are $2 \\cdot 24 = 48$ different numbers she can dial. Since exactly one number will be Fatima's, there is a $\\boxed{\\frac{1}{48}}$ probability of Megan guessing it right.",
+    "solution": "There are 2 different ways in which Megan can type the first three numbers. There are $4! = 24$ different orderings of the digits 0, 1, 6 and 7 for the last four digits. So, there are $2 \\cdot 24 = 48$ different numbers she can dial. Since exactly one number will be Fatima's, there is a $\\boxed{\\frac{1}{48}}$ probability of Megan guessing it right.",
+    "difficulty": "olympiad",
+    "estimated_grade_min": 11,
+    "estimated_grade_max": 12,
+    "category": "Prealgebra"
+  },
+  {
+    "source": "competition_math",
+    "source_id": "math_train_prealgebra_1",
+    "question": "Find the area in square feet of a square with a perimeter of 32ft.",
+    "answer": "If the perimeter of the square is $32$ feet, then the length of each side is $\\frac{32}{4}=8$ feet. That makes the area of the square $8^2=\\boxed{64}$ square feet.",
+    "solution": "If the perimeter of the square is $32$ feet, then the length of each side is $\\frac{32}{4}=8$ feet. That makes the area of the square $8^2=\\boxed{64}$ square feet.",
+    "difficulty": "medium",
+    "estimated_grade_min": 10,
+    "estimated_grade_max": 11,
+    "category": "Prealgebra"
+  },
+  {
+    "source": "competition_math",
+    "source_id": "math_train_prealgebra_2",
+    "question": "In the diagram, the rectangle has a width $w$, a length of $8$, and a perimeter of $24$. What is the ratio of its width to its length? [asy]\npair a = (0, 0); pair b = (8, 0); pair c = (8, 4); pair d = (0, 4);\ndraw(a--b--c--d--cycle);\nlabel(\"$w$\", midpoint(a--d), W); label(\"$8$\", midpoint(c--d), N);\n[/asy] Write your answer in the form $x:y$, where $x$ and $y$ are relatively prime positive integers.",
+    "answer": "Since the rectangle has width $w$, length 8, and perimeter 24, then $2w+2(8)=24$ or $2w+16=24$ or $2w=8$ or $w=4$. Therefore, the ratio of the width to the length is $4 : 8 = \\boxed{1 : 2}$.",
+    "solution": "Since the rectangle has width $w$, length 8, and perimeter 24, then $2w+2(8)=24$ or $2w+16=24$ or $2w=8$ or $w=4$. Therefore, the ratio of the width to the length is $4 : 8 = \\boxed{1 : 2}$.",
+    "difficulty": "hard",
+    "estimated_grade_min": 10,
+    "estimated_grade_max": 11,
+    "category": "Prealgebra"
+  },
+  {
+    "source": "competition_math",
+    "source_id": "math_train_prealgebra_3",
+    "question": "Mr. Mendez awards extra credit on quizzes to his students with quiz grades that exceed the class mean. Given that 107 students take the same quiz, what is the largest number of students who can be awarded extra credit?",
+    "answer": "It is not possible for all 107 to exceed the mean since the mean is always greater than or equal to the smallest element.  However 106 of the students can exceed the mean.  For example, if 106 students get a 5 and the other student gets a 4, the mean is slightly less than 5 and all $\\boxed{106}$ of the students that scored 5 will exceed the mean.",
+    "solution": "It is not possible for all 107 to exceed the mean since the mean is always greater than or equal to the smallest element.  However 106 of the students can exceed the mean.  For example, if 106 students get a 5 and the other student gets a 4, the mean is slightly less than 5 and all $\\boxed{106}$ of the students that scored 5 will exceed the mean.",
+    "difficulty": "olympiad",
+    "estimated_grade_min": 11,
+    "estimated_grade_max": 12,
+    "category": "Prealgebra"
+  },
+  {
+    "source": "competition_math",
+    "source_id": "math_train_prealgebra_4",
+    "question": "How many numbers are in the list $$ 1, 4, 7, \\ldots, 2005, 2008 ?$$",
+    "answer": "Adding 2 to each member of the list, we get $$3, 6, 9, \\ldots, 2007, 2010,$$ and then dividing each member of the list by 3, we get $$1,2,3,\\ldots,669,670,$$ so there are $\\boxed{670}$ numbers.",
+    "solution": "Adding 2 to each member of the list, we get $$3, 6, 9, \\ldots, 2007, 2010,$$ and then dividing each member of the list by 3, we get $$1,2,3,\\ldots,669,670,$$ so there are $\\boxed{670}$ numbers.",
+    "difficulty": "hard",
+    "estimated_grade_min": 10,
+    "estimated_grade_max": 11,
+    "category": "Prealgebra"
+  }
+]

@@ -60,7 +60,7 @@ async def init_db() -> None:
 async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """
     Dependency injection duomenų bazės sesijai.
-    
+
     Usage:
         @app.get("/items")
         async def get_items(db: AsyncSession = Depends(get_db)):

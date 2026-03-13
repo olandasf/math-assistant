@@ -10,7 +10,7 @@ from database import Base
 
 class Backup(Base):
     """Atsarginės kopijos įrašas."""
-    
+
     __tablename__ = "backups"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -20,7 +20,7 @@ class Backup(Base):
     backup_type = Column(String(20), default="manual")  # "manual", "auto", "scheduled"
     is_successful = Column(Boolean, default=True)
     notes = Column(String(500), nullable=True)
-    
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
 

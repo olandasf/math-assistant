@@ -1,0 +1,182 @@
+{
+  "pavadinimas": "Lietuvos bendroji matematikos mokymo programa (2026 m. redakcija)",
+  "tikslas": "DI agentams skirtas struktūrizuotas failas užduočių generavimui",
+  "klases": {
+    "5": {
+      "temos": [
+        {
+          "pavadinimas": "Skaičiai ir skaičiavimai",
+          "potemes": ["Natūralieji skaičiai", "Veiksmai su natūraliaisiais skaičiais", "Trupmenos", "Dešimtainės trupmenos"]
+        },
+        {
+          "pavadinimas": "Modeliai ir sąryšiai",
+          "potemes": ["Raidiniai reiškiniai", "Lygtys"]
+        },
+        {
+          "pavadinimas": "Geometrija ir matavimai",
+          "potemes": ["Plokštumos figūros", "Matavimo vienetai", "Perimetras ir plotas"]
+        },
+        {
+          "pavadinimas": "Duomenys ir tikimybės",
+          "potemes": ["Duomenų rinkimas ir vaizdavimas", "Tikimybių įvadas"]
+        }
+      ]
+    },
+    "6": {
+      "temos": [
+        {
+          "pavadinimas": "Skaičiai ir skaičiavimai",
+          "potemes": ["Sveikieji skaičiai", "Veiksmai su sveikaisiais skaičiais", "Procentai"]
+        },
+        {
+          "pavadinimas": "Modeliai ir sąryšiai",
+          "potemes": ["Proporcijos", "Sąryšiai"]
+        },
+        {
+          "pavadinimas": "Geometrija ir matavimai",
+          "potemes": ["Erdvės figūros", "Tūris"]
+        },
+        {
+          "pavadinimas": "Duomenys ir tikimybės",
+          "potemes": ["Statistiniai rodikliai", "Tikimybių skaičiavimas"]
+        }
+      ]
+    },
+    "7": {
+      "temos": [
+        {
+          "pavadinimas": "Skaičiai ir skaičiavimai",
+          "potemes": ["Racionalieji skaičiai", "Laipsniai su natūraliuoju rodikliu"]
+        },
+        {
+          "pavadinimas": "Modeliai ir sąryšiai",
+          "potemes": ["Vienanariai ir daugianariai", "Tiesinės lygtys"]
+        },
+        {
+          "pavadinimas": "Geometrija ir matavimai",
+          "potemes": ["Kampai", "Trikampiai", "Pitagoro teorema"]
+        },
+        {
+          "pavadinimas": "Duomenys ir tikimybės",
+          "potemes": ["Duomenų analizė", "Kombinatorikos pradmenys"]
+        }
+      ]
+    },
+    "8": {
+      "temos": [
+        {
+          "pavadinimas": "Skaičiai ir skaičiavimai",
+          "potemes": ["Kvadratinės šaknys", "Realieji skaičiai"]
+        },
+        {
+          "pavadinimas": "Modeliai ir sąryšiai",
+          "potemes": ["Tiesinės funkcijos", "Lygčių sistemos"]
+        },
+        {
+          "pavadinimas": "Geometrija ir matavimai",
+          "potemes": ["Apskritimas ir skritulys", "Keturkampiai", "Panašumas"]
+        },
+        {
+          "pavadinimas": "Duomenys ir tikimybės",
+          "potemes": ["Statistinė analizė", "Tikimybių teorijos elementai"]
+        }
+      ]
+    },
+    "9": {
+      "temos": [
+        {
+          "pavadinimas": "Modeliai ir sąryšiai",
+          "potemes": ["Dėsningumai", "Algebra (reiškiniai, lygtys, nelygybės)", "Tiesiniai ir netiesiniai sąryšiai"]
+        },
+        {
+          "pavadinimas": "Geometrija ir matavimai",
+          "potemes": ["Figūros (trikampiai, keturkampiai, panašumas)"]
+        },
+        {
+          "pavadinimas": "Duomenys ir tikimybės",
+          "potemes": ["Duomenys ir jų interpretavimas"]
+        }
+      ]
+    },
+    "10": {
+      "temos": [
+        {
+          "pavadinimas": "Modeliai ir sąryšiai",
+          "potemes": ["Dėsningumai", "Algebra (kvadratinės funkcijos, lygtys)", "Netiesiniai sąryšiai"]
+        },
+        {
+          "pavadinimas": "Geometrija ir matavimai",
+          "potemes": ["Figūros (apskritimas, trigonometrija)"]
+        },
+        {
+          "pavadinimas": "Duomenys ir tikimybės",
+          "potemes": ["Duomenys ir jų interpretavimas", "Tikimybės ir jų interpretavimas"]
+        }
+      ]
+    },
+    "11": {
+      "bendrasis_kursas": {
+        "temos": [
+          {
+            "pavadinimas": "Skaičiai ir skaičiavimai",
+            "potemes": ["Realieji skaičiai", "Laipsniai ir šaknys", "Logaritmai"]
+          },
+          {
+            "pavadinimas": "Modeliai ir sąryšiai",
+            "potemes": ["Funkcijos", "Lygtys ir nelygybės", "Trigonometrija"]
+          }
+        ]
+      },
+      "isplestinis_kursas": {
+        "temos": [
+          {
+            "pavadinimas": "Skaičiai ir skaičiavimai",
+            "potemes": ["Aibių teorija", "Logaritmai", "Kompleksiniai skaičiai (pasirinktinai)"]
+          },
+          {
+            "pavadinimas": "Modeliai ir sąryšiai",
+            "potemes": ["Trigonometrinės funkcijos", "Išvestinės", "Vektoriai"]
+          },
+          {
+            "pavadinimas": "Geometrija ir matavimai",
+            "potemes": ["Planimetrija", "Stereometrija"]
+          }
+        ]
+      }
+    },
+    "12": {
+      "bendrasis_kursas": {
+        "temos": [
+          {
+            "pavadinimas": "Modeliai ir sąryšiai",
+            "potemes": ["Išvestinės", "Integralai", "Progresijos"]
+          },
+          {
+            "pavadinimas": "Geometrija ir matavimai",
+            "potemes": ["Erdvės figūros", "Vektoriai"]
+          },
+          {
+            "pavadinimas": "Duomenys ir tikimybės",
+            "potemes": ["Statistika", "Tikimybės"]
+          }
+        ]
+      },
+      "isplestinis_kursas": {
+        "temos": [
+          {
+            "pavadinimas": "Modeliai ir sąryšiai",
+            "potemes": ["Progresijos", "Funkcijos (sudėtinės, atvirkštinės)", "Lygtys ir nelygybės (racionaliosios, rodiklinės, logaritminės)", "Išvestinės ir jų taikymai", "Integralai"]
+          },
+          {
+            "pavadinimas": "Geometrija ir matavimai",
+            "potemes": ["Tiesės, plokštumos, kampai erdvėje", "Briaunainiai, sukiniai", "Vektoriai erdvėje"]
+          },
+          {
+            "pavadinimas": "Duomenys ir tikimybės",
+            "potemes": ["Įvadas į statistinę duomenų analizę", "Kombinatorika (kėliniai, gretiniai, deriniai)", "Tikimybiniai modeliai", "Atsitiktiniai dydžiai"]
+          }
+        ]
+      }
+    }
+  }
+}

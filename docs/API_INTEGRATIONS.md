@@ -9,10 +9,16 @@
 |-----|-----------|-------|-------|
 | **MathPix** | Matematikos OCR | Cloud | ~$0.01-0.05/puslapis |
 | **Google Cloud Vision** | Teksto OCR | Cloud | 1000 nemokamų/mėn |
-| **Google Gemini** | AI/NLP | Cloud | Nemokamas limitas |
-| **WolframAlpha** | Matematikos tikrinimas | Cloud | 2000 nemokamų/mėn |
+| **Google Gemini** | AI/NLP, kontrolinių generavimas | Cloud | Nemokamas limitas |
+| **WolframAlpha** | Sudėtingi matematikos tikrinimai | Cloud | 2000 nemokamų/mėn |
+| **Newton API** | Paprastos matematikos operacijos | Cloud | **Nemokamas, be limito** |
 | **Tesseract** | Backup OCR | Lokalus | Nemokamas |
 | **EasyOCR** | Rašysenos OCR | Lokalus | Nemokamas |
+
+### Tikrinimo prioritetų eilė (Hybrid Workflow)
+```
+1. SymPy (lokalus) → 2. Newton API (nemokamas) → 3. WolframAlpha (mokamas) → 4. Gemini AI (semantinis)
+```
 
 ---
 
@@ -605,7 +611,186 @@ async def check_with_wolfram(student_answer: str, correct_answer: str) -> dict:
 
 ---
 
-## 6. TESSERACT OCR (LOKALUS)
+## 6. NEWTON API (NEMOKAMAS)
+
+### 6.1 Aprašymas
+Newton API yra nemokamas matematikos API be autentifikacijos. Idealiai tinka paprastoms operacijoms kaip alternatyva mokamam WolframAlpha.
+
+### 6.2 Privalumai
+| Savybė | Vertė |
+|--------|-------|
+| Kaina | **Nemokama** |
+| Limitas | Nėra |
+| Autentifikacija | Nereikia |
+| Sparta | Greitas (~100-300ms) |
+
+### 6.3 Palaikomos operacijos
+| Operacija | Endpoint | Pavyzdys |
+|-----------|----------|----------|
+| Supaprastinti | `/simplify` | `2x+2x` → `4x` |
+| Faktorinti | `/factor` | `x^2-4` → `(x-2)(x+2)` |
+| Išvestinė | `/derive` | `x^3` → `3x^2` |
+| Integralas | `/integrate` | `x^2` → `x^3/3` |
+| Šaknys | `/zeroes` | `x^2-4` → `[-2, 2]` |
+| Tangentas | `/tangent` | Liestinė funkcija |
+| Ploto po kreive | `/area` | Integralas tarp taškų |
+| Cos | `/cos` | Kosinusas |
+| Sin | `/sin` | Sinusas |
+| Tan | `/tan` | Tangentas |
+| Arccos | `/arccos` | Arkokosinusas |
+| Arcsin | `/arcsin` | Arkosinusas |
+| Arctan | `/arctan` | Arkotangentas |
+| Absoliuti reikšmė | `/abs` | Modulis |
+| Logaritmas | `/log` | Natūralus log |
+
+### 6.4 API Formatas
+```
+GET https://newton.now.sh/api/v2/{operation}/{expression}
+```
+
+### 6.5 Naudojimo pavyzdys
+
+```python
+import httpx
+from typing import Optional
+from loguru import logger
+
+
+class NewtonClient:
+    """Newton API klientas matematikos operacijoms."""
+    
+    BASE_URL = "https://newton.now.sh/api/v2"
+    
+    async def _call(self, operation: str, expression: str) -> Optional[str]:
+        """Iškviečia Newton API."""
+        # URL encode išraiškos
+        import urllib.parse
+        encoded = urllib.parse.quote(expression, safe='')
+        
+        url = f"{self.BASE_URL}/{operation}/{encoded}"
+        
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                response = await client.get(url, follow_redirects=True)
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    return data.get("result")
+                    
+        except Exception as e:
+            logger.warning(f"Newton API klaida: {e}")
+            
+        return None
+    
+    async def simplify(self, expr: str) -> Optional[str]:
+        """Supaprastinti išraišką."""
+        return await self._call("simplify", expr)
+    
+    async def factor(self, expr: str) -> Optional[str]:
+        """Faktorinti išraišką."""
+        return await self._call("factor", expr)
+    
+    async def derive(self, expr: str) -> Optional[str]:
+        """Apskaičiuoti išvestinę."""
+        return await self._call("derive", expr)
+    
+    async def integrate(self, expr: str) -> Optional[str]:
+        """Apskaičiuoti integralą."""
+        return await self._call("integrate", expr)
+    
+    async def zeroes(self, expr: str) -> Optional[str]:
+        """Rasti lygties šaknis."""
+        return await self._call("zeroes", expr)
+    
+    async def solve_linear(self, equation: str) -> Optional[str]:
+        """
+        Išspręsti tiesinę lygtį.
+        Pvz.: "2x+5=15" → "5"
+        """
+        # Newton API neturi tiesioginio solve, bet galime naudoti zeroes
+        # Pertvarkome: ax + b = c → ax + b - c = 0
+        if "=" in equation:
+            left, right = equation.split("=")
+            expr = f"({left})-({right})"
+            return await self._call("zeroes", expr)
+        return None
+
+
+# Naudojimo pavyzdys
+async def check_with_newton(expression: str, expected: str) -> dict:
+    """
+    Patikrinti matematinę išraišką su Newton API.
+    
+    Args:
+        expression: Išraiška tikrinimui
+        expected: Tikėtinas rezultatas
+        
+    Returns:
+        dict su tikrinimo rezultatu
+    """
+    client = NewtonClient()
+    
+    # Supaprastinti išraišką
+    simplified = await client.simplify(expression)
+    
+    if simplified:
+        # Palyginti su tikėtinu
+        is_correct = str(simplified).strip() == str(expected).strip()
+        return {
+            "is_correct": is_correct,
+            "simplified": simplified,
+            "expected": expected
+        }
+    
+    return {"is_correct": None, "error": "Nepavyko apskaičiuoti"}
+```
+
+### 6.6 Hibridinis tikrinimo workflow
+
+```python
+async def check_math_hybrid(expression: str, expected: str) -> dict:
+    """
+    Hibridinis matematikos tikrinimas:
+    1. SymPy (lokalus, greitas)
+    2. Newton API (nemokamas, cloud)
+    3. WolframAlpha (mokamas, galingas)
+    4. Gemini AI (semantinis)
+    """
+    
+    # 1. Bandyti su SymPy
+    try:
+        from math_checker.sympy_solver import MathSolver
+        solver = MathSolver()
+        result = solver.check_equality(expression, expected)
+        if result["success"]:
+            return {"source": "sympy", **result}
+    except Exception:
+        pass
+    
+    # 2. Bandyti su Newton API (nemokamas)
+    newton = NewtonClient()
+    newton_result = await check_with_newton(expression, expected)
+    if newton_result.get("is_correct") is not None:
+        return {"source": "newton", **newton_result}
+    
+    # 3. Bandyti su WolframAlpha (mokamas)
+    if WOLFRAM_CONFIGURED:
+        wolfram = WolframClient(WOLFRAM_APP_ID)
+        wolfram_result = await wolfram.verify_answer(expression, expected)
+        if wolfram_result:
+            return {"source": "wolfram", **wolfram_result}
+    
+    # 4. Fallback: Gemini AI
+    if GEMINI_CONFIGURED:
+        # ... Gemini tikrinimas
+        pass
+    
+    return {"source": "none", "is_correct": None, "error": "Visi metodai nepavyko"}
+```
+
+---
+
+## 7. TESSERACT OCR (LOKALUS)
 
 ### 6.1 Aprašymas
 Tesseract yra nemokamas, atviro kodo OCR variklis, naudojamas kaip backup kai nėra interneto arba API limitai viršyti.

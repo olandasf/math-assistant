@@ -10,7 +10,7 @@ from database import Base
 
 class Setting(Base):
     """Sistemos nustatymai key-value formatu."""
-    
+
     __tablename__ = "settings"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -18,7 +18,7 @@ class Setting(Base):
     value = Column(Text, nullable=True)
     description = Column(String(500), nullable=True)
     category = Column(String(50), default="general", index=True)  # "general", "ocr", "grading"
-    
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

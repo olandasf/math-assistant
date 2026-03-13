@@ -1,0 +1,1 @@
+export { QuickCheckPage } from "./QuickCheckPage";

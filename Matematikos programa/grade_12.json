@@ -1,0 +1,134 @@
+{
+  "grade": 12,
+  "topics": [
+    {
+      "id": "funkciju-isvestines-ir-taikymai",
+      "title": "Funkcijų išvestinės ir jų taikymai",
+      "subtopics": [
+        {
+          "id": "isvestiniu-skaiciavimas",
+          "name": "Išvestinių skaičiavimo taisyklės",
+          "difficulty_rules": {
+            "EASY": "Paprasčiausių laipsninių, rodiklinių ir trigonometrinių funkcijų išvestinių radimas.",
+            "MEDIUM": "Sudėtinių funkcijų, sandaugos ir dalmens išvestinių skaičiavimas.",
+            "HARD": "Išvestinių taikymas įrodant sudėtingas matematines tapatybes ar nelygybes."
+          }
+        },
+        {
+          "id": "funkciju-tyrimas",
+          "name": "Funkcijų tyrimas ir grafikai",
+          "difficulty_rules": {
+            "EASY": "Funkcijos didėjimo ir mažėjimo intervalų nustatymas pagal grafiką.",
+            "MEDIUM": "Ekstremumų taškų radimas ir funkcijos grafiko eskizo braižymas.",
+            "HARD": "Išsamus funkcijos tyrimas, įskaitant išgaubtumo intervalus ir perlinkio taškus."
+          }
+        },
+        {
+          "id": "optimizavimo-uzdaviniai",
+          "name": "Praktiniai optimizavimo uždaviniai",
+          "difficulty_rules": {
+            "EASY": "Paprastų geometrinių figūrų parametrų optimizavimas turint tiesioginę priklausomybę.",
+            "MEDIUM": "Realiojo turinio uždavinių modeliavimas sudarant funkciją ir randant jos didžiausią vertę.",
+            "HARD": "Sudėtingi daugiaparametriniai optimizavimo uždaviniai su papildomais apribojimais."
+          }
+        }
+      ]
+    },
+    {
+      "id": "integralinio-skaiciavimo-pagrindai",
+      "title": "Integralinio skaičiavimo pagrindai",
+      "subtopics": [
+        {
+          "id": "pirmykste-funkcija",
+          "name": "Pirmykštė funkcija ir neapibrėžtinis integralas",
+          "difficulty_rules": {
+            "EASY": "Tiesioginis pirmykštės funkcijos radimas naudojant lenteles.",
+            "MEDIUM": "Pirmykštės funkcijos radimas einančios per nurodytą tašką.",
+            "HARD": "Sudėtingesnių funkcijų integravimas taikant kintamojo pakeitimo metodą."
+          }
+        },
+        {
+          "id": "apibreztinis-integralas",
+          "name": "Apibrėžtinis integralas ir plotų skaičiavimas",
+          "difficulty_rules": {
+            "EASY": "Apibrėžtinio integralo skaičiavimas taikant Niutono-Leibnico formulę.",
+            "MEDIUM": "Kreivinės trapecijos, apribotos viena funkcija ir ašimis, ploto radimas.",
+            "HARD": "Plotų tarp susikertančių grafikų skaičiavimas ir integralo taikymas fizikos uždaviniuose."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tikimybes-ir-statistika",
+      "title": "Tikimybės ir statistinis raštingumas",
+      "subtopics": [
+        {
+          "id": "atsitiktiniai-dydziai",
+          "name": "Diskretieji atsitiktiniai dydžiai",
+          "difficulty_rules": {
+            "EASY": "Atsitiktinio dydžio skirstinio lentelės supratimas ir pildymas.",
+            "MEDIUM": "Matematinės vilties ir dispersijos skaičiavimas.",
+            "HARD": "Bernulio bandymų schemos taikymas ir sudėtingų tikimybių modelių analizė."
+          }
+        },
+        {
+          "id": "duomenu-interpretavimas",
+          "name": "Statistinių duomenų analizė ir interpretavimas",
+          "difficulty_rules": {
+            "EASY": "Vidurkio, medianos ir mados radimas duomenų rinkiniuose.",
+            "MEDIUM": "Kvartilių skaičiavimas ir stačiakampės diagramos sudarymas.",
+            "HARD": "Statistinių hipotezių elementai ir kritinis duomenų interpretavimas pagal metodines rekomendacijas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "erdves-geometrija-stereometrija",
+      "title": "Erdvės geometrija (Stereometrija)",
+      "subtopics": [
+        {
+          "id": "suktiniai-kunai",
+          "name": "Ritinys, kūgis ir rutulys",
+          "difficulty_rules": {
+            "EASY": "Pagrindinių suktinių kūnų elementų (spindulio, aukštinės) atpažinimas.",
+            "MEDIUM": "Paviršiaus plotų ir tūrių skaičiavimas pagal formules.",
+            "HARD": "Įbrėžtinių ir apibrėžtinių kūnų sąryšių analizė bei pjūvių plotų skaičiavimas."
+          }
+        },
+        {
+          "id": "vektoriai-erdveje",
+          "name": "Vektoriai erdvėje ir koordinatės",
+          "difficulty_rules": {
+            "EASY": "Vektoriaus koordinačių ir ilgio skaičiavimas erdvėje.",
+            "MEDIUM": "Vektorių skaliarinė sandauga ir kampo tarp tiesių radimas.",
+            "HARD": "Tiesių ir plokštumų lygčių taikymas sprendžiant stereometrijos uždavinius."
+          }
+        }
+      ]
+    },
+    {
+      "id": "pasiruosimas-brandos-egzaminui",
+      "title": "Pasiruošimas valstybiniam brandos egzaminui",
+      "subtopics": [
+        {
+          "id": "matematinis-samprotavimas",
+          "name": "Matematinio samprotavimo užduotys",
+          "difficulty_rules": {
+            "EASY": "Loginių teiginių teisingumo tikrinimas paprastais pavyzdžiais.",
+            "MEDIUM": "Matematinių savybių įrodymas remiantis apibrėžimais.",
+            "HARD": "Sudėtingų tekstinių uždavinių analizė ir nestandartinių strategijų taikymas."
+          }
+        },
+        {
+          "id": "egzamino-struktura-ir-strategija",
+          "name": "Egzamino užduočių analizė (Bendrasis ir Išplėstinis kursai)",
+          "difficulty_rules": {
+            "EASY": "Susipažinimas su užduočių priedais ir atsakymais lapų pildymu.",
+            "MEDIUM": "Uždavinių sprendimas pagal vertinimo instrukcijas siekiant maksimalaus taškų skaičiaus.",
+            "HARD": "Bandomųjų egzaminų vykdymas laiko limituojamose sąlygose ir klaidų analizė."
+          }
+        }
+      ]
+    }
+  ]
+}

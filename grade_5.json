@@ -1,0 +1,120 @@
+{
+  "grade": 5,
+  "description": "Pagal NŠA 2022 programą (5 klasės kursas)",
+  "topics": [
+    {
+      "id": "naturalieji_veiksmai",
+      "title": "Natūralieji skaičiai ir veiksmai",
+      "curriculum_ref": "Skaičiai ir skaičiavimai (324-335 eilutės)",
+      "subtopics": [
+        {
+          "id": "arithmetic_basic",
+          "name": "Sudėtis ir atimtis",
+          "levels": {
+            "EASY": {
+              "description": "Sudėtis/atimtis be perėjimo per skyrių",
+              "logic": "a + b, kur a,b < 1000",
+              "example": "345 + 120 = ?"
+            },
+            "MEDIUM": {
+              "description": "Sudėtis/atimtis su perėjimu per skyrių (skolinimasis)",
+              "logic": "a - b, kur a > 1000 ir reikia skolintis",
+              "example": "3004 - 158 = ?"
+            },
+            "HARD": {
+              "description": "Reiškiniai su skliaustais ir 3+ nariais",
+              "logic": "a + (b - c) arba tekstinis uždavinys",
+              "example": "Autobuse buvo 45, išlipo 12, įlipo 5. Kiek liko?"
+            }
+          }
+        },
+        {
+          "id": "multiplication_division",
+          "name": "Daugyba ir dalyba",
+          "levels": {
+            "EASY": "Daugyba iš vienaženklio skaičiaus",
+            "logic": "a * b, kur b < 10",
+            "example": "123 * 3 = ?"
+          },
+          "MEDIUM": "Daugyba stulpeliu iš dviženklio",
+            "logic": "a * b, kur b tarp 10 ir 99",
+            "example": "45 * 23 = ?"
+          },
+          "HARD": {
+            "description": "Dalyba su liekana arba tekstinis",
+            "logic": "a / b su liekana (interpretuoti liekaną)",
+            "example": "100 mokinių, autobuse 30 vietų. Kiek autobusų reikia? (Ats: 4, ne 3.33)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "desimtaines_trupmenos",
+      "title": "Dešimtainės trupmenos (Svarbiausia 5 kl. tema)",
+      "curriculum_ref": "Racionalieji skaičiai (336-340 eilutės)",
+      "subtopics": [
+        {
+          "id": "decimal_ops",
+          "name": "Veiksmai su dešimtainėmis",
+          "levels": {
+            "EASY": "Sudėtis, kai skaitmenų skaičius po kablelio vienodas",
+            "logic": "2.5 + 1.3",
+            "example": "2,5 + 1,3 = ?"
+          },
+          "MEDIUM": "Atimtis iš sveikojo skaičiaus (nulių prirašymas)",
+            "logic": "Int - Float (reikia prirašyti ,00)",
+            "example": "10 - 2,45 = ?"
+          },
+          "HARD": {
+            "description": "Daugyba iš dešimtainės trupmenos",
+            "logic": "Float * Float",
+            "example": "1,5 * 0,4 = ?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "lygtys_ir_geometrija",
+      "title": "Lygtys ir Geometrija",
+      "curriculum_ref": "Modeliai ir Geometrija (350-360 eilutės)",
+      "subtopics": [
+        {
+          "id": "simple_equations",
+          "name": "Paprastosios lygtys",
+          "levels": {
+            "EASY": "Nežinomasis - dėmuo",
+            "logic": "x + a = b",
+            "example": "x + 15 = 40"
+          },
+          "MEDIUM": "Nežinomasis - turinys/mažinys",
+            "logic": "a - x = b (mokiniai dažnai klysta)",
+            "example": "50 - x = 20"
+          },
+          "HARD": {
+            "description": "Lygties sudarymas pagal tekstą",
+            "logic": "Word problem -> Equation",
+            "example": "Galvoju skaičių, atimu 10 ir gaunu 5. Koks skaičius?"
+          }
+        },
+        {
+          "id": "geometry_calc",
+          "name": "Perimetras ir Plotas",
+          "levels": {
+            "EASY": "Stačiakampio plotas (sveiki skaičiai)",
+            "logic": "S = a * b",
+            "example": "a=5, b=4. Rasti S."
+          },
+          "MEDIUM": "Kombinuota figūra arba perimetras",
+            "logic": "P = 2(a+b)",
+            "example": "Kiek tvoros reikia aptverti 20x30m sklypą?"
+          },
+          "HARD": {
+            "description": "Atvirkštinis uždavinys",
+            "logic": "Given S and a, find b",
+            "example": "Plotas 40, ilgis 8. Koks plotis?"
+          }
+        }
+      ]
+    }
+  ]
+}

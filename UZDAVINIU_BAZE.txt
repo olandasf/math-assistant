@@ -1,0 +1,192 @@
+===============================================================================
+                    MATEMATIKOS MOKYTOJO ASISTENTAS
+                      Uzdaviniu Bazes Valdymas
+===============================================================================
+
+GREITA NAVIGACIJA:
+
+1. DELETE_ALL_TASKS.bat - Istrinti VISUS uzdavinius (kontrolinius darbus)
+2. LOAD_PROBLEMS.bat - Uzkrauti naujus uzdavinius is HuggingFace
+3. CLEAN_PROBLEMS.bat - Isvalyti senus AI generuotus uzdavinius
+4. FIND_PROBLEM.bat - Rasti konkretų uzdavini
+
+===============================================================================
+                    1. VISU UZDAVINIU TRYNIMAS
+===============================================================================
+
+PROBLEMA: Template generuoti uzdaviniai turi daug klaidu:
+  - Nelogiskas turinys: "Is 6 kg grudu pagaminama 18 kg miltu"
+  - Gramatines klaidos: "Kiek kainavo vienas knyga?" (turi buti "viena")
+  - Formatavimo problemos: kartais Pi, kartais pi
+
+SPRENDIMAS: Istrinti visus senus uzdavinius ir uzkrauti naujus is GSM8K.
+
+NAUDOJIMAS:
+
+1. Du kartus spustelekite: DELETE_ALL_TASKS.bat
+
+2. Skriptas parodys:
+   - Kiek Task bus istrinta
+   - Kiek Variant bus istrinta
+   - Kiek Test bus istrinta
+   - Pirmus 5 pavyzdzius
+
+3. Patvirtinkite: "TAIP ISTRINTI"
+
+DEMESIO: Tai istrina VISUS kontrolinius darbus!
+
+ARBA rankiniu budu:
+
+cd backend
+..\venv\Scripts\python.exe scripts\delete_all_tasks.py          # Dry run
+..\venv\Scripts\python.exe scripts\delete_all_tasks.py --confirm  # Tikras trynimas
+
+===============================================================================
+                    2. NAUJU UZDAVINIU UZKROVIMAS
+===============================================================================
+
+Po to kai istrinote senus uzdavinius, uzkraukite naujus kokybiškus:
+
+SALTINIAI:
+
+1. GSM8K (Grade School Math 8K)
+   - 8,500+ uzdaviniu
+   - 6-8 klases
+   - Anglu kalba -> verciama i lietuviu
+   - Auksta kokybes
+
+2. Competition Math
+   - Olimpiadiniai uzdaviniai
+   - 10-12 klases
+   - Labai sudetingi
+
+NAUDOJIMAS:
+
+1. Du kartus spustelekite: LOAD_PROBLEMS.bat
+
+2. Pasirinkite:
+   [1] GSM8K - 100 uzdaviniu (rekomenduojama pradedantiesiems)
+   [2] GSM8K - 200 uzdaviniu
+   [3] GSM8K - 500 uzdaviniu
+   [4] Competition Math - 50 uzdaviniu
+   [5] Competition Math - 100 uzdaviniu
+
+3. Laukite kol uzkraus (gali uztrukti 5-10 min)
+
+ARBA rankiniu budu:
+
+cd backend
+..\venv\Scripts\python.exe scripts\load_problems.py --source gsm8k --limit 100
+
+PARAMETRAI:
+  --source gsm8k          # Arba competition
+  --limit 100             # Kiek uzdaviniu uzkrauti
+  --grade-min 6           # Minimali klase
+  --grade-max 8           # Maksimali klase
+  --dry-run               # Tik parodyti, neuzkrauti
+
+===============================================================================
+                    3. SENU AI UZDAVINIU VALYMAS
+===============================================================================
+
+Jei turite Gemini AI generuotu uzdaviniu (source='GEMINI'), galite juos isvalyti:
+
+NAUDOJIMAS:
+
+1. Du kartus spustelekite: CLEAN_PROBLEMS.bat
+
+2. Skriptas parodys:
+   - Kiek Gemini uzdaviniu rasta
+   - Kiek bus istrinta (quality_score < 0.3)
+   - Pirmus 5 pavyzdzius
+
+3. Patvirtinkite trynima (Y/N)
+
+ARBA rankiniu budu:
+
+cd backend
+..\venv\Scripts\python.exe scripts\clean_ai_problems.py --dry-run
+..\venv\Scripts\python.exe scripts\clean_ai_problems.py --confirm
+
+PARAMETRAI:
+  --quality-threshold 0.3  # Kokybes slenkstis
+  --dry-run                # Tik parodyti
+  --confirm                # Tikrai istrinti
+
+===============================================================================
+                    4. UZDAVINIO PAIESKA
+===============================================================================
+
+Jei reikia rasti konkretų uzdavini visose lentelese:
+
+NAUDOJIMAS:
+
+1. Du kartus spustelekite: FIND_PROBLEM.bat
+
+2. Iveskite paieškos teksta (pvz., "grudu")
+
+3. Skriptas ieskos:
+   - ProblemBank lenteleje
+   - Task lenteleje
+   - Variant lenteleje (per tasks)
+   - Test lenteleje (per variants)
+
+ARBA rankiniu budu:
+
+cd backend
+..\venv\Scripts\python.exe scripts\find_problem.py --search "grudu"
+..\venv\Scripts\python.exe scripts\find_problem.py --all-tasks  # Visi Task
+
+===============================================================================
+                    REKOMENDUOJAMA TVARKA
+===============================================================================
+
+Jei pradedate nuo nulio arba norite isvalyti senus uzdavinius:
+
+1. DELETE_ALL_TASKS.bat
+   -> Istrina visus senus template uzdavinius
+
+2. LOAD_PROBLEMS.bat
+   -> Pasirenka [1] GSM8K - 100 uzdaviniu
+   -> Laukia 5-10 min
+
+3. Patikrinti:
+   cd backend
+   ..\venv\Scripts\python.exe scripts\inspect_problems.py --stats
+
+4. Paleisti programa:
+   START.bat
+
+===============================================================================
+                    PROBLEMU SPRENDIMAS
+===============================================================================
+
+KLAIDA: "ModuleNotFoundError: No module named 'loguru'"
+SPRENDIMAS:
+  cd backend
+  ..\venv\Scripts\pip.exe install loguru sqlalchemy aiosqlite pydantic
+
+KLAIDA: "scipy reikalauja Fortran kompiliatoriaus"
+SPRENDIMAS:
+  Naudokite requirements-minimal.txt vietoj requirements.txt
+  Jame nera numpy/scipy
+
+KLAIDA: "Gemini API klaida"
+SPRENDIMAS:
+  Patikrinkite .env faila:
+  GEMINI_API_KEY=jusu_raktas_cia
+
+===============================================================================
+                    PAPILDOMA INFORMACIJA
+===============================================================================
+
+Detalesnė dokumentacija:
+  - backend/scripts/README.md - Python skriptu dokumentacija
+  - docs/DATABASE.md - Duomenu bazes struktura
+  - docs/TECHNICAL_SPEC.md - Technine specifikacija
+
+Pagalba:
+  Jei kyla problemu, ziurekite logs:
+  backend/logs/app_YYYY-MM-DD.log
+
+===============================================================================

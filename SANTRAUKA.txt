@@ -1,0 +1,101 @@
+===============================================================================
+                    MATEMATIKOS MOKYTOJO ASISTENTAS
+                         Greita Santrauka
+===============================================================================
+
+PROBLEMA SU SENAIS UZDAVINIAIS:
+
+Dabar duomenu bazeje yra 40 template generuotu uzdaviniu su klaidomis:
+  - Nelogiskas turinys: "Is 6 kg grudu pagaminama 18 kg miltu"
+  - Gramatines klaidos: "Kiek kainavo vienas knyga?"
+  - Formatavimo problemos
+
+SPRENDIMAS:
+
+1. Istrinti visus senus uzdavinius:
+   DELETE_ALL_TASKS.bat
+
+2. Uzkrauti naujus kokybiškus is GSM8K:
+   LOAD_PROBLEMS.bat
+   -> Pasirinkti [1] GSM8K - 100 uzdaviniu
+
+3. Paleisti programa:
+   START.bat
+
+===============================================================================
+
+SUKURTI FAILAI:
+
+SKRIPTAI:
+  - DELETE_ALL_TASKS.bat - Istrina visus Task/Variant/Test
+  - DELETE_TASK.bat - Istrina konkretų Task (ID 17)
+  - LOAD_PROBLEMS.bat - Uzkrauna naujus uzdavinius
+  - CLEAN_PROBLEMS.bat - Valo Gemini AI uzdavinius
+  - FIND_PROBLEM.bat - Iesko uzdavinio
+
+PYTHON:
+  - backend/scripts/delete_all_tasks.py - Visu Task trynimas
+  - backend/scripts/delete_task.py - Konkretaus Task trynimas
+  - backend/scripts/find_problem.py - Pataisytas (veikia su async)
+  - backend/scripts/load_problems.py - Uzkrovimas is HuggingFace
+  - backend/scripts/clean_ai_problems.py - AI valymas
+  - backend/scripts/inspect_problems.py - Statistika
+
+REQUIREMENTS:
+  - backend/requirements.txt - Atnaujintas (pasalintas scipy/numpy)
+  - backend/requirements-minimal.txt - Minimalus (be kompiliatoriaus)
+
+DOKUMENTACIJA:
+  - UZDAVINIU_BAZE.txt - Pilna instrukcija
+  - SANTRAUKA.txt - Sis failas
+
+===============================================================================
+
+PATAISYMAI:
+
+1. find_problem.py:
+   - Pridetas selectinload(Variant.tasks) - async lazy loading
+   - Pataisyti lauku pavadinimai: Task.text, Variant.name
+   - Veikia su async sesijomis
+
+2. requirements.txt:
+   - Pasalintas scipy (reikalauja Fortran)
+   - Pasalintas numpy (reikalauja kompiliatoriaus)
+   - Pasalintas opencv (reikalauja numpy)
+   - Pasalintas shapely, matplotlib
+
+3. SETUP.bat:
+   - Naudoja requirements-minimal.txt
+   - Greitas idiegimas be kompiliatoriaus
+
+===============================================================================
+
+TESTAVIMAS:
+
+Rastas nelogiskas uzdavinys:
+  Task ID: 17
+  Variant ID: 2
+  Test ID: 2
+  Tekstas: "Is 6 kg grudu pagaminama 18 kg miltu. Kiek miltu pagaminama is 5 kg grudu?"
+  Atsakymas: 15 kg
+
+Galima istrinti:
+  DELETE_TASK.bat (tik si uzdavini)
+  arba
+  DELETE_ALL_TASKS.bat (visus)
+
+===============================================================================
+
+REKOMENDUOJAMA TVARKA:
+
+1. DELETE_ALL_TASKS.bat
+   -> Patvirtinti: "TAIP ISTRINTI"
+
+2. LOAD_PROBLEMS.bat
+   -> Pasirinkti: [1] GSM8K - 100 uzdaviniu
+   -> Laukti 5-10 min
+
+3. START.bat
+   -> Programa veiks su naujais uzdaviniais
+
+===============================================================================

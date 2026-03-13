@@ -1,0 +1,101 @@
+{
+  "grade": 10,
+  "topics": [
+    {
+      "id": "algebra-lygtys-nelygybes",
+      "title": "Algebra: Lygtys, nelygybės ir jų sistemos",
+      "subtopics": [
+        {
+          "id": "kvadratines-lygtys",
+          "name": "Kvadratinės lygtys ir jų sprendimas",
+          "difficulty_rules": {
+            "EASY": "Paprastų kvadratinių lygčių sprendimas naudojant diskriminanto formulę.",
+            "MEDIUM": "Nepilnųjų kvadratinių lygčių sprendimas ir lygčių su skliaustais pertvarkymas.",
+            "HARD": "Tekstiniai uždaviniai, kuriems išspręsti reikia sudaryti kvadratinę lygtį."
+          }
+        },
+        {
+          "id": "lygciu-sistemos",
+          "name": "Lygčių sistemos su dviem nežinomaisiais",
+          "difficulty_rules": {
+            "EASY": "Tiesinių lygčių sistemų sprendimas keitimo ar sudėties būdu.",
+            "MEDIUM": "Lygčių sistemų, kurių viena lygtis yra antrojo laipsnio, sprendimas.",
+            "HARD": "Praktinio turinio uždaviniai, sprendžiami sudarant lygčių sistemas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometrija-vektoriai",
+      "title": "Geometrija: Vektoriai ir planimetrija",
+      "subtopics": [
+        {
+          "id": "vektoriai-plokstumoje",
+          "name": "Vektoriai plokštumoje",
+          "difficulty_rules": {
+            "EASY": "Vektoriaus pradžios, pabaigos ir krypties nustatymas brėžinyje.",
+            "MEDIUM": "Vektorių sudėtis, atimtis ir daugyba iš skaičiaus naudojant koordinates.",
+            "HARD": "Skaliarinės vektorių sandaugos skaičiavimas ir kampo tarp vektorių nustatymas."
+          }
+        },
+        {
+          "id": "panasūs-trikampiai",
+          "name": "Trikampių panašumas ir Pitagoro teorema",
+          "difficulty_rules": {
+            "EASY": "Pitagoro teoremos taikymas tiesioginiuose uždaviniuose.",
+            "MEDIUM": "Panašumo požymių taikymas ieškant nežinomų trikampio kraštinių.",
+            "HARD": "Sudėtinių geometrinių figūrų plotų ir perimetrų skaičiavimas taikant panašumą."
+          }
+        }
+      ]
+    },
+    {
+      "id": "statistika-tikimybes",
+      "title": "Statistika ir tikimybės",
+      "subtopics": [
+        {
+          "id": "statistinis-rastingumas",
+          "name": "Statistinio raštingumo ugdymas ir duomenų analizė",
+          "difficulty_rules": {
+            "EASY": "Vidurkio, medianos ir modos radimas iš pateiktos duomenų sekos.",
+            "MEDIUM": "Dažnių lentelių sudarymas ir duomenų vaizdavimas diagramose.",
+            "HARD": "Statistinių duomenų interpretavimas, sklaidos charakteristikų analizė."
+          }
+        },
+        {
+          "id": "tikimybiu-skaiciavimas",
+          "name": "Tikimybės ir jų interpretavimas",
+          "difficulty_rules": {
+            "EASY": "Klasikinės tikimybės formulės taikymas paprastiems įvykiams.",
+            "MEDIUM": "Tikimybių skaičiavimas naudojant derinius ar daugybos taisyklę.",
+            "HARD": "Priešingų įvykių tikimybių radimas ir sudėtingų bandymų analizė."
+          }
+        }
+      ]
+    },
+    {
+      "id": "finansinis-rastingumas",
+      "title": "Finansinis raštingumas ir matematinis samprotavimas",
+      "subtopics": [
+        {
+          "id": "procentu-taikymai",
+          "name": "Procentai ir finansiniai skaičiavimai",
+          "difficulty_rules": {
+            "EASY": "Skaičiaus dalies radimas procentais ir atvirkštiniai veiksmai.",
+            "MEDIUM": "Paprastųjų ir sudėtinių palūkanų skaičiavimas praktinėse situacijose.",
+            "HARD": "Sudėtingi finansiniai modeliai, susiję su mokesčiais ar investicijomis."
+          }
+        },
+        {
+          "id": "matematinis-samprotavimas",
+          "name": "Matematinio samprotavimo užduotys",
+          "difficulty_rules": {
+            "EASY": "Loginės sekos pratęsimas pagal pateiktą taisyklę.",
+            "MEDIUM": "Uždavinių sprendimo būdo pagrindimas ir argumentavimas.",
+            "HARD": "Matematinių teiginių įrodymas ir probleminių uždavinių analizė."
+          }
+        }
+      ]
+    }
+  ]
+}

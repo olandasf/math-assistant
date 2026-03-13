@@ -11,7 +11,7 @@ from database import Base
 
 class SchoolClass(Base):
     """Klasė (pvz., 5a, 7b)."""
-    
+
     __tablename__ = "classes"
 
     id = Column(Integer, primary_key=True, index=True)

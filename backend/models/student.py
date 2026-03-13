@@ -3,7 +3,7 @@ Student modelis - mokinys.
 """
 
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, Text, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -11,7 +11,7 @@ from database import Base
 
 class Student(Base):
     """Mokinys su unikaliu kodu (GDPR)."""
-    
+
     __tablename__ = "students"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -19,6 +19,8 @@ class Student(Base):
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
     class_id = Column(Integer, ForeignKey("classes.id"), nullable=False)
+    notes = Column(Text, nullable=True)  # Pastabos apie mokinį
+    is_active = Column(Boolean, default=True, nullable=False)  # Ar aktyvus mokinys
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -31,7 +33,7 @@ class Student(Base):
     def full_name(self) -> str:
         """Pilnas vardas."""
         return f"{self.first_name} {self.last_name}"
-    
+
     @property
     def anonymized_name(self) -> str:
         """Anonimizuotas vardas API užklausoms."""

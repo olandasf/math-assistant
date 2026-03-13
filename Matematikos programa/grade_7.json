@@ -1,0 +1,119 @@
+{
+  "grade": 7,
+  "topics": [
+    {
+      "id": "skaiciai-ir-skaiciavimai",
+      "title": "Skaičiai ir skaičiavimai",
+      "subtopics": [
+        {
+          "id": "realieji-skaiciai-laipsniai",
+          "name": "Realieji skaičiai. Laipsnis su sveikuoju rodikliu",
+          "difficulty_rules": {
+            "EASY": "Laipsnio su natūraliuoju rodikliu apskaičiavimas ir paprasčiausių savybių taikymas.",
+            "MEDIUM": "Veiksmų su laipsniais (daugyba, dalyba, kėlimas laipsniu) atlikimas taikant savybes su sveikaisiais neigiamaisiais rodikliais.",
+            "HARD": "Realaus pasaulio situacijų modeliavimas naudojant standartinę skaičiaus išraišką ir sudėtingų reiškinių su laipsniais skaičiavimas."
+          }
+        },
+        {
+          "id": "finansiniai-skaiciavimai-procentai",
+          "name": "Finansiniai skaičiavimai ir procentai",
+          "difficulty_rules": {
+            "EASY": "Skaičiaus didinimas ar mažinimas tam tikru procentų skaičiumi vieną kartą.",
+            "MEDIUM": "Uždavinių sprendimas, kai dydis kelis kartus keičiamas tam tikru procentų skaičiumi, palūkanų normos skaičiavimas.",
+            "HARD": "Biudžeto kūrimas ir koregavimas pagal įvairius scenarijus, geriausio finansinio pasirinkimo varianto analizė lyginant kelis pasiūlymus."
+          }
+        }
+      ]
+    },
+    {
+      "id": "modeliai-ir-sarysiai",
+      "title": "Modeliai ir sąryšiai",
+      "subtopics": [
+        {
+          "id": "algebra-nelygybes",
+          "name": "Algebra. Nelygybės su vienu nežinomuoju",
+          "difficulty_rules": {
+            "EASY": "Nelygybių ženklų prasmės supratimas ir paprastų skaitinių nelygybių savybių taikymas.",
+            "MEDIUM": "Tiesinių nelygybių sprendimas, sprendinių vaizdavimas skaičių tiesėje ir užrašymas intervalais.",
+            "HARD": "Dvigubųjų nelygybių ir nelygybių sistemų sprendimas, sprendinių atranka pagal papildomas sąlygas."
+          }
+        },
+        {
+          "id": "atvirkstinis-proporcingumas",
+          "name": "Tiesiniai ir netiesiniai sąryšiai. Atvirkštinis proporcingumas",
+          "difficulty_rules": {
+            "EASY": "Įvesties ir išvesties lentelių pildymas pagal pateiktą atvirkštinio proporcingumo taisyklę.",
+            "MEDIUM": "Atvirkštinio proporcingumo grafiko braižymas koordinačių plokštumoje ir grafiko skaitymas.",
+            "HARD": "Įvairaus konteksto uždavinių (greitis, laikas, plotas) sprendimas tapatinant tiesioginį ir atvirkštinį proporcingumą."
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometrija-ir-matavimai",
+      "title": "Geometrija ir matavimai",
+      "subtopics": [
+        {
+          "id": "transformacijos-ir-braizymas",
+          "name": "Konstravimas ir transformacijos",
+          "difficulty_rules": {
+            "EASY": "Atkarpos vidurio taško radimas ir statmenų tiesių braižymas paprastais įrankiais.",
+            "MEDIUM": "Figūrų lygumo pagrindimas koordinačių plokštumoje nurodant transformacijų (poslinkio, atspindžio) seką.",
+            "HARD": "Trikampio pusiaukampinių, pusiaukraštinių ir aukštinių braižymas fizinėmis bei skaitmeninėmis priemonėmis."
+          }
+        },
+        {
+          "id": "plokstumos-figuros-savybes",
+          "name": "Plokštumos figūros ir jų savybės",
+          "difficulty_rules": {
+            "EASY": "Keturkampių (kvadrato, stačiakampio, lygiagretainio, rombo, trapecijos) atpažinimas ir apibrėžimas.",
+            "MEDIUM": "Kampų, gautų perkirtus lygiagrečias tieses trečiąja, savybių taikymas uždaviniuose.",
+            "HARD": "Sąlyginių ir atvirkštinių teiginių formulavimas, figūrų klasifikavimas pagal požymius ir savybių pagrindimas."
+          }
+        },
+        {
+          "id": "apskritimas-ir-skritulys",
+          "name": "Apskritimas ir skritulys",
+          "difficulty_rules": {
+            "EASY": "Apskritimo ilgio radimas žinant spindulį, naudojant apytikslę pi reikšmę.",
+            "MEDIUM": "Skritulio ploto apskaičiavimas ir apskritimo lanko dalies ilgio radimas.",
+            "HARD": "Sudėtingesni skritulio dalies ploto radimo uždaviniai bei realaus konteksto matavimai."
+          }
+        },
+        {
+          "id": "erdves-figuros-turiai",
+          "name": "Erdvės figūros ir jų tūriai",
+          "difficulty_rules": {
+            "EASY": "Stačiosios prizmės, piramidės, ritinio ir kūgio elementų (aukštinės, sudaromosios) atpažinimas.",
+            "MEDIUM": "Ritinio ir kūgio paviršiaus ploto apskaičiavimas taikant pagrįstas formules.",
+            "HARD": "Prizmių, ritinių, kūgių ir piramidžių tūrio skaičiavimas ir taikymas praktinėse situacijose."
+          }
+        }
+      ]
+    },
+    {
+      "id": "duomenys-ir-tikimybes",
+      "title": "Duomenys ir tikimybės",
+      "subtopics": [
+        {
+          "id": "duomenu-rinkimas-imtis",
+          "name": "Duomenų rinkimas, populiacija ir imtis",
+          "difficulty_rules": {
+            "EASY": "Sąvokų populiacija, imtis ir atsitiktinumas atpažinimas paprastuose pavyzdžiuose.",
+            "MEDIUM": "Susipažinimas su imčių sudarymo būdais: sistemine, sluoksnine ir lizdine atranka.",
+            "HARD": "Atsitiktinės atrankos tyrimo planavimas ir nuspėjamųjų išvadų apie populiaciją formulavimas."
+          }
+        },
+        {
+          "id": "duomenu-interpretavimas-diagramos",
+          "name": "Duomenų vaizdavimas ir interpretavimas",
+          "difficulty_rules": {
+            "EASY": "Duomenų nurodymas ir paprastas skaitymas iš skritulinių diagramų.",
+            "MEDIUM": "Duomenų pateikimas skrituline diagrama ir uždavinių sprendimas remiantis ja.",
+            "HARD": "Duomenų rinkinių kintamumo interpretavimas ir tyrimo išvadų pagrįstumo vertinimas."
+          }
+        }
+      ]
+    }
+  ]
+}

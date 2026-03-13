@@ -1,25 +1,47 @@
-import { Routes, Route } from 'react-router-dom'
-import { Layout } from '@/components/Layout'
-import { Dashboard } from '@/pages/Dashboard'
-import { NotFound } from '@/pages/NotFound'
+import { Routes, Route } from "react-router-dom";
+import { Layout } from "@/components/Layout";
+import { Dashboard } from "@/pages/Dashboard";
+import { NotFound } from "@/pages/NotFound";
+import { ClassesPage } from "@/pages/Classes";
+import { StudentsPage } from "@/pages/Students";
+import { TestsPage, TestDetailPage, TestGeneratorPage } from "@/pages/Tests";
+import { UploadPage } from "@/pages/Upload";
+import { ReviewPage, WorkReviewPage } from "@/pages/Review";
+import { ComparePage } from "@/pages/Compare";
+import { StatisticsPage } from "@/pages/Statistics";
+import { SettingsPage } from "@/pages/Settings";
+import { PrivacyPage } from "@/pages/Privacy";
+import { ExportsPage } from "@/pages/Exports";
+import { ResultsPage, SubmissionsListPage } from "@/pages/Results";
+import { TemplatesPage } from "@/pages/Templates";
+import { QuickCheckPage } from "@/pages/QuickCheck";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Dashboard />} />
-        {/* TODO: Pridėti daugiau routes */}
-        {/* <Route path="classes" element={<ClassesPage />} /> */}
-        {/* <Route path="students" element={<StudentsPage />} /> */}
-        {/* <Route path="tests" element={<TestsPage />} /> */}
-        {/* <Route path="tests/:id" element={<TestDetailPage />} /> */}
-        {/* <Route path="submissions" element={<SubmissionsPage />} /> */}
-        {/* <Route path="statistics" element={<StatisticsPage />} /> */}
-        {/* <Route path="settings" element={<SettingsPage />} /> */}
+        <Route path="klases" element={<ClassesPage />} />
+        <Route path="mokiniai" element={<StudentsPage />} />
+        <Route path="kontroliniai" element={<TestsPage />} />
+        <Route path="kontroliniai/:id" element={<TestDetailPage />} />
+        <Route path="kontroliniai/generuoti" element={<TestGeneratorPage />} />
+        <Route path="ikelti" element={<UploadPage />} />
+        <Route path="perziureti" element={<ReviewPage />} />
+        <Route path="perziureti/:fileId" element={<WorkReviewPage />} />
+        <Route path="greitas-tikrinimas" element={<QuickCheckPage />} />
+        <Route path="palyginti/:submissionId" element={<ComparePage />} />
+        <Route path="rezultatai" element={<SubmissionsListPage />} />
+        <Route path="rezultatai/:submissionId" element={<ResultsPage />} />
+        <Route path="statistika" element={<StatisticsPage />} />
+        <Route path="eksportai" element={<ExportsPage />} />
+        <Route path="sablonai" element={<TemplatesPage />} />
+        <Route path="nustatymai" element={<SettingsPage />} />
+        <Route path="privatumas" element={<PrivacyPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;

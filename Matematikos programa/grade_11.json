@@ -1,0 +1,140 @@
+{
+  "grade": 11,
+  "topics": [
+    {
+      "id": "statistinis-rastingumas",
+      "title": "Statistinis raštingumas",
+      "subtopics": [
+        {
+          "id": "duomenu-rinkimas-ir-vaizdavimas",
+          "name": "Duomenų rinkimas ir vaizdavimas",
+          "difficulty_rules": {
+            "EASY": "Duomenų lentelių ir paprastų diagramų (stulpelinių, skritulinių) skaitymas.",
+            "MEDIUM": "Duomenų grupavimas, dažnių lentelių sudarymas ir histogramų braižymas.",
+            "HARD": "Sudėtingų duomenų rinkinių analizė, tendencijų identifikavimas ir klaidingų interpretacijų atpažinimas."
+          }
+        },
+        {
+          "id": "statistiniai-rodikliai",
+          "name": "Statistiniai rodikliai",
+          "difficulty_rules": {
+            "EASY": "Vidurkio, medianos ir modos apskaičiavimas paprastiems duomenų rinkiniams.",
+            "MEDIUM": "Dispersijos ir standartinio nuokrypio skaičiavimas, imties charakteristikų lyginimas.",
+            "HARD": "Statistinių rodiklių interpretavimas kontekste, išvadų pagrindimas remiantis skaičiavimais."
+          }
+        }
+      ]
+    },
+    {
+      "id": "tikimybes-ir-interpretavimas",
+      "title": "Tikimybės ir interpretavimas",
+      "subtopics": [
+        {
+          "id": "atsitiktiniai-ivykiai",
+          "name": "Atsitiktiniai įvykiai ir jų rūšys",
+          "difficulty_rules": {
+            "EASY": "Būtinų, negalimų ir atsitiktinių įvykių atpažinimas.",
+            "MEDIUM": "Sutaikomų ir nesutaikomų įvykių sankirtos bei sąjungos nustatymas.",
+            "HARD": "Priklausomų ir nepriklausomų įvykių analizė sudėtingose kombinatorinėse situacijose."
+          }
+        },
+        {
+          "id": "tikimybiu-skaiciavimas",
+          "name": "Klasikinis ir geometrinis tikimybės apibrėžimas",
+          "difficulty_rules": {
+            "EASY": "Paprastų įvykių tikimybių skaičiavimas naudojant palankių baigčių santykį.",
+            "MEDIUM": "Tikimybių skaičiavimas taikant kombinatorikos taisykles (deriniai, kėliniai).",
+            "HARD": "Sąlyginės tikimybės skaičiavimas ir Bernulio formulės taikymas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "vektoriai-plokstumoje",
+      "title": "Vektoriai plokštumoje",
+      "subtopics": [
+        {
+          "id": "vektoriu-koordinates-ir-veiksmai",
+          "name": "Vektorių koordinatės ir tiesiniai veiksmai",
+          "difficulty_rules": {
+            "EASY": "Vektoriaus koordinačių radimas, vektorių sudėtis ir atimtis grafiškai.",
+            "MEDIUM": "Vektorių sudėtis, atimtis ir daugyba iš skaičiaus naudojant koordinates.",
+            "HARD": "Vektorių kolinearumo sąlygos taikymas sprendžiant geometrinius uždavinius."
+          }
+        },
+        {
+          "id": "skaliarine-sandauga",
+          "name": "Vektorių skaliarinė sandauga",
+          "difficulty_rules": {
+            "EASY": "Skaliarinės sandaugos skaičiavimas, kai žinomos koordinatės.",
+            "MEDIUM": "Kampo tarp vektorių radimas naudojant skaliarinės sandaugos formulę.",
+            "HARD": "Vektorių statmenumo įrodymas ir taikymas sudėtingose planimetrijos užduotyse."
+          }
+        }
+      ]
+    },
+    {
+      "id": "algebra-funkcijos-ir-lygtys",
+      "title": "Algebra: Funkcijos, lygtys ir nelygybės",
+      "subtopics": [
+        {
+          "id": "laipsniai-ir-logaritmai",
+          "name": "Laipsniai, šaknys ir logaritmai",
+          "difficulty_rules": {
+            "EASY": "Logaritmų apibrėžimo taikymas ir paprasčiausių savybių naudojimas.",
+            "MEDIUM": "Logaritminių ir rodiklinių lygčių sprendimas vienodinant pagrindus.",
+            "HARD": "Sudėtingų logaritminių nelygybių sprendimas nustatant apibrėžimo sritis."
+          }
+        },
+        {
+          "id": "trigonometrija",
+          "name": "Trigonometrinės funkcijos ir lygtys",
+          "difficulty_rules": {
+            "EASY": "Pagrindinių trigonometrinių reikšmių radimas vienetiniame apskritime.",
+            "MEDIUM": "Trigonometrinių reiškinių suprastinimas taikant pagrindines tapatybes.",
+            "HARD": "Trigonometrinių lygčių sprendimas ir šaknų parinkimas duotame intervale."
+          }
+        }
+      ]
+    },
+    {
+      "id": "matematinis-samprotavimas",
+      "title": "Matematinis samprotavimas ir probleminiai uždaviniai",
+      "subtopics": [
+        {
+          "id": "loginis-pagrindimas",
+          "name": "Loginis pagrindimas ir įrodymai",
+          "difficulty_rules": {
+            "EASY": "Tiesioginis teiginio teisingumo patikrinimas duotais pavyzdžiais.",
+            "MEDIUM": "Geometrinių ir algebrinių teiginių įrodymas naudojant žinomas teoremas.",
+            "HARD": "Įrodymas prieštaros būdu arba matematinės indukcijos metodo taikymas."
+          }
+        },
+        {
+          "id": "probleminiu-situaciju-modeliavimas",
+          "name": "Probleminių situacijų modeliavimas",
+          "difficulty_rules": {
+            "EASY": "Tekstinio uždavinio sąlygos užrašymas matematinėmis išraiškomis.",
+            "MEDIUM": "Matematinio modelio (lygčių sistemos ar funkcijos) sudarymas realiam kontekstui.",
+            "HARD": "Gauto modelio tyrimas, optimizavimo uždavinių sprendimas ir sprendinių interpretacija."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ikt-matematikoje",
+      "title": "IKT panaudojimas matematikos uždaviniams spręsti",
+      "subtopics": [
+        {
+          "id": "skaiciavimo-technologijos",
+          "name": "Skaičiavimo technologijos ir dinamika",
+          "difficulty_rules": {
+            "EASY": "Skaičiuotuvo naudojimas sudėtingesniems skaičiavimams atlikti.",
+            "MEDIUM": "Dinaminių geometrijos programų (pvz., GeoGebra) naudojimas funkcijų grafikams tirti.",
+            "HARD": "Algoritminio mąstymo taikymas ir duomenų analizė naudojant skaičiuokles."
+          }
+        }
+      ]
+    }
+  ]
+}

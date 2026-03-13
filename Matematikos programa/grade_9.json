@@ -1,0 +1,125 @@
+{
+  "grade": 9,
+  "topics": [
+    {
+      "id": "vektoriai-plokstumoje",
+      "title": "Vektoriai plokštumoje",
+      "subtopics": [
+        {
+          "id": "vektoriaus-savoka-koordinates",
+          "name": "Vektoriaus sąvoka ir koordinatės",
+          "difficulty_rules": {
+            "EASY": "Atpažinti vektorių brėžinyje, nurodyti jo pradžią ir pabaigą.",
+            "MEDIUM": "Apskaičiuoti vektoriaus koordinates, kai žinomos galų taškų koordinatės.",
+            "HARD": "Apskaičiuoti vektoriaus ilgį ir spręsti koordinačių metodo uždavinius."
+          }
+        },
+        {
+          "id": "veiksmai-su-vektoriais",
+          "name": "Veiksmai su vektoriais",
+          "difficulty_rules": {
+            "EASY": "Atlikti paprastą vektorių sudėtį ir atimtį naudojant trikampio taisyklę.",
+            "MEDIUM": "Sudėti ir atimti vektorius algebriškai naudojant jų koordinates.",
+            "HARD": "Taikyti vektorių savybes geometrinių savybių įrodymui."
+          }
+        }
+      ]
+    },
+    {
+      "id": "statistika-ir-tikimybes",
+      "title": "Statistika ir tikimybės",
+      "subtopics": [
+        {
+          "id": "statistinis-rastingumas",
+          "name": "Statistinis raštingumas ir duomenų analizė",
+          "difficulty_rules": {
+            "EASY": "Rinkti duomenis ir vaizduoti juos paprastose lentelėse.",
+            "MEDIUM": "Apskaičiuoti vidurkį, medianą, modą ir duomenų sklaidą.",
+            "HARD": "Interpretuoti statistinius duomenis ir daryti pagrįstas išvadas apie populiaciją."
+          }
+        },
+        {
+          "id": "tikimybiu-interpretavimas",
+          "name": "Tikimybės ir jų interpretavimas",
+          "difficulty_rules": {
+            "EASY": "Apskaičiuoti paprasto įvykio tikimybę naudojant klasikinį apibrėžimą.",
+            "MEDIUM": "Spręsti uždavinius su nepriklausomais įvykiais.",
+            "HARD": "Taikyti kombinatorikos elementus apskaičiuojant sudėtingų įvykių tikimybes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "finansinis-rastingumas",
+      "title": "Finansinis raštingumas",
+      "subtopics": [
+        {
+          "id": "asmeniniai-finansai-biudzetas",
+          "name": "Asmeniniai finansai ir biudžeto planavimas",
+          "difficulty_rules": {
+            "EASY": "Atlikti paprastus procentų skaičiavimus susijusius su nuolaidomis.",
+            "MEDIUM": "Sudaryti šeimos ar asmeninį mėnesio biudžetą.",
+            "HARD": "Analizuoti finansinius modelius ir vertinti pajamų/išlaidų santykį."
+          }
+        },
+        {
+          "id": "investavimas-palukanos",
+          "name": "Investavimas ir palūkanų skaičiavimas",
+          "difficulty_rules": {
+            "EASY": "Apskaičiuoti paprastąsias palūkanas už indėlį.",
+            "MEDIUM": "Taikyti sudėtinių palūkanų formulę standartinėse situacijose.",
+            "HARD": "Vertinti skirtingų investicinių priemonių riziką ir grąžą naudojant matematinius skaičiavimus."
+          }
+        }
+      ]
+    },
+    {
+      "id": "matematinis-samprotavimas",
+      "title": "Matematinis samprotavimas ir užduotys",
+      "subtopics": [
+        {
+          "id": "probleminiai-uzdaviniai",
+          "name": "Matematikos probleminiai uždaviniai",
+          "difficulty_rules": {
+            "EASY": "Išspręsti uždavinį, kurio sprendimo būdas yra tiesiogiai nurodytas.",
+            "MEDIUM": "Parinkti tinkamą strategiją (schemą, lygtį) nestandartiniam uždaviniui spręsti.",
+            "HARD": "Kurti matematinius modelius realioms problemoms spręsti ir pagrįsti rezultatus."
+          }
+        },
+        {
+          "id": "logika-ir-irodymai",
+          "name": "Loginis samprotavimas ir įrodymai",
+          "difficulty_rules": {
+            "EASY": "Suformuluoti paprastą teiginį ir jo neiginį.",
+            "MEDIUM": "Atlikti tiesioginį įrodymą paprastoms geometrinėms savybėms.",
+            "HARD": "Atlikti įrodymus prieštaros būdu arba naudojant kelis loginius žingsnius."
+          }
+        }
+      ]
+    },
+    {
+      "id": "algebra-9-klase",
+      "title": "Algebra (I gimnazijos klasė)",
+      "subtopics": [
+        {
+          "id": "lygtys-ir-nelygybes",
+          "name": "Lygtys ir nelygybės",
+          "difficulty_rules": {
+            "EASY": "Spręsti tiesines lygtis ir paprastas nelygybes.",
+            "MEDIUM": "Spręsti kvadratines lygtis taikant diskriminanto formulę.",
+            "HARD": "Spręsti lygčių sistemas ir tekstinius uždavinius sudarant lygtis."
+          }
+        },
+        {
+          "id": "funkcijos-grafikai",
+          "name": "Funkcijos ir jų grafikai",
+          "difficulty_rules": {
+            "EASY": "Nurodyti funkcijos reikšmę pagal duotą argumentą.",
+            "MEDIUM": "Brėžti tiesinių ir paprastų kvadratinių funkcijų grafikus.",
+            "HARD": "Tirti funkcijų savybes (didėjimas, mažėjimas, ekstremumai) pagal grafiką."
+          }
+        }
+      ]
+    }
+  ]
+}

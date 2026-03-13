@@ -3,14 +3,25 @@
 # ═══════════════════════════════════════════════════════════════════
 
 # ─────────────────────────────────────────────────────────────────────
-# APLINKOS FAILAI (SVARBU!)
+# APLINKOS FAILAI IR RAKTAI (SVARBU! / SECRETS - IMPORTANT!)
 # ─────────────────────────────────────────────────────────────────────
 .env
 .env.local
 .env.*.local
+.env.production
 credentials/
 *.pem
 *.key
+*.secret
+
+# Google Cloud / Service Account credentials
+google_credentials.json
+**/google_credentials.json
+**/mtematika-*.json
+*-service-account*.json
+*-credentials*.json
+backend/*.json
+!backend/package.json
 
 # ─────────────────────────────────────────────────────────────────────
 # PYTHON
@@ -153,3 +164,20 @@ playwright-report/
 # ─────────────────────────────────────────────────────────────────────
 *.pdf
 !docs/*.pdf
+
+# AI asistentų konfigūracijos / AI assistant configs
+.agents/
+.claude/
+.codex/
+.gemini/
+
+# Testiniai/laikini failai projekte / Workspace-specific files
+backend/test_page.png
+backend/test_*.py
+!backend/tests/
+SCAN*.PDF
+*.bat
+!SETUP.bat
+!START.bat
+!STOP.bat
+!CHECK.bat

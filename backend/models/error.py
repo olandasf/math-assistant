@@ -11,7 +11,7 @@ from database import Base
 
 class Error(Base):
     """Klaida mokinio atsakyme su paaiškinimu."""
-    
+
     __tablename__ = "errors"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -21,10 +21,10 @@ class Error(Base):
     explanation = Column(Text, nullable=True)  # AI paaiškinimas lietuviškai
     suggestion = Column(Text, nullable=True)  # Kaip pataisyti
     severity = Column(Integer, default=1)  # 1-3 (lengva, vidutinė, rimta)
-    
+
     # Foreign key
     answer_id = Column(Integer, ForeignKey("answers.id"), nullable=False)
-    
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
 

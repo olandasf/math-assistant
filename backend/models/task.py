@@ -11,7 +11,7 @@ from database import Base
 
 class Task(Base):
     """Užduotis kontroliniame (1, 2, 3 arba 1a, 1b, 1c)."""
-    
+
     __tablename__ = "tasks"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -24,10 +24,10 @@ class Task(Base):
     topic = Column(String(100), nullable=True)  # "equations", "fractions"
     difficulty = Column(Integer, default=1)  # 1-5 sudėtingumas
     order_index = Column(Integer, default=0)  # Rikiavimui
-    
+
     # Foreign key
     variant_id = Column(Integer, ForeignKey("variants.id"), nullable=False)
-    
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

@@ -82,7 +82,7 @@ export interface Task {
 }
 
 // === Pateikimas ===
-export type SubmissionStatus = 
+export type SubmissionStatus =
   | 'uploaded'
   | 'processing'
   | 'ocr_done'

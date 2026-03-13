@@ -1,0 +1,173 @@
+{
+  "grade": 6,
+  "topics": [
+    {
+      "id": "skaiciai-ir-skaiciavimai",
+      "title": "Skaičiai ir skaičiavimai",
+      "subtopics": [
+        {
+          "id": "sveikieji-skaiciai-ir-koordinačių-metodas",
+          "name": "Sveikieji skaičiai ir koordinačių metodas",
+          "difficulty_rules": {
+            "EASY": "Sveikųjų skaičių žymėjimas skaičių tiesėje, skaičiui priešingo skaičiaus užrašymas.",
+            "MEDIUM": "Sveikųjų skaičių palyginimas, taškų žymėjimas koordinačių plokštumoje pagal duotas koordinates.",
+            "HARD": "Objekto vietos nustatymas koordinačių plokštumoje taikant koordinačių metodą realiose situacijose."
+          }
+        },
+        {
+          "id": "veiksmai-su-sveikaisiais-skaiciais",
+          "name": "Veiksmai su sveikaisiais skaičiais",
+          "difficulty_rules": {
+            "EASY": "Paprastų veiksmų (sudėties, atimties) su sveikaisiais skaičiais atlikimas mintinai.",
+            "MEDIUM": "Veiksmų dėsnių (perstatomumo, jungiamumo, skirstomumo) taikymas skaičiavimams su sveikaisiais skaičiais.",
+            "HARD": "Įvairaus turinio nesudėtingų uždavinių, kuriuose derinami keli veiksmai su sveikaisiais skaičiais, sprendimas."
+          }
+        },
+        {
+          "id": "racionalieji-skaiciai-ir-jų-vaizdavimas",
+          "name": "Racionalieji skaičiai ir jų vaizdavimas",
+          "difficulty_rules": {
+            "EASY": "Teigiamųjų ir neigiamųjų skaičių atpažinimas, skaičiui atvirkštinio skaičiaus radimas.",
+            "MEDIUM": "Trupmenų užrašymas baigtiniais ar periodiniais dešimtainiais skaičiais, racionaliųjų skaičių palyginimas.",
+            "HARD": "Racionaliųjų skaičių apvalinimas nurodytu tikslumu ir jų vaizdavimas vizualizacijose."
+          }
+        },
+        {
+          "id": "veiksmai-su-racionaliaisiais-skaiciais",
+          "name": "Veiksmai su racionaliaisiais skaičiais",
+          "difficulty_rules": {
+            "EASY": "Paprasti sudėties ir atimties veiksmai su racionaliaisiais skaičiais.",
+            "MEDIUM": "Daugybos ir dalybos veiksmų atlikimas su racionaliaisiais skaičiais taikant pagrindinius dėsnius.",
+            "HARD": "Sudėtinių uždavinių sprendimas taikant racionaliųjų skaičių savybes įvairiuose kontekstuose."
+          }
+        },
+        {
+          "id": "finansiniai-skaiciavimai",
+          "name": "Finansiniai skaičiavimai",
+          "difficulty_rules": {
+            "EASY": "Nuolaidos ir procentinės nuolaidos sąvokų taikymas paprastuose pavyzdžiuose.",
+            "MEDIUM": "Prekių ir paslaugų vieneto tarifų apskaičiavimas, asmeninio savaitės biudžeto planavimas.",
+            "HARD": "Skaičiavimais grįstų finansinių sprendimų priėmimas, mokesčių rūšių ir jų paskirties analizė."
+          }
+        }
+      ]
+    },
+    {
+      "id": "modeliai-ir-saryšiai",
+      "title": "Modeliai ir sąryšiai",
+      "subtopics": [
+        {
+          "id": "pirmojo-laipsnio-lygtys",
+          "name": "Algebra: Lygtys",
+          "difficulty_rules": {
+            "EASY": "1–2 žingsnių pirmojo laipsnio lygčių su vienu nežinomuoju sprendimas.",
+            "MEDIUM": "3–4 žingsnių lygčių su skliaustais ir veiksmais su trupmenomis sprendimas.",
+            "HARD": "Lygčių sudarymas iš uždavinio sąlygos ar schemos, kai nežinomasis nėra tiesiogiai nurodytas."
+          }
+        },
+        {
+          "id": "tiesioginis-proporcingumas-ir-grafikai",
+          "name": "Tiesioginis proporcingumas ir grafikai",
+          "difficulty_rules": {
+            "EASY": "Tiesioginio proporcingumo sąryšio aprašymas lentelėmis (įvestis/išvestis).",
+            "MEDIUM": "Tiesioginio proporcingumo grafiko braižymas ir skaitymas koordinačių plokštumoje.",
+            "HARD": "Kasdieniame gyvenime pasitaikančių tiesioginio proporcingumo dydžių analizė ir grafinis vaizdavimas."
+          }
+        },
+        {
+          "id": "santykis-ir-proporcija",
+          "name": "Santykis ir proporcija",
+          "difficulty_rules": {
+            "EASY": "Santykio ir proporcijos sąvokų atpažinimas.",
+            "MEDIUM": "Pagrindinės proporcijos savybės ir jos išvadų taikymas paprastuose uždaviniuose.",
+            "HARD": "Sudėtingesnių uždavinių sprendimas sudarant proporcijas ir taikant jų savybes."
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometrija-ir-matavimai",
+      "title": "Geometrija ir matavimai",
+      "subtopics": [
+        {
+          "id": "transformacijos-ir-figuru-sekos",
+          "name": "Transformacijos ir figūrų sekos",
+          "difficulty_rules": {
+            "EASY": "Praktinių pavyzdžių, kaip galima padidinti ar sumažinti objekto vaizdą, nurodymas.",
+            "MEDIUM": "Didėjančių ar mažėjančių figūrų sekų sudarymas languotame popieriuje.",
+            "HARD": "Trūkstamų figūrų sekos narių radimas ir taisyklės, pagal kurią sudaryta seka, apibūdinimas."
+          }
+        },
+        {
+          "id": "geometrinis-braizymas-ir-lygumas",
+          "name": "Braižymas ir trikampių lygumas",
+          "difficulty_rules": {
+            "EASY": "Atkarpai lygios atkarpos ir kampui lygaus kampo atidėjimas skriestuvu ir liniuote.",
+            "MEDIUM": "Trikampiui lygaus trikampio braižymas turint tris tam tikrus jo elementus.",
+            "HARD": "Trikampių lygumo požymių taikymas paprasčiausiais atvejais įrodant figūrų lygumą."
+          }
+        },
+        {
+          "id": "panasiosios-figuros-ir-mastelis",
+          "name": "Panašiosios figūros ir mastelis",
+          "difficulty_rules": {
+            "EASY": "Panašiųjų figūrų ir jų atitinkamų elementų atpažinimas.",
+            "MEDIUM": "Trikampių panašumo koeficiento nustatymas ir mastelio sąvokos taikymas.",
+            "HARD": "Panašiųjų trikampių ir keturkampių nežinomų kraštinių ilgių radimas sudarant proporcijas."
+          }
+        },
+        {
+          "id": "keturkampiu-kampai",
+          "name": "Keturkampių savybės",
+          "difficulty_rules": {
+            "EASY": "Keturkampio kampų sumos savybės žinojimas.",
+            "MEDIUM": "Nežinomo keturkampio kampo didumo radimas, kai žinomi kiti trys kampai.",
+            "HARD": "Kelių skirtingų būdų keturkampio kampų sumai rasti taikymas ir paaiškinimas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "duomenys-ir-tikimybes",
+      "title": "Duomenys ir tikimybės",
+      "subtopics": [
+        {
+          "id": "duomenu-interpretavimas-ir-diagramos",
+          "name": "Duomenys ir jų interpretavimas",
+          "difficulty_rules": {
+            "EASY": "Statistinių klausimų kėlimas ir duomenų rūšiavimas pagal pasirinktą požymį.",
+            "MEDIUM": "Diskrečiųjų duomenų analizė naudojant dvigubas stulpelines ir linijines diagramas.",
+            "HARD": "Diagramų braižymas ir duomenų lentelių sudarymas naudojantis skaitmeninėmis technologijomis."
+          }
+        },
+        {
+          "id": "skaitines-duomenu-charakteristikos",
+          "name": "Skaitinės duomenų charakteristikos",
+          "difficulty_rules": {
+            "EASY": "Duomenų imties modos ir medianos radimas paprastuose rinkiniuose.",
+            "MEDIUM": "Kiekybinių duomenų vidurkio, modos ir medianos skaičiavimas iš dažnių lentelės.",
+            "HARD": "Duomenų charakteristikų analizė, aptariant, kaip jos viena kitą papildo ir ką sako apie imtį."
+          }
+        },
+        {
+          "id": "tikimybių-pagrindai-ir-bandymai",
+          "name": "Tikimybės ir jų interpretavimas",
+          "difficulty_rules": {
+            "EASY": "Įvykio (elementaraus, būtinojo, negalimojo) sąvokų atpažinimas.",
+            "MEDIUM": "Vieno ir dviejų etapų bandymų baigčių rinkinių sudarymas braižant galimybių medžius.",
+            "HARD": "Daugybos taisyklės taikymas baigčių skaičiui apskaičiuoti ir žaidimo taisyklių, užtikrinančių lygias teises, kūrimas."
+          }
+        },
+        {
+          "id": "tikimybiu-skaiciavimas",
+          "name": "Tikimybių skaičiavimas",
+          "difficulty_rules": {
+            "EASY": "Paprasto įvykio tikimybės radimas pagal formulę P(A)=m/n.",
+            "MEDIUM": "Įvykiui priešingo įvykio formulavimas ir jo tikimybės skaičiavimas.",
+            "HARD": "Diskusija apie tai, kaip statistika padeda apskaičiuoti apytikrį įvykio tikėtinumą realiose situacijose."
+          }
+        }
+      ]
+    }
+  ]
+}

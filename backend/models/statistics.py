@@ -11,7 +11,7 @@ from database import Base
 
 class StudentStatistics(Base):
     """Mokinio statistika pagal temą."""
-    
+
     __tablename__ = "student_statistics"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -23,10 +23,10 @@ class StudentStatistics(Base):
     worst_score = Column(Float, default=0.0)
     common_errors = Column(Text, nullable=True)  # JSON - dažniausios klaidos
     improvement_trend = Column(Float, default=0.0)  # Teigiamas = gerėja
-    
+
     # Foreign key
     student_id = Column(Integer, ForeignKey("students.id"), nullable=False)
-    
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -40,7 +40,7 @@ class StudentStatistics(Base):
 
 class ClassStatistics(Base):
     """Klasės statistika pagal temą."""
-    
+
     __tablename__ = "class_statistics"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -52,10 +52,10 @@ class ClassStatistics(Base):
     worst_score = Column(Float, default=0.0)
     pass_rate = Column(Float, default=0.0)  # % mokinių >= 4
     common_errors = Column(Text, nullable=True)  # JSON
-    
+
     # Foreign key
     class_id = Column(Integer, ForeignKey("classes.id"), nullable=False)
-    
+
     # Timestamps
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

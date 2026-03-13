@@ -1,0 +1,128 @@
+{
+  "grade": 8,
+  "topics": [
+    {
+      "id": "skaiciai-ir-skaiciavimai",
+      "title": "Skaičiai ir skaičiavimai",
+      "subtopics": [
+        {
+          "id": "realieji-skaiciai-ir-saknys",
+          "name": "Realieji skaičiai. Kvadratinė ir kubinė šaknys",
+          "difficulty_rules": {
+            "EASY": "Apskaičiuoti kvadratinių ir kubinių šaknų reikšmes, kai pošaknyje yra tikslūs racionalieji kvadratai ar kubai.",
+            "MEDIUM": "Rasti kvadratinės ir kubinės šaknies apytikslę reikšmę, įvertinti, tarp kokių sveikųjų skaičių yra nurodytoji šaknis.",
+            "HARD": "Atlikti veiksmus: teigiamo skaičiaus įkėlimas į pošaknį, iškėlimas prieš šaknį, to paties laipsnio šaknų daugyba ir dalyba."
+          }
+        },
+        {
+          "id": "skaiciu-aibes",
+          "name": "Skaičių aibės ir jų ryšiai",
+          "difficulty_rules": {
+            "EASY": "Atpažinti ir skirti racionaliuosius, iracionaliuosius bei realiuosius skaičius.",
+            "MEDIUM": "Nustatyti ryšius tarp skaičių aibių (N ⊂ Z ⊂ Q ⊂ R), pagrįsti skaičiaus priklausymą konkrečiai aibei naudojant simbolius ∈, ∉.",
+            "HARD": "Pavaizduoti skaičių aibes intervalais, nelygybėmis ar simboliais, užrašyti lyginių/nelyginių natūraliųjų skaičių aibes reiškiniais."
+          }
+        },
+        {
+          "id": "finansiniai-skaiciavimai",
+          "name": "Finansiniai skaičiavimai ir palūkanos",
+          "difficulty_rules": {
+            "EASY": "Nustatyti ir palyginti valiutų kursus, konvertuoti valiutas paprastais atvejais.",
+            "MEDIUM": "Tyrinėti paprastų ir sudėtinių palūkanų augimo scenarijus naudojant skaitmenines priemones.",
+            "HARD": "Sukurti skaičiavimais grįstą geriausio pasirinkimo scenarijų lyginant palūkanų normas, mokesčius bei lizingo/kredito sąlygas."
+          }
+        }
+      ]
+    },
+    {
+      "id": "modeliai-ir-sarysiai",
+      "title": "Modeliai ir sąryšiai",
+      "subtopics": [
+        {
+          "id": "algebra-raidiniai-reiskiniai",
+          "name": "Algebra: Raidiniai reiškiniai ir daugianariai",
+          "difficulty_rules": {
+            "EASY": "Atpažinti vienanarius, dvinarius, trinarius ir daugianarius; sudauginti du paprastus raidinius reiškinius.",
+            "MEDIUM": "Taikyti greitosios daugybos formules, iškelti bendrąjį daugiklį prieš skliaustus.",
+            "HARD": "Skaidyti daugianarius dauginamaisiais naudojant grupavimo metodą arba išskiriant dvinario kvadratą iš kvadratinio trinario."
+          }
+        },
+        {
+          "id": "tiesiniu-lygciu-sistemos",
+          "name": "Tiesinių lygčių sistemos",
+          "difficulty_rules": {
+            "EASY": "Išreikšti vieną nežinomąjį kitu tiesinėje lygtyje su dviem nežinomaisiais.",
+            "MEDIUM": "Spręsti tiesinių lygčių sistemas keitimo, sudėties ar sulyginimo būdais; pavaizduoti sprendinius grafiškai.",
+            "HARD": "Modeliuoti realaus pasaulio situacijas naudojant lygčių sistemas, tirti galimą sprendinių skaičių."
+          }
+        },
+        {
+          "id": "tiesiniai-sarysiai",
+          "name": "Tiesiniai sąryšiai ir lentelės",
+          "difficulty_rules": {
+            "EASY": "Pildyti įvesties/išvesties (I/O) lenteles, kuriomis išreikštas tiesinis sąryšis.",
+            "MEDIUM": "Sudaryti tiesinio sąryšio lentelę pagal tekstinio uždavinio sąlygą (pvz., kainos skaičiavimas su pastoviąja dalimi).",
+            "HARD": "Susieti lentelės duomenis su grafine išraiška koordinačių plokštumoje, spręsti įvairaus konteksto uždavinius."
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometrija-ir-matavimai",
+      "title": "Geometrija ir matavimai",
+      "subtopics": [
+        {
+          "id": "vektoriai-ir-transformacijos",
+          "name": "Vektoriai ir brėžinių projektavimas",
+          "difficulty_rules": {
+            "EASY": "Atpažinti vektoriaus sąvoką, lygius ir priešinguosius vektorius.",
+            "MEDIUM": "Rasti vektorių sumą, skirtumą, padauginti vektorių iš skaičiaus geometriniame kontekste.",
+            "HARD": "Projektuoti objektų vaizdus iš viršaus, priekio bei šono naudojant kompiuterines programas ir mastelį."
+          }
+        },
+        {
+          "id": "plokstumos-figuros-ir-pitagoras",
+          "name": "Plokštumos figūros ir Pitagoro teorema",
+          "difficulty_rules": {
+            "EASY": "Taikyti Pitagoro teoremą ieškant nežinomos stačiojo trikampio kraštinės paprastais atvejais.",
+            "MEDIUM": "Taikyti Pitagoro teoremą atstumui tarp dviejų taškų koordinačių plokštumoje apskaičiuoti.",
+            "HARD": "Įrodyti Pitagoro teoremą tiesiogiai arba prieštaros būdu; pagrįsti trikampio ir trapecijos vidurio linijų savybes."
+          }
+        },
+        {
+          "id": "erdves-figuros-ir-matavimai",
+          "name": "Erdvės figūros, jų paviršiai ir tūriai",
+          "difficulty_rules": {
+            "EASY": "Atpažinti stačiąją prizmę, taisyklingąją piramidę, ritinį, kūgį ir sferą.",
+            "MEDIUM": "Skaičiuoti stačiosios prizmės, piramidės, ritinio ar kūgio paviršiaus plotą ir tūrį pagal formules.",
+            "HARD": "Taikyti Pitagoro teoremą erdvinių figūrų elementams (aukštinėms, įstrižainėms) apskaičiuoti; gaminti modelius."
+          }
+        }
+      ]
+    },
+    {
+      "id": "duomenys-ir-tikimybes",
+      "title": "Duomenys ir tikimybės",
+      "subtopics": [
+        {
+          "id": "duomenu-grupavimas-histogramos",
+          "name": "Duomenų grupavimas ir histogramos",
+          "difficulty_rules": {
+            "EASY": "Rinkti duomenis ir kelti statistinius klausimus apie artimą aplinką.",
+            "MEDIUM": "Grupuoti duomenis į vienodo ilgio intervalus, braižyti histogramas, suprasti empirinio tankio sąvoką.",
+            "HARD": "Apskaičiuoti ir pavaizduoti sukauptąjį dažnį bei sukauptąjį santykinį dažnį diagramose; interpretuoti jas."
+          }
+        },
+        {
+          "id": "kvartiliai-ir-staciakampe-diagrama",
+          "name": "Kvartiliai ir stačiakampė diagrama",
+          "difficulty_rules": {
+            "EASY": "Rasti duomenų rinkinio medianą (antrąjį kvartilį).",
+            "MEDIUM": "Surasti duomenų pirmąjį ir trečiąjį kvartilius, grafiškai pavaizduoti duomenis stačiakampe diagrama su „ūsais“.",
+            "HARD": "Interpretuoti duomenų išsibarstymą, kai yra išskirčių (stipriai išsiskiriančių reikšmių), vertinti jų įtaką vidurkiui."
+          }
+        }
+      ]
+    }
+  ]
+}

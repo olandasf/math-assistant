@@ -259,10 +259,56 @@ await asyncio.sleep(1)  # Tarp užklausų
 
 **Sprendimas:**
 1. Gauti naują: https://developer.wolframalpha.com
-2. Atnaujinti `.env`:
+2. Atnaujinti per Settings puslapį arba tiesiai DB:
+   ```powershell
+   sqlite3 database\math_teacher.db "UPDATE settings SET value='YOUR_APP_ID' WHERE key='wolfram_app_id'"
    ```
-   WOLFRAM_ALPHA_APP_ID=your_new_id
+
+---
+
+### ❌ `Gemini: MAX_TOKENS / Empty response`
+
+**Priežastis:** Netinkamas modelio pavadinimas arba per trumpas token limitas.
+
+**Sprendimas:**
+1. Patikrinti modelį duomenų bazėje:
+   ```powershell
+   sqlite3 database\math_teacher.db "SELECT key, value FROM settings WHERE key LIKE 'gemini%'"
    ```
+2. Pakeisti į veikiantį modelį:
+   ```powershell
+   sqlite3 database\math_teacher.db "UPDATE settings SET value='gemini-2.5-pro-preview' WHERE key='gemini_model'"
+   ```
+3. Perkrauti backend serverį
+
+**Veikiantys modeliai (2026-01):**
+- `gemini-2.5-pro-preview` ✅
+- `gemini-2.0-flash` ✅
+- `gemini-1.5-pro` ✅
+
+**NEVEIKIANTYS:**
+- `gemini-3-pro-preview` ❌ (neegzistuoja)
+
+---
+
+### ❌ `Newton API: Connection refused`
+
+**Priežastis:** Nėra interneto arba API laikinai neveikia.
+
+**Sprendimas:**
+- Patikrinti interneto ryšį
+- Sistema automatiškai naudos kitą metodą (SymPy arba WolframAlpha)
+
+---
+
+### ❌ `TestGenerator naudoja fallback (primityvūs uždaviniai)`
+
+**Priežastis:** Gemini API negauna atsakymo arba atsakymas netinkamai parsuojamas.
+
+**Sprendimas:**
+1. Patikrinti Gemini API raktą nustatymuose
+2. Patikrinti Gemini modelį (turi būti `gemini-2.5-pro-preview`)
+3. Patikrinti backend logus ar yra klaidos
 
 ---
 
@@ -355,4 +401,4 @@ ssh-keygen -t ed25519 -C "your@email.com"
 
 ---
 
-*Paskutinis atnaujinimas: 2026-01-10*
+*Paskutinis atnaujinimas: 2026-01-12*

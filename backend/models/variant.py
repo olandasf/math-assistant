@@ -11,7 +11,7 @@ from database import Base
 
 class Variant(Base):
     """Kontrolinio variantas (I arba II)."""
-    
+
     __tablename__ = "variants"
 
     id = Column(Integer, primary_key=True, index=True)

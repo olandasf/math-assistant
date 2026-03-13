@@ -32,9 +32,15 @@
 |-----------|---------------|
 | **Backend** | Python 3.11+, FastAPI, SQLAlchemy 2.0, SQLite |
 | **Frontend** | React 18, TypeScript, Vite, TailwindCSS, shadcn/ui |
-| **Matematika** | SymPy, NumPy, KaTeX |
+| **Matematika** | SymPy (lokalus), Newton API (nemokamas), KaTeX |
 | **OCR** | MathPix API, Google Cloud Vision, Tesseract |
-| **AI** | Google Gemini (paaiškinimai), WolframAlpha (tikrinimas) |
+| **AI** | Google Gemini (paaiškinimai + generavimas), WolframAlpha (tikrinimas) |
+
+### Matematikos tikrinimo hierarchija
+```
+SymPy → Newton API → WolframAlpha → Gemini AI
+(lokalus)  (nemokamas)  (mokamas)    (semantinis)
+```
 
 ---
 
@@ -92,12 +98,21 @@ cd backend && alembic upgrade head
 
 ## 📊 PROGRESAS
 
-- **Dokumentacija:** ✅ Baigta
-- **Projekto setup:** ☐ Nepradėta
-- **Backend:** ☐ Nepradėta
-- **Frontend:** ☐ Nepradėta
-- **OCR integracija:** ☐ Nepradėta
-- **AI integracija:** ☐ Nepradėta
+| Etapas | Statusas |
+|--------|----------|
+| Dokumentacija | ✅ 100% |
+| Projekto setup | ✅ 89% |
+| Backend CRUD | ✅ 89% |
+| OCR/Įkėlimas | ✅ 83% |
+| Palyginimas | ✅ 93% |
+| Matematikos tikrinimas | ✅ 88% |
+| AI paaiškinimai | ✅ 100% |
+| Ataskaitos/Statistika | ✅ 95% |
+| Nustatymai | ✅ 93% |
+| Testavimas | ⏳ 0% |
+| Deploy | ⏳ 0% |
+
+**Bendras progresas: ~78%**
 
 **Detalus progresas:** `docs/TASKS.md`
 
@@ -111,4 +126,4 @@ cd backend && alembic upgrade head
 
 ---
 
-*Paskutinis atnaujinimas: 2026-01-10*
+*Paskutinis atnaujinimas: 2026-01-12*

@@ -68,10 +68,19 @@ KaTeX - LaTeX renderinimas (frontend)
 ```
 MathPix API - matematikos OCR (pagrindinis)
 Google Cloud Vision - teksto OCR
-Google Gemini - AI paaiškinimai
+Google Gemini - AI paaiškinimai, kontrolinių generavimas (gemini-2.5-pro-preview)
 Tesseract - lokalus backup OCR
 EasyOCR - rašysenos atpažinimas
+Newton API - paprastos matematikos operacijos (NEMOKAMAS)
 WolframAlpha API - sudėtingi tikrinimai
+```
+
+### Matematikos tikrinimo hierarchija
+```
+1. SymPy (lokalus, greitas)
+2. Newton API (nemokamas cloud)
+3. WolframAlpha (mokamas cloud)
+4. Gemini AI (semantinis fallback)
 ```
 
 ---
@@ -273,4 +282,4 @@ alembic upgrade head
 
 ---
 
-**Paskutinis atnaujinimas:** 2026-01-10
+**Paskutinis atnaujinimas:** 2026-01-12

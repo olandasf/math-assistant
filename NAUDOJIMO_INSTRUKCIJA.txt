@@ -1,0 +1,145 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    MATEMATIKOS MOKYTOJO ASISTENTAS                           ║
+║                         Naudojimo instrukcija                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════════════════════
+                         PIRMINIS NUSTATYMAS (tik pirmą kartą)
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Du kartus spustelėkite failą: SETUP.bat
+2. Palaukite kol įdiegs visas priklausomybes (5-10 min)
+3. Kai pamatysite "NUSTATYMAS SEKMINGAI BAIGTAS" - galite tęsti
+
+═══════════════════════════════════════════════════════════════════════════════
+                              PALEIDIMAS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Du kartus spustelėkite failą: START.bat
+2. Palaukite kol atsidarys naršyklė su programa (30-60 sek)
+3. Jei naršyklė neatsidaro automatiškai, atidarykite: http://localhost:5173
+
+PASTABA: Po paleidimo matysite 3 langus:
+- START.bat langas (galite uždaryti)
+- Backend Server langas (NEUŽDARYKITE - serveris veikia)
+- Frontend Server langas (NEUŽDARYKITE - serveris veikia)
+
+═══════════════════════════════════════════════════════════════════════════════
+                              SUSTABDYMAS
+═══════════════════════════════════════════════════════════════════════════════
+
+1. Du kartus spustelėkite failą: STOP.bat
+2. Arba tiesiog uždarykite Backend Server ir Frontend Server langus
+
+═══════════════════════════════════════════════════════════════════════════════
+                           SISTEMOS PATIKRINIMAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Jei kažkas neveikia, patikrinkite sistemą:
+
+1. Du kartus spustelėkite failą: CHECK.bat
+2. Jei rodo problemas - paleiskite SETUP.bat iš naujo
+
+═══════════════════════════════════════════════════════════════════════════════
+                           API RAKTŲ NUSTATYMAS
+═══════════════════════════════════════════════════════════════════════════════
+
+Prieš naudojant programą, reikia nustatyti API raktus:
+
+1. Paleiskite programą (START.bat)
+2. Eikite į "Nustatymai" (krumpliaračio ikona)
+3. Įveskite savo API raktus:
+
+   • Google Gemini (BŪTINA) - AI funkcijoms ir OCR
+     Gaukite: https://aistudio.google.com/
+     Modelis: gemini-2.0-flash-exp (rekomenduojama)
+     ARBA: gemini-1.5-pro
+
+   • WolframAlpha (pasirinktinai) - sudėtingi skaičiavimai
+     Gaukite: https://developer.wolframalpha.com/
+     2000 nemokamų užklausų/mėn
+
+4. Paspauskite "Testuoti ryšį" prie kiekvieno rakto
+5. Paspauskite "Išsaugoti"
+
+SVARBU: Gemini API raktas yra BŪTINAS - be jo sistema neveiks!
+
+═══════════════════════════════════════════════════════════════════════════════
+                           PAGRINDINĖS FUNKCIJOS
+═══════════════════════════════════════════════════════════════════════════════
+
+📝 KONTROLINIŲ GENERAVIMAS
+   • Eikite į "Kontroliniai" → "Generuoti naują"
+   • Pasirinkite temą, klasę, sudėtingumą
+   • Paspauskite "Generuoti"
+   • Atsakymai su sprendimo eiga bus rodomi žemiau
+
+📤 DARBŲ ĮKĖLIMAS IR TIKRINIMAS
+   • Eikite į "Įkelti darbus"
+   • Pasirinkite mokinį ir kontrolinį
+   • Įkelkite nuskenuotą/nufotografuotą darbą
+   • Sistema automatiškai atpažins tekstą ir patikrins atsakymus
+
+📊 REZULTATŲ PERŽIŪRA
+   • Eikite į "Rezultatai"
+   • Matysite visų patikrintų darbų sąrašą
+   • Galite peržiūrėti detales ir koreguoti balus
+
+═══════════════════════════════════════════════════════════════════════════════
+                              PROBLEMOS?
+═══════════════════════════════════════════════════════════════════════════════
+
+Jei programa neveikia:
+
+1. Paleiskite CHECK.bat - patikrinti ar viskas gerai
+
+2. Jei CHECK.bat rodo problemas:
+   - Paleiskite SETUP.bat iš naujo
+   - Palaukite kol baigsis
+   - Paleiskite CHECK.bat dar kartą
+
+3. Patikrinkite ar įdiegtas Python 3.11+
+   Atsisiųskite: https://www.python.org/downloads/
+
+4. Patikrinkite ar įdiegtas Node.js 18+
+   Atsisiųskite: https://nodejs.org/
+
+5. Patikrinkite ar nustatyti API raktai (Nustatymai)
+
+6. Pabandykite iš naujo:
+   - STOP.bat (sustabdyti)
+   - START.bat (paleisti)
+
+7. Jei vis tiek neveikia:
+   - Uždarykite visus langus
+   - Paleiskite SETUP.bat
+   - Paleiskite CHECK.bat
+   - Paleiskite START.bat
+
+═══════════════════════════════════════════════════════════════════════════════
+                           PAPILDOMA INFORMACIJA
+═══════════════════════════════════════════════════════════════════════════════
+
+SKRIPTAI:
+- SETUP.bat   - Pirminis nustatymas (tik pirmą kartą)
+- START.bat   - Paleisti programą
+- STOP.bat    - Sustabdyti programą
+- CHECK.bat   - Patikrinti ar viskas veikia
+
+PORTAI:
+- Backend:  http://localhost:8000
+- Frontend: http://localhost:5173
+- API Docs: http://localhost:8000/docs
+
+LOGAI:
+- Backend logai: backend/logs/app_YYYY-MM-DD.log
+- Frontend logai: Frontend Server lange
+
+DOKUMENTACIJA:
+- README.md - Projekto aprašymas
+- docs/SCRIPTS.md - Išsami skriptų dokumentacija
+- docs/PROJECT.md - Projekto vizija
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Sėkmės naudojant Matematikos Mokytojo Asistentą! 📐✨

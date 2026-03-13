@@ -1,0 +1,173 @@
+{
+  "grade": 5,
+  "topics": [
+    {
+      "id": "skaiciai-ir-skaiciavimai",
+      "title": "Skaičiai ir skaičiavimai",
+      "subtopics": [
+        {
+          "id": "naturalieji-skaiciai-rasymas",
+          "name": "Natūralieji skaičiai ir romėniškieji skaitmenys",
+          "difficulty_rules": {
+            "EASY": "Natūraliųjų skaičių skaitymas ir rašymas, romėniškų skaitmenų iki 100 atpažinimas.",
+            "MEDIUM": "Romėniškųjų skaičių rašymas iki 3000, dešimtainės pozicinės sistemos skyrių sumos sudarymas.",
+            "HARD": "Didelių skaičių (milijardų) vaizdavimas skaičių tiesėje ir specifinių romėniškų skaičių kombinacijų sudarymas."
+          }
+        },
+        {
+          "id": "skaiciu-palyginimas-apvalinimas",
+          "name": "Natūraliųjų skaičių palyginimas ir apvalinimas",
+          "difficulty_rules": {
+            "EASY": "Skaičių palyginimas naudojant skaičių tiesės modelį.",
+            "MEDIUM": "Apvalinimo taisyklių taikymas iki nurodyto skyriaus (dešimčių, šimtų).",
+            "HARD": "Sudėtingų situacijų analizė, kai reikia pagrįsti apvalinimą atsižvelgiant į pozicinę skaitmens reikšmę."
+          }
+        },
+        {
+          "id": "veiksmai-su-naturaliaisiais",
+          "name": "Veiksmai su natūraliaisiais skaičiais ir savybės",
+          "difficulty_rules": {
+            "EASY": "Sudėties ir daugybos perstatomumo bei jungiamumo savybių taikymas.",
+            "MEDIUM": "Dalyba iš dviženklio skaičiaus, mintinio skaičiavimo strategijų taikymas.",
+            "HARD": "Daugiapakopių skaitinių reiškinių sudarymas ir sprendimas, skirstomumo dėsnio taikymas su kintamaisiais."
+          }
+        },
+        {
+          "id": "dalumas-dalikliai-kartotiniai",
+          "name": "Skaičių dalumas, dalikliai ir kartotiniai",
+          "difficulty_rules": {
+            "EASY": "Lyginių ir nelyginių skaičių atpažinimas, dalumo požymiai.",
+            "MEDIUM": "Pirminių ir sudėtinių skaičių atskyrimas, skaičiaus skaidymas pirminiais dauginamaisiais.",
+            "HARD": "Mažiausiojo bendrojo kartotinio (MBK) ir didžiausiojo bendrojo daliklio (DBD) radimas probleminėse situacijose."
+          }
+        },
+        {
+          "id": "trupmenos-ir-misrieji-skaiciai",
+          "name": "Trupmenos ir mišrieji skaičiai",
+          "difficulty_rules": {
+            "EASY": "Taisyklingųjų ir netaisyklingųjų trupmenų atpažinimas.",
+            "MEDIUM": "Sveikosios dalies išskyrimas iš netaisyklingosios trupmenos, trupmenų suprastinimas.",
+            "HARD": "Trupmenų, kurių vardiklyje yra 10, 100, užrašymas dešimtainiais skaičiais ir jų vaizdavimas skaičių tiesėje."
+          }
+        },
+        {
+          "id": "veiksmai-su-trupmenomis-procentai",
+          "name": "Veiksmai su trupmenomis ir procentų sąvoka",
+          "difficulty_rules": {
+            "EASY": "Mišriųjų skaičių sudėtis ir atimtis su vienodais vardikliais.",
+            "MEDIUM": "Trupmenų daugyba iš natūraliojo skaičiaus, procento sąvokos taikymas paprastose situacijose.",
+            "HARD": "Skaičiaus dalies radimas pagal nurodytą procentą, pirkimo-pardavimo uždaviniai be skaičiuotuvo."
+          }
+        }
+      ]
+    },
+    {
+      "id": "modeliai-ir-sarysiai",
+      "title": "Modeliai ir sąryšiai",
+      "subtopics": [
+        {
+          "id": "desningumai-ir-sekos",
+          "name": "Dėsningumai ir skaičių sekos",
+          "difficulty_rules": {
+            "EASY": "Tęsti paprastą skaičių seką, kurioje nariai didėja po tam tikrą kiekį.",
+            "MEDIUM": "Ryšio tarp skaičių apibūdinimas įvesties/išvesties (I/O) lentelėse.",
+            "HARD": "Sudėtingų sekų, kuriose atliekami keli veiksmai (pvz., daugyba ir sudėtis), dėsningumo formulavimas."
+          }
+        },
+        {
+          "id": "lygtys-ir-savybes",
+          "name": "Lygtys ir skaitinių lygybių savybės",
+          "difficulty_rules": {
+            "EASY": "Vieno žingsnio lygčių sprendimas.",
+            "MEDIUM": "1–3 žingsnių pirmojo laipsnio lygčių su vienu nežinomuoju sprendimas.",
+            "HARD": "Situacijų aprašymas skirtingomis lygtimis ir sprendimo algoritmo grindimas savybėmis."
+          }
+        },
+        {
+          "id": "raidiniai-reiskiniai",
+          "name": "Raidiniai reiškiniai ir jų prastinimas",
+          "difficulty_rules": {
+            "EASY": "Raidinių reiškinių sudarymas pagal paprastą tekstinę sąlygą.",
+            "MEDIUM": "Panašiųjų narių sutraukimas ir reiškinio prastinimas.",
+            "HARD": "Raidinių reiškinių pertvarkymas taikant skirstomumo dėsnį ir veiksmus su natūraliaisiais skaičiais."
+          }
+        }
+      ]
+    },
+    {
+      "id": "geometrija-ir-matavimai",
+      "title": "Geometrija ir matavimai",
+      "subtopics": [
+        {
+          "id": "judejimo-uzdaviniai",
+          "name": "Kelias, laikas ir greitis",
+          "difficulty_rules": {
+            "EASY": "Tiesioginis kelio formulės taikymas paprastiems skaičiams.",
+            "MEDIUM": "Dviejų kūnų judėjimo ta pačia ar priešingomis kryptimis uždaviniai.",
+            "HARD": "Judėjimo uždaviniai, kai objektai pradeda judėti skirtingu laiku, naudojant dešimtainius skaičius."
+          }
+        },
+        {
+          "id": "matavimo-vienetai",
+          "name": "Ilgio, ploto ir tūrio matavimo vienetai",
+          "difficulty_rules": {
+            "EASY": "Pagrindinių metrinės sistemos vienetų (m, cm, kg) atpažinimas.",
+            "MEDIUM": "Vienetų stambinimas ir smulkinimas (pvz., iš cm² į m²).",
+            "HARD": "Dydžių reikšmių pertvarkymas, kai skaitinės reikšmės yra dešimtainiai skaičiai."
+          }
+        },
+        {
+          "id": "geometrines-transformacijos",
+          "name": "Transformacijos: simetrija ir posūkiai",
+          "difficulty_rules": {
+            "EASY": "Figūros simetrijos ašies radimas.",
+            "MEDIUM": "Simetriškos figūros braižymas tiesės atžvilgiu (atspindys) arba postūmis.",
+            "HARD": "Figūros atkūrimas iš jos dalies taikant centrinę simetriją arba posūkį."
+          }
+        },
+        {
+          "id": "plokstumos-figuros-kampai",
+          "name": "Kampai ir plokštumos figūros",
+          "difficulty_rules": {
+            "EASY": "Smailiojo, stačiojo ir bukojo kampų atpažinimas vizualiai.",
+            "MEDIUM": "Kampų matavimas matlankiu, gretutinių ir kryžminių kampų savybių taikymas.",
+            "HARD": "Trikampio ir keturkampio kampų sumos hipotezės pagrindimas ir taikymas skaičiavimams."
+          }
+        },
+        {
+          "id": "perimetras-plotas-turis",
+          "name": "Perimetro, ploto ir tūrio skaičiavimai",
+          "difficulty_rules": {
+            "EASY": "Kvadrato ir stačiakampio perimetro skaičiavimas.",
+            "MEDIUM": "Stačiojo trikampio ploto skaičiavimas, stačiakampio gretasienio tūris.",
+            "HARD": "Sudėtinių figūrų ploto ir paviršiaus ploto skaičiavimas derinant kelias formules."
+          }
+        }
+      ]
+    },
+    {
+      "id": "duomenys-ir-tikimybes",
+      "title": "Duomenys ir tikimybės",
+      "subtopics": [
+        {
+          "id": "statistika-duomenys",
+          "name": "Duomenų rinkimas ir vidurkis",
+          "difficulty_rules": {
+            "EASY": "Duomenų nurašymas iš stulpelinės diagramos.",
+            "MEDIUM": "Imties vidurkio skaičiavimas ir dažnių lentelės sudarymas.",
+            "HARD": "Statistinių klausimų kėlimas ir didelio duomenų skaičiaus interpretavimas diagramose."
+          }
+        },
+        {
+          "id": "tikimybes-baigtys",
+          "name": "Atsitiktiniai įvykiai ir tikimybė",
+          "difficulty_rules": {
+            "EASY": "Visų galimų bandymo baigčių surašymas (pvz., monetos metimas).",
+            "MEDIUM": "Įvykio tikimybės skaičiavimas vienodai galimoms baigtims.",
+            "HARD": "Baigčių aibės kodavimas ir įvykių tikėtinumo prognozavimas sudėtingesniuose stochastiniuose bandymuose."
+          }
+        }
+      ]
+    }
+  ]
+}
