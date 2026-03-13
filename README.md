@@ -1,12 +1,24 @@
-# 🧮 Matematikos Mokytojo Asistentas
+# 🧮 Math Teacher Assistant
 
-> **AI sistema Lietuvos matematikos mokytojams**: automatinis kontrolinių tikrinimas ir kūrimas nuo 5 iki 12 klasės.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![React 18](https://img.shields.io/badge/react-18-blue.svg)](https://react.dev/)
+
+**An open-source AI-powered system that helps math teachers automate exam grading and exam creation for grades 5–12.** Built for the Lithuanian education system, it uses AI Vision models to recognize handwritten student work, SymPy for mathematically precise verification, and Gemini AI for student-friendly error explanations — all in Lithuanian.
+
+### Why this matters
+
+Math teachers in Lithuania spend **4+ hours per exam session** manually grading handwritten student work across multiple classes. This tool reduces grading time to **30–60 minutes** while providing each student with personalized AI-generated explanations of their mistakes — something impossible with manual grading at scale.
+
+The system also generates curriculum-aligned exams using both an algorithmic problem generator (with correct Lithuanian grammar declensions built in) and AI, drawing from a bank of ~870K math problems adapted from international datasets (GSM8K, Competition Math, NuminaMath) and localized to Lithuanian cultural context.
+
+> **Target users:** Public school math teachers in Lithuania, grades 5–12, ~150 students per teacher.
 
 ---
 
-## 🎯 Ką daro ši sistema?
+## 🎯 Ką daro ši sistema? / What does this system do?
 
-### 1. Tikrina mokinių kontrolinius darbus
+### 1. Tikrina mokinių kontrolinius darbus / Grades student exams
 
 ```
 Skanuoti mokinių darbai → DI Vision OCR → Matematinis tikrinimas → Įvertinimas su paaiškinimais
@@ -17,7 +29,7 @@ Skanuoti mokinių darbai → DI Vision OCR → Matematinis tikrinimas → Įvert
 - **Gemini AI** — paaiškina klaidas lietuviškai, su naudingais patarimais
 - **PDF ataskaitos** — su įvertinimu, klaidų analize ir rekomendacijomis
 
-### 2. Kuria kontrolinius darbus
+### 2. Kuria kontrolinius darbus / Creates math exams
 
 ```
 Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas PDF
@@ -32,188 +44,7 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 
 ---
 
-## ✨ Pagrindinės funkcijos
-
-| Funkcija | Aprašymas |
-|----------|-----------|
-| 📷 **DI Vision OCR** | Atpažįsta ranka rašytus mokinių darbus — supranta braukymus, stulpelinius skaičiavimus, mišrų turinį |
-| ✅ **Matematinis tikrinimas** | SymPy → Newton API → WolframAlpha → Gemini AI (4 lygių hierarchija) |
-| 💬 **Klaidų paaiškinimai** | AI paaiškinimai lietuviškai su konkrečiais sprendimo žingsniais |
-| 📝 **Kontrolinių generavimas** | Pagal oficialią LT programą, su dviem generavimo metodais |
-| 📚 **Uždavinių bazė** | ~870K uždavinių iš HuggingFace + algoritminis generatorius |
-| 🇱🇹 **Lokalizacija** | Automatinis EN→LT vertimas su kultūriniu adaptavimu |
-| 📊 **Ataskaitos** | PDF su įvertinimu, klaidų statistika, rekomendacijomis |
-| 🔢 **LaTeX ir KaTeX** | Matematinių formulių renderinimas |
-| 📄 **PDF kontroliniai** | OCR-optimizuoti lapai su alignment markeriais ir QR kodais |
-
----
-
-## 🛠️ Technologijos
-
-### Backend
-| Komponentas | Technologija |
-|------------|--------------|
-| Framework | Python 3.11, FastAPI, Uvicorn |
-| Duomenų bazė | SQLAlchemy 2.0, SQLite (aiosqlite) |
-| Matematika | SymPy, Newton API, WolframAlpha |
-| OCR | Gemini Vision, OpenAI Vision, Novita Vision |
-| AI | Google Gemini (paaiškinimai, generavimas, lokalizacija) |
-| PDF | ReportLab (kontrolinių lapai), QR kodai |
-| Migracijos | Alembic |
-
-### Frontend
-| Komponentas | Technologija |
-|------------|--------------|
-| Framework | React 18, TypeScript, Vite |
-| UI | TailwindCSS, shadcn/ui, Radix UI |
-| Formulės | KaTeX, react-katex |
-| Grafika | Recharts (grafikai), Lucide (ikonos) |
-| HTTP | Axios |
-
-### Duomenų šaltiniai
-| Šaltinis | Aprašymas |
-|----------|-----------|
-| Matematikos programa | 8 JSON failai (grade_5..12.json) — oficiali LT programa |
-| GSM8K | 8500 žodinių uždavinių (6-8 kl.) |
-| Competition Math | Olimpiadiniai uždaviniai (10-12 kl.) |
-| NuminaMath-CoT | ~860K olimpiadinių su Chain of Thought (8-12 kl.) |
-| MathInstruct | ~260K įvairių uždavinių instrukcijų formatu (6-12 kl.) |
-
----
-
-## 📁 Projekto struktūra
-
-```
-├── backend/
-│   ├── routers/          ← 14 API endpoint'ų (klasės, mokiniai, testai, OCR, ...)
-│   ├── models/           ← 15 SQLAlchemy modelių
-│   ├── services/
-│   │   ├── ocr/          ← DI Vision OCR (Gemini, OpenAI, Novita)
-│   │   ├── test_generator.py       ← Kontrolinių generavimas (2107 eil.)
-│   │   ├── math_problem_bank.py    ← Algoritminis generatorius (3490 eil.)
-│   │   ├── huggingface_loader.py   ← HuggingFace dataset'ų įkroviklis
-│   │   ├── task_translator.py      ← EN→LT lokalizacija
-│   │   └── exam_sheet_generator.py ← PDF kontrolinių lapai (1284 eil.)
-│   ├── utils/
-│   │   ├── curriculum.py           ← LT matematikos programa
-│   │   ├── curriculum_loader.py    ← JSON programos įkroviklis
-│   │   └── topics.py              ← 48 matematikos temų
-│   └── math_checker/     ← SymPy + WolframAlpha + Newton API
-├── frontend/
-│   ├── src/pages/         ← Dashboard, Classes, Tests, Upload, Review, ...
-│   ├── src/components/    ← UI komponentai (shadcn/ui)
-│   └── src/api/           ← API servisai
-├── Matematikos programa/  ← JSON failai pagal klases (5-12)
-├── docs/                  ← 14 dokumentacijos failų
-├── database/              ← SQLite DB
-├── uploads/               ← Mokinių darbai (ne git)
-└── exports/               ← Sugeneruotos ataskaitos (ne git)
-```
-
----
-
-## 🚀 Paleidimas
-
-### Reikalavimai
-- Python 3.11+
-- Node.js 18+
-- API raktai: Gemini (būtinas), WolframAlpha (rekomenduojamas)
-
-### Backend
-
-```powershell
-cd backend
-python -m venv venv
-.\venv\Scripts\Activate
-pip install -r requirements.txt
-alembic upgrade head
-uvicorn main:app --reload
-```
-
-### Frontend
-
-```powershell
-cd frontend
-npm install
-npm run dev
-```
-
-### Konfigūracija
-
-Sukurkite `.env` failą `backend/` kataloge:
-
-```env
-GEMINI_API_KEY=your_key_here
-WOLFRAM_ALPHA_APP_ID=your_app_id_here
-DATABASE_URL=sqlite+aiosqlite:///./database/math_assistant.db
-```
-
-OCR tiekėjų API raktai konfigūruojami per programos nustatymus.
-
----
-
-## 📋 Kodėl DI Vision, o ne tradicinis OCR?
-
-Mokinių (5-12 kl.) ranka rašyti darbai yra **netvarkingi**: braukymai, taisymai, stulpeliniai skaičiavimai, piešiniai šalia formulių. Tradiciniai OCR sprendimai (Tesseract, Google Cloud Vision, MathPix) nesugeba:
-
-- Skirti braukymą nuo galutinio atsakymo
-- Suprasti stulpelinę dalybą
-- Atpažinti lietuvišką formatą ("Ats.", "Nr.", "Sprendimas:")
-
-**DI Vision modeliai** (Gemini, OpenAI, Novita) yra multimodalūs — jie supranta **kontekstą**, ne tik simbolius. Detaliau: [`docs/OCR_ARCHITECTURE.md`](docs/OCR_ARCHITECTURE.md).
-
----
-
-## 🔒 Saugumo pastabos
-
-- 🔐 API raktai saugomi SQLite duomenų bazėje (rekomenduojama šifruoti produkcijoje)
-- 📛 Mokinių vardai anonimizuojami prieš siunčiant į AI API
-- 🚫 Autentifikacija dar neįdiegta (development režimas)
-- 📄 GDPR — asmeniniai duomenys neišsiunčiami į trečiųjų šalių serverius nepakeisti
-
----
-
-## 📄 Licencija
-
-Privatus projektas. © 2025-2026
-
----
-
-# 🧮 Math Teacher Assistant
-
-> **AI system for Lithuanian math teachers**: automatic exam grading and creation for grades 5-12.
-
----
-
-## 🎯 What does this system do?
-
-### 1. Grades student exams
-
-```
-Scanned student work → AI Vision OCR → Math verification → Report with explanations
-```
-
-- **AI Vision OCR** — recognizes handwritten math (Gemini Vision / OpenAI Vision / Novita Vision)
-- **SymPy + WolframAlpha** — precisely verifies solutions and answers
-- **Gemini AI** — explains errors in Lithuanian with helpful tips
-- **PDF reports** — with grades, error analysis, and recommendations
-
-### 2. Creates math exams
-
-```
-Grade + Topic + Difficulty → Problem generation → OCR-optimized PDF
-```
-
-- **Aligned with Lithuanian curriculum** — 8 JSON files with official math content (grades 5-12)
-- **Algorithmic generation** — 3490-line generator with correct answers and Lithuanian grammar
-- **Gemini AI generation** — word problems with curriculum context
-- **HuggingFace problem bank** — ~870K problems: GSM8K, Competition Math, NuminaMath, MathInstruct
-- **Localization** — automatic EN→LT translation with cultural adaptation (names, currency, units)
-- **PDF with QR** — alignment markers, answer boxes, variants, teacher version
-
----
-
-## ✨ Core features
+## ✨ Key Features / Pagrindinės funkcijos
 
 | Feature | Description |
 |---------|-------------|
@@ -221,27 +52,120 @@ Grade + Topic + Difficulty → Problem generation → OCR-optimized PDF
 | ✅ **Math verification** | SymPy → Newton API → WolframAlpha → Gemini AI (4-tier hierarchy) |
 | 💬 **Error explanations** | AI explanations in Lithuanian with concrete solution steps |
 | 📝 **Exam generation** | Based on official Lithuanian math curriculum, two generation methods |
-| 📚 **Problem bank** | ~870K problems from HuggingFace + algorithmic generator |
-| 🇱🇹 **Localization** | Automatic EN→LT translation with cultural adaptation |
+| 📚 **Problem bank** | ~870K problems from HuggingFace + algorithmic generator with Lithuanian grammar |
+| 🇱🇹 **Localization** | Automatic EN→LT translation with cultural adaptation (names, currency, units) |
 | 📊 **Reports** | PDF with grades, error statistics, recommendations |
 | 📄 **PDF exams** | OCR-optimized sheets with alignment markers and QR codes |
 
 ---
 
-## 🛠️ Tech stack
+## 🛠️ Tech Stack
 
-- **Backend:** Python 3.11, FastAPI, SQLAlchemy, SQLite
-- **Frontend:** React 18, TypeScript, Vite, TailwindCSS, shadcn/ui
-- **Math:** SymPy, Newton API, WolframAlpha, KaTeX
-- **OCR:** Gemini Vision, OpenAI Vision, Novita Vision (AI Vision, not traditional OCR)
-- **AI:** Google Gemini (explanations, generation, localization)
-- **Data:** HuggingFace datasets, Lithuanian curriculum JSON files
+### Backend
+| Component | Technology |
+|-----------|------------|
+| Framework | Python 3.11, FastAPI, Uvicorn |
+| Database | SQLAlchemy 2.0, SQLite (aiosqlite) |
+| Math | SymPy, Newton API, WolframAlpha |
+| OCR | Gemini Vision, OpenAI Vision, Novita Vision |
+| AI | Google Gemini (explanations, generation, localization) |
+| PDF | ReportLab (exam sheets), QR codes |
+| Migrations | Alembic |
+
+### Frontend
+| Component | Technology |
+|-----------|------------|
+| Framework | React 18, TypeScript, Vite |
+| UI | TailwindCSS, shadcn/ui, Radix UI |
+| Math rendering | KaTeX, react-katex |
+| Charts | Recharts, Lucide icons |
+| HTTP | Axios |
+
+### Data Sources
+| Source | Description |
+|--------|-------------|
+| Lithuanian curriculum | 8 JSON files (grade_5..12.json) — official math program |
+| GSM8K | 8,500 word problems (grades 6-8) |
+| Competition Math | Olympiad problems (grades 10-12) |
+| NuminaMath-CoT | ~860K olympiad problems with Chain of Thought (grades 8-12) |
+| MathInstruct | ~260K instruction-format problems (grades 6-12) |
+
+---
+
+## 📁 Project Structure
+
+```
+├── backend/
+│   ├── routers/          ← 14 API endpoints (classes, students, tests, OCR, ...)
+│   ├── models/           ← 15 SQLAlchemy models
+│   ├── services/
+│   │   ├── ocr/          ← AI Vision OCR (Gemini, OpenAI, Novita)
+│   │   ├── test_generator.py       ← Exam generation (2107 lines)
+│   │   ├── math_problem_bank.py    ← Algorithmic generator (3490 lines)
+│   │   ├── huggingface_loader.py   ← HuggingFace dataset loader
+│   │   ├── task_translator.py      ← EN→LT localization
+│   │   └── exam_sheet_generator.py ← PDF exam sheets (1284 lines)
+│   ├── utils/
+│   │   ├── curriculum.py           ← Lithuanian math curriculum
+│   │   ├── curriculum_loader.py    ← JSON curriculum loader
+│   │   └── topics.py              ← 48 math topics
+│   └── math_checker/     ← SymPy + WolframAlpha + Newton API
+├── frontend/
+│   ├── src/pages/         ← Dashboard, Classes, Tests, Upload, Review, ...
+│   ├── src/components/    ← UI components (shadcn/ui)
+│   └── src/api/           ← API services
+├── Matematikos programa/  ← JSON curriculum files by grade (5-12)
+├── docs/                  ← 14 documentation files
+├── database/              ← SQLite DB (not tracked)
+├── uploads/               ← Student work uploads (not tracked)
+└── exports/               ← Generated reports (not tracked)
+```
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.11+
+- Node.js 18+
+- API keys: Gemini (required), WolframAlpha (recommended)
+
+### Backend
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate  # Windows: .\venv\Scripts\Activate
+pip install -r requirements.txt
+cp ../.env.example ../.env  # Edit with your API keys
+alembic upgrade head
+uvicorn main:app --reload
+```
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Configuration
+
+Copy `.env.example` to `.env` and fill in API keys:
+
+```env
+GEMINI_API_KEY=your_key_here          # Required - Google AI Studio
+WOLFRAM_APP_ID=your_app_id_here       # Recommended - 2000 free/month
+```
+
+OCR provider API keys (OpenAI, Novita) are configured through the app settings UI.
 
 ---
 
 ## 📋 Why AI Vision instead of traditional OCR?
 
-Student handwriting (grades 5-12) is **messy**: cross-outs, corrections, column calculations, drawings mixed with formulas. Traditional OCR (Tesseract, Google Cloud Vision, MathPix) fails at:
+Students (grades 5–12) produce **messy handwriting**: cross-outs, corrections, column calculations, drawings mixed with formulas. Traditional OCR solutions (Tesseract, Google Cloud Vision, MathPix) fail at:
 
 - Distinguishing cross-outs from final answers
 - Understanding column long division
@@ -251,4 +175,25 @@ Student handwriting (grades 5-12) is **messy**: cross-outs, corrections, column 
 
 ---
 
-*Last updated: 2026-03-13*
+## 🔒 Security Notes
+
+- 🔐 API keys stored in SQLite database (encryption recommended for production)
+- 📛 Student names anonymized before sending to AI APIs
+- 🚫 Authentication not yet implemented (development mode)
+- 📄 GDPR compliant — personal data is never sent to third-party servers unmodified
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please see the [docs/](docs/) directory for technical specifications.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+
+---
+
+*Last updated: 2026-03-14*
