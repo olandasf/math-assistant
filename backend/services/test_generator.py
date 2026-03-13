@@ -17,7 +17,7 @@ from ai.gemini_client import get_gemini_client
 from loguru import logger
 from math_checker.newton_client import get_newton_client
 from services.math_problem_bank import Difficulty, MathProblem, MathProblemGenerator
-from sympy import Symbol, latex, simplify, solve, sympify
+from sympy import SympifyError, Symbol, latex, simplify, solve, sympify
 
 # Curriculum modulis - Lietuvos BP turinio aprašymai
 from utils.curriculum import (
@@ -1389,7 +1389,7 @@ ATSAKYMO FORMATAS (tik JSON):
                     # Bandome konvertuoti į LaTeX
                     try:
                         answer_latex = latex(sympify(answer))
-                    except:
+                    except (SympifyError, TypeError, ValueError):
                         answer_latex = answer
 
                     tasks.append(
@@ -1425,7 +1425,7 @@ ATSAKYMO FORMATAS (tik JSON):
                     simplified = simplify(expr)
                     task.answer = str(simplified)
                     task.answer_latex = latex(simplified)
-                except:
+                except (SympifyError, TypeError, ValueError):
                     pass
 
                 verified.append(task)
@@ -1474,7 +1474,7 @@ ATSAKYMO FORMATAS (tik JSON):
                         else:
                             new_val = round(new_val, 2)
                         text = text.replace(num, str(new_val).replace(".", ","), 1)
-                except:
+                except (ValueError, TypeError):
                     pass
 
             # Perskaičiuojame atsakymą jei įmanoma

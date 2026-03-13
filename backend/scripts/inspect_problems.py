@@ -171,7 +171,7 @@ async def find_illogical():
                         logger.warning(
                             f"⚠️  ĮTARTINA: {nums[1]} iš {nums[0]} = {nums[1]/nums[0]*100:.0f}% išeiga!"
                         )
-                except:
+                except (ValueError, TypeError):
                     pass
 
 

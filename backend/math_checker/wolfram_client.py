@@ -232,7 +232,7 @@ class WolframClient:
                                 numbers = re.findall(r"[-+]?\d*\.?\d+", clean)
                                 if numbers:
                                     result_numeric = float(numbers[0])
-                            except:
+                            except (ValueError, TypeError):
                                 pass
                             break
                     if result:

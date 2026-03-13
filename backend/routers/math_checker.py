@@ -2476,7 +2476,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
                             }
                         ],
                     )
-                except:
+                except (SympifyError, ValueError, TypeError):
                     pass
 
         return None, None, "Atsakymas nerastas", "Pateikite galutinį atsakymą", None, []
@@ -2489,7 +2489,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
             # Trupmena - apskaičiuojame
             try:
                 student_val = float(sympify(answer_str))
-            except:
+            except (SympifyError, ValueError, TypeError):
                 student_val = float(answer_str.split("/")[0]) / float(
                     answer_str.split("/")[1]
                 )

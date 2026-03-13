@@ -2,6 +2,7 @@
 Konfigūracijos nustatymai iš .env failo.
 """
 
+import secrets
 from functools import lru_cache
 from pathlib import Path
 from typing import List
@@ -17,9 +18,10 @@ class Settings(BaseSettings):
     """Aplikacijos nustatymai."""
 
     # === Aplinka ===
-    DEBUG: bool = Field(default=True, description="Debug režimas")
+    DEBUG: bool = Field(default=False, description="Debug režimas")
     SECRET_KEY: str = Field(
-        default="dev-secret-key-change-in-production", description="JWT secret key"
+        default_factory=lambda: secrets.token_hex(32),
+        description="JWT secret key (auto-generated if not set)",
     )
 
     # === Duomenų bazė ===
@@ -47,13 +49,6 @@ class Settings(BaseSettings):
     # WolframAlpha (backup skaičiavimams)
     WOLFRAM_ALPHA_APP_ID: str = Field(default="", description="WolframAlpha App ID")
 
-    # Legacy - nebereikalingi (palikti dėl suderinamumo)
-    MATHPIX_APP_ID: str = Field(default="", description="[DEPRECATED] MathPix App ID")
-    MATHPIX_APP_KEY: str = Field(default="", description="[DEPRECATED] MathPix App Key")
-    GOOGLE_VISION_API_KEY: str = Field(
-        default="", description="[DEPRECATED] Google Cloud Vision API key"
-    )
-
     # === Failų nustatymai ===
     UPLOAD_DIR: str = Field(default="uploads", description="Įkeltų failų katalogas")
     EXPORT_DIR: str = Field(default="exports", description="Eksportuotų PDF katalogas")
@@ -66,16 +61,6 @@ class Settings(BaseSettings):
     # === OCR nustatymai ===
     OCR_CONFIDENCE_THRESHOLD: float = Field(
         default=0.7, description="Minimali OCR tikimybė"
-    )
-    # Legacy - nebereikalingi (sistema naudoja tik Gemini Vision)
-    USE_MATHPIX: bool = Field(
-        default=False, description="[DEPRECATED] Naudoti MathPix OCR"
-    )
-    USE_GOOGLE_VISION: bool = Field(
-        default=False, description="[DEPRECATED] Naudoti Google Vision"
-    )
-    USE_LOCAL_OCR: bool = Field(
-        default=False, description="[DEPRECATED] Naudoti lokalų Tesseract/EasyOCR"
     )
 
     # === Vertinimo nustatymai ===
