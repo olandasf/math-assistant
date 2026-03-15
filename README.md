@@ -1,65 +1,114 @@
-# 🧮 Math Teacher Assistant
+# 🧮 Math Teacher Assistant / Matematikos Mokytojo Asistentas
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![React 18](https://img.shields.io/badge/react-18-blue.svg)](https://react.dev/)
+[![Open Source](https://img.shields.io/badge/Open%20Source-❤-green.svg)](https://github.com/olandasf/math-assistant)
 
-**An open-source AI-powered system that helps math teachers automate exam grading and exam creation for grades 5–12.** Built for the Lithuanian education system, it uses AI Vision models to recognize handwritten student work, SymPy for mathematically precise verification, and Gemini AI for student-friendly error explanations — all in Lithuanian.
+**An open-source, AI-powered platform that automates the complete exam lifecycle for math teachers — from curriculum-aligned exam generation through handwritten student work recognition to AI-verified grading with personalized explanations.** Designed specifically for the Lithuanian education system (grades 5–12), fully localized in Lithuanian.
 
-### Why this matters
-
-Math teachers in Lithuania spend **4+ hours per exam session** manually grading handwritten student work across multiple classes. This tool reduces grading time to **30–60 minutes** while providing each student with personalized AI-generated explanations of their mistakes — something impossible with manual grading at scale.
-
-The system also generates curriculum-aligned exams using both an algorithmic problem generator (with correct Lithuanian grammar declensions built in) and AI, drawing from a bank of ~870K math problems adapted from international datasets (GSM8K, Competition Math, NuminaMath) and localized to Lithuanian cultural context.
-
-> **Target users:** Public school math teachers in Lithuania, grades 5–12, ~150 students per teacher.
+**Atvirojo kodo, DI pagrindu veikianti platforma, automatizuojanti visą kontrolinio darbo ciklą matematikos mokytojams — nuo kontrolinių generavimo pagal programą iki ranka rašytų mokinių darbų atpažinimo ir DI patvirtintų įvertinimų su individualizuotais paaiškinimais.** Sukurta specialiai Lietuvos švietimo sistemai (5–12 klasėms), pilnai lokalizuota lietuvių kalba.
 
 ---
 
-## 📸 Screenshots
+## 🔄 How it works / Kaip tai veikia
 
-### Dashboard
+The system creates a **closed-loop workflow** where exam generation and grading are tightly integrated — exams are specifically designed to maximize AI recognition accuracy of handwritten student work.
+
+Sistema sukuria **uždarą darbo ciklą**, kuriame kontrolinių generavimas ir tikrinimas yra glaudžiai integruoti — kontroliniai specialiai kuriami taip, kad DI kuo tiksliau atpažintų ranka rašytus mokinių darbus.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        CLOSED-LOOP WORKFLOW                        │
+│                                                                    │
+│  1. SETUP          2. GENERATE         3. PRINT & WRITE            │
+│  ┌──────────┐     ┌──────────────┐     ┌──────────────────┐        │
+│  │ Classes  │────▶│ Exam sheets  │────▶│ Students solve   │        │
+│  │ Curriculum│    │ (OCR-ready   │     │ on structured    │        │
+│  │ Topics   │    │  PDF + QR)   │     │ PDF forms        │        │
+│  └──────────┘     └──────────────┘     └────────┬─────────┘        │
+│                                                  │                  │
+│  6. FEEDBACK       5. VERIFY           4. SCAN & RECOGNIZE         │
+│  ┌──────────────┐ ┌──────────────┐     ┌──────────────────┐        │
+│  │ AI explains  │◀│ SymPy +      │◀────│ AI Vision OCR    │        │
+│  │ errors in LT │ │ WolframAlpha │     │ (multi-provider) │        │
+│  │ + PDF report │ │ math check   │     │ handwriting →    │        │
+│  └──────────────┘ └──────────────┘     │ LaTeX + text     │        │
+│                                         └──────────────────┘        │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Step 1: Curriculum Setup / Programos paruošimas
+
+Teachers create classes and the system loads the **official Lithuanian math curriculum** approved by the Ministry of Education — organized by grade (5–12), topics, subtopics, difficulty levels, and competency types. This includes both text-based and computational problems.
+
+Mokytojai sukuria klases, o sistema įkelia **oficialią Lietuvos švietimo ministerijos patvirtintą matematikos programą** — suskirstytą pagal klases (5–12), temas, potemes, sunkumo lygius ir kompetencijų tipus. Tai apima tiek tekstinius, tiek skaičiavimo uždavinius.
+
+> 🚧 **In progress:** Building a comprehensive problem database properly mapped to curriculum topics, difficulty levels, and competency standards. This is a significant undertaking that will greatly improve generation quality.
+
+### Step 2: Exam Generation / Kontrolinių generavimas
+
+Teachers select class, topics, difficulty level, number of problems, and number of variants. The system generates exams using two methods:
+
+- **Template generator** — algorithmic, 3490-line engine with mathematically verified answers and correct Lithuanian grammar declensions
+- **AI generator** — Gemini AI creates contextual word problems aligned to curriculum
+
+The generated exams use a **specially designed OCR-optimized PDF format** with:
+- ✅ QR codes for automatic identification
+- ✅ Alignment markers (corner squares) for scan processing
+- ✅ Structured answer boxes that guide students to write neatly
+- ✅ Solution areas with grid lines
+- ✅ Teacher variant with correct answers (planned: with full solution steps)
+
+**This intentional design is key** — the structured format encourages neater handwriting, which directly improves AI handwriting recognition accuracy during grading.
+
+Mokytojai pasirenka klasę, temas, sunkumo lygį, uždavinių ir variantų kiekį. Sistema generuoja kontrolinius dviem būdais: šabloniniu generatoriumi (algoritminis, su tiksliais atsakymais ir teisingais lietuvių kalbos linksniais) ir DI generatoriumi (Gemini AI kuria kontekstinius tekstinius uždavinius). Sugeneruoti kontroliniai naudoja **specialiai sukurtą OCR-optimizuotą PDF formatą** su QR kodais, alignment markeriais, struktūrizuotomis atsakymų dėžutėmis ir sprendimo zonomis — tai skatina mokinius rašyti tvarkingiau, o tai tiesiogiai gerina DI rašysenos atpažinimo tikslumą.
+
+### Step 3–4: Scanning & Recognition / Skenavimas ir atpažinimas
+
+Completed student work is scanned and processed by **multi-provider AI Vision OCR**:
+- **Gemini Vision** / **OpenAI Vision** / **Novita Vision** (Qwen) / **Together.ai** (Qwen, Llama)
+- Handles cross-outs, column calculations, mixed handwriting
+- Outputs structured text + LaTeX formulas
+- When a specific exam is selected for grading, the system already knows the correct answers — further increasing accuracy
+
+### Step 5–6: Verification & Feedback / Tikrinimas ir grįžtamasis ryšys
+
+Mathematical verification uses a **4-tier hierarchy**: SymPy → Newton API → WolframAlpha → Gemini AI. Each student receives AI-generated explanations of their errors **in Lithuanian**, with concrete step-by-step solutions.
+
+---
+
+## 🔮 Roadmap / Planuojamos funkcijos
+
+| Status | Feature | Description |
+|--------|---------|-------------|
+| ✅ | Exam grading | AI Vision OCR + Math verification + AI explanations |
+| ✅ | Exam generation | Template + AI generation with OCR-optimized PDF |
+| 🚧 | Problem database | Comprehensive problem bank mapped to curriculum topics |
+| 🚧 | Solution steps | Teacher variant with full solution methods, not just answers |
+| 📋 | Lesson slides | Interactive teaching materials / slide preparation for lessons |
+
+---
+
+## 📸 Screenshots / Ekranvaizdžiai
+
+### Dashboard / Pradinis puslapis
 ![Dashboard — statistics overview, quick actions, and recent work](docs/screenshots/dashboard.png)
 
-### Exam Generation
+### Exam Generation / Kontrolinio generavimas
 ![Exam generator — select grade, topic, and generation method (template or AI)](docs/screenshots/exam-generator.png)
 
-### AI Vision OCR — Handwriting Recognition
+### Generated Exam Sheet / Sugeneruotas kontrolinio lapas
+![OCR-optimized exam PDF — QR code, alignment markers, structured answer boxes, solution areas](docs/screenshots/exam-sheet-pdf.png)
+
+### AI Vision OCR — Handwriting Recognition / Rašysenos atpažinimas
 ![OCR results — scanned handwritten student work with recognized text and LaTeX formulas](docs/screenshots/ocr-results.png)
 
-### LaTeX Editor — Side-by-side Review
+### LaTeX Editor — Side-by-side Review / Peržiūra su LaTeX
 ![LaTeX editor — original scan alongside digitized math expressions for verification](docs/screenshots/latex-editor.png)
 
-### Grading Results with AI Explanations
+### Grading Results with AI Explanations / Tikrinimo rezultatai su DI paaiškinimais
 ![Grading results — grade, score, error analysis, and AI-generated explanations in Lithuanian](docs/screenshots/grading-results.png)
-
----
-
-## 🎯 Ką daro ši sistema? / What does this system do?
-
-### 1. Tikrina mokinių kontrolinius darbus / Grades student exams
-
-```
-Skanuoti mokinių darbai → DI Vision OCR → Matematinis tikrinimas → Įvertinimas su paaiškinimais
-```
-
-- **DI Vision OCR** — atpažįsta ranka rašytą matematiką (Gemini Vision / OpenAI Vision / Novita Vision / Together.ai Vision)
-- **SymPy + WolframAlpha** — tiksliai tikrina sprendimus ir atsakymus
-- **Gemini AI** — paaiškina klaidas lietuviškai, su naudingais patarimais
-- **PDF ataskaitos** — su įvertinimu, klaidų analize ir rekomendacijomis
-
-### 2. Kuria kontrolinius darbus / Creates math exams
-
-```
-Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas PDF
-```
-
-- **Pagal LT programą** — 8 JSON failai su oficialiu matematikos turiniu (5-12 kl.)
-- **Algoritminis generavimas** — 3490 eilučių generatorius su teisingais atsakymais ir lietuvių kalbos linksniavimais
-- **Gemini AI generavimas** — tekstiniai uždaviniai su curriculum kontekstu
-- **HuggingFace bazė** — ~870K uždavinių: GSM8K, Competition Math, NuminaMath, MathInstruct
-- **Lokalizacija** — automatinis vertimas EN→LT su kultūriniu adaptavimu (vardai, valiuta, vienetai)
-- **PDF su QR** — alignment markeriai, atsakymų dėžutės, variantai, mokytojo versija
 
 ---
 
@@ -71,10 +120,10 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 | ✅ **Math verification** | SymPy → Newton API → WolframAlpha → Gemini AI (4-tier hierarchy) |
 | 💬 **Error explanations** | AI explanations in Lithuanian with concrete solution steps |
 | 📝 **Exam generation** | Based on official Lithuanian math curriculum, two generation methods |
+| 📄 **OCR-optimized PDF** | Exam sheets with QR codes, alignment markers, structured answer boxes |
 | 📚 **Problem bank** | ~870K problems from HuggingFace + algorithmic generator with Lithuanian grammar |
 | 🇱🇹 **Localization** | Automatic EN→LT translation with cultural adaptation (names, currency, units) |
 | 📊 **Reports** | PDF with grades, error statistics, recommendations |
-| 📄 **PDF exams** | OCR-optimized sheets with alignment markers and QR codes |
 | 🔢 **LaTeX rendering** | Side-by-side KaTeX rendering for math expression review |
 | 🤖 **Multi-provider OCR** | Gemini, OpenAI, Novita (Qwen), Together.ai — selectable with model dropdowns |
 
