@@ -9,12 +9,27 @@ from typing import AsyncGenerator
 from config import settings
 
 
+import sqlite3 as _sqlite3
+
+# Enable WAL mode for SQLite to allow concurrent reads/writes
+# This prevents deadlocks between async aiosqlite and sync sqlite3 connections
+def _set_sqlite_pragma(dbapi_conn, connection_record):
+    cursor = dbapi_conn.cursor()
+    cursor.execute("PRAGMA journal_mode=WAL")
+    cursor.execute("PRAGMA busy_timeout=5000")
+    cursor.close()
+
+from sqlalchemy import event
+
 # Async engine
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=settings.DEBUG,  # SQL logging
     future=True
 )
+
+# Register WAL mode pragma on every new connection
+event.listen(engine.sync_engine, "connect", _set_sqlite_pragma)
 
 # Session factory
 async_session_maker = async_sessionmaker(

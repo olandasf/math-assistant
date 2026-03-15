@@ -5,33 +5,34 @@ import { Button } from "@/components/ui/button";
 import {
   LayoutDashboard,
   Upload,
-  FileText,
+  FileCheck,
   Users,
-  BarChart3,
+  LineChart,
   Settings,
   Menu,
   X,
   Bell,
   Search,
   ChevronDown,
-  FileDown,
-  LayoutTemplate,
-  Zap,
+  Download,
+  FileText,
+  ListChecks,
   ClipboardList,
-  Sparkles,
+  Brain,
+  BookOpenCheck
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Įkelti darbą", href: "/ikelti", icon: Upload },
-  { name: "Peržiūrėti", href: "/perziureti", icon: FileText },
-  { name: "Greitas tikrinimas", href: "/greitas-tikrinimas", icon: Zap },
+  { name: "Peržiūrėti", href: "/perziureti", icon: FileCheck },
+  { name: "Greitas tikrinimas", href: "/greitas-tikrinimas", icon: ListChecks },
   { name: "Kontroliniai", href: "/kontroliniai", icon: ClipboardList },
-  { name: "Generuoti su AI", href: "/kontroliniai/generuoti", icon: Sparkles },
+  { name: "Generuoti su AI", href: "/kontroliniai/generuoti", icon: Brain },
   { name: "Mokiniai", href: "/mokiniai", icon: Users },
-  { name: "Eksportai", href: "/eksportai", icon: FileDown },
-  { name: "Šablonai", href: "/sablonai", icon: LayoutTemplate },
-  { name: "Analitika", href: "/statistika", icon: BarChart3 },
+  { name: "Eksportai", href: "/eksportai", icon: Download },
+  { name: "Šablonai", href: "/sablonai", icon: FileText },
+  { name: "Analitika", href: "/statistika", icon: LineChart },
 ];
 
 export function Layout() {
@@ -39,38 +40,42 @@ export function Layout() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground font-sans">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden backdrop-blur-sm"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar - The Academic Architect Primary */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 w-64 transform bg-[#1a3a2f] transition-transform duration-200 ease-in-out lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 w-72 transform bg-primary transition-transform duration-200 ease-in-out lg:translate-x-0 shadow-2xl",
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         {/* Logo */}
-        <div className="flex h-20 items-center gap-3 border-b border-emerald-800/50 px-6">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-xl font-bold shadow-lg shadow-emerald-500/30">
-            M
-          </div>
-          <span className="text-xl font-bold text-white">Matematika</span>
+        <div className="flex h-20 items-center justify-between px-6">
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-tertiary to-tertiary-container text-white shadow-lg group-hover:shadow-tertiary/50 transition-all">
+              <BookOpenCheck className="h-6 w-6" />
+            </div>
+            <span className="text-xl font-bold text-white tracking-tight">MathTeacher <span className="text-tertiary-fixed font-medium">AI</span></span>
+          </Link>
           <button
-            className="ml-auto lg:hidden text-emerald-300 hover:text-white"
+            className="lg:hidden text-white/70 hover:text-white"
             onClick={() => setSidebarOpen(false)}
+            title="Uždaryti meniu"
+            aria-label="Uždaryti meniu"
           >
             <X className="h-6 w-6" />
           </button>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 space-y-2 px-3 py-6">
+        <nav className="flex-1 space-y-1 px-4 py-8">
           {navigation.map((item) => {
             const isActive = location.pathname === item.href;
             return (
@@ -78,15 +83,18 @@ export function Layout() {
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "flex items-center gap-4 rounded-xl px-4 py-3 text-base font-medium transition-all duration-200",
+                  "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 relative group",
                   isActive
-                    ? "bg-gradient-to-r from-emerald-600 to-emerald-500 text-white shadow-lg shadow-emerald-500/25"
-                    : "text-emerald-100/80 hover:bg-emerald-800/50 hover:text-white hover:translate-x-1"
+                    ? "bg-gradient-to-r from-primary to-primary-container text-white shadow-md shadow-black/10"
+                    : "text-white/70 hover:bg-white/5 hover:text-white"
                 )}
                 onClick={() => setSidebarOpen(false)}
               >
+                {isActive && (
+                  <span className="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1 rounded-r-full bg-tertiary-fixed" />
+                )}
                 <item.icon
-                  className={cn("h-6 w-6", isActive && "drop-shadow-lg")}
+                  className={cn("h-5 w-5 transition-transform group-hover:scale-110", isActive && "text-tertiary-fixed")}
                 />
                 {item.name}
               </Link>
@@ -95,65 +103,64 @@ export function Layout() {
         </nav>
 
         {/* Bottom section */}
-        <div className="border-t border-emerald-800/50 p-4">
+        <div className="p-4 mt-auto mb-4 px-4">
           <Link
             to="/nustatymai"
-            className="flex items-center gap-4 rounded-xl px-4 py-3 text-base font-medium text-emerald-100/80 hover:bg-emerald-800/50 hover:text-white transition-all duration-200 hover:translate-x-1"
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-white/70 hover:bg-white/5 hover:text-white transition-all duration-200"
           >
-            <Settings className="h-6 w-6" />
+            <Settings className="h-5 w-5" />
             Nustatymai
           </Link>
         </div>
       </aside>
 
       {/* Main content */}
-      <div className="lg:pl-64">
-        {/* Top header */}
-        <header className="sticky top-0 z-30 flex h-16 items-center gap-4 border-b bg-background px-4 sm:px-6">
-          <button
-            className="lg:hidden text-muted-foreground hover:text-foreground"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
+      <div className="lg:pl-72 flex flex-col min-h-screen">
+        {/* Top header - Surface Container Lowest to match Academic Architect */}
+        <header className="sticky top-0 z-30 flex h-20 items-center justify-between bg-surface-container-lowest px-6 lg:px-8 shadow-[0_4px_32px_rgba(0,0,0,0.02)]">
+          <div className="flex items-center gap-4">
+            <button
+              className="lg:hidden text-muted-foreground hover:text-foreground"
+              onClick={() => setSidebarOpen(true)}
+              title="Atidaryti meniu"
+              aria-label="Atidaryti meniu"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
 
-          {/* Search */}
-          <div className="flex flex-1 items-center gap-2">
-            <div className="relative w-full max-w-md">
+            {/* Title / Breadcrumb can go here if needed, for now keeping it clean */}
+            <h1 className="text-xl font-semibold text-foreground hidden sm:block">Darbalaukis</h1>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <div className="relative hidden w-full max-w-sm sm:block">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="search"
-                placeholder="Ieškoti..."
-                className="h-10 w-full rounded-lg border bg-background pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                placeholder="Ieškoti darbų, klasių..."
+                className="h-10 w-full rounded-full bg-surface-container-low pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all border-0"
               />
             </div>
-          </div>
 
-          {/* Right side */}
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative text-muted-foreground hover:bg-surface-container-low rounded-full h-10 w-10">
               <Bell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-destructive text-[10px] font-medium text-white">
-                3
-              </span>
+              <span className="absolute top-2 right-2 flex h-2 w-2 rounded-full bg-tertiary"></span>
             </Button>
 
             {/* User menu */}
-            <button className="flex items-center gap-2 rounded-lg px-2 py-1.5 hover:bg-muted transition-colors">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white text-sm font-medium">
-                MM
-              </div>
+            <button className="flex items-center gap-3 rounded-full hover:bg-surface-container-low p-1 pr-3 transition-colors border border-transparent hover:border-border">
+              <img src="https://ui-avatars.com/api/?name=Mokytoja&background=0b513d&color=fff" alt="User" className="w-8 h-8 rounded-full" />
               <div className="hidden sm:block text-left">
-                <p className="text-sm font-medium">Mokytoja</p>
-                <p className="text-xs text-muted-foreground">Matematika</p>
+                <p className="text-sm font-medium text-foreground leading-tight">Mokytoja</p>
+                <p className="text-xs text-muted-foreground leading-tight">Admin</p>
               </div>
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
+              <ChevronDown className="h-4 w-4 text-muted-foreground ml-1" />
             </button>
           </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1">
+        <main className="flex-1 p-6 lg:p-8">
           <Outlet />
         </main>
       </div>

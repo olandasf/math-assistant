@@ -156,9 +156,12 @@ class ImageProcessor:
             preprocessing.append("binarize")
 
         # Išsaugome apdorotą vaizdą
+        # Konvertuojame atgal į 3 kanalų (BGR) vaizdą, nes kai kurios Vision API
+        # nepalaiko 1-kanalo grayscale PNG formatų
+        output_image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
         output_name = f"processed_{path.stem}.png"
         output_path = self.output_dir / output_name
-        cv2.imwrite(str(output_path), gray)
+        cv2.imwrite(str(output_path), output_image)
 
         height, width = gray.shape[:2]
 

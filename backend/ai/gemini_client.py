@@ -30,7 +30,7 @@ class GeminiClient:
     """Google Gemini API klientas."""
 
     # Rekomenduojamas modelis lietuvių kalbai
-    DEFAULT_MODEL = "gemini-3-pro-preview"
+    DEFAULT_MODEL = "google/gemini-3.1-pro-preview"
 
     # API endpoint
     BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
@@ -475,11 +475,11 @@ FORMATAVIMO TAISYKLĖS:
 
 Rašyk LIETUVIŲ kalba, taisyklinga gramatika."""
 
-            logger.info(f"🚀 Kviečiamas Gemini Flash alternatyviems sprendimams...")
+            logger.info(f"🚀 Kviečiamas Gemini alternatyviems sprendimams...")
 
-            # Kviečiame Gemini Flash
+            # Kviečiame Gemini
             response = client.models.generate_content(
-                model="gemini-3-flash-preview",
+                model="google/gemini-3.1-pro-preview",
                 contents=[
                     types.Content(
                         role="user",
@@ -661,11 +661,11 @@ FORMATAVIMO TAISYKLĖS (PRIVALOMA):
 
 Rašyk LIETUVIŲ kalba, taisyklinga gramatika. Max 150 žodžių."""
 
-            logger.info(f"🚀 Kviečiamas Gemini Flash paaiškinimui...")
+            logger.info(f"🚀 Kviečiamas Gemini paaiškinimui...")
 
-            # Kviečiame Gemini Flash - greitas ir stabilus
+            # Kviečiame Gemini
             response = client.models.generate_content(
-                model="gemini-3-flash-preview",
+                model="google/gemini-3.1-pro-preview",
                 contents=[
                     types.Content(
                         role="user",

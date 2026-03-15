@@ -1,9 +1,10 @@
 """
 Novita.ai Vision OCR servisas.
-Naudoja Novita.ai API (OpenAI-suderinama) su Qwen3 VL modeliais matematikos ir teksto atpažinimui.
+Naudoja Novita.ai API (OpenAI-suderinama) su Qwen modeliais matematikos ir teksto atpažinimui.
 
 Palaikomi modeliai:
-- qwen/qwen3-vl-235b-a22b-instruct  ($0.30/M in, $1.50/M out) - greitas
+- qwen/qwen3.5-397b-a17b             - Qwen3.5 native vision-language modelis (MoE, greitas)
+- qwen/qwen3-vl-235b-a22b-instruct  ($0.30/M in, $1.50/M out) - Qwen3 VL vision
 - qwen/qwen3-vl-235b-a22b-thinking  ($0.98/M in, $3.95/M out) - su reasoning
 
 API dokumentacija: https://novita.ai/docs/guides/llm-vision
@@ -22,13 +23,14 @@ from loguru import logger
 # Novita.ai API bazinis URL (OpenAI-suderinama)
 NOVITA_BASE_URL = "https://api.novita.ai/openai"
 
-# Pasiekiami modeliai
+# Pasiekiami modeliai (visi palaiko vision)
 NOVITA_MODELS = {
-    "qwen3-vl-instruct": "qwen/qwen3-vl-235b-a22b-instruct",
+    "qwen3.5": "qwen/qwen3.5-397b-a17b",
+    "qwen3-vl": "qwen/qwen3-vl-235b-a22b-instruct",
     "qwen3-vl-thinking": "qwen/qwen3-vl-235b-a22b-thinking",
 }
 
-DEFAULT_MODEL = "qwen3-vl-instruct"
+DEFAULT_MODEL = "qwen3.5"
 
 
 def _get_novita_api_key_from_db() -> Optional[str]:
@@ -37,7 +39,7 @@ def _get_novita_api_key_from_db() -> Optional[str]:
         db_path = BASE_DIR / "database" / "math_teacher.db"
         if not db_path.exists():
             return None
-        conn = sqlite3.connect(str(db_path))
+        conn = sqlite3.connect(str(db_path), timeout=5)
         cursor = conn.cursor()
         cursor.execute("SELECT value FROM settings WHERE key = 'novita_api_key'")
         row = cursor.fetchone()
@@ -153,7 +155,9 @@ class NovitaVisionClient:
 
         image_data = self._load_image_base64(image_path)
         if not image_data:
+            logger.error(f"❌ Novita: Nepavyko užkrauti vaizdo: {image_path}")
             return ""
+        logger.info(f"📷 Novita: Vaizdas užkrautas, base64 ilgis: {len(image_data)} simbolių")
 
         prompt = self._get_prompt()
 
@@ -169,20 +173,21 @@ class NovitaVisionClient:
         # OpenAI-suderinama chat/completions užklausa
         url = f"{NOVITA_BASE_URL}/chat/completions"
 
+        # Pagal Novita API docs: image_url eina PRIEŠ text
         request_body = {
             "model": self.model,
             "messages": [
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt},
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:{mime_type};base64,{image_data}",
-                                "detail": "high",
+                                "url": f"data:image/jpeg;base64,{image_data}",
+                                "detail": "low",
                             },
                         },
+                        {"type": "text", "text": prompt},
                     ],
                 }
             ],
@@ -190,10 +195,8 @@ class NovitaVisionClient:
             "temperature": 0.0,
         }
 
-        # Thinking modeliui pridedame response_format
-        if "thinking" not in self.model:
-            request_body["response_format"] = {"type": "json_object"}
-
+        # PASTABA: response_format NE palaikomas daugelio Novita modelių (pvz. qwen3.5)
+        # JSON formatas užtikrinamas per prompt instrukcijas
         logger.info(f"🔄 Kviečiamas Novita modelis: {self.model}")
 
         # Retry logika
@@ -202,7 +205,7 @@ class NovitaVisionClient:
 
         for attempt in range(max_retries):
             try:
-                async with httpx.AsyncClient(timeout=120.0) as client:
+                async with httpx.AsyncClient(timeout=180.0) as client:
                     response = await client.post(
                         url,
                         headers={
@@ -212,8 +215,9 @@ class NovitaVisionClient:
                         json=request_body,
                     )
 
+                    logger.info(f"📡 Novita HTTP status: {response.status_code}")
                     if response.status_code != 200:
-                        error_text = response.text
+                        error_text = response.text[:500]
                         logger.error(
                             f"Novita API klaida: {response.status_code} - {error_text}"
                         )
@@ -221,15 +225,16 @@ class NovitaVisionClient:
                         if response.status_code == 429 and attempt < max_retries - 1:
                             import asyncio
 
-                            wait_time = 2**attempt  # 1s, 2s, 4s
+                            wait_time = 2**attempt
                             logger.warning(
                                 f"Rate limit, laukiame {wait_time}s (bandymas {attempt + 1}/{max_retries})"
                             )
                             await asyncio.sleep(wait_time)
                             continue
-                        return ""
+                        return f"API klaida {response.status_code}: {error_text}"
 
                     data = response.json()
+                    logger.info(f"📡 Novita response keys: {list(data.keys())}")
                     choices = data.get("choices", [])
                     if choices:
                         message = choices[0].get("message", {})
@@ -242,11 +247,20 @@ class NovitaVisionClient:
                                 f"Novita thinking: {len(reasoning)} simbolių reasoning"
                             )
 
-                        logger.info(f"📡 Novita atsakymas: {len(content)} simbolių")
-                        return content
+                        finish_reason = choices[0].get("finish_reason", "unknown")
+                        logger.info(
+                            f"📡 Novita atsakymas: {len(content)} simbolių, "
+                            f"finish_reason={finish_reason}, "
+                            f"preview: {content[:200] if content else 'TUŠČIA'}"
+                        )
+                        if content:
+                            return content
+                        else:
+                            return f"Klaida: Novita grąžino tuščią atsakymą (finish_reason={finish_reason})"
 
                     logger.warning(
-                        f"Novita grąžino tuščią atsakymą (bandymas {attempt + 1}/{max_retries})"
+                        f"Novita grąžino tuščią atsakymą (bandymas {attempt + 1}/{max_retries}). "
+                        f"Full response: {str(data)[:500]}"
                     )
 
             except httpx.ConnectError as e:
@@ -259,10 +273,22 @@ class NovitaVisionClient:
 
                     await asyncio.sleep(1)
                     continue
+            except httpx.TimeoutException as e:
+                last_error = e
+                logger.error(
+                    f"Timeout klaida (bandymas {attempt + 1}/{max_retries}): "
+                    f"Novita modelis per lėtai atsakė (timeout=180s). "
+                    f"Bandykite naudoti mažesnį modelį."
+                )
+                if attempt < max_retries - 1:
+                    import asyncio
+
+                    await asyncio.sleep(1)
+                    continue
             except Exception as e:
                 last_error = e
                 logger.error(
-                    f"Netikėta klaida (bandymas {attempt + 1}/{max_retries}): {e}"
+                    f"Netikėta klaida {type(e).__name__} (bandymas {attempt + 1}/{max_retries}): {e}"
                 )
                 if attempt < max_retries - 1:
                     import asyncio
@@ -354,14 +380,22 @@ Jei puslapio viršuje matai "c)", "d)", "e)" BE skaičiaus priekyje - tai yra AN
 Dabar nuskaityk paveikslėlį ir grąžink JSON su VISOMIS UNIKALIOMIS užduotimis."""
 
     def _load_image_base64(self, image_path: str) -> Optional[str]:
-        """Nuskaito vaizdą ir konvertuoja į base64."""
+        """Nuskaito vaizdą ir konvertuoja į JPEG base64 (pagal Novita docs)."""
         try:
             path = Path(image_path)
             if not path.exists():
                 logger.error(f"Vaizdas nerastas: {image_path}")
                 return None
-            with open(path, "rb") as f:
-                return base64.standard_b64encode(f.read()).decode("utf-8")
+            # Konvertuojame per PIL į JPEG (pagal Novita API dokumentaciją)
+            from PIL import Image
+            import io
+            with Image.open(path) as img:
+                # Konvertuojame į RGB jei reikia (RGBA, grayscale etc.)
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                buffered = io.BytesIO()
+                img.save(buffered, format="JPEG", quality=90)
+                return base64.b64encode(buffered.getvalue()).decode('utf-8')
         except Exception as e:
             logger.error(f"Vaizdo nuskaitymo klaida: {e}")
             return None

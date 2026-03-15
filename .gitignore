@@ -181,3 +181,18 @@ SCAN*.PDF
 !START.bat
 !STOP.bat
 !CHECK.bat
+
+# Root-level screenshots (not for git)
+Ekrano kopija*.png
+
+# Test files in root
+test_*.py
+test_*.png
+
+# SQLite WAL/SHM files
+*.db-shm
+*.db-wal
+
+# Allow docs screenshots
+!docs/screenshots/*.png
+

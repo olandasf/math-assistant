@@ -22,19 +22,21 @@ class ApiKeysRequest(BaseModel):
     """API raktų užklausa."""
 
     gemini_api_key: Optional[str] = None
-    gemini_model: Optional[str] = "gemini-3-pro-preview"
+    gemini_model: Optional[str] = "google/gemini-3.1-pro-preview"
     gemini_credentials_json: Optional[str] = None  # Google Cloud credentials JSON
     openai_api_key: Optional[str] = None
     openai_model: Optional[str] = "gpt-5.2"
     novita_api_key: Optional[str] = None
-    novita_model: Optional[str] = "qwen3-vl-instruct"
+    novita_model: Optional[str] = "qwen3.5"
+    together_api_key: Optional[str] = None
+    together_model: Optional[str] = "Qwen/Qwen3.5-397B-A17B"
     wolfram_app_id: Optional[str] = None
 
 
 class OcrProviderRequest(BaseModel):
     """OCR tiekėjo užklausa."""
 
-    provider: str = "gemini"  # "gemini", "openai" arba "novita"
+    provider: str = "gemini"  # "gemini", "openai", "novita" arba "together"
 
 
 class TestResponse(BaseModel):
@@ -166,6 +168,7 @@ async def get_api_keys(db: AsyncSession = Depends(get_db)):
         "gemini": bool(keys.get("gemini_api_key")),
         "openai": bool(keys.get("openai_api_key")),
         "novita": bool(keys.get("novita_api_key")),
+        "together": bool(keys.get("together_api_key")),
         "wolfram": bool(keys.get("wolfram_app_id")),
         "ocr_provider": keys.get("ocr_provider", "gemini"),
     }
@@ -186,7 +189,7 @@ async def set_ocr_provider(
     request: OcrProviderRequest, db: AsyncSession = Depends(get_db)
 ):
     """Nustatyti OCR tiekėją."""
-    if request.provider not in ["gemini", "openai", "novita"]:
+    if request.provider not in ["gemini", "openai", "novita", "together"]:
         raise HTTPException(status_code=400, detail="Netinkamas tiekėjas")
 
     await set_setting(
@@ -209,7 +212,10 @@ async def set_ocr_provider(
 async def test_gemini(keys: ApiKeysRequest):
     """Testuoja Google Gemini API ryšį (naudojamas OCR ir AI)."""
     api_key = keys.gemini_api_key
-    model = keys.gemini_model or "gemini-2.5-flash"
+    model = keys.gemini_model or "gemini-3.1-pro-preview"
+    # AI Studio API naudoja modelį be "google/" prefikso
+    if model.startswith("google/"):
+        model = model[len("google/"):]
 
     if not api_key:
         return TestResponse(
@@ -239,6 +245,11 @@ async def test_gemini(keys: ApiKeysRequest):
                     return TestResponse(
                         success=True, message=f"Gemini API ({model}) prisijungta."
                     )
+            elif response.status_code == 429:
+                return TestResponse(
+                    success=True,
+                    message=f"Gemini API ({model}) prisijungta! (Rate limit - palaukite ir bandykite vėliau)",
+                )
             elif response.status_code == 400:
                 error_data = response.json()
                 error_msg = error_data.get("error", {}).get(
@@ -248,7 +259,7 @@ async def test_gemini(keys: ApiKeysRequest):
                     return TestResponse(
                         success=False,
                         message="Neprisijungta",
-                        error=f"Modelis '{model}' nerastas. Pabandykite 'gemini-2.5-flash' arba 'gemini-1.5-pro'",
+                        error=f"Modelis '{model}' nerastas. Pabandykite 'gemini-3.1-pro-preview'",
                     )
                 return TestResponse(
                     success=False, message="Neprisijungta", error=error_msg
@@ -421,7 +432,7 @@ async def test_novita(keys: ApiKeysRequest):
     logger = logging.getLogger(__name__)
 
     api_key = keys.novita_api_key
-    model_key = keys.novita_model or "qwen3-vl-instruct"
+    model_key = keys.novita_model or "qwen3.5"
 
     if not api_key:
         return TestResponse(
@@ -504,6 +515,79 @@ async def test_novita(keys: ApiKeysRequest):
         )
     except Exception as e:
         logger.error(f"❌ Novita klaida: {e}")
+        return TestResponse(success=False, message="Neprisijungta", error=str(e))
+
+
+@router.post("/test/together", response_model=TestResponse)
+async def test_together(keys: ApiKeysRequest):
+    """Testuoja Together.ai API ryšį."""
+    api_key = keys.together_api_key
+    model = keys.together_model or "Qwen/Qwen3.5-397B-A17B"
+
+    if not api_key:
+        return TestResponse(
+            success=False, message="Neprisijungta", error="Trūksta API Key"
+        )
+
+    logger.info(f"🔄 Testuojamas Together API su modeliu: {model}")
+
+    try:
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.post(
+                "https://api.together.xyz/v1/chat/completions",
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {api_key}",
+                },
+                json={
+                    "model": model,
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": "Atsakyk vienu žodžiu: 2+2=?",
+                        }
+                    ],
+                    "max_tokens": 10,
+                    "temperature": 0.0,
+                },
+            )
+
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("choices"):
+                    return TestResponse(
+                        success=True,
+                        message=f"Together API ({model}) prisijungta sėkmingai!",
+                    )
+                return TestResponse(
+                    success=True, message=f"Together API ({model}) prisijungta."
+                )
+            elif response.status_code == 429:
+                return TestResponse(
+                    success=True,
+                    message=f"Together API ({model}) prisijungta! (Rate limit)",
+                )
+            elif response.status_code == 401:
+                return TestResponse(
+                    success=False,
+                    message="Neprisijungta",
+                    error="Neteisingas API raktas",
+                )
+            else:
+                return TestResponse(
+                    success=False,
+                    message="Neprisijungta",
+                    error=f"API klaida: {response.status_code} - {response.text[:200]}",
+                )
+
+    except httpx.TimeoutException:
+        return TestResponse(
+            success=False,
+            message="Neprisijungta",
+            error="Ryšio timeout (60s) - bandykite dar kartą",
+        )
+    except Exception as e:
+        logger.error(f"❌ Together klaida: {e}")
         return TestResponse(success=False, message="Neprisijungta", error=str(e))
 
 

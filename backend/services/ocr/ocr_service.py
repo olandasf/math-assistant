@@ -15,6 +15,7 @@ from config import BASE_DIR
 from .gemini_vision import GeminiVisionResult, get_gemini_vision_client
 from .novita_vision import NovitaVisionResult, get_novita_vision_client
 from .openai_vision import OpenAIVisionResult, get_openai_vision_client
+from .together_vision import TogetherVisionResult, get_together_vision_client
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +26,7 @@ class OCRSource(str, Enum):
     GEMINI_VISION = "gemini"
     OPENAI_VISION = "openai"
     NOVITA_VISION = "novita"
+    TOGETHER_VISION = "together"
 
 
 def _get_ocr_provider_from_db() -> str:
@@ -33,7 +35,7 @@ def _get_ocr_provider_from_db() -> str:
         db_path = BASE_DIR / "database" / "math_teacher.db"
         if not db_path.exists():
             return "gemini"
-        conn = sqlite3.connect(str(db_path))
+        conn = sqlite3.connect(str(db_path), timeout=5)
         cursor = conn.cursor()
         cursor.execute("SELECT value FROM settings WHERE key = 'ocr_provider'")
         row = cursor.fetchone()
@@ -52,12 +54,13 @@ class OCRResult:
     text: str
     latex: Optional[str] = None
     confidence: float = 0.0
-    source: OCRSource = OCRSource.GEMINI_VISION
+    source: Optional[OCRSource] = None
     processing_time_ms: int = 0
     is_math: bool = False
     gemini_result: Optional[GeminiVisionResult] = None
     openai_result: Optional[OpenAIVisionResult] = None
     novita_result: Optional[NovitaVisionResult] = None
+    together_result: Optional[TogetherVisionResult] = None
     warnings: list[str] = field(default_factory=list)
 
 
@@ -77,6 +80,7 @@ class OCRService:
         self.gemini_vision = get_gemini_vision_client()
         self.openai_vision = get_openai_vision_client()
         self.novita_vision = get_novita_vision_client()
+        self.together_vision = get_together_vision_client()
         self.current_provider = _get_ocr_provider_from_db()
 
         available_providers = []
@@ -86,6 +90,8 @@ class OCRService:
             available_providers.append("OpenAI")
         if self.novita_vision.available:
             available_providers.append("Novita")
+        if self.together_vision.available:
+            available_providers.append("Together")
 
         if not available_providers:
             logger.warning("⚠️ Joks OCR tiekėjas nepasiekiamas! OCR neveiks.")
@@ -102,6 +108,7 @@ class OCRService:
             self.gemini_vision.available
             or self.openai_vision.available
             or self.novita_vision.available
+            or self.together_vision.available
         )
 
     def get_available_sources(self) -> list[OCRSource]:
@@ -113,6 +120,8 @@ class OCRService:
             sources.append(OCRSource.OPENAI_VISION)
         if self.novita_vision.available:
             sources.append(OCRSource.NOVITA_VISION)
+        if self.together_vision.available:
+            sources.append(OCRSource.TOGETHER_VISION)
         return sources
 
     def get_current_provider(self) -> str:
@@ -157,9 +166,55 @@ class OCRService:
         elif provider == "novita" and not self.novita_vision.available:
             logger.info("🔄 Novita klientas nepasiekiamas, bandome re-inicializuoti...")
             self.novita_vision._try_api_key()
+        elif provider == "together" and not self.together_vision.available:
+            logger.info("🔄 Together klientas nepasiekiamas, bandome re-inicializuoti...")
+            self.together_vision._try_api_key()
+
+        # Bandome pasirinktą tiekėją
+        result = await self._try_provider(provider, image_path, start, warnings)
+        if result:
+            return result
+
+        # Pasirinktas tiekėjas neveikia - grąžiname klaidą SU tiekėjo vardu (BE fallback!)
+        source_map = {
+            "gemini": OCRSource.GEMINI_VISION,
+            "openai": OCRSource.OPENAI_VISION,
+            "novita": OCRSource.NOVITA_VISION,
+            "together": OCRSource.TOGETHER_VISION,
+        }
+        error_msg = "; ".join(warnings) if warnings else f"OCR tiekėjas '{provider}' nepasiekiamas"
+        logger.error(
+            f"❌ OCR tiekėjas '{provider}' neveikia! "
+            f"Gemini available: {self.gemini_vision.available}, "
+            f"OpenAI available: {self.openai_vision.available}, "
+            f"Novita available: {self.novita_vision.available}, "
+            f"Together available: {self.together_vision.available}"
+        )
+        return OCRResult(
+            text=f"Klaida: {error_msg}",
+            source=source_map.get(provider),
+            warnings=warnings or [f"OCR tiekėjas '{provider}' nepasiekiamas. Patikrinkite API raktus Nustatymuose."],
+            processing_time_ms=int((time.time() - start) * 1000),
+        )
+
+    async def _try_provider(
+        self,
+        provider: str,
+        image_path: str,
+        start: float,
+        warnings: list[str],
+    ) -> Optional[OCRResult]:
+        """Bando atlikti OCR su nurodytu tiekėju. Grąžina None jei nepavyko."""
 
         # Novita Vision
-        if provider == "novita" and self.novita_vision.available:
+        if provider == "novita":
+            if not self.novita_vision.available:
+                logger.warning(
+                    f"⚠️ Novita tiekėjas pasirinktas, bet nepasiekiamas! "
+                    f"Patikrinkite ar API raktas nustatytas."
+                )
+                warnings.append("Novita API raktas nenurodytas arba neteisingas")
+                return None
             try:
                 novita_result = await self.novita_vision.recognize(image_path)
                 processing_time = int((time.time() - start) * 1000)
@@ -183,9 +238,17 @@ class OCRService:
             except Exception as e:
                 logger.error(f"Novita OCR klaida: {e}")
                 warnings.append(f"Novita klaida: {str(e)}")
+            return None
 
         # OpenAI Vision
-        if provider == "openai" and self.openai_vision.available:
+        if provider == "openai":
+            if not self.openai_vision.available:
+                logger.warning(
+                    f"⚠️ OpenAI tiekėjas pasirinktas, bet nepasiekiamas! "
+                    f"Patikrinkite ar API raktas nustatytas."
+                )
+                warnings.append("OpenAI API raktas nenurodytas arba neteisingas")
+                return None
             try:
                 openai_result = await self.openai_vision.recognize(image_path)
                 processing_time = int((time.time() - start) * 1000)
@@ -209,9 +272,17 @@ class OCRService:
             except Exception as e:
                 logger.error(f"OpenAI OCR klaida: {e}")
                 warnings.append(f"OpenAI klaida: {str(e)}")
+            return None
 
-        # Gemini Vision (default arba fallback)
-        if self.gemini_vision.available:
+        # Gemini Vision
+        if provider == "gemini":
+            if not self.gemini_vision.available:
+                logger.warning(
+                    f"⚠️ Gemini tiekėjas pasirinktas, bet nepasiekiamas! "
+                    f"Patikrinkite ar API raktas arba credentials nustatyti."
+                )
+                warnings.append("Gemini API raktas/credentials nenurodyti")
+                return None
             try:
                 gemini_result = await self.gemini_vision.recognize(image_path)
                 processing_time = int((time.time() - start) * 1000)
@@ -235,13 +306,43 @@ class OCRService:
             except Exception as e:
                 logger.error(f"Gemini OCR klaida: {e}")
                 warnings.append(f"Gemini klaida: {str(e)}")
+            return None
 
-        # Joks tiekėjas neveikia
-        return OCRResult(
-            text="",
-            warnings=warnings or ["Joks OCR tiekėjas nepasiekiamas"],
-            processing_time_ms=int((time.time() - start) * 1000),
-        )
+        # Together.ai Vision
+        if provider == "together":
+            if not self.together_vision.available:
+                logger.warning(
+                    f"⚠️ Together tiekėjas pasirinktas, bet nepasiekiamas! "
+                    f"Patikrinkite ar API raktas nustatytas."
+                )
+                warnings.append("Together API raktas nenurodytas arba neteisingas")
+                return None
+            try:
+                together_result = await self.together_vision.recognize(image_path)
+                processing_time = int((time.time() - start) * 1000)
+
+                if together_result.text:
+                    logger.info(
+                        f"✅ Together OCR atliktas: {len(together_result.text)} simbolių, "
+                        f"{processing_time}ms"
+                    )
+                    return OCRResult(
+                        text=together_result.text,
+                        latex=together_result.latex,
+                        confidence=together_result.confidence,
+                        source=OCRSource.TOGETHER_VISION,
+                        processing_time_ms=processing_time,
+                        together_result=together_result,
+                    )
+                else:
+                    warnings.append("Together Vision negrąžino teksto")
+            except Exception as e:
+                logger.error(f"Together OCR klaida: {e}")
+                warnings.append(f"Together klaida: {str(e)}")
+            return None
+
+        logger.warning(f"Nežinomas OCR tiekėjas: {provider}")
+        return None
 
 
 # Singleton
@@ -257,7 +358,29 @@ def get_ocr_service() -> OCRService:
 
 
 def reset_ocr_service():
-    """Perkrauna OCR servisą (naudojama kai keičiasi nustatymai)."""
+    """Perkrauna OCR servisą IR visus vision klientus (naudojama kai keičiasi nustatymai)."""
     global _ocr_service
     _ocr_service = None
-    logger.info("🔄 OCR servisas perkrautas")
+
+    # SVARBU: Taip pat perkrauname visus vision klientų singleton'us
+    # kad nauji API raktai būtų paimti iš DB
+    from .gemini_vision import get_gemini_vision_client
+    from .novita_vision import reset_novita_vision_client
+    from .openai_vision import get_openai_vision_client
+
+    # Reset Gemini singleton
+    import services.ocr.gemini_vision as _gv
+    _gv._gemini_vision = None
+
+    # Reset OpenAI singleton
+    import services.ocr.openai_vision as _ov
+    _ov._openai_vision = None
+
+    # Reset Novita singleton
+    reset_novita_vision_client()
+
+    # Reset Together singleton
+    from .together_vision import reset_together_vision_client
+    reset_together_vision_client()
+
+    logger.info("🔄 OCR servisas ir visi vision klientai perkrauti")

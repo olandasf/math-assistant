@@ -28,6 +28,7 @@ import {
   Calculator,
   Brain,
   Zap,
+  Cloud,
 } from "lucide-react";
 
 interface ApiConfig {
@@ -42,8 +43,9 @@ interface ApiField {
   key: string;
   label: string;
   placeholder: string;
-  type: "text" | "password" | "file";
+  type: "text" | "password" | "file" | "select";
   required: boolean;
+  options?: { value: string; label: string }[];
 }
 
 interface ApiStatus {
@@ -52,33 +54,30 @@ interface ApiStatus {
   message?: string;
 }
 
-// API konfigūracijos - Gemini, OpenAI ir WolframAlpha
+// API konfigūracijos - Gemini, OpenAI, Novita, Together.ai ir WolframAlpha
 const apiConfigs: ApiConfig[] = [
   {
     name: "Google Gemini",
-    description: "OCR (Gemini Vision) ir AI paaiškinimai lietuvių kalba",
+    description: "OCR (Gemini Vision) per Google AI Studio API",
     icon: <Sparkles className="h-5 w-5" />,
     fields: [
       {
-        key: "gemini_credentials_json",
-        label: "Google Cloud Credentials (JSON failas)",
-        placeholder: "Įkelkite JSON failą",
-        type: "file",
-        required: false,
-      },
-      {
         key: "gemini_api_key",
-        label: "API Key (alternatyva credentials)",
-        placeholder: "jūsų_gemini_api_key",
+        label: "Google AI Studio API Key",
+        placeholder: "AIzaSy...",
         type: "password",
-        required: false,
+        required: true,
       },
       {
         key: "gemini_model",
         label: "Modelis",
-        placeholder: "gemini-3-pro-preview",
-        type: "text",
+        placeholder: "gemini-3.1-pro-preview",
+        type: "select",
         required: false,
+        options: [
+          { value: "gemini-3.1-pro-preview", label: "Gemini 3.1 Pro Preview" },
+          { value: "gemini-3-flash-preview", label: "Gemini 3 Flash Preview" },
+        ],
       },
     ],
     testEndpoint: "/api/v1/settings/test/gemini",
@@ -136,12 +135,43 @@ const apiConfigs: ApiConfig[] = [
       {
         key: "novita_model",
         label: "Modelis",
-        placeholder: "qwen3-vl-instruct",
-        type: "text",
+        placeholder: "qwen/qwen3.5-397b-a17b",
+        type: "select",
         required: false,
+        options: [
+          { value: "qwen/qwen3.5-397b-a17b", label: "Qwen 3.5 397B (tikslus, lėtesnis)" },
+          { value: "qwen/qwen3.5-35b-a3b", label: "Qwen 3.5 35B (greitesnis)" },
+        ],
       },
     ],
     testEndpoint: "/api/v1/settings/test/novita",
+  },
+  {
+    name: "Together.ai",
+    description:
+      "OCR - OpenAI-suderinama API su dideliais modeliais (Qwen, Llama)",
+    icon: <Cloud className="h-5 w-5" />,
+    fields: [
+      {
+        key: "together_api_key",
+        label: "API Key",
+        placeholder: "jūsų_together_api_key",
+        type: "password",
+        required: true,
+      },
+      {
+        key: "together_model",
+        label: "Modelis",
+        placeholder: "Qwen/Qwen3.5-397B-A17B",
+        type: "select",
+        required: false,
+        options: [
+          { value: "Qwen/Qwen3.5-397B-A17B", label: "Qwen 3.5 397B" },
+          { value: "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8", label: "Llama 4 Maverick 17B" },
+        ],
+      },
+    ],
+    testEndpoint: "/api/v1/settings/test/together",
   },
 ];
 
@@ -340,6 +370,8 @@ function ApiCard({ config }: { config: ApiConfig }) {
                 <input
                   type="file"
                   accept=".json"
+                  title={field.label}
+                  placeholder={field.placeholder}
                   className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
                   onChange={async (e) => {
                     const file = e.target.files?.[0];
@@ -366,6 +398,19 @@ function ApiCard({ config }: { config: ApiConfig }) {
                   </div>
                 )}
               </div>
+            ) : field.type === "select" ? (
+              <select
+                className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                value={values[field.key] || ""}
+                onChange={(e) => handleChange(field.key, e.target.value)}
+              >
+                <option value="">{field.placeholder}</option>
+                {field.options?.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </select>
             ) : (
               <div className="relative">
                 <Input

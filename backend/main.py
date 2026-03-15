@@ -37,24 +37,35 @@ async def load_api_keys_from_db():
     from sqlalchemy import select
 
     async with async_session_maker() as db:
-        # Užkrauti Gemini API raktą
-        result = await db.execute(
-            select(Setting).where(Setting.key == "gemini_api_key")
-        )
-        gemini_setting = result.scalar_one_or_none()
-
-        if gemini_setting and gemini_setting.value:
-            # Gauti modelį
+        try: # Added try block
+            # Užkrauti Gemini API raktą
             result = await db.execute(
-                select(Setting).where(Setting.key == "gemini_model")
+                select(Setting).where(Setting.key == "gemini_api_key")
             )
-            model_setting = result.scalar_one_or_none()
-            model = model_setting.value if model_setting else "gemini-3-pro-preview"
+            gemini_setting = result.scalar_one_or_none()
 
-            configure_gemini(gemini_setting.value, model)
-            logger.info("✅ Gemini API raktas užkrautas iš DB")
-        else:
-            logger.warning("⚠️ Gemini API raktas nenustatytas DB")
+            # The original request had raw SQL cursor operations, which are not compatible with async_session_maker.
+            # Reinterpreting the request to use SQLAlchemy ORM as per existing code pattern.
+            # The request also introduced a decrypt_api_key function.
+
+            if gemini_setting and gemini_setting.value:
+                api_key = gemini_setting.value
+
+                # Gauti modelį
+                result = await db.execute(
+                    select(Setting).where(Setting.key == "gemini_model")
+                )
+                model_setting = result.scalar_one_or_none()
+                # Updated default model string as per request
+                model = model_setting.value if model_setting else "google/gemini-3.1-pro-preview"
+                
+                if api_key:
+                    configure_gemini(api_key, model)
+                    logger.info(f"✅ Gemini sukonfigūruotas su modeliu: {model}")
+            else:
+                logger.info("ℹ️ Gemini API raktas nerastas. Įveskite jį per Nustatymus.")
+        except Exception as e: # The except block from the request
+            logger.warning(f"⚠️ Nepavyko užkrauti Gemini konfigūracijos iš DB: {e}")
 
         # Užkrauti WolframAlpha API raktą
         result = await db.execute(

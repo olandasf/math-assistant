@@ -298,7 +298,8 @@ async def perform_ocr_all_pages(request: OCRAllPagesRequest):
     all_warnings = []
     total_confidence = 0.0
     total_time = 0
-    source = "gemini_vision"
+    # Dinamiškai nustatome source pagal OCR provider iš DB
+    source = "unknown"
     is_math = False
 
     # Apdorojame kiekvieną puslapį
@@ -316,7 +317,7 @@ async def perform_ocr_all_pages(request: OCRAllPagesRequest):
             deskew=True,
         )
 
-        # OCR
+        # OCR - naudojame apdorotą vaizdą (visada PNG formatas, kurį visos API palaiko)
         result = await ocr_service.recognize(
             processed.processed_path,
             detect_math=request.detect_math,
@@ -338,7 +339,7 @@ async def perform_ocr_all_pages(request: OCRAllPagesRequest):
         if result.is_math:
             is_math = True
         if result.source:
-            source = result.source.value
+            source = result.source.value if hasattr(result.source, 'value') else str(result.source)
 
     # Sujungiame rezultatus
     combined_text = "\n\n".join(all_text)

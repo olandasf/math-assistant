@@ -21,7 +21,7 @@ def _get_gemini_api_key_from_db() -> Optional[str]:
         db_path = BASE_DIR / "database" / "math_teacher.db"
         if not db_path.exists():
             return None
-        conn = sqlite3.connect(str(db_path))
+        conn = sqlite3.connect(str(db_path), timeout=5)
         cursor = conn.cursor()
         cursor.execute("SELECT value FROM settings WHERE key = 'gemini_api_key'")
         row = cursor.fetchone()
@@ -45,16 +45,15 @@ class GeminiVisionResult:
 
 
 class GeminiVisionClient:
-    """Gemini Vision API klientas OCR tikslams - palaiko Vertex AI ir Generative Language API."""
+    """Gemini Vision API klientas OCR tikslams - palaiko Google AI Studio (API key) ir Vertex AI."""
 
-    # Modeliai pagal prioritetą
-    # gemini-3-flash-preview - greitas Gemini 3 modelis
-    VERTEX_AI_MODEL = "gemini-3-flash-preview"  # Greitas Vertex AI modelis
-    FALLBACK_MODEL = "gemini-2.0-flash"  # Fallback API key režimui (stabilus modelis)
+    # Modelis Google AI Studio API (be google/ prefikso)
+    AI_STUDIO_MODEL = "gemini-3.1-pro-preview"
+    # Modelis Vertex AI (su google/ prefiksu)
+    VERTEX_AI_MODEL = "google/gemini-3.1-pro-preview"
 
-    # Google Cloud projekto ID (iš credentials arba env)
+    # Google Cloud projekto ID (tik Vertex AI režimui)
     PROJECT_ID = "mtematika-471410"
-    # gemini-3-flash-preview pasiekiamas su global endpoint
     LOCATION = "global"
 
     def __init__(self):
@@ -63,14 +62,14 @@ class GeminiVisionClient:
         self.api_key = None
         self.use_vertex_ai = False
         self.genai_client = None
-        self.model = self.FALLBACK_MODEL
+        self.model = self.AI_STUDIO_MODEL
 
-        # Pirma bandome Vertex AI su credentials
-        self._try_vertex_ai()
+        # PIRMA bandome API key (Google AI Studio) - paprasčiau, be IAM
+        self._try_api_key()
 
-        # Jei Vertex AI neveikia, bandome API key
+        # Vertex AI tik jei nėra API rakto
         if not self.available:
-            self._try_api_key()
+            self._try_vertex_ai()
 
     def _try_vertex_ai(self):
         """Bandome inicializuoti Vertex AI su Google Cloud credentials."""
@@ -123,13 +122,14 @@ class GeminiVisionClient:
             self.use_vertex_ai = False
 
     def _try_api_key(self):
-        """Bandome inicializuoti su API raktu."""
+        """Bandome inicializuoti su API raktu (Google AI Studio)."""
         try:
             self.api_key = _get_gemini_api_key_from_db()
             if self.api_key:
                 self.available = True
-                self.model = self.FALLBACK_MODEL
-                logger.info(f"✅ Gemini API key inicializuotas (modelis: {self.model})")
+                self.use_vertex_ai = False
+                self.model = self.AI_STUDIO_MODEL
+                logger.info(f"✅ Gemini AI Studio API key inicializuotas (modelis: {self.model})")
             else:
                 logger.warning("Gemini API raktas nenustatytas DB")
         except Exception as e:
@@ -306,16 +306,15 @@ class GeminiVisionClient:
 
         prompt = self._get_prompt()
 
-        # Nustatome MIME tipą
+        # Visada JPEG nes _load_image_base64 konvertuoja per PIL
         mime_type = "image/jpeg"
-        if image_data.startswith("iVBOR"):
-            mime_type = "image/png"
-        elif image_data.startswith("R0lGOD"):
-            mime_type = "image/gif"
-        elif image_data.startswith("UklGR"):
-            mime_type = "image/webp"
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self.model}:generateContent"
+        # AI Studio naudoja modelio pavadinimą be "google/" prefikso
+        api_model = self.model
+        if api_model.startswith("google/"):
+            api_model = api_model[len("google/"):]
+
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{api_model}:generateContent"
 
         request_body = {
             "contents": [
@@ -534,14 +533,21 @@ PASIRINK TIK VIENĄ ir NEGRĄŽINK DUBLIKATO!
 Dabar nuskaityk paveikslėlį ir grąžink JSON su VISOMIS UNIKALIOMIS užduotimis (be dublikatų)."""
 
     def _load_image_base64(self, image_path: str) -> Optional[str]:
-        """Nuskaito vaizdą ir konvertuoja į base64."""
+        """Nuskaito vaizdą ir konvertuoja į JPEG base64."""
         try:
             path = Path(image_path)
             if not path.exists():
                 logger.error(f"Vaizdas nerastas: {image_path}")
                 return None
-            with open(path, "rb") as f:
-                return base64.standard_b64encode(f.read()).decode("utf-8")
+            # Konvertuojame per PIL į JPEG
+            from PIL import Image
+            import io
+            with Image.open(path) as img:
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                buffered = io.BytesIO()
+                img.save(buffered, format="JPEG", quality=90)
+                return base64.b64encode(buffered.getvalue()).decode('utf-8')
         except Exception as e:
             logger.error(f"Vaizdo nuskaitymo klaida: {e}")
             return None

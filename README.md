@@ -16,6 +16,25 @@ The system also generates curriculum-aligned exams using both an algorithmic pro
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard
+![Dashboard — statistics overview, quick actions, and recent work](docs/screenshots/dashboard.png)
+
+### Exam Generation
+![Exam generator — select grade, topic, and generation method (template or AI)](docs/screenshots/exam-generator.png)
+
+### AI Vision OCR — Handwriting Recognition
+![OCR results — scanned handwritten student work with recognized text and LaTeX formulas](docs/screenshots/ocr-results.png)
+
+### LaTeX Editor — Side-by-side Review
+![LaTeX editor — original scan alongside digitized math expressions for verification](docs/screenshots/latex-editor.png)
+
+### Grading Results with AI Explanations
+![Grading results — grade, score, error analysis, and AI-generated explanations in Lithuanian](docs/screenshots/grading-results.png)
+
+---
+
 ## 🎯 Ką daro ši sistema? / What does this system do?
 
 ### 1. Tikrina mokinių kontrolinius darbus / Grades student exams
@@ -24,7 +43,7 @@ The system also generates curriculum-aligned exams using both an algorithmic pro
 Skanuoti mokinių darbai → DI Vision OCR → Matematinis tikrinimas → Įvertinimas su paaiškinimais
 ```
 
-- **DI Vision OCR** — atpažįsta ranka rašytą matematiką (Gemini Vision / OpenAI Vision / Novita Vision)
+- **DI Vision OCR** — atpažįsta ranka rašytą matematiką (Gemini Vision / OpenAI Vision / Novita Vision / Together.ai Vision)
 - **SymPy + WolframAlpha** — tiksliai tikrina sprendimus ir atsakymus
 - **Gemini AI** — paaiškina klaidas lietuviškai, su naudingais patarimais
 - **PDF ataskaitos** — su įvertinimu, klaidų analize ir rekomendacijomis
@@ -56,6 +75,8 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 | 🇱🇹 **Localization** | Automatic EN→LT translation with cultural adaptation (names, currency, units) |
 | 📊 **Reports** | PDF with grades, error statistics, recommendations |
 | 📄 **PDF exams** | OCR-optimized sheets with alignment markers and QR codes |
+| 🔢 **LaTeX rendering** | Side-by-side KaTeX rendering for math expression review |
+| 🤖 **Multi-provider OCR** | Gemini, OpenAI, Novita (Qwen), Together.ai — selectable with model dropdowns |
 
 ---
 
@@ -67,7 +88,7 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 | Framework | Python 3.11, FastAPI, Uvicorn |
 | Database | SQLAlchemy 2.0, SQLite (aiosqlite) |
 | Math | SymPy, Newton API, WolframAlpha |
-| OCR | Gemini Vision, OpenAI Vision, Novita Vision |
+| OCR | Gemini Vision, OpenAI Vision, Novita Vision (Qwen), Together.ai (Qwen, Llama) |
 | AI | Google Gemini (explanations, generation, localization) |
 | PDF | ReportLab (exam sheets), QR codes |
 | Migrations | Alembic |
@@ -99,7 +120,7 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 │   ├── routers/          ← 14 API endpoints (classes, students, tests, OCR, ...)
 │   ├── models/           ← 15 SQLAlchemy models
 │   ├── services/
-│   │   ├── ocr/          ← AI Vision OCR (Gemini, OpenAI, Novita)
+│   │   ├── ocr/          ← AI Vision OCR (Gemini, OpenAI, Novita, Together.ai)
 │   │   ├── test_generator.py       ← Exam generation (2107 lines)
 │   │   ├── math_problem_bank.py    ← Algorithmic generator (3490 lines)
 │   │   ├── huggingface_loader.py   ← HuggingFace dataset loader
@@ -115,7 +136,7 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 │   ├── src/components/    ← UI components (shadcn/ui)
 │   └── src/api/           ← API services
 ├── Matematikos programa/  ← JSON curriculum files by grade (5-12)
-├── docs/                  ← 14 documentation files
+├── docs/                  ← Documentation + screenshots
 ├── database/              ← SQLite DB (not tracked)
 ├── uploads/               ← Student work uploads (not tracked)
 └── exports/               ← Generated reports (not tracked)
@@ -130,7 +151,17 @@ Klasė + Tema + Sudėtingumas → Uždavinių generavimas → OCR-optimizuotas P
 - Node.js 18+
 - API keys: Gemini (required), WolframAlpha (recommended)
 
-### Backend
+### One-command launch (Windows)
+
+```bash
+START.bat
+```
+
+This automatically installs dependencies, initializes the database, and launches both backend and frontend.
+
+### Manual setup
+
+#### Backend
 
 ```bash
 cd backend
@@ -142,7 +173,7 @@ alembic upgrade head
 uvicorn main:app --reload
 ```
 
-### Frontend
+#### Frontend
 
 ```bash
 cd frontend
@@ -159,7 +190,7 @@ GEMINI_API_KEY=your_key_here          # Required - Google AI Studio
 WOLFRAM_APP_ID=your_app_id_here       # Recommended - 2000 free/month
 ```
 
-OCR provider API keys (OpenAI, Novita) are configured through the app settings UI.
+Additional OCR provider API keys (OpenAI, Novita, Together.ai) are configured through the in-app settings UI with model selection dropdowns.
 
 ---
 
@@ -171,7 +202,7 @@ Students (grades 5–12) produce **messy handwriting**: cross-outs, corrections,
 - Understanding column long division
 - Recognizing Lithuanian format ("Ats.", "Nr.", "Sprendimas:")
 
-**AI Vision models** (Gemini, OpenAI, Novita) are multimodal — they understand **context**, not just symbols. Details: [`docs/OCR_ARCHITECTURE.md`](docs/OCR_ARCHITECTURE.md).
+**AI Vision models** (Gemini, OpenAI, Novita, Together.ai) are multimodal — they understand **context**, not just symbols. Details: [`docs/OCR_ARCHITECTURE.md`](docs/OCR_ARCHITECTURE.md).
 
 ---
 
@@ -196,4 +227,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ---
 
-*Last updated: 2026-03-14*
+*Last updated: 2026-03-15*

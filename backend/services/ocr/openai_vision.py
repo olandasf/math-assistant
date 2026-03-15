@@ -126,41 +126,34 @@ class OpenAIVisionClient:
 
         image_data = self._load_image_base64(image_path)
         if not image_data:
+            logger.error(f"❌ OpenAI: Nepavyko užkrauti vaizdo: {image_path}")
             return ""
+        logger.info(f"📷 OpenAI: Vaizdas užkrautas, base64 ilgis: {len(image_data)} simbolių")
 
         prompt = self._get_prompt()
 
-        # Nustatome MIME tipą
-        mime_type = "image/jpeg"
-        if image_path.lower().endswith(".png"):
-            mime_type = "image/png"
-        elif image_path.lower().endswith(".gif"):
-            mime_type = "image/gif"
-        elif image_path.lower().endswith(".webp"):
-            mime_type = "image/webp"
-
         url = "https://api.openai.com/v1/chat/completions"
 
+        # Pagal OpenAI API docs: image_url eina prieš text
         request_body = {
             "model": self.model,
             "messages": [
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": prompt},
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"data:{mime_type};base64,{image_data}",
-                                "detail": "high",
+                                "url": f"data:image/jpeg;base64,{image_data}",
+                                "detail": "low",
                             },
                         },
+                        {"type": "text", "text": prompt},
                     ],
                 }
             ],
             "max_completion_tokens": 4096,
             "temperature": 0.0,
-            "response_format": {"type": "json_object"},
         }
 
         logger.info(f"🔄 Kviečiamas OpenAI modelis: {self.model}")
@@ -175,20 +168,33 @@ class OpenAIVisionClient:
                 json=request_body,
             )
 
+            logger.info(f"📡 OpenAI HTTP status: {response.status_code}")
             if response.status_code != 200:
+                error_text = response.text[:500]
                 logger.error(
-                    f"OpenAI API klaida: {response.status_code} - {response.text}"
+                    f"OpenAI API klaida: {response.status_code} - {error_text}"
                 )
-                return ""
+                return f"API klaida {response.status_code}: {error_text}"
 
             data = response.json()
+            logger.info(f"📡 OpenAI response keys: {list(data.keys())}")
             choices = data.get("choices", [])
             if choices:
                 message = choices[0].get("message", {})
                 content = message.get("content", "")
-                logger.info(f"📡 OpenAI atsakymas: {len(content)} simbolių")
-                return content
-            return ""
+                finish_reason = choices[0].get("finish_reason", "unknown")
+                logger.info(
+                    f"📡 OpenAI atsakymas: {len(content)} simbolių, "
+                    f"finish_reason={finish_reason}, "
+                    f"preview: {content[:200] if content else 'TUŠČIA'}"
+                )
+                if content:
+                    return content
+                else:
+                    return f"Klaida: OpenAI grąžino tuščią atsakymą (finish_reason={finish_reason})"
+            else:
+                logger.error(f"📡 OpenAI: choices tuščias! Full: {str(data)[:500]}")
+                return f"Klaida: OpenAI response neturi choices. Response: {str(data)[:300]}"
 
     def _get_prompt(self) -> str:
         """Grąžina OCR promptą (tas pats kaip Gemini)."""
@@ -285,14 +291,21 @@ Jei matai tą pačią užduotį parašytą dviem būdais - PASIRINK TIK VIENĄ!
 Dabar nuskaityk paveikslėlį ir grąžink JSON su VISOMIS UNIKALIOMIS užduotimis (be dublikatų)."""
 
     def _load_image_base64(self, image_path: str) -> Optional[str]:
-        """Nuskaito vaizdą ir konvertuoja į base64."""
+        """Nuskaito vaizdą ir konvertuoja į JPEG base64."""
         try:
             path = Path(image_path)
             if not path.exists():
                 logger.error(f"Vaizdas nerastas: {image_path}")
                 return None
-            with open(path, "rb") as f:
-                return base64.standard_b64encode(f.read()).decode("utf-8")
+            # Konvertuojame per PIL į JPEG (užtikrina teisingą formatą visoms API)
+            from PIL import Image
+            import io
+            with Image.open(path) as img:
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                buffered = io.BytesIO()
+                img.save(buffered, format="JPEG", quality=90)
+                return base64.b64encode(buffered.getvalue()).decode('utf-8')
         except Exception as e:
             logger.error(f"Vaizdo nuskaitymo klaida: {e}")
             return None
