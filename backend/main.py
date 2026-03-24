@@ -8,11 +8,13 @@ import sys
 from contextlib import asynccontextmanager
 
 from config import settings
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from loguru import logger
 
 from database import async_session_maker, init_db
+from utils.auth_deps import verify_token
 
 # Loguru konfigūracija
 logger.remove()
@@ -28,6 +30,18 @@ logger.add(
     level="DEBUG",
 )
 
+# Endpointai kurie NEREIKALAUJA autentifikacijos
+PUBLIC_PATHS = {
+    "/",
+    "/health",
+    "/docs",
+    "/redoc",
+    "/openapi.json",
+    "/api/v1/auth/login",
+    "/api/v1/auth/status",
+    "/api/v1/auth/setup",
+}
+
 
 async def load_api_keys_from_db():
     """Užkrauti API raktus iš duomenų bazės į atmintį."""
@@ -35,28 +49,24 @@ async def load_api_keys_from_db():
     from math_checker.wolfram_client import configure_wolfram
     from models.setting import Setting
     from sqlalchemy import select
+    from utils.crypto_utils import decrypt_value
 
     async with async_session_maker() as db:
-        try: # Added try block
+        try:
             # Užkrauti Gemini API raktą
             result = await db.execute(
                 select(Setting).where(Setting.key == "gemini_api_key")
             )
             gemini_setting = result.scalar_one_or_none()
 
-            # The original request had raw SQL cursor operations, which are not compatible with async_session_maker.
-            # Reinterpreting the request to use SQLAlchemy ORM as per existing code pattern.
-            # The request also introduced a decrypt_api_key function.
-
             if gemini_setting and gemini_setting.value:
-                api_key = gemini_setting.value
+                api_key = decrypt_value(gemini_setting.value, settings.SECRET_KEY)
 
                 # Gauti modelį
                 result = await db.execute(
                     select(Setting).where(Setting.key == "gemini_model")
                 )
                 model_setting = result.scalar_one_or_none()
-                # Updated default model string as per request
                 model = model_setting.value if model_setting else "google/gemini-3.1-pro-preview"
                 
                 if api_key:
@@ -64,20 +74,24 @@ async def load_api_keys_from_db():
                     logger.info(f"✅ Gemini sukonfigūruotas su modeliu: {model}")
             else:
                 logger.info("ℹ️ Gemini API raktas nerastas. Įveskite jį per Nustatymus.")
-        except Exception as e: # The except block from the request
+        except Exception as e:
             logger.warning(f"⚠️ Nepavyko užkrauti Gemini konfigūracijos iš DB: {e}")
 
         # Užkrauti WolframAlpha API raktą
-        result = await db.execute(
-            select(Setting).where(Setting.key == "wolfram_app_id")
-        )
-        wolfram_setting = result.scalar_one_or_none()
+        try:
+            result = await db.execute(
+                select(Setting).where(Setting.key == "wolfram_app_id")
+            )
+            wolfram_setting = result.scalar_one_or_none()
 
-        if wolfram_setting and wolfram_setting.value:
-            configure_wolfram(wolfram_setting.value)
-            logger.info("✅ WolframAlpha API raktas užkrautas iš DB")
-        else:
-            logger.warning("⚠️ WolframAlpha API raktas nenustatytas DB")
+            if wolfram_setting and wolfram_setting.value:
+                wolfram_key = decrypt_value(wolfram_setting.value, settings.SECRET_KEY)
+                configure_wolfram(wolfram_key)
+                logger.info("✅ WolframAlpha API raktas užkrautas iš DB")
+            else:
+                logger.warning("⚠️ WolframAlpha API raktas nenustatytas DB")
+        except Exception as e:
+            logger.warning(f"⚠️ Nepavyko užkrauti WolframAlpha konfigūracijos: {e}")
 
 
 @asynccontextmanager
@@ -101,7 +115,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Matematikos Mokytojo Asistentas",
     description="API mokinių kontrolinių tikrinimui ir vertinimui",
-    version="0.1.0",
+    version="0.2.0",
     lifespan=lifespan,
     docs_url="/docs" if settings.DEBUG else None,
     redoc_url="/redoc" if settings.DEBUG else None,
@@ -117,6 +131,42 @@ app.add_middleware(
 )
 
 
+# === Auth Middleware ===
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    """
+    Globalus autentifikacijos middleware.
+    Tikrina JWT Bearer tokeną visiems endpointams, 
+    išskyrus viešus (login, status, setup, health).
+    """
+    path = request.url.path
+
+    # Leisti viešus endpointus
+    if path in PUBLIC_PATHS or path.startswith("/api/v1/auth/"):
+        return await call_next(request)
+
+    # Tikrinti Authorization header
+    auth_header = request.headers.get("Authorization")
+    if not auth_header or not auth_header.startswith("Bearer "):
+        return JSONResponse(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            content={"detail": "Reikalingas prisijungimas"},
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    token = auth_header.split(" ", 1)[1]
+    payload = verify_token(token)
+    if not payload:
+        return JSONResponse(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            content={"detail": "Netinkamas arba pasibaigęs tokenas"},
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    # Tokenas validus - leisti tęsti
+    return await call_next(request)
+
+
 # === Health check ===
 @app.get("/", tags=["Health"])
 async def root():
@@ -124,14 +174,14 @@ async def root():
     return {
         "status": "ok",
         "message": "Matematikos Mokytojo Asistentas veikia!",
-        "version": "0.1.0",
+        "version": "0.2.0",
     }
 
 
 @app.get("/health", tags=["Health"])
 async def health_check():
     """Detalus health check."""
-    return {"status": "healthy", "database": "connected", "api_version": "0.1.0"}
+    return {"status": "healthy", "database": "connected", "api_version": "0.2.0"}
 
 
 # === Routers ===
@@ -142,6 +192,7 @@ from routers import (
     students_router,
     tests_router,
 )
+from routers.auth import router as auth_router
 from routers.exam_sheets import router as exam_sheets_router
 from routers.exams import router as exams_router
 from routers.exports import router as exports_router
@@ -152,6 +203,10 @@ from routers.statistics import router as statistics_router
 from routers.submissions import router as submissions_router
 from routers.upload import router as upload_router
 
+# Auth (viešas + apsaugotas)
+app.include_router(auth_router, prefix="/api/v1")
+
+# Apsaugoti routers
 app.include_router(school_years_router, prefix="/api/v1")
 app.include_router(classes_router, prefix="/api/v1")
 app.include_router(students_router, prefix="/api/v1")

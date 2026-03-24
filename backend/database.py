@@ -55,6 +55,7 @@ async def init_db() -> None:
     async with engine.begin() as conn:
         # Import all models to register them
         from models import (
+            admin_user,
             school_year,
             school_class,
             student,

@@ -6,6 +6,9 @@ OCR: Gemini Vision arba OpenAI GPT Vision (pasirenkama).
 
 from typing import Optional
 
+from config import settings as app_settings
+from utils.crypto_utils import decrypt_value, encrypt_value
+
 import httpx
 from fastapi import APIRouter, Depends, HTTPException
 from models.setting import Setting
@@ -112,6 +115,7 @@ async def save_api_keys(keys: ApiKeysRequest, db: AsyncSession = Depends(get_db)
     keys_data = keys.model_dump(exclude_none=True)
 
     for key_name, value in keys_data.items():
+        is_api_key = "api_key" in key_name or "app_id" in key_name
         if value:  # Tik jei reikšmė nėra tuščia
             # Specialus atvejis - Google Cloud credentials JSON
             if key_name == "gemini_credentials_json":
@@ -143,10 +147,12 @@ async def save_api_keys(keys: ApiKeysRequest, db: AsyncSession = Depends(get_db)
                         status_code=400, detail="Netinkamas JSON formatas"
                     )
             else:
+                # Šifruoti API raktus prieš saugojimą
+                stored_value = encrypt_value(value, app_settings.SECRET_KEY) if is_api_key else value
                 await set_setting(
                     db,
                     key_name,
-                    value,
+                    stored_value,
                     category="api_keys",
                     description=f"API raktas: {key_name}",
                 )

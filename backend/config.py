@@ -88,8 +88,23 @@ class Settings(BaseSettings):
 
 @lru_cache()
 def get_settings() -> Settings:
-    """Gauti cached nustatymus."""
-    return Settings()
+    """Gauti cached nustatymus. Automatiškai išsaugo SECRET_KEY į .env jei naujas."""
+    s = Settings()
+    
+    # Jei SECRET_KEY nebuvo .env faile, jį reikia išsaugoti
+    # kad Fernet šifravimas veiktų tarp paleidimų
+    env_path = Path(__file__).resolve().parent / ".env"
+    if env_path.exists():
+        content = env_path.read_text(encoding="utf-8")
+        if "SECRET_KEY" not in content:
+            with open(env_path, "a", encoding="utf-8") as f:
+                f.write(f"\n# Auto-sugeneruotas JWT ir šifravimo raktas\nSECRET_KEY={s.SECRET_KEY}\n")
+    else:
+        # Sukurti .env su SECRET_KEY
+        with open(env_path, "w", encoding="utf-8") as f:
+            f.write(f"# Auto-sugeneruotas JWT ir šifravimo raktas\nSECRET_KEY={s.SECRET_KEY}\n")
+    
+    return s
 
 
 # Global settings instance

@@ -1,81 +1,76 @@
 # =============================================
 # MATEMATIKOS MOKYTOJO ASISTENTAS - Backend
 # Python 3.11+ dependencies
-# Atnaujinta: 2026-01-16
+# Atnaujinta: 2026-03-24
 # =============================================
 
 # === Web Framework ===
-fastapi==0.109.0
-uvicorn[standard]==0.27.0
-python-multipart==0.0.6
+fastapi>=0.115.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.18
 
 # === Database ===
-sqlalchemy[asyncio]==2.0.25
-aiosqlite==0.19.0
-alembic==1.13.1
+sqlalchemy[asyncio]>=2.0.25
+aiosqlite>=0.19.0
+alembic>=1.13.1
 
 # === Validation & Serialization ===
-pydantic==2.5.3
-pydantic-settings==2.1.0
-email-validator==2.1.0
+pydantic>=2.5.3
+pydantic-settings>=2.1.0
+email-validator>=2.1.0
 
-# === Security ===
-python-jose[cryptography]==3.3.0
-passlib[bcrypt]==1.7.4
-bcrypt==4.1.2
+# === Security & Auth ===
+PyJWT[crypto]>=2.9.0
+passlib[bcrypt]>=1.7.4
+bcrypt>=4.1.2
+cryptography>=43.0.0
 
 # === HTTP Client ===
-httpx==0.26.0
-aiohttp==3.9.1
+httpx>=0.27.0
+aiohttp>=3.11.0
 
 # === Mathematics ===
-sympy==1.12
-mpmath==1.3.0
-# numpy==1.26.3  # Pasalinta - reikalauja kompiliatoriaus
-# scipy==1.12.0  # Pasalinta - reikalauja Fortran kompiliatoriaus
+sympy>=1.12
+mpmath>=1.3.0
 
 # === Advanced Math & Geometry ===
-# shapely>=2.0.2  # Pasalinta - reikalauja numpy
-# matplotlib>=3.8.2  # Pasalinta - reikalauja numpy
 antlr4-python3-runtime==4.11.0
 
 # === Image Processing ===
-# opencv-python-headless==4.9.0.80  # Pasalinta - reikalauja numpy
-Pillow==10.2.0
+Pillow>=11.0.0
 
 # === PDF Processing ===
-weasyprint==60.2
-reportlab==4.0.8
-pypdf==3.17.4
-PyMuPDF==1.23.8
+weasyprint>=62.0
+reportlab>=4.0.8
+pypdf>=4.0.0
+PyMuPDF>=1.23.8
 
 # === AI - Gemini Vision (vienintelis OCR) ===
-google-generativeai==0.3.2
+google-generativeai>=0.3.2
 google-genai>=1.0.0
 
 # === Utilities ===
-python-dotenv==1.0.0
-loguru==0.7.2
-tenacity==8.2.3
-pyyaml==6.0.1
+python-dotenv>=1.0.0
+loguru>=0.7.2
+tenacity>=8.2.3
+pyyaml>=6.0.1
 
 # === Localization (optional) ===
-Faker==22.0.0  # Lietuviškų vardų generavimas (lt_LT)
+Faker>=22.0.0  # Lietuviškų vardų generavimas (lt_LT)
 
 # === Testing ===
-pytest==7.4.4
-pytest-asyncio==0.23.3
-pytest-cov==4.1.0
+pytest>=7.4.4
+pytest-asyncio>=0.23.3
+pytest-cov>=4.1.0
 
 # === Development ===
-black==23.12.1
-isort==5.13.2
-flake8==7.0.0
-mypy==1.8.0
+black>=23.12.1
+isort>=5.13.2
+flake8>=7.0.0
+mypy>=1.8.0
 
 # =============================================
-# PAŠALINTI PAKETAI (nebereikalingi):
-# - pytesseract (lokalus OCR - pakeistas Gemini Vision)
-# - easyocr (lokalus OCR - pakeistas Gemini Vision)
-# - google-cloud-vision (Cloud Vision API - pakeistas Gemini Vision)
+# PAŠALINTI PAKETAI:
+# - python-jose (pakeistas PyJWT - saugesnis, aktyviai prižiūrimas)
+# - pytesseract, easyocr, google-cloud-vision (pakeisti Gemini Vision)
 # =============================================

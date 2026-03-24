@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Layout } from "@/components/Layout";
 import { Dashboard } from "@/pages/Dashboard";
 import { NotFound } from "@/pages/NotFound";
@@ -15,11 +15,19 @@ import { ExportsPage } from "@/pages/Exports";
 import { ResultsPage, SubmissionsListPage } from "@/pages/Results";
 import { TemplatesPage } from "@/pages/Templates";
 import { QuickCheckPage } from "@/pages/QuickCheck";
+import { LoginPage } from "@/pages/Login";
+import { useAuthStore } from "@/stores/authStore";
 
-function App() {
+function ProtectedRoutes() {
+  const { isAuthenticated } = useAuthStore();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/prisijungti" replace />;
+  }
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
+    <Layout>
+      <Routes>
         <Route index element={<Dashboard />} />
         <Route path="klases" element={<ClassesPage />} />
         <Route path="mokiniai" element={<StudentsPage />} />
@@ -39,7 +47,16 @@ function App() {
         <Route path="nustatymai" element={<SettingsPage />} />
         <Route path="privatumas" element={<PrivacyPage />} />
         <Route path="*" element={<NotFound />} />
-      </Route>
+      </Routes>
+    </Layout>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/prisijungti" element={<LoginPage />} />
+      <Route path="/*" element={<ProtectedRoutes />} />
     </Routes>
   );
 }

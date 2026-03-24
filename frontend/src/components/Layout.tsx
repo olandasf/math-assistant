@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet, useLocation, Link } from "react-router-dom";
+import { useState, type ReactNode } from "react";
+import { useLocation, Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,8 +19,10 @@ import {
   ListChecks,
   ClipboardList,
   Brain,
-  BookOpenCheck
+  BookOpenCheck,
+  LogOut
 } from "lucide-react";
+import { useAuthStore } from "@/stores/authStore";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
@@ -35,9 +37,10 @@ const navigation = [
   { name: "Analitika", href: "/statistika", icon: LineChart },
 ];
 
-export function Layout() {
+export function Layout({ children }: { children: ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const { username, logout } = useAuthStore();
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans">
@@ -111,6 +114,14 @@ export function Layout() {
             <Settings className="h-5 w-5" />
             Nustatymai
           </Link>
+          <button
+            onClick={logout}
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-300/70 hover:bg-red-500/10 hover:text-red-300 transition-all duration-200"
+            title="Atsijungti"
+          >
+            <LogOut className="h-5 w-5" />
+            Atsijungti
+          </button>
         </div>
       </aside>
 
@@ -151,7 +162,7 @@ export function Layout() {
             <button className="flex items-center gap-3 rounded-full hover:bg-surface-container-low p-1 pr-3 transition-colors border border-transparent hover:border-border">
               <img src="https://ui-avatars.com/api/?name=Mokytoja&background=0b513d&color=fff" alt="User" className="w-8 h-8 rounded-full" />
               <div className="hidden sm:block text-left">
-                <p className="text-sm font-medium text-foreground leading-tight">Mokytoja</p>
+                <p className="text-sm font-medium text-foreground leading-tight">{username || "Mokytoja"}</p>
                 <p className="text-xs text-muted-foreground leading-tight">Admin</p>
               </div>
               <ChevronDown className="h-4 w-4 text-muted-foreground ml-1" />
@@ -161,7 +172,7 @@ export function Layout() {
 
         {/* Page content */}
         <main className="flex-1 p-6 lg:p-8">
-          <Outlet />
+          {children}
         </main>
       </div>
     </div>
