@@ -2,6 +2,7 @@
 API Router - Autentifikacija ir admin valdymas.
 """
 
+import asyncio
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -101,7 +102,7 @@ async def setup_admin(request: SetupRequest, db: AsyncSession = Depends(get_db))
         )
 
     # Sukurti admin
-    hashed = pwd_context.hash(request.password)
+    hashed = await asyncio.to_thread(pwd_context.hash, request.password)
     admin = AdminUser(
         username=request.username,
         hashed_password=hashed,
@@ -132,7 +133,7 @@ async def login(request: LoginRequest, db: AsyncSession = Depends(get_db)):
     )
     user = result.scalar_one_or_none()
 
-    if not user or not pwd_context.verify(request.password, user.hashed_password):
+    if not user or not await asyncio.to_thread(pwd_context.verify, request.password, user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Neteisingas vartotojo vardas arba slaptažodis",
