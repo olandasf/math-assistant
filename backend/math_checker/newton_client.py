@@ -6,7 +6,7 @@ Naudojamas kaip backup kai SymPy neišsprendžia.
 """
 
 from dataclasses import dataclass
-from typing import Any, Optional, Union
+from typing import Optional, Union
 from urllib.parse import quote
 
 import httpx

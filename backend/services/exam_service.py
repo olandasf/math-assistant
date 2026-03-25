@@ -7,7 +7,6 @@ Exam Service - kontrolinių valdymas ir išsaugojimas į DB.
 3. Leidžia greitai tikrinti atsakymus pagal DB
 """
 
-from dataclasses import asdict
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional

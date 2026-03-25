@@ -3,7 +3,6 @@ GDPR Anonymizer - Mokinio duomenų anonimizavimas prieš siunčiant į išorines
 """
 
 import hashlib
-import re
 from dataclasses import dataclass
 from typing import Any
 

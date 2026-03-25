@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from pydantic import BaseModel, Field
 from schemas.common import MessageResponse
 from schemas.task import TaskBulkCreate, TaskCreate, TaskRead
-from schemas.test import TestCreate, TestRead, TestUpdate, TestWithDetails
+from schemas.test import TestCreate, TestRead, TestUpdate
 from schemas.variant import VariantCreate, VariantRead, VariantWithTasks
 from services.task_service import TaskService
 from services.test_generator import get_test_generator
@@ -18,8 +18,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 # Curriculum integracijos importai
 from utils.curriculum import (
-    CURRICULUM_BY_GRADE,
-    get_all_topics_for_grade,
     get_topic_by_id,
     get_topics_for_api,
     get_topics_summary,
@@ -32,7 +30,6 @@ from utils.curriculum_loader import (
     get_available_grades,
     get_cumulative_topics,
     get_difficulty_rules_for_subtopics,
-    get_grade_topics,
 )
 
 from database import get_db

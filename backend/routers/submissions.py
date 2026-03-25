@@ -7,13 +7,11 @@ CRUD operacijos su mokinių pateiktais kontroliniais darbais.
 from datetime import datetime
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from loguru import logger
 from models.answer import Answer
 from models.student import Student
 from models.submission import Submission, SubmissionStatus
-from models.task import Task
-from models.test import Test
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession

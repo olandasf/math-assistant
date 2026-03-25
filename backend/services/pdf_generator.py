@@ -4,8 +4,7 @@ PDF Generator - Ataskaitų generavimas
 Generuoja PDF ataskaitas mokiniams ir klasėms.
 """
 
-import io
-import os
+from loguru import logger
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -21,26 +20,11 @@ WEASYPRINT_AVAILABLE = False
 #     WEASYPRINT_AVAILABLE = False
 
 try:
-    from reportlab.lib import colors
-    from reportlab.lib.pagesizes import A4
-    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-    from reportlab.lib.units import cm, mm
-    from reportlab.pdfbase import pdfmetrics
-    from reportlab.pdfbase.ttfonts import TTFont
-    from reportlab.platypus import (
-        Image,
-        Paragraph,
-        SimpleDocTemplate,
-        Spacer,
-        Table,
-        TableStyle,
-    )
+    pass
 
     REPORTLAB_AVAILABLE = True
 except ImportError:
     REPORTLAB_AVAILABLE = False
-
-from loguru import logger
 
 
 @dataclass

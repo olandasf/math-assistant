@@ -7,14 +7,13 @@ Paleidimas:
   venv\Scripts\python.exe scripts/mass_import.py
 """
 
+from loguru import logger
 import asyncio
 import sys
 import os
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from loguru import logger
 
 
 async def run_import():
@@ -35,7 +34,7 @@ async def run_import():
     # Tai leidžia greitai užpildyti DB be API kvietimų
     sources = [
         ("gsm8k", 7500),           # ~7473 žodinių uždavinių (6-8 kl.) — visas dataset'as
-        ("competition_math", 1000), # 1000 olimpiadinių (10-12 kl.)
+        ("competition_math", 1000),  # 1000 olimpiadinių (10-12 kl.)
         ("numina_math", 2000),      # 2000 NuminaMath olimpiadinių (8-12 kl.)
         ("math_instruct", 2000),    # 2000 įvairių (6-12 kl.)
         ("amps", 5000),             # 5000 Khan Academy su LaTeX (5-12 kl.)
@@ -58,7 +57,7 @@ async def run_import():
                     source=source_name,
                     limit=limit,
                     translate=False,          # Be vertimo — greitai
-                    generate_variations=False, # Be variacijų
+                    generate_variations=False,  # Be variacijų
                     auto_offset=True,         # Tęsti nuo ten kur baigta
                 )
 

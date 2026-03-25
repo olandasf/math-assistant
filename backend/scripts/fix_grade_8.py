@@ -18,11 +18,11 @@ subtopic_re = re.compile(r"(\d+\.\d+\.)\s+(.*?)(?=\d+\.\d+\.|$|(?:\d+\.\s+[A-Z])
 for item in topics_raw:
     text = item["name"]
     duration = item["duration"]
-    
+
     # Let's split the text into parts
     # A chapter title is ALL CAPS usually in this text.
     # Actually, let's just use regex to find all "X. TITLE" and "X.Y. subtitle"
-    
+
     # Find chapter title
     m_chap = re.match(r"(\d+)\.\s+([A-ZŽČŠĮŲŪĖĄ\s]+)(?:(?=\d+\.\d+\.)|$)", text)
     if m_chap:
@@ -36,7 +36,7 @@ for item in topics_raw:
         }
         cycles.append(current_cycle)
         text = text[m_chap.end():]
-        
+
     # Find all subtopics in the remaining text
     subtopics = re.findall(r"(\d+\.\d+\.)\s+(.*?)(?=\d+\.\d+\.|$)", text)
     if subtopics and current_cycle:
@@ -45,7 +45,7 @@ for item in topics_raw:
                 "name": f"{st_num} {st_name.strip()}",
                 "duration": "1 pamoka"
             })
-            
+
     # If it was just a continuation (no match for chapter), add to the last cycle
     if not m_chap and current_cycle:
         subtopics_only = re.findall(r"(\d+\.\d+\.)\s+(.*?)(?=\d+\.\d+\.|$)", text)

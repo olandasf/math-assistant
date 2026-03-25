@@ -4,7 +4,6 @@ Gemini AI Service - Klaidų paaiškinimas lietuvių kalba
 Naudoja Google Gemini API matematikos klaidų aiškinimui.
 """
 
-import json
 import os
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional

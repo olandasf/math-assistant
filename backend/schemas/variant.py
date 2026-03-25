@@ -2,6 +2,7 @@
 Pydantic schemas - Variantas.
 """
 
+from schemas.task import TaskRead
 from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel, Field, ConfigDict
@@ -40,5 +41,4 @@ class VariantWithTasks(VariantRead):
 
 
 # Forward reference
-from schemas.task import TaskRead
 VariantWithTasks.model_rebuild()

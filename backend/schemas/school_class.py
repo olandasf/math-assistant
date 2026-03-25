@@ -2,6 +2,7 @@
 Pydantic schemas - Klasė.
 """
 
+from schemas.student import StudentRead
 from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel, Field, ConfigDict
@@ -43,5 +44,4 @@ class ClassWithStudents(ClassRead):
 
 
 # Forward reference
-from schemas.student import StudentRead
 ClassWithStudents.model_rebuild()

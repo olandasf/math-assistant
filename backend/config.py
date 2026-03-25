@@ -92,7 +92,7 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """Gauti cached nustatymus. Automatiškai išsaugo SECRET_KEY į .env jei naujas."""
     s = Settings()
-    
+
     # Jei SECRET_KEY nebuvo .env faile, jį reikia išsaugoti
     # kad Fernet šifravimas veiktų tarp paleidimų
     env_path = Path(__file__).resolve().parent / ".env"
@@ -105,7 +105,7 @@ def get_settings() -> Settings:
         # Sukurti .env su SECRET_KEY
         with open(env_path, "w", encoding="utf-8") as f:
             f.write(f"# Auto-sugeneruotas JWT ir šifravimo raktas\nSECRET_KEY={s.SECRET_KEY}\n")
-    
+
     return s
 
 

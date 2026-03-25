@@ -2,6 +2,7 @@
 Pydantic schemas - Atsakymas.
 """
 
+from schemas.error import ErrorRead
 from datetime import datetime
 from typing import Optional, List
 from pydantic import BaseModel, Field, ConfigDict
@@ -73,5 +74,4 @@ class AnswerCheck(BaseModel):
 
 
 # Forward reference
-from schemas.error import ErrorRead
 AnswerCheck.model_rebuild()

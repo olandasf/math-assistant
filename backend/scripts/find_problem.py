@@ -4,21 +4,19 @@ Skriptas uždavinio paieškai visose lentelėse.
 Ieško teksto: "Iš 6 kg grūdų pagaminama 18 kg miltų"
 """
 
+from database import async_session_maker
+from sqlalchemy.orm import selectinload
+from sqlalchemy import or_, select
+from models.variant import Variant
+from models.test import Test
+from models.task import Task
+from models.problem_bank import ProblemBank
+from loguru import logger
 import asyncio
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from loguru import logger
-from models.problem_bank import ProblemBank
-from models.task import Task
-from models.test import Test
-from models.variant import Variant
-from sqlalchemy import or_, select
-from sqlalchemy.orm import selectinload
-
-from database import async_session_maker
 
 
 async def search_everywhere(search_text: str = "grūdų"):

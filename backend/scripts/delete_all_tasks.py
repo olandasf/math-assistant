@@ -5,19 +5,17 @@ Ištrina visus uždavinius iš tasks lentelės.
 DĖMESIO: Tai ištrins visus kontrolinius darbus!
 """
 
+from database import async_session_maker
+from sqlalchemy import delete, select
+from models.variant import Variant
+from models.test import Test
+from models.task import Task
+from loguru import logger
 import asyncio
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from loguru import logger
-from models.task import Task
-from models.test import Test
-from models.variant import Variant
-from sqlalchemy import delete, select
-
-from database import async_session_maker
 
 
 async def delete_all_tasks(dry_run: bool = True):

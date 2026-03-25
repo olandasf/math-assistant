@@ -474,7 +474,7 @@ def find_subtopic(subtopic_id: str) -> Optional[tuple]:
 
 def get_subtopics_by_grade(grade: int) -> List[tuple]:
     """Gauti visas potemes, taikomas nurodytai klasei.
-    
+
     Grąžina sąrašą: [(area_id, subtopic_id, subtopic), ...]
     """
     result = []

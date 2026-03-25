@@ -10,8 +10,7 @@ from database import get_db
 from schemas.school_year import (
     SchoolYearCreate,
     SchoolYearUpdate,
-    SchoolYearRead,
-    SchoolYearWithClasses
+    SchoolYearRead
 )
 from schemas.common import MessageResponse
 from services.school_year_service import SchoolYearService

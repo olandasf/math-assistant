@@ -4,19 +4,16 @@ Exports Router - PDF ataskaitų eksportavimas
 API endpoints PDF generavimui ir atsisiuntimui.
 """
 
-import os
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException, Query
 from fastapi.responses import FileResponse, HTMLResponse
-from loguru import logger
 from models import Answer, SchoolClass, Student, Submission, Task, Test, Variant
 from pydantic import BaseModel
 from services.pdf_generator import (
     ClassResult,
-    PDFGenerator,
     StudentResult,
     get_pdf_generator,
 )
@@ -100,7 +97,7 @@ async def list_exports(
     )
 
     total = len(all_files)
-    files = all_files[offset : offset + limit]
+    files = all_files[offset: offset + limit]
 
     file_list = []
     for f in files:

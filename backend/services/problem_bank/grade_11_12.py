@@ -1,11 +1,10 @@
 """11-12 klasės uždavinių generatoriai (VBE)."""
-import math
 import random
 
 from services.problem_bank.common import (
     Difficulty, MathProblem,
-    random_name,
 )
+
 
 class Grade11_12_Generators:
     """11-12 klasės (VBE lygio) uždavinių generatoriai."""
@@ -367,5 +366,3 @@ class Grade11_12_Generators:
 # PAPILDOMOS TEMOS: STEREOMETRIJA, TIKIMYBĖS, VEKTORIAI
 # (Perkeltos prieš MathProblemGenerator, nes naudojamos GENERATORS žodyne)
 # =============================================================================
-
-

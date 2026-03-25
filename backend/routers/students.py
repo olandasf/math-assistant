@@ -11,7 +11,6 @@ from schemas.student import (
     StudentCreate,
     StudentUpdate,
     StudentRead,
-    StudentWithClass,
     StudentBulkCreate
 )
 from schemas.common import MessageResponse

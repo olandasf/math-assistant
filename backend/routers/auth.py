@@ -3,7 +3,6 @@ API Router - Autentifikacija ir admin valdymas.
 """
 
 import asyncio
-from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from loguru import logger

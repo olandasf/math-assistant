@@ -4,16 +4,18 @@ Math Checker Router - Matematikos tikrinimo API
 Endpointai matematikos sprendimų tikrinimui ir paaiškinimams.
 """
 
+from math_checker.wolfram_client import get_wolfram_client
+from math_checker.geometry_checker import (
+    CalculationType,
+    GeometryChecker,
+    GeometryShape,
+)
 from typing import List, Optional
 
 from ai.gemini_client import GeminiClient, get_gemini_client
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, HTTPException
 from loguru import logger
-from math_checker.sympy_solver import MathSolver, check_answer, solve_eq, to_latex
-from pydantic import BaseModel, Field
-from sqlalchemy.ext.asyncio import AsyncSession
-
-from database import get_db
+from math_checker.sympy_solver import MathSolver, to_latex
 
 
 from fastapi import APIRouter
@@ -21,6 +23,7 @@ from .schemas import *
 from .services import *
 
 router = APIRouter(prefix="/math", tags=["math"])
+
 
 @router.get("/status")
 async def get_math_status():
@@ -444,12 +447,6 @@ async def batch_check_answers(answers: List[CheckAnswerRequest]):
 
 
 # === Geometrijos tikrinimas ===
-
-from math_checker.geometry_checker import (
-    CalculationType,
-    GeometryChecker,
-    GeometryShape,
-)
 
 
 @router.post("/geometry/check", response_model=GeometryCheckResponse)
@@ -2044,7 +2041,7 @@ def generate_error_analysis(
     why_wrong = f"Atliekant {op_name} veiksmą {a_int} {op_symbol} {b_int}, gauname {correct_int}, ne {student_int}"
 
     # Bandome nustatyti konkretesnę klaidos priežastį
-    diff = abs(correct_val - student_val)
+    abs(correct_val - student_val)
     ratio = student_val / correct_val if correct_val != 0 else 0
 
     if abs(ratio - 10) < 0.01 or abs(ratio - 0.1) < 0.01:
@@ -2362,7 +2359,6 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
 
             except (SympifyError, ValueError, TypeError) as e:
                 logger.debug(f"SymPy nepavyko apdoroti: {expr_str}, klaida: {e}")
-                pass
 
         # === FALLBACK: SENAS REGEX METODAS ===
         # Jei sympify neveikia, bandome senus regex
@@ -2394,7 +2390,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
                 return (
                     calc_str,
                     False,
-                    f"Daugybos klaida: {int(a) if a==int(a) else a} × {int(b) if b==int(b) else b} = {calc_str}, ne {int(student_val) if student_val==int(student_val) else student_val}",
+                    f"Daugybos klaida: {int(a) if a == int(a) else a} × {int(b) if b == int(b) else b} = {calc_str}, ne {int(student_val) if student_val == int(student_val) else student_val}",
                     f"Patikrink daugybos veiksmą. Teisingas rezultatas: {calc_str}",
                     error_analysis,
                     solution_methods,
@@ -2428,7 +2424,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
                     return (
                         calc_str,
                         False,
-                        f"Dalybos klaida: {int(a) if a==int(a) else a} ÷ {int(b) if b==int(b) else b} = {calc_str}, ne {int(student_val) if student_val==int(student_val) else student_val}",
+                        f"Dalybos klaida: {int(a) if a == int(a) else a} ÷ {int(b) if b == int(b) else b} = {calc_str}, ne {int(student_val) if student_val == int(student_val) else student_val}",
                         f"Patikrink dalybos veiksmą. Teisingas rezultatas: {calc_str}",
                         error_analysis,
                         solution_methods,
@@ -2441,7 +2437,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
         )
         if multi_add_match:
             expr_str = multi_add_match.group(1)
-            result_str = multi_add_match.group(2)
+            multi_add_match.group(2)
 
             # Išskaidome išraišką į skaičius
             numbers = re.findall(r"[\d.,]+", expr_str)
@@ -2512,7 +2508,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
                     return (
                         calc_str,
                         False,
-                        f"Sudėties klaida: {nums_str} = {calc_str}, ne {int(student_val) if student_val==int(student_val) else student_val}",
+                        f"Sudėties klaida: {nums_str} = {calc_str}, ne {int(student_val) if student_val == int(student_val) else student_val}",
                         f"Patikrink sudėties veiksmą. Teisingas rezultatas: {calc_str}",
                         error_analysis,
                         solution_methods,
@@ -2543,7 +2539,7 @@ def check_calculation(solver: MathSolver, solution: str, student_answer: str) ->
                 return (
                     calc_str,
                     False,
-                    f"Atimties klaida: {int(a) if a==int(a) else a} - {int(b) if b==int(b) else b} = {calc_str}, ne {int(student_val) if student_val==int(student_val) else student_val}",
+                    f"Atimties klaida: {int(a) if a == int(a) else a} - {int(b) if b == int(b) else b} = {calc_str}, ne {int(student_val) if student_val == int(student_val) else student_val}",
                     f"Patikrink atimties veiksmą. Teisingas rezultatas: {calc_str}",
                     error_analysis,
                     solution_methods,
@@ -2728,8 +2724,6 @@ Atsakyk TIK JSON, be papildomo teksto."""
 
 
 # === WolframAlpha endpointai ===
-
-from math_checker.wolfram_client import WolframResult, get_wolfram_client
 
 
 @router.get("/wolfram/status")

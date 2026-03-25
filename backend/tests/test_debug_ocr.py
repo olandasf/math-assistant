@@ -2,15 +2,13 @@
 Debug test to trace where duplicates come from.
 """
 
+import pytest
+from services.ocr.gemini import GeminiVisionClient
 import asyncio
 import sys
 
 sys.path.insert(0, "backend")
 
-from services.ocr.gemini import GeminiVisionClient
-
-
-import pytest
 
 @pytest.mark.asyncio
 async def test_ocr_output():

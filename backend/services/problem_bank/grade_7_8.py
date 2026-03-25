@@ -1,12 +1,11 @@
 """7-8 klasės uždavinių generatoriai."""
 import random
-from fractions import Fraction
 
 from services.problem_bank.common import (
     Difficulty, MathProblem,
-    random_name, get_random_name, get_male_name, get_female_name, get_two_names,
-    random_in_context, skaitvardis,
+    random_name, get_male_name, get_female_name,
 )
+
 
 class Grade7_8_Generators:
     """7-8 klasės uždavinių generatoriai."""
@@ -458,5 +457,3 @@ class Grade7_8_Generators:
 # =============================================================================
 # 9-10 KLASĖ: KVADRATINĖS LYGTYS, FUNKCIJOS, TRIGONOMETRIJA
 # =============================================================================
-
-

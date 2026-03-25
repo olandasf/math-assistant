@@ -2,10 +2,9 @@
 HTML and PDF Rendering logic for Exam Sheets.
 """
 import io
-import uuid
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Optional
 
 from loguru import logger
 from .models import ExamTask, ExamVariant, ExamSheet
@@ -21,11 +20,6 @@ except (ImportError, OSError):
 # Bandome importuoti ReportLab
 try:
     from reportlab.lib import colors
-    from reportlab.lib.pagesizes import A4
-    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-    from reportlab.lib.units import mm
-    from reportlab.pdfgen import canvas
-    from reportlab.platypus import Paragraph
 
     REPORTLAB_AVAILABLE = True
 except ImportError:
@@ -33,12 +27,10 @@ except ImportError:
 
 try:
     import qrcode
-    from qrcode.image.pil import PilImage
 
     QR_AVAILABLE = True
 except ImportError:
     QR_AVAILABLE = False
-
 
 
 class ExamSheetGenerator:
@@ -205,7 +197,6 @@ class ExamSheetGenerator:
         FONT_SMALL = 8  # Mažas tekstas
 
         # Eilučių tarpai
-        LINE_SPACING = 1.5
 
         c = canvas.Canvas(
             str(output) if isinstance(output, Path) else output, pagesize=A4
@@ -411,7 +402,6 @@ class ExamSheetGenerator:
                         task_height - header_height - question_space - answer_box_height
                     )
 
-                    card_top = y
                     card_width = page_width - 2 * margin
 
                     # Kortelės rėmelis
@@ -562,7 +552,6 @@ class ExamSheetGenerator:
             return
 
         try:
-            from PIL import Image as PILImage
             from reportlab.lib.utils import ImageReader
 
             # Sukurti QR kodą

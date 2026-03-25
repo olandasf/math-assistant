@@ -10,20 +10,17 @@ Naudojimas:
     python scripts/clean_ai_problems.py [--dry-run] [--all-ai] [--unverified]
 """
 
+from database import async_session_maker
+from sqlalchemy import func, select
+from models.problem_bank import ProblemBank, ProblemSource
+from loguru import logger
+import argparse
 import asyncio
 import sys
 from pathlib import Path
 
 # Pridėti backend į path
 sys.path.insert(0, str(Path(__file__).parent.parent))
-
-import argparse
-
-from loguru import logger
-from models.problem_bank import ProblemBank, ProblemSource
-from sqlalchemy import delete, func, select
-
-from database import async_session_maker
 
 
 async def clean_ai_problems(

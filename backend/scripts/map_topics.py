@@ -33,13 +33,13 @@ TOPIC_MAPPING = {
     "4. Trikampio kampų suma": "geometrija/trikampiai",
     "5. Kvadrato ir stačiakampio perimetro ir ploto formulės": "geometrija/perimetras_plotas",
     "8. Plokščiųjų figūrų pertvarkymas": "geometrija/transformacijos",
-    "9. Teiginių pagrindimas ir matematinis įrodymas": "KITA", # praleidziame
+    "9. Teiginių pagrindimas ir matematinis įrodymas": "KITA",  # praleidziame
     "5. Stačiakampio gretasienio paviršiaus plotas ir tūris": "geometrija/turis",
     "6. Sudėtingesnių erdvinių figūrų paviršiaus plotas ir tūris": "geometrija/turis",
     "1. Stochastinis bandymas": "tikimybes/atsitiktiniai_ivykiai",
     "2. Bandymai, kurių baigtys vienodai arba nevienodai galimos": "tikimybes/atsitiktiniai_ivykiai",
     "3. Bandymo baigties tikimybė": "tikimybes/atsitiktiniai_ivykiai",
-    
+
     # Grade 8
     "1.1. Kvadratinė šaknis": "skaiciai/saknys",
     "1.2. Kubinė šaknis": "skaiciai/saknys",
@@ -77,7 +77,7 @@ TOPIC_MAPPING = {
     "5.7. Sprendžiame tiesinių lygčių sistemas sudėties būdu": "algebra/lygtys_sistemos",
     "5.8. Judėjimo uždaviniai": "tikimybes/judejimo_uzdaviniai",
     "5.9. Įvairūs tekstiniai uždaviniai": "tikimybes/judejimo_uzdaviniai",
-    "6.1. Vektoriaus sąvoka": "geometrija/trikampiai", # vektoriams nera tiesiogines srities
+    "6.1. Vektoriaus sąvoka": "geometrija/trikampiai",  # vektoriams nera tiesiogines srities
     "6.2. Vektorių lygumas": "geometrija/trikampiai",
     "6.3. Vektorių sudėtis": "geometrija/trikampiai",
     "6.4. Vektorių atimtis": "geometrija/trikampiai",
@@ -103,10 +103,11 @@ TOPIC_MAPPING = {
     "9.7. Stačiakampė diagrama su „ūsais“": "statistika/diagramos"
 }
 
+
 def map_topics(json_path):
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
-        
+
     for cycle in data:
         for topic in cycle["topics"]:
             name = topic["name"]
@@ -119,7 +120,7 @@ def map_topics(json_path):
             else:
                 # Some generic topics like "Pasitikriname", "Savarankiškas darbas" etc.
                 pass
-                
+
     # Filter out empty topics or ones without links if it's not a generic one
     for cycle in data:
         cleaned_topics = []
@@ -131,14 +132,15 @@ def map_topics(json_path):
 
     # filter out empty cycles
     data = [c for c in data if c["topics"]]
-    
+
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
+
 
 if __name__ == "__main__":
     map_topics(r"D:\MATEMATIKA 2026_2\Matematikos programa\Atnaujinta\curriculum_5.json")
     map_topics(r"D:\MATEMATIKA 2026_2\Matematikos programa\Atnaujinta\curriculum_8_fixed.json")
     # rename fixed to final
-    os.rename(r"D:\MATEMATIKA 2026_2\Matematikos programa\Atnaujinta\curriculum_8_fixed.json", 
+    os.rename(r"D:\MATEMATIKA 2026_2\Matematikos programa\Atnaujinta\curriculum_8_fixed.json",
               r"D:\MATEMATIKA 2026_2\Matematikos programa\Atnaujinta\curriculum_8.json")
     print("Mapping complete!")

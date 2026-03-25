@@ -2,6 +2,7 @@
 Pydantic schemas - Mokslo metai.
 """
 
+from schemas.school_class import ClassRead
 from datetime import datetime, date
 from typing import Optional, List
 from pydantic import BaseModel, Field, ConfigDict
@@ -44,5 +45,4 @@ class SchoolYearWithClasses(SchoolYearRead):
 
 
 # Forward reference
-from schemas.school_class import ClassRead
 SchoolYearWithClasses.model_rebuild()

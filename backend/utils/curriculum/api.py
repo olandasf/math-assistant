@@ -7,6 +7,7 @@ from utils.curriculum.models import (
 )
 from utils.curriculum.grade_data import CURRICULUM_BY_GRADE
 
+
 def get_all_topics_for_grade(grade: int, include_review: bool = True) -> List[Topic]:
     """
     Gauna visas temas nurodytai klasei.

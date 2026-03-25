@@ -546,7 +546,7 @@ class TaskTranslator:
 
         # Padalinti į batch'us
         for i in range(0, len(problems), max_concurrent):
-            batch = problems[i : i + max_concurrent]
+            batch = problems[i: i + max_concurrent]
             tasks = [self.translate(p) for p in batch]
             batch_results = await asyncio.gather(*tasks, return_exceptions=True)
 

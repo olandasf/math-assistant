@@ -4,32 +4,20 @@ SymPy Solver - Matematikos sprendimų tikrinimas
 Naudoja SymPy biblioteką matematinių išraiškų analizei ir tikrinimui.
 """
 
-import re
 from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Dict, List, Optional, Tuple
 
 try:
     from sympy import (
-        E,
         Eq,
-        I,
-        Rational,
-        cancel,
-        cos,
-        exp,
         expand,
         factor,
         latex,
-        log,
-        pi,
         simplify,
-        sin,
         solve,
-        sqrt,
         symbols,
         sympify,
-        tan,
     )
     from sympy.parsing.latex import parse_latex
 

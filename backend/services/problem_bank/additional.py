@@ -1,5 +1,4 @@
 """Papildomos temos: stereometrija, tikimybės, kombinatorika, vektoriai."""
-import math
 import random
 from fractions import Fraction
 
@@ -7,6 +6,7 @@ from services.problem_bank.common import (
     Difficulty, MathProblem,
     random_name,
 )
+
 
 class AdditionalGenerators:
     """Papildomų temų generatoriai."""
@@ -331,7 +331,7 @@ class AdditionalGenerators:
 
         q_num = p_denom - p_num
 
-        p = Fraction(p_num, p_denom)
+        Fraction(p_num, p_denom)
         q = Fraction(q_num, p_denom)
 
         text = f"Tikimybė, kad {name} laimės loterijoje, yra {p_num}/{p_denom}. Kokia tikimybė, kad nelaimės?"
@@ -677,5 +677,3 @@ class AdditionalGenerators:
 # =============================================================================
 # PAGRINDINIS GENERATORIUS
 # =============================================================================
-
-

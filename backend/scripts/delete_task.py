@@ -4,17 +4,15 @@ Skriptas konkretaus Task ištrynimui.
 Ištrina Task ID 17 (nelogiškas uždavinys apie grūdus).
 """
 
+from database import async_session_maker
+from sqlalchemy import select
+from models.task import Task
+from loguru import logger
 import asyncio
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
-
-from loguru import logger
-from models.task import Task
-from sqlalchemy import select
-
-from database import async_session_maker
 
 
 async def delete_task(task_id: int, dry_run: bool = True):

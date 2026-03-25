@@ -11,7 +11,6 @@ Palaiko:
 """
 
 import json
-import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterator, Literal, Optional
@@ -61,7 +60,7 @@ class HuggingFaceLoader:
     def _check_datasets_library(self) -> bool:
         """Tikrina ar įdiegta 'datasets' biblioteka."""
         try:
-            import datasets
+            pass
 
             return True
         except ImportError:
@@ -967,7 +966,7 @@ class HuggingFaceLoader:
 
             query = item.get("query", "")
             response = item.get("response", "")
-            original = item.get("original_question", "")
+            item.get("original_question", "")
 
             if not query or not response:
                 continue

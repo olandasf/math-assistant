@@ -1,8 +1,6 @@
 import random
-import math
-from typing import List, Dict, Any
 from services.test_gen.models import GeneratedTask
-from services.math_problem_bank import Difficulty, MathProblemGenerator
+
 
 class FallbackGeneratorsMixin:
     def _distribute_points_mixed(self, task_count: int) -> list[int]:
@@ -14,7 +12,7 @@ class FallbackGeneratorsMixin:
             a_count, b_count = 1, 0
         elif task_count <= 2:
             a_count, b_count = 1, 1
-            
+
         for i in range(task_count):
             if i < a_count:
                 points.append(random.randint(1, 2))  # A (Žinios ir supratimas)
@@ -127,34 +125,34 @@ class FallbackGeneratorsMixin:
 
         templates_sub = [
             (
-                f"{name} turėjo {max(a,b)} saldainių. Suvalgė {min(a,b)}. Kiek saldainių liko?",
+                f"{name} turėjo {max(a, b)} saldainių. Suvalgė {min(a, b)}. Kiek saldainių liko?",
                 abs(a - b),
             ),
             (
-                f"Bibliotekoje buvo {max(a,b)} knygų. Išdavė {min(a,b)}. Kiek knygų liko?",
+                f"Bibliotekoje buvo {max(a, b)} knygų. Išdavė {min(a, b)}. Kiek knygų liko?",
                 abs(a - b),
             ),
             (
-                f"Autobuse važiavo {max(a,b)} keleivių. Stotelėje išlipo {min(a,b)}. Kiek keleivių liko?",
+                f"Autobuse važiavo {max(a, b)} keleivių. Stotelėje išlipo {min(a, b)}. Kiek keleivių liko?",
                 abs(a - b),
             ),
         ]
 
         templates_mul = [
             (
-                f"{name} nupirko {min(a,12)} sąsiuvinius po {min(b,15)} ct. Kiek sumokėjo centų?",
+                f"{name} nupirko {min(a, 12)} sąsiuvinius po {min(b, 15)} ct. Kiek sumokėjo centų?",
                 min(a, 12) * min(b, 15),
             ),
             (
-                f"Klasėje yra {min(a,6)} eilės po {min(b,8)} suolus. Kiek suolų klasėje?",
+                f"Klasėje yra {min(a, 6)} eilės po {min(b, 8)} suolus. Kiek suolų klasėje?",
                 min(a, 6) * min(b, 8),
             ),
             (
-                f"Viename dėžutėje yra {min(a,10)} pieštukų. Kiek pieštukų yra {min(b,5)} dėžutėse?",
+                f"Viename dėžutėje yra {min(a, 10)} pieštukų. Kiek pieštukų yra {min(b, 5)} dėžutėse?",
                 min(a, 10) * min(b, 5),
             ),
             (
-                f"{name} važiavo {min(a,4)} valandas greičiu {min(b,60)} km/h. Kokį atstumą nuvažiavo?",
+                f"{name} važiavo {min(a, 4)} valandas greičiu {min(b, 60)} km/h. Kokį atstumą nuvažiavo?",
                 min(a, 4) * min(b, 60),
             ),
         ]
@@ -436,21 +434,21 @@ class FallbackGeneratorsMixin:
         task_types = [
             # Šaknis
             (
-                f"Rask funkcijos f(x) = √(x - {random.randint(1,10)}) apibrėžimo sritį.",
-                f"x ≥ {random.randint(1,10)}",
+                f"Rask funkcijos f(x) = √(x - {random.randint(1, 10)}) apibrėžimo sritį.",
+                f"x ≥ {random.randint(1, 10)}",
             ),
             (
-                f"Rask funkcijos f(x) = √({random.randint(2,8)} - x) apibrėžimo sritį.",
-                f"x ≤ {random.randint(2,8)}",
+                f"Rask funkcijos f(x) = √({random.randint(2, 8)} - x) apibrėžimo sritį.",
+                f"x ≤ {random.randint(2, 8)}",
             ),
             # Trupmena
             (
-                f"Rask funkcijos f(x) = 1/(x - {random.randint(1,5)}) apibrėžimo sritį.",
-                f"x ≠ {random.randint(1,5)}",
+                f"Rask funkcijos f(x) = 1/(x - {random.randint(1, 5)}) apibrėžimo sritį.",
+                f"x ≠ {random.randint(1, 5)}",
             ),
             (
-                f"Rask funkcijos f(x) = (x + 1)/(x² - {random.randint(1,4)**2}) apibrėžimo sritį.",
-                f"x ≠ ±{random.randint(1,4)}",
+                f"Rask funkcijos f(x) = (x + 1)/(x² - {random.randint(1, 4)**2}) apibrėžimo sritį.",
+                f"x ≠ ±{random.randint(1, 4)}",
             ),
         ]
         text, answer = random.choice(task_types)

@@ -6,7 +6,6 @@ We will separate:
 3. routes_xxx.py (Router endpoints)
 """
 import os
-import re
 
 with open("routers/math_checker.py", "r", encoding="utf-8") as f:
     lines = f.readlines()
@@ -16,15 +15,17 @@ os.makedirs("routers/math_checker", exist_ok=True)
 # We will read line by line and chunk them into entities.
 chunks = []
 current_chunk = []
-current_type = "imports" # imports, schema, service, route
+current_type = "imports"  # imports, schema, service, route
 in_class = False
 in_func = False
+
 
 def flush_chunk(ctype):
     global current_chunk
     if current_chunk:
         chunks.append({"type": ctype, "lines": current_chunk})
         current_chunk = []
+
 
 for i, line in enumerate(lines):
     if i == 0 or current_type == "imports":
@@ -38,7 +39,7 @@ for i, line in enumerate(lines):
         else:
             current_chunk.append(line)
             continue
-            
+
     # Once past imports:
     if line.startswith("class ") and "(BaseModel)" in line:
         flush_chunk(current_type)
@@ -49,7 +50,7 @@ for i, line in enumerate(lines):
         current_type = "route"
         current_chunk.append(line)
     elif line.startswith("def ") or line.startswith("async def "):
-        if current_type != "route": # Because @router decorators precede def
+        if current_type != "route":  # Because @router decorators precede def
             flush_chunk(current_type)
             current_type = "service"
         current_chunk.append(line)

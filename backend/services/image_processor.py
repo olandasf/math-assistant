@@ -12,7 +12,6 @@ from typing import TYPE_CHECKING, Any, Optional, Tuple
 # Tipizavimui - tik linting metu
 if TYPE_CHECKING:
     import numpy as np
-    from PIL import Image as PILImage
 
 try:
     import cv2
@@ -331,7 +330,7 @@ class ImageProcessor:
         extracted_paths = []
 
         for i, (x, y, w, h) in enumerate(regions):
-            region = image[y : y + h, x : x + w]
+            region = image[y: y + h, x: x + w]
 
             path = Path(image_path)
             output_name = f"region_{i}_{path.stem}.png"

@@ -1,3 +1,7 @@
+from services.huggingface_loader import RawProblem
+from services.task_translator import get_task_translator, TranslatedProblem
+from models.problem_bank import ProblemBank
+from database import async_session_maker
 import asyncio
 import sys
 import argparse
@@ -9,10 +13,6 @@ from sqlalchemy import select
 # Pridėti backend į path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from database import async_session_maker
-from models.problem_bank import ProblemBank
-from services.task_translator import get_task_translator, TranslatedProblem
-from services.huggingface_loader import RawProblem
 
 async def run_translation(limit: int = 100):
     logger.info(f"Pradedu masinį vertimą (Limit: {limit})")
@@ -23,7 +23,7 @@ async def run_translation(limit: int = 100):
         query = select(ProblemBank.id).where(
             ProblemBank.tags.like("%needs_translation%")
         ).limit(limit)
-        
+
         result = await session.execute(query)
         problem_ids = list(result.scalars().all())
 
@@ -40,7 +40,7 @@ async def run_translation(limit: int = 100):
         async with async_session_maker() as session:
             try:
                 db_prob = (await session.execute(select(ProblemBank).where(ProblemBank.id == pid))).scalar_one()
-                
+
                 # Build RawProblem from DB
                 raw = RawProblem(
                     source=db_prob.source.value,
@@ -60,7 +60,8 @@ async def run_translation(limit: int = 100):
                 db_prob.question_lt = translated.question_lt
                 db_prob.answer = translated.answer
                 db_prob.answer_latex = translated.answer_latex
-                db_prob.solution_steps = json.dumps(translated.solution_steps, ensure_ascii=False) if translated.solution_steps else None
+                db_prob.solution_steps = json.dumps(translated.solution_steps,
+                                                    ensure_ascii=False) if translated.solution_steps else None
                 db_prob.global_topic = translated.global_topic
                 db_prob.global_subtopic = translated.global_subtopic
                 db_prob.achievement_level = translated.achievement_level
@@ -71,12 +72,12 @@ async def run_translation(limit: int = 100):
                 current_tags = db_prob.tags_list
                 if "needs_translation" in current_tags:
                     current_tags.remove("needs_translation")
-                
+
                 # Add newly generated tags (like 'needs_review' etc.)
                 for t in (translated.tags or []):
                     if t not in current_tags:
                         current_tags.append(t)
-                
+
                 db_prob.tags = json.dumps(current_tags, ensure_ascii=False)
 
                 await session.commit()
@@ -94,5 +95,5 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Masinis uždavinių vertimas iš DB")
     parser.add_argument("--limit", type=int, default=10, help="Kiek uždavinių išversti (default 10)")
     args = parser.parse_args()
-    
+
     asyncio.run(run_translation(args.limit))

@@ -1,5 +1,6 @@
 """Gemini Vision OCR prompts."""
 
+
 def get_ocr_prompt() -> str:
     """Grąžina OCR promptą."""
     return """Esi matematikos mokytojo asistentas. Tavo užduotis - skaitmenizuoti mokinio kontrolinį darbą iš nuotraukos.

@@ -14,7 +14,6 @@ _is_sqlite = settings.DATABASE_URL.startswith("sqlite")
 
 # Engine konfigūracija priklausomai nuo DB tipo
 if _is_sqlite:
-    import sqlite3 as _sqlite3
     from sqlalchemy import event
 
     # SQLite WAL mode for concurrent reads/writes
@@ -56,7 +55,6 @@ async_session_maker = async_sessionmaker(
 # Base class for models
 class Base(DeclarativeBase):
     """Bazinė klasė visiems modeliams."""
-    pass
 
 
 async def init_db() -> None:
@@ -66,22 +64,6 @@ async def init_db() -> None:
     """
     async with engine.begin() as conn:
         # Import all models to register them
-        from models import (
-            admin_user,
-            school_year,
-            school_class,
-            student,
-            test,
-            variant,
-            task,
-            submission,
-            answer,
-            error,
-            statistics,
-            ocr_result,
-            setting,
-            backup,
-        )
         from models import problem_bank  # BP 2022 uždavinių bankas
         await conn.run_sync(Base.metadata.create_all)
 

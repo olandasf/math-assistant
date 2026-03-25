@@ -305,7 +305,6 @@ Dabar nuskaityk paveikslėlį ir grąžink JSON su VISOMIS užduotimis."""
     def _parse_response(self, response: str) -> tuple:
         """Išparsuoja Together atsakymą."""
         import json
-        import re
 
         if not response:
             return "", None, False
@@ -384,4 +383,3 @@ def reset_together_vision_client():
     """Perkrauna Together Vision klientą."""
     global _together_vision
     _together_vision = None
-

@@ -13,8 +13,7 @@ WolframAlpha yra galingiausias matematikos variklis - sprendžia:
 """
 
 from dataclasses import dataclass
-from typing import Any, Optional, Union
-from urllib.parse import quote
+from typing import Optional
 
 import httpx
 from loguru import logger

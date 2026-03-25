@@ -7,7 +7,7 @@ from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from models.test import Test, TestStatus
+from models.test import Test
 from models.variant import Variant
 from models.submission import Submission
 from schemas.test import TestCreate, TestUpdate

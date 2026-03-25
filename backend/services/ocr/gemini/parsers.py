@@ -4,6 +4,7 @@ import re
 from loguru import logger
 from typing import Optional
 
+
 def clean_lithuanian_text(text: str) -> str:
     """Sutvarko sulūžusias lietuviškas raides ir šiukšles."""
     if not text:
@@ -101,33 +102,35 @@ def remove_inline_content_duplicates(text: str) -> str:
 
     return text
 
+
 def to_latex(text: str) -> str:
     """Konvertuoja ASCII matematiką į LaTeX."""
     if not text:
         return ""
-        
+
     latex = text
-    
+
     latex = latex.replace("·", r"\cdot ").replace("⋅", r"\cdot ").replace("*", r"\cdot ")
     latex = latex.replace("×", r"\times ")
     latex = latex.replace("÷", r"\div ")
     latex = latex.replace("–", "-").replace("−", "-")
     latex = latex.replace("½", "1/2").replace("¼", "1/4").replace("¾", "3/4")
-    
+
     latex = re.sub(r"(\d+)\s+([1-9])/([1-9]+)", r"\1\frac{\2}{\3}", latex)
     latex = re.sub(r"([1-9])/([1-9]+)", r"\frac{\1}{\2}", latex)
-    
+
     latex = latex.replace("²", "^2").replace("³", "^3")
     latex = re.sub(r"\^(\d+)", r"^{\1}", latex)
     latex = latex.replace("pi", r"\pi")
-    
+
     latex = re.sub(r"(?<!\\)sqrt\(([^)]+)\)", r"\sqrt{\1}", latex)
     latex = latex.replace("sqrt", r"\sqrt")
     latex = latex.replace("<=", r"\le ").replace(">=", r"\ge ")
     latex = latex.replace("!=", r"\neq ")
     latex = latex.replace("...", r"\dots ")
-    
+
     return latex.strip()
+
 
 def remove_duplicate_tasks(latex_text: str) -> str:
     """Pašalina dublikuotas užduotis iš LaTeX teksto."""
@@ -156,6 +159,7 @@ def remove_duplicate_tasks(latex_text: str) -> str:
                 unique_tasks.append(task)
 
     return "§§§".join(unique_tasks)
+
 
 def parse_response(response: str) -> tuple[str, Optional[str], bool]:
     """Išparsuoja Gemini atsakymą į tekstą ir LaTeX su post-processing valymu."""

@@ -5,12 +5,10 @@ Generuoja matematiniu būdu teisingus uždavinius su garantuotais atsakymais.
 Nereikia AI - viskas skaičiuojama algoritmiškai.
 """
 
-import math
 import random
 from dataclasses import dataclass, field
 from enum import Enum
-from fractions import Fraction
-from typing import Callable, List, Optional
+from typing import List
 
 
 class Difficulty(Enum):
@@ -348,4 +346,3 @@ def female_name() -> str:
 # =============================================================================
 # 5-6 KLASĖ: NATŪRALIEJI SKAIČIAI, TRUPMENOS, PROCENTAI
 # =============================================================================
-

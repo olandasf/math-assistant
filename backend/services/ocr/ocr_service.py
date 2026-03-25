@@ -366,12 +366,11 @@ def reset_ocr_service():
     # kad nauji API raktai būtų paimti iš DB
     from .gemini import get_gemini_vision_client
     from .novita_vision import reset_novita_vision_client
-    from .openai_vision import get_openai_vision_client
 
     get_gemini_vision_client.cache_clear() if hasattr(
         get_gemini_vision_client, "cache_clear"
     ) else None
-    
+
     # Taip pat nunuliname modulio kintamuosius
     import services.ocr.gemini as _gv
     _gv._gemini_vision_client = None

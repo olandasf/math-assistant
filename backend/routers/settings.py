@@ -4,10 +4,16 @@ API Router - Nustatymai ir API raktų valdymas.
 OCR: Gemini Vision arba OpenAI GPT Vision (pasirenkama).
 """
 
+from utils.topics import (
+    TOPIC_CATEGORIES,
+    get_all_topics_list,
+    get_topics_by_grade,
+    get_topics_grouped,
+)
 from typing import Optional
 
 from config import settings as app_settings
-from utils.crypto_utils import decrypt_value, encrypt_value
+from utils.crypto_utils import encrypt_value
 
 import httpx
 from fastapi import APIRouter, Depends, HTTPException
@@ -108,7 +114,6 @@ async def get_all_api_keys(db: AsyncSession) -> dict:
 async def save_api_keys(keys: ApiKeysRequest, db: AsyncSession = Depends(get_db)):
     """Išsaugo API raktus į duomenų bazę."""
     import json
-    from pathlib import Path
 
     from config import BASE_DIR
 
@@ -598,14 +603,6 @@ async def test_together(keys: ApiKeysRequest):
 
 
 # ===== TEMŲ VALDYMAS =====
-
-from utils.topics import (
-    TOPIC_CATEGORIES,
-    get_all_topics_list,
-    get_topic_name,
-    get_topics_by_grade,
-    get_topics_grouped,
-)
 
 
 @router.get("/topics")

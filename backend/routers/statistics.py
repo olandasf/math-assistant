@@ -7,14 +7,9 @@ Endpointai statistikos gavimui.
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
-from loguru import logger
 from pydantic import BaseModel
 from services.statistics_service import (
-    ClassStats,
-    ErrorPattern,
     StatisticsService,
-    StudentStats,
-    TopicStats,
 )
 from sqlalchemy.ext.asyncio import AsyncSession
 

@@ -8,7 +8,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from models.student import Student
-from models.school_class import SchoolClass
 from schemas.student import StudentCreate, StudentUpdate, StudentBulkCreate
 from services.base import CRUDBase
 

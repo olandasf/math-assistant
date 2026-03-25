@@ -15,7 +15,6 @@ from loguru import logger
 from models.problem_bank import AchievementLevel, ProblemBank, ProblemDifficulty, ProblemSource
 from services.huggingface_loader import (
     HuggingFaceLoader,
-    RawProblem,
     get_huggingface_loader,
 )
 from services.task_translator import (

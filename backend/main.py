@@ -4,6 +4,23 @@ Matematikos Mokytojo Asistentas - Backend API
 FastAPI aplikacija mokinių kontrolinių tikrinimui.
 """
 
+from routers.upload import router as upload_router
+from routers.submissions import router as submissions_router
+from routers.statistics import router as statistics_router
+from routers.settings import router as settings_router
+from routers.problem_bank import router as problem_bank_router
+from routers.math_checker import router as math_router
+from routers.exports import router as exports_router
+from routers.exams import router as exams_router
+from routers.exam_sheets import router as exam_sheets_router
+from routers.auth import router as auth_router
+from routers import (
+    classes_router,
+    dashboard_router,
+    school_years_router,
+    students_router,
+    tests_router,
+)
 import sys
 from contextlib import asynccontextmanager
 
@@ -68,7 +85,7 @@ async def load_api_keys_from_db():
                 )
                 model_setting = result.scalar_one_or_none()
                 model = model_setting.value if model_setting else "google/gemini-3.1-pro-preview"
-                
+
                 if api_key:
                     configure_gemini(api_key, model)
                     logger.info(f"✅ Gemini sukonfigūruotas su modeliu: {model}")
@@ -185,23 +202,6 @@ async def health_check():
 
 
 # === Routers ===
-from routers import (
-    classes_router,
-    dashboard_router,
-    school_years_router,
-    students_router,
-    tests_router,
-)
-from routers.auth import router as auth_router
-from routers.exam_sheets import router as exam_sheets_router
-from routers.exams import router as exams_router
-from routers.exports import router as exports_router
-from routers.math_checker import router as math_router
-from routers.problem_bank import router as problem_bank_router
-from routers.settings import router as settings_router
-from routers.statistics import router as statistics_router
-from routers.submissions import router as submissions_router
-from routers.upload import router as upload_router
 
 # Auth (viešas + apsaugotas)
 app.include_router(auth_router, prefix="/api/v1")

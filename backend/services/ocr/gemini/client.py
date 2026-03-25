@@ -12,6 +12,7 @@ from .models import GeminiVisionResult
 from .prompts import get_ocr_prompt
 from .parsers import parse_response
 
+
 def _get_gemini_api_key_from_db() -> Optional[str]:
     """Gauti Gemini API raktą iš duomenų bazės."""
     try:

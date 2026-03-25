@@ -26,7 +26,7 @@ KONCENTRAI:
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List, Optional, Set
+from typing import List
 
 
 class ContentArea(Enum):
@@ -189,5 +189,3 @@ class GradeCurriculum:
 
     # Papildomi temos iš žemesnių klasių (kartojimui)
     review_topics: List[str] = field(default_factory=list)
-
-

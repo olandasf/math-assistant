@@ -7,10 +7,10 @@ Tikrina geometrijos uždavinius: plotai, perimetrai, tūriai.
 import math
 from dataclasses import dataclass
 from enum import Enum
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Dict, Optional, Union
 
 try:
-    from sympy import N, Rational, pi, simplify, sqrt, sympify
+    pass
 
     SYMPY_AVAILABLE = True
 except ImportError:

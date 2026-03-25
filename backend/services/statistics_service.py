@@ -7,22 +7,18 @@ Skaičiuoja mokinio, klasės ir temų statistiką.
 import statistics as stats
 from collections import Counter
 from dataclasses import dataclass, field
-from datetime import date, datetime
 from typing import Any, Dict, List, Optional
 
-from loguru import logger
 from models import (
     Answer,
-    ClassStatistics,
     SchoolClass,
     Student,
-    StudentStatistics,
     Submission,
     Task,
     Test,
     Variant,
 )
-from sqlalchemy import and_, func, select
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 

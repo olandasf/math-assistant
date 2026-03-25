@@ -15,7 +15,7 @@ from services.exam_sheet.styles import EXAM_CSS
 
 __all__ = [
     "ExamTask",
-    "ExamVariant", 
+    "ExamVariant",
     "ExamSheet",
     "ExamSheetGenerator",
     "create_sample_exam",

@@ -1,9 +1,9 @@
 """
 Konkretūs ugdymo programos duomenys klasėms (5-10 kl.).
 """
-from typing import Dict, List, Optional
+from typing import Dict
 from utils.curriculum.models import (
-    Topic, Subtopic, ContentArea, Competency, CognitiveLevel, GradeCurriculum
+    Topic, Subtopic, ContentArea, Competency, GradeCurriculum
 )
 
 # =============================================================================
@@ -1995,5 +1995,3 @@ CURRICULUM_BY_GRADE: Dict[int, GradeCurriculum] = {
 # =============================================================================
 # PAGALBINĖS FUNKCIJOS
 # =============================================================================
-
-

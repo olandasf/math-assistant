@@ -2,16 +2,15 @@
 API Router - Failų įkėlimas ir OCR apdorojimas.
 """
 
-from pathlib import Path
 from typing import List, Optional
 
-from fastapi import APIRouter, BackgroundTasks, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from loguru import logger
 from pydantic import BaseModel
 from services.image_processor import get_image_processor
 from services.ocr import OCRSource, get_ocr_service
-from services.upload_service import UploadedFile, get_upload_service
+from services.upload_service import get_upload_service
 
 router = APIRouter(prefix="/upload", tags=["upload"])
 

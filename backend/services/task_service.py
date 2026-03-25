@@ -2,7 +2,7 @@
 Servisas užduotims.
 """
 
-from typing import Optional, List
+from typing import List
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

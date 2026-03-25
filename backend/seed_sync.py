@@ -5,7 +5,6 @@ Paleidžiama: python seed_sync.py
 
 import os
 import sqlite3
-from datetime import date
 
 # Duomenų bazės kelias
 DB_PATH = os.path.join(os.path.dirname(__file__), "..", "database", "math_teacher.db")

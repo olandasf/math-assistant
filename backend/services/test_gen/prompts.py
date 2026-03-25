@@ -1,5 +1,3 @@
-from typing import List, Dict, Any
-from utils.curriculum import Topic, Subtopic
 
 class PromptGeneratorsMixin:
     def _build_curriculum_enhanced_prompt(
@@ -82,7 +80,7 @@ class PromptGeneratorsMixin:
             elif task_count <= 2:
                 a_count, b_count = 1, 1
             c_count = task_count - a_count - b_count
-            
+
             difficulty_instructions = f"""
 UŽDAVINIŲ SUDĖTINGUMO PASKIRSTYMAS (A/B/C - 40/40/20):
 Turi paruošti {task_count} uždavinius tiksliai laikantis šių proporcijų:
@@ -170,7 +168,7 @@ ATSAKYMO FORMATAS (tik JSON, be jokio kito teksto):
             elif task_count <= 2:
                 a_count, b_count = 1, 1
             c_count = task_count - a_count - b_count
-            
+
             difficulty_instructions = f"""
 UŽDAVINIŲ SUDĖTINGUMO PASKIRSTYMAS (A/B/C - 40/40/20):
 Turi paruošti {task_count} uždavinius tiksliai laikantis šių proporcijų:
@@ -268,7 +266,7 @@ ATSAKYMO FORMATAS (JSON):
             elif task_count <= 2:
                 a_count, b_count = 1, 1
             c_count = task_count - a_count - b_count
-            
+
             difficulty_instructions = f"""
 UŽDAVINIŲ SUDĖTINGUMO PASKIRSTYMAS (A/B/C - 40/40/20):
 Turi paruošti {task_count} uždavinius tiksliai laikantis šių proporcijų:
@@ -470,7 +468,7 @@ Klasė: {grade_level}, todėl pritaikyk sudėtingumą."""
             elif task_count <= 2:
                 a_count, b_count = 1, 1
             c_count = task_count - a_count - b_count
-            
+
             difficulty_instructions = f"""
 UŽDAVINIŲ SUDĖTINGUMO PASKIRSTYMAS (A/B/C - 40/40/20):
 Turi paruošti {task_count} uždavinius tiksliai laikantis šių proporcijų:

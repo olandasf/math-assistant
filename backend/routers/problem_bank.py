@@ -12,9 +12,8 @@ from typing import List, Literal, Optional
 
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Query, status
 from loguru import logger
-from models.problem_bank import ProblemDifficulty, ProblemSource
 from pydantic import BaseModel, Field
-from services.problem_bank_service import ProblemBankService, get_problem_bank_service
+from services.problem_bank_service import ProblemBankService
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db

@@ -12,6 +12,7 @@ from services.problem_bank.grade_9_10 import Grade9_10_Generators
 from services.problem_bank.grade_11_12 import Grade11_12_Generators
 from services.problem_bank.additional import AdditionalGenerators
 
+
 class MathProblemGenerator:
     """
     Pagrindinis matematinių uždavinių generatorius.
@@ -244,29 +245,29 @@ class MathProblemGenerator:
                 topic = "aritmetika"
 
         generators = cls.GENERATORS[topic]["generators"]
-        
+
         # Sukuriame instancijas ir ieškome labiausiai atitinkančių klasę
         best_problem = None
-        
+
         # Pirmiausia pabandom rasti problemą išskirstyta pagal clasę
         if grade:
             # Sumaišome generatorius, kad nebūtų visada tie patys
             shuffled_generators = list(generators)
             random.shuffle(shuffled_generators)
-            
+
             for generator in shuffled_generators:
                 problem = generator(difficulty)
                 if problem.grade_level == grade:
                     # Radome tobulo atitikimo
                     return problem
-                
+
                 # Saugome arčiausiai esantį kaip atsarginį variantą
                 if best_problem is None or abs(problem.grade_level - grade) < abs(best_problem.grade_level - grade):
                     best_problem = problem
 
         # Jei nurodyta klasė, bet neradome tikslaus atitikimo, grąžiname geriausią
         if grade and best_problem:
-            best_problem.grade_level = grade # priderinam rodymui
+            best_problem.grade_level = grade  # priderinam rodymui
             return best_problem
 
         # Originalus elgesys, jei neradome jokio atitikimo ar klasė nenurodyta
@@ -341,7 +342,7 @@ class MathProblemGenerator:
                 a_count, b_count = 1, 0
             elif task_count <= 2:
                 a_count, b_count = 1, 1
-            c_count = task_count - a_count - b_count
+            task_count - a_count - b_count
 
         # Generuojam uždavinius
         for i in range(task_count):

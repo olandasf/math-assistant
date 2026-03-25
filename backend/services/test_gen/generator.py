@@ -7,35 +7,22 @@ Naudoja ProblemBank DB kaip pirminį šaltinį.
 Integruota su curriculum.py - Lietuvos matematikos bendrosios programos turiniu.
 """
 
-import json
 import random
-import re
-from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 from loguru import logger
-from services.math_problem_bank import Difficulty, MathProblem, MathProblemGenerator
+from services.math_problem_bank import MathProblemGenerator
 from sqlalchemy.ext.asyncio import AsyncSession
 
 # Curriculum modulis - Lietuvos BP turinio aprašymai
 from utils.curriculum import (
-    CURRICULUM_BY_GRADE,
-    AchievementLevel,
-    ContentArea,
-    DifficultyLevel,
-    GradeCurriculum,
     Subtopic,
     Topic,
     get_all_topics_for_grade,
-    get_difficulty_for_grade_and_level,
-    get_subtopic_by_id,
     get_topic_by_id,
-    get_topics_for_api,
     search_topics,
 )
 
-import logging
-import asyncio
 
 from services.test_gen.models import GeneratedTask, GeneratedVariant, GeneratedTest
 from services.test_gen.fallbacks import FallbackGeneratorsMixin
@@ -44,18 +31,17 @@ from services.test_gen.fallbacks import FallbackGeneratorsMixin
 class TestGenerator(FallbackGeneratorsMixin):
     """
     Kontrolinių generatorius.
-    
+
     Prioritetų grandinė:
     1. ProblemBank DB (jei perduota db sesija ir turi uždavinių)
     2. Šabloninis generatorius (MathProblemGenerator) - fallback
-    
+
     DI naudojamas TIK importo pipeline (vertimas + klasifikavimas),
     NE uždavinių generavimui.
     """
 
     def __init__(self):
         """Inicializuoja generatorių."""
-        pass
 
     # =========================================================================
     # CURRICULUM INTEGRACIJOS METODAI
@@ -315,7 +301,7 @@ class TestGenerator(FallbackGeneratorsMixin):
             GeneratedTest: Pilnas kontrolinis su variantais
         """
         topic_list = topics if topics else [topic]
-        
+
         logger.info(
             f"Generuojamas kontrolinis: temos={topic_list}, klasė={grade_level}, "
             f"uždaviniai={task_count}, variantai={variant_count}, "
@@ -538,6 +524,7 @@ class TestGenerator(FallbackGeneratorsMixin):
 
 # Singleton
 _generator: Optional[TestGenerator] = None
+
 
 def get_test_generator() -> TestGenerator:
     """Gauna kontrolinių generatorių."""

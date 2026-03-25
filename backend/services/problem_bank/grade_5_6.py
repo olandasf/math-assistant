@@ -4,12 +4,10 @@ import random
 from fractions import Fraction
 
 from services.problem_bank.common import (
-    Difficulty, MathProblem, DeclinedName,
-    random_name, male_name, female_name,
-    get_random_name, get_male_name, get_female_name, get_two_names,
-    random_in_context, get_item_form, skaitvardis, daiktavardis_kilm,
-    NAMES_MALE, NAMES_FEMALE,
+    Difficulty, MathProblem, random_name,
+    get_random_name, random_in_context, skaitvardis,
 )
+
 
 class Grade5_6_Generators:
     """5-6 klasės uždavinių generatoriai."""
@@ -1008,5 +1006,3 @@ class Grade5_6_Generators:
 # =============================================================================
 # 7-8 KLASĖ: LYGTYS, PROPORCIJOS, FUNKCIJOS
 # =============================================================================
-
-

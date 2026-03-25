@@ -8,14 +8,10 @@ Generuoja A4 PDF su:
 - Aiškiomis "Atsakymas" dėžutėmis OCR nuskaitymui
 """
 
-import io
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import List, Optional
 
-from loguru import logger
 
 # Bandome importuoti WeasyPrint (dažnai neveikia Windows)
 WEASYPRINT_AVAILABLE = False
@@ -29,12 +25,7 @@ except (ImportError, OSError):
 
 # Bandome importuoti ReportLab
 try:
-    from reportlab.lib import colors
-    from reportlab.lib.pagesizes import A4
-    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-    from reportlab.lib.units import mm
-    from reportlab.pdfgen import canvas
-    from reportlab.platypus import Paragraph
+    pass
 
     REPORTLAB_AVAILABLE = True
 except ImportError:
@@ -42,8 +33,7 @@ except ImportError:
 
 # Bandome importuoti QR code
 try:
-    import qrcode
-    from qrcode.image.pil import PilImage
+    pass
 
     QR_AVAILABLE = True
 except ImportError:

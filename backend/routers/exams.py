@@ -417,7 +417,7 @@ async def download_exam_pdf(
 
     version: "student" arba "teacher"
     """
-    exports_dir = Path("exports/exams")
+    Path("exports/exams")
 
     # Ieškome PDF pagal exam_id
     pattern = (

@@ -162,13 +162,12 @@ class NovitaVisionClient:
         prompt = self._get_prompt()
 
         # Nustatome MIME tipą
-        mime_type = "image/jpeg"
         if image_path.lower().endswith(".png"):
-            mime_type = "image/png"
+            pass
         elif image_path.lower().endswith(".gif"):
-            mime_type = "image/gif"
+            pass
         elif image_path.lower().endswith(".webp"):
-            mime_type = "image/webp"
+            pass
 
         # OpenAI-suderinama chat/completions užklausa
         url = f"{NOVITA_BASE_URL}/chat/completions"
@@ -417,7 +416,7 @@ Dabar nuskaityk paveikslėlį ir grąžink JSON su VISOMIS UNIKALIOMIS užduotim
             clean_response = response
             think_match = re.search(r"<think>.*?</think>\s*", clean_response, re.DOTALL)
             if think_match:
-                clean_response = clean_response[think_match.end() :]
+                clean_response = clean_response[think_match.end():]
                 logger.debug(
                     f"Pašalintas thinking blokas ({think_match.end()} simbolių)"
                 )

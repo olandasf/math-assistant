@@ -1,11 +1,10 @@
 """9-10 klasės uždavinių generatoriai."""
-import math
 import random
 
 from services.problem_bank.common import (
     Difficulty, MathProblem,
-    random_name,
 )
+
 
 class Grade9_10_Generators:
     """9-10 klasės uždavinių generatoriai."""
@@ -313,5 +312,3 @@ class Grade9_10_Generators:
 # =============================================================================
 # 11-12 KLASĖ (VBE): LOGARITMAI, IŠVESTINĖS, PROGRESIJOS
 # =============================================================================
-
-

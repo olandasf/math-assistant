@@ -17,21 +17,18 @@ Naudojimas:
     python scripts/load_problems.py --stats
 """
 
+from database import async_session_maker
+from services.problem_bank_service import ProblemBankService
+from services.huggingface_loader import get_huggingface_loader
+from loguru import logger
+from ai.gemini_client import GeminiClient
+import argparse
 import asyncio
 import sys
 from pathlib import Path
 
 # Pridėti backend į path
 sys.path.insert(0, str(Path(__file__).parent.parent))
-
-import argparse
-
-from ai.gemini_client import GeminiClient
-from loguru import logger
-from services.huggingface_loader import get_huggingface_loader
-from services.problem_bank_service import ProblemBankService
-
-from database import async_session_maker
 
 
 async def load_gsm8k(

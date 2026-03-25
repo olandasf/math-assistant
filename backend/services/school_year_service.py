@@ -2,7 +2,7 @@
 Servisas mokslo metams.
 """
 
-from typing import Optional, List
+from typing import Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

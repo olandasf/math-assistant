@@ -3,6 +3,8 @@ Alembic Environment Configuration.
 Async version for SQLAlchemy 2.0 + aiosqlite.
 """
 
+from config import settings
+from database import Base
 import asyncio
 from logging.config import fileConfig
 
@@ -17,26 +19,8 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from database import Base
-from config import settings
 
 # Import all models to register them with Base.metadata
-from models import (
-    SchoolYear,
-    SchoolClass,
-    Student,
-    Test,
-    Variant,
-    Task,
-    Submission,
-    Answer,
-    Error,
-    StudentStatistics,
-    ClassStatistics,
-    OCRResult,
-    Setting,
-    Backup,
-)
 
 # Alembic Config object
 config = context.config
