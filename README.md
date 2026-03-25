@@ -44,14 +44,14 @@ Teachers create classes and the system loads the **official Lithuanian math curr
 
 Mokytojai sukuria klases, o sistema įkelia **oficialią Lietuvos švietimo ministerijos patvirtintą matematikos programą** — suskirstytą pagal klases (5–12), temas, potemes, sunkumo lygius ir kompetencijų tipus. Tai apima tiek tekstinius, tiek skaičiavimo uždavinius.
 
-> 🚧 **In progress:** Building a comprehensive problem database properly mapped to curriculum topics, difficulty levels, and competency standards. This is a significant undertaking that will greatly improve generation quality.
+> ✅ **Database integration:** Features a comprehensive 27,000+ problem database mathematically verified and properly mapped to the official Lithuanian curriculum topics, difficulty levels, and competency standards. Mass-translated and culturally localized using the Gemini 3.1 Pro model.
 
 ### Step 2: Exam Generation / Kontrolinių generavimas
 
 Teachers select class, topics, difficulty level, number of problems, and number of variants. The system generates exams using two methods:
 
-- **Template generator** — algorithmic, 3490-line engine with mathematically verified answers and correct Lithuanian grammar declensions
-- **AI generator** — Gemini AI creates contextual word problems aligned to curriculum
+- **Database-first generator** — pulls from a 27,000+ high-quality problem bank (MetaMath, AMPS, GSM8K) with mathematically verified answers, fully localized in Lithuanian.
+- **Template fallback generator** — algorithmic engine with correct Lithuanian grammar declensions (used when database exhaustions occur).
 
 The generated exams use a **specially designed OCR-optimized PDF format** with:
 - ✅ QR codes for automatic identification
@@ -83,8 +83,8 @@ Mathematical verification uses a **4-tier hierarchy**: SymPy → Newton API → 
 | Status | Feature | Description |
 |--------|---------|-------------|
 | ✅ | Exam grading | AI Vision OCR + Math verification + AI explanations |
-| ✅ | Exam generation | Template + AI generation with OCR-optimized PDF |
-| 🚧 | Problem database | Comprehensive problem bank mapped to curriculum topics |
+| ✅ | Exam generation | Database-first generation + Template fallback with OCR-optimized PDF |
+| ✅ | Problem database | >27K problem bank locally stored and mapped to curriculum topics |
 | 🚧 | Solution steps | Teacher variant with full solution methods, not just answers |
 | 📋 | Lesson slides | Interactive teaching materials / slide preparation for lessons |
 
@@ -276,4 +276,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ---
 
-*Last updated: 2026-03-15*
+*Last updated: 2026-03-25*
