@@ -7,9 +7,12 @@ import sys
 
 sys.path.insert(0, "backend")
 
-from services.ocr.gemini_vision import GeminiVisionClient
+from services.ocr.gemini import GeminiVisionClient
 
 
+import pytest
+
+@pytest.mark.asyncio
 async def test_ocr_output():
     """Test OCR and print detailed output."""
     client = GeminiVisionClient()

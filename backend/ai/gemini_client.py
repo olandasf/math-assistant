@@ -30,7 +30,7 @@ class GeminiClient:
     """Google Gemini API klientas."""
 
     # Rekomenduojamas modelis lietuvių kalbai
-    DEFAULT_MODEL = "google/gemini-3.1-pro-preview"
+    DEFAULT_MODEL = "gemini-3.1-pro-preview"
 
     # API endpoint
     BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
@@ -58,7 +58,7 @@ class GeminiClient:
         self,
         prompt: str,
         system_instruction: Optional[str] = None,
-        max_tokens: int = 1024,
+        max_tokens: int = 8192,
         temperature: float = 0.7,
     ) -> Dict[str, Any]:
         """
@@ -97,8 +97,8 @@ class GeminiClient:
                 "parts": [{"text": system_instruction}]
             }
 
-        # Timeout padidintas iki 300s AI generavimui (kontrolinių kūrimas)
-        async with httpx.AsyncClient(timeout=300.0) as client:
+        # Timeout padidintas iki 600s AI generavimui dėl Thinking rėžimo
+        async with httpx.AsyncClient(timeout=600.0) as client:
             response = await client.post(
                 f"{url}?key={self.api_key}", headers=headers, json=request_body
             )
@@ -141,7 +141,7 @@ class GeminiClient:
         self,
         prompt: str,
         system_instruction: Optional[str] = None,
-        max_tokens: int = 2048,
+        max_tokens: int = 8192,
         temperature: float = 0.7,
     ) -> str:
         """

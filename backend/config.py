@@ -25,9 +25,11 @@ class Settings(BaseSettings):
     )
 
     # === Duomenų bazė ===
+    # Dev: SQLite (default). Produkcija: PostgreSQL per .env:
+    # DATABASE_URL=postgresql+asyncpg://mathapp:M4thT3ach3r2026!@192.168.1.50:5432/math_teacher
     DATABASE_URL: str = Field(
         default=f"sqlite+aiosqlite:///{BASE_DIR}/database/math_teacher.db",
-        description="SQLite duomenų bazės URL",
+        description="DB URL. SQLite (dev) arba PostgreSQL (produkcija)",
     )
 
     # === CORS ===

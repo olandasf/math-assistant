@@ -75,19 +75,20 @@ const DIFFICULTY_COLORS: Record<string, string> = {
 };
 
 const DIFFICULTY_LABELS: Record<string, string> = {
-  EASY: "Lengvas",
-  MEDIUM: "Vidutinis",
-  HARD: "Sudėtingas",
+  EASY: "Lygis A (Žinios ir suprat.",
+  MEDIUM: "Lygis B (Taikymas ir kom.)",
+  HARD: "Lygis C (Problemų sprend.)",
 };
+
+import { apiClient } from "@/api/client";
 
 // === API ===
 async function fetchProgramTopics(
   grade: number,
 ): Promise<ProgramResponse | null> {
   try {
-    const response = await fetch(`/api/v1/tests/program/topics/${grade}`);
-    if (!response.ok) throw new Error("Failed to fetch");
-    return await response.json();
+    const { data } = await apiClient.get(`/tests/program/topics/${grade}`);
+    return data;
   } catch (error) {
     console.error("Klaida kraunant programos temas:", error);
     return null;
@@ -392,6 +393,7 @@ export function CurriculumTopicSelector({
           <button
             onClick={() => setSearchQuery("")}
             className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+            aria-label="Išvalyti paiešką"
           >
             <X className="w-4 h-4" />
           </button>

@@ -18,8 +18,9 @@ import {
   FileText,
   ListChecks,
   ClipboardList,
-  Brain,
+  Sparkles,
   BookOpenCheck,
+  Database,
   LogOut
 } from "lucide-react";
 import { useAuthStore } from "@/stores/authStore";
@@ -30,11 +31,12 @@ const navigation = [
   { name: "Peržiūrėti", href: "/perziureti", icon: FileCheck },
   { name: "Greitas tikrinimas", href: "/greitas-tikrinimas", icon: ListChecks },
   { name: "Kontroliniai", href: "/kontroliniai", icon: ClipboardList },
-  { name: "Generuoti su AI", href: "/kontroliniai/generuoti", icon: Brain },
+  { name: "Generuoti kontrolinį", href: "/kontroliniai/generuoti", icon: Sparkles },
   { name: "Mokiniai", href: "/mokiniai", icon: Users },
   { name: "Eksportai", href: "/eksportai", icon: Download },
   { name: "Šablonai", href: "/sablonai", icon: FileText },
   { name: "Analitika", href: "/statistika", icon: LineChart },
+  { name: "Uždavinių bazė", href: "/uzduotys", icon: Database },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {

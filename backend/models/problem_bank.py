@@ -28,6 +28,11 @@ class ProblemSource(str, Enum):
     GEMINI = "gemini"  # AI sugeneruotas
     MANUAL = "manual"  # Rankiniu būdu įvestas
     KHAN_ACADEMY = "khan"  # Khan Academy
+    AMPS = "amps"  # AMPS (Khan Academy + Mathematica)
+    AOPS = "aops"  # Art of Problem Solving
+    OPEN_MATH = "open_math"  # nvidia OpenMathReasoning
+    METAMATH = "metamath"  # MetaMathQA (augmented GSM8K/MATH, ~395K)
+    KAGGLE_MATH = "kaggle_math"  # Kaggle math reasoning (~520K)
 
 
 class ProblemDifficulty(str, Enum):
@@ -38,6 +43,18 @@ class ProblemDifficulty(str, Enum):
     HARD = "hard"  # Sudėtingas (5+ žingsniai)
     OLYMPIAD = "olympiad"  # Olimpiadinis
     VBE = "vbe"  # VBE lygio
+
+
+class AchievementLevel(str, Enum):
+    """Pasiekimų lygis pagal BP 2022.
+
+    Naudojamas kontrolinių generavimui su proporcijomis:
+    A: 40%, B: 40%, C: 20%
+    """
+
+    A = "A"  # Žinios ir supratimas / Gilus supratimas ir argumentavimas
+    B = "B"  # Taikymas / Matematinis komunikavimas
+    C = "C"  # Problemų sprendimas / Aukštesnio lygio mąstymas
 
 
 class ProblemBank(Base):
@@ -114,6 +131,40 @@ class ProblemBank(Base):
     # Papildomos žymos (JSON array)
     tags: Mapped[Optional[str]] = mapped_column(
         Text, nullable=True, comment="Papildomos žymos (JSON array)"
+    )
+
+    # === BP 2022 Pasiekimų lygiai ir globali temų hierarchija ===
+    achievement_level: Mapped[Optional[AchievementLevel]] = mapped_column(
+        SQLEnum(AchievementLevel),
+        nullable=True,
+        index=True,
+        comment="Pasiekimų lygis: A (žinios), B (taikymas), C (problemos)",
+    )
+    global_topic: Mapped[Optional[str]] = mapped_column(
+        String(50),
+        nullable=True,
+        index=True,
+        comment="Globali sritis iš global_topics.py (pvz., algebra, geometrija)",
+    )
+    global_subtopic: Mapped[Optional[str]] = mapped_column(
+        String(100),
+        nullable=True,
+        index=True,
+        comment="Globali potemė (pvz., tiesines_lygtys, trupmenos)",
+    )
+    target_grade: Mapped[Optional[int]] = mapped_column(
+        Integer,
+        nullable=True,
+        index=True,
+        comment="Kuriai klasei labiausiai tinka (spiralinis modelis)",
+    )
+    competency_tags: Mapped[Optional[str]] = mapped_column(
+        Text,
+        nullable=True,
+        comment="Kompetencijų žymos JSON: ['A1','B2','C3'] pagal BP 2022",
+    )
+    is_word_problem: Mapped[bool] = mapped_column(
+        Boolean, default=False, comment="Ar tai tekstinis uždavinys"
     )
 
     # === Kokybės kontrolė ===

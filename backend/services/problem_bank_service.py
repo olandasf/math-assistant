@@ -12,7 +12,7 @@ import json
 from typing import Literal, Optional
 
 from loguru import logger
-from models.problem_bank import ProblemBank, ProblemDifficulty, ProblemSource
+from models.problem_bank import AchievementLevel, ProblemBank, ProblemDifficulty, ProblemSource
 from services.huggingface_loader import (
     HuggingFaceLoader,
     RawProblem,
@@ -102,6 +102,11 @@ class ProblemBankService:
             "gemini": ProblemSource.GEMINI,
             "manual": ProblemSource.MANUAL,
             "khan": ProblemSource.KHAN_ACADEMY,
+            "amps": ProblemSource.AMPS,
+            "aops": ProblemSource.AOPS,
+            "open_math": ProblemSource.OPEN_MATH,
+            "metamath": ProblemSource.METAMATH,
+            "kaggle_math": ProblemSource.KAGGLE_MATH,
         }
 
         db_problem = ProblemBank(
@@ -123,6 +128,16 @@ class ProblemBankService:
             tags=json.dumps(problem.tags, ensure_ascii=False) if problem.tags else None,
             is_active=True,
             is_verified=False,
+            # BP 2022 klasifikacija (iš Gemini)
+            global_topic=getattr(problem, "global_topic", None),
+            global_subtopic=getattr(problem, "global_subtopic", None),
+            achievement_level=(
+                AchievementLevel(getattr(problem, "achievement_level", None))
+                if getattr(problem, "achievement_level", None) in ("A", "B", "C")
+                else None
+            ),
+            target_grade=getattr(problem, "target_grade", None),
+            is_word_problem=getattr(problem, "is_word_problem", False),
         )
 
         self.db.add(db_problem)
@@ -318,6 +333,8 @@ class ProblemBankService:
         grade: Optional[int] = None,
         difficulty: Optional[str] = None,
         topic_id: Optional[str] = None,
+        global_subtopic: Optional[str] = None,
+        global_topic: Optional[str] = None,
         exclude_ids: Optional[list[int]] = None,
         count: int = 5,
     ) -> list[ProblemBank]:
@@ -327,7 +344,9 @@ class ProblemBankService:
         Args:
             grade: Klasė
             difficulty: Sunkumas
-            topic_id: Temos ID
+            topic_id: Senas temos ID (legacy)
+            global_subtopic: Potemės ID iš global_topics.py (pvz., "trupmenos")
+            global_topic: Srities ID (pvz., "algebra")
             exclude_ids: ID, kuriuos praleisti
             count: Kiek uždavinių
 
@@ -347,7 +366,12 @@ class ProblemBankService:
             diff_enum = ProblemDifficulty(difficulty)
             conditions.append(ProblemBank.difficulty == diff_enum)
 
-        if topic_id:
+        # Naujas filtravimas pagal global_subtopic (pirmenybė prieš seną topic_id)
+        if global_subtopic:
+            conditions.append(ProblemBank.global_subtopic == global_subtopic)
+        elif global_topic:
+            conditions.append(ProblemBank.global_topic == global_topic)
+        elif topic_id:
             conditions.append(ProblemBank.topic_id == topic_id)
 
         if exclude_ids:
@@ -475,6 +499,11 @@ class ProblemBankService:
                 "geometry": ProblemSource.GEOMETRY,
                 "numina_math": ProblemSource.NUMINA_MATH,
                 "math_instruct": ProblemSource.MATH_INSTRUCT,
+                "amps": ProblemSource.AMPS,
+                "aops": ProblemSource.AOPS,
+                "open_math": ProblemSource.OPEN_MATH,
+                "metamath": ProblemSource.METAMATH,
+                "kaggle_math": ProblemSource.KAGGLE_MATH,
             }
             source_enum = source_enum_map.get(source, ProblemSource.GSM8K)
             existing_count_query = select(func.count(ProblemBank.id)).where(
@@ -516,6 +545,36 @@ class ProblemBankService:
         elif source == "math_instruct":
             raw_problems = list(
                 self.loader.load_math_instruct(
+                    limit=limit, offset=actual_offset, use_cache=False
+                )
+            )
+        elif source == "amps":
+            raw_problems = list(
+                self.loader.load_amps(
+                    limit=limit, offset=actual_offset, use_cache=False
+                )
+            )
+        elif source == "aops":
+            raw_problems = list(
+                self.loader.load_aops(
+                    limit=limit, offset=actual_offset, use_cache=False
+                )
+            )
+        elif source == "open_math":
+            raw_problems = list(
+                self.loader.load_open_math(
+                    limit=limit, offset=actual_offset, use_cache=False
+                )
+            )
+        elif source == "metamath":
+            raw_problems = list(
+                self.loader.load_metamath(
+                    limit=limit, offset=actual_offset, use_cache=False
+                )
+            )
+        elif source == "kaggle_math":
+            raw_problems = list(
+                self.loader.load_kaggle_math(
                     limit=limit, offset=actual_offset, use_cache=False
                 )
             )

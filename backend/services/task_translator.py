@@ -50,6 +50,12 @@ class TranslatedProblem:
     topic_id: Optional[str] = None  # Tema (jei nustatyta)
     tags: list[str] = field(default_factory=list)  # Žymos
     localization_score: float = 1.0  # Lokalizacijos kokybės balas (0-1)
+    # === BP 2022 klasifikacija (nauji laukai) ===
+    global_topic: Optional[str] = None  # Sritis iš global_topics.py (pvz., "algebra")
+    global_subtopic: Optional[str] = None  # Potemė (pvz., "tiesines_lygtys")
+    achievement_level: Optional[str] = None  # A / B / C pagal BP 2022
+    target_grade: Optional[int] = None  # Labiausiai tinkama klasė (5-12)
+    is_word_problem: bool = False  # Ar tekstinis uždavinys
 
 
 # Lietuviški vardai pagal lytį (išplėstas sąrašas su retesniais vardais)
@@ -552,11 +558,31 @@ class TaskTranslator:
 
         return results
 
+    @staticmethod
+    def _build_taxonomy_text() -> str:
+        """Sukuria LT matematikos programos taksonomijos tekstą prompt'ui."""
+        from utils.global_topics import GLOBAL_AREAS
+
+        lines = []
+        for area_id, area in GLOBAL_AREAS.items():
+            subs = []
+            for sub_id, sub in area.subtopics.items():
+                grades_str = ",".join(str(g) for g in sub.grades)
+                subs.append(f"    - {sub_id} \"{sub.title_lt}\" (klasės: {grades_str})")
+            lines.append(f"  {area_id} \"{area.title_lt}\":")
+            lines.extend(subs)
+        return "\n".join(lines)
+
     def _build_translation_prompt(self, problem: RawProblem) -> str:
-        """Sukuria Gemini prompt'ą LOKALIZACIJAI (ne tik vertimui)."""
+        """Sukuria Gemini prompt'ą LOKALIZACIJAI + KLASIFIKACIJAI."""
+        taxonomy = self._build_taxonomy_text()
+
         return (
             f"""Tu esi profesionalus Lietuvos matematikos mokytojas ir redaktorius.
-Tavo užduotis - ADAPTUOTI (ne tiesiogiai išversti) šį matematinį uždavinį Lietuvos rinkai.
+Tavo užduotis - IŠVERSTI ir ADAPTUOTI šį matematinį uždavinį į taisyklingą LIETUVIŲ KALBĄ, pritaikant jį Lietuvos mokykloms.
+IR KLASIFIKUOTI jį pagal Lietuvos matematikos bendrąją programą.
+
+VISAS TVARKYMAS (UŽDAVINIO TEKSTAS IR SPRENDIMAS) PRIVALO BŪTI TIK LIETUVIŲ KALBA. GRIEŽTAI NEPALIK ANGLIŠKŲ SAKINIŲ.
 
 ORIGINALUS UŽDAVINYS (angliškai):
 {problem.question}
@@ -583,6 +609,8 @@ ORIGINALUS SPRENDIMAS:
    - pounds (lbs) -> kg (1 lb ≈ 0.45 kg, SUAPVALINTI iki gražaus skaičiaus)
    - miles -> km (1 mile ≈ 1.6 km)
    - feet -> m (1 ft ≈ 0.3 m)
+   - inches -> cm (1 inch ≈ 2.54 cm)
+   - yards -> m (1 yard ≈ 0.9 m)
    - gallons -> l (1 gal ≈ 3.8 l)
    - ounces -> g (1 oz ≈ 28 g)
    - SVARBU: Jei konversija sukuria negražius skaičius (pvz., 2.27 kg),
@@ -618,6 +646,17 @@ ORIGINALUS SPRENDIMAS:
    - Nerašyk "Atsakymas: " priešakyje
    - Jei keitei vienetų, perskaičiuok atsakymą!
 
+=== KLASIFIKAVIMAS PAGAL LT MATEMATIKOS PROGRAMĄ ===
+
+Priskirkite uždavinį pagal šią taksonomiją (sritis -> potemė):
+
+{taxonomy}
+
+PASIEKIMŲ LYGIAI (achievement_level):
+- "A" = Žinios ir supratimas (tiesioginis taikymas, formulės, sąvokos)
+- "B" = Taikymas (uždavinys reikalauja kelių žingsnių, pritaikymo)
+- "C" = Problemų sprendimas (sudėtingas, kūrybiškas, reikia strategijos)
+
 === ATSAKYMO FORMATAS ===
 
 ATSAKYK TIK JSON FORMATU:
@@ -627,6 +666,11 @@ ATSAKYK TIK JSON FORMATU:
     "answer_latex": "Atsakymas LaTeX formatu (jei tinka, kitaip null)",
     "solution_steps": ["1 žingsnis lietuviškai", "2 žingsnis...", ...],
     "tags": ["tema1", "tema2"],
+    "global_topic": "srities_id iš taksonomijos (pvz. algebra)",
+    "global_subtopic": "potemes_id iš taksonomijos (pvz. tiesines_lygtys)",
+    "achievement_level": "A arba B arba C",
+    "target_grade": 6,
+    "is_word_problem": true,
     "units_changed": true,
     "answer_recalculated": true
 }}
@@ -667,11 +711,39 @@ Atsakyk TIK JSON formatu."""
     def _parse_translation_response(
         self, response: str, original: RawProblem
     ) -> TranslatedProblem:
-        """Išparsuoja Gemini atsakymą."""
+        """Išparsuoja Gemini atsakymą su klasifikacijos laukais."""
         try:
             # Išvalyti JSON
             json_str = self._extract_json(response)
             data = json.loads(json_str)
+
+            # Validuoti global_topic / global_subtopic
+            global_topic = data.get("global_topic")
+            global_subtopic = data.get("global_subtopic")
+            if global_topic:
+                from utils.global_topics import GLOBAL_AREAS
+                if global_topic not in GLOBAL_AREAS:
+                    logger.warning(f"Nežinoma sritis: {global_topic}")
+                    global_topic = None
+                    global_subtopic = None
+                elif global_subtopic and global_subtopic not in GLOBAL_AREAS[global_topic].subtopics:
+                    logger.warning(f"Nežinoma potemė: {global_subtopic} srityje {global_topic}")
+                    global_subtopic = None
+
+            # Validuoti achievement_level
+            achievement = data.get("achievement_level")
+            if achievement not in ("A", "B", "C", None):
+                achievement = None
+
+            # target_grade
+            target_grade = data.get("target_grade")
+            if target_grade is not None:
+                try:
+                    target_grade = int(target_grade)
+                    if target_grade < 5 or target_grade > 12:
+                        target_grade = None
+                except (ValueError, TypeError):
+                    target_grade = None
 
             return TranslatedProblem(
                 question_lt=data.get("question_lt", ""),
@@ -685,6 +757,11 @@ Atsakyk TIK JSON formatu."""
                 source=original.source,
                 source_id=original.source_id,
                 tags=data.get("tags", []),
+                global_topic=global_topic,
+                global_subtopic=global_subtopic,
+                achievement_level=achievement,
+                target_grade=target_grade,
+                is_word_problem=bool(data.get("is_word_problem", False)),
             )
 
         except json.JSONDecodeError as e:
@@ -716,6 +793,11 @@ Atsakyk TIK JSON formatu."""
                         source_id=f"{original.source_id}_var{i}",
                         topic_id=original.topic_id,
                         tags=original.tags,
+                        global_topic=original.global_topic,
+                        global_subtopic=original.global_subtopic,
+                        achievement_level=original.achievement_level,
+                        target_grade=original.target_grade,
+                        is_word_problem=original.is_word_problem,
                     )
                 )
 
@@ -765,25 +847,50 @@ Atsakyk TIK JSON formatu."""
         )
 
     async def _detect_topic(self, question: str) -> Optional[str]:
-        """Bando nustatyti temą pagal uždavinio turinį."""
-        # Paprastas keyword matching
-        keywords_to_topic = {
-            ("trupmena", "trupmenos", "skaitiklis", "vardiklis"): "fractions",
-            ("procentas", "procentai", "procentų"): "percentages",
-            ("lygtis", "x =", "raskite x"): "equations",
-            ("plotas", "perimetras", "ilgis", "plotis"): "geometry_area",
-            ("trikampis", "stačiakampis", "apskritimas"): "geometry_shapes",
-            ("greitis", "atstumas", "laikas"): "word_problems_motion",
-            ("kaina", "eurų", "€", "nusipirko"): "word_problems_money",
-        }
+        """Bando nustatyti temą pagal uždavinio turinį naudojant global_topics.py.
+
+        Grąžina potemės ID (global_subtopic) iš GLOBAL_AREAS hierarchijos.
+        Tai fallback mechanizmas — pirminis klasifikavimas vyksta per Gemini prompt'ą.
+        """
+        from utils.global_topics import GLOBAL_AREAS
 
         question_lower = question.lower()
+        best_match = None
+        best_score = 0
 
-        for keywords, topic_id in keywords_to_topic.items():
-            if any(kw in question_lower for kw in keywords):
-                return topic_id
+        for area_id, area in GLOBAL_AREAS.items():
+            for sub_id, sub in area.subtopics.items():
+                score = 0
+                for kw in sub.keywords:
+                    if kw.lower() in question_lower:
+                        score += 1
+                if score > best_score:
+                    best_score = score
+                    best_match = sub_id
 
-        return None
+        return best_match if best_score > 0 else None
+
+    async def _detect_topic_full(self, question: str) -> tuple[Optional[str], Optional[str]]:
+        """Grąžina (global_topic, global_subtopic) porą."""
+        from utils.global_topics import GLOBAL_AREAS
+
+        question_lower = question.lower()
+        best_area = None
+        best_sub = None
+        best_score = 0
+
+        for area_id, area in GLOBAL_AREAS.items():
+            for sub_id, sub in area.subtopics.items():
+                score = 0
+                for kw in sub.keywords:
+                    if kw.lower() in question_lower:
+                        score += 1
+                if score > best_score:
+                    best_score = score
+                    best_area = area_id
+                    best_sub = sub_id
+
+        return (best_area, best_sub) if best_score > 0 else (None, None)
 
 
 # Singleton instance

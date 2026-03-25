@@ -11,7 +11,7 @@ Palaikomi tiekėjai:
 - Novita.ai Vision (Qwen3 VL) - mokamas, OpenAI-suderinama API
 """
 
-from .gemini_vision import (
+from .gemini import (
     GeminiVisionClient,
     GeminiVisionResult,
     get_gemini_vision_client,

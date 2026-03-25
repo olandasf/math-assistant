@@ -1,5 +1,5 @@
 /**
- * Kontrolinių generavimo puslapis - AI pagalba kuriant kontrolinius
+ * Kontrolinių generavimo puslapis - generavimas iš uždavinių duomenų bazės
  */
 
 import { useState, useCallback } from "react";
@@ -64,18 +64,18 @@ interface GeneratedTest {
 const DIFFICULTY_OPTIONS = [
   {
     value: "easy",
-    label: "Lengvas",
-    description: "Paprastos užduotys, vienas veiksmas",
+    label: "Lengvas (Lygis A)",
+    description: "Žinios ir supratimas, paprastos užduotys",
   },
   {
     value: "medium",
-    label: "Vidutinis",
-    description: "Kelių veiksmų užduotys",
+    label: "Vidutinis (Lygis B)",
+    description: "Taikymas ir komunikavimas, kelių veiksmų užduotys",
   },
   {
     value: "hard",
-    label: "Sudėtingas",
-    description: "Kompleksinės užduotys su paaiškinimu",
+    label: "Sudėtingas (Lygis C)",
+    description: "Problemų sprendimas, kompleksinės užduotys",
   },
   {
     value: "vbe",
@@ -84,8 +84,8 @@ const DIFFICULTY_OPTIONS = [
   },
   {
     value: "mixed",
-    label: "Mišrus",
-    description: "Įvairaus sudėtingumo užduotys",
+    label: "Mišrus (A/B/C)",
+    description: "40% lengvų, 40% vidutinių, 20% sudėtingų užduočių pagal BP",
   },
 ];
 
@@ -93,13 +93,11 @@ export default function TestGeneratorPage() {
   // Formos būsena
   const [grade, setGrade] = useState<number>(6);
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]); // NAUJAS: potemių pasirinkimas
+  const [selectedSubtopics, setSelectedSubtopics] = useState<string[]>([]);
   const [taskCount, setTaskCount] = useState<number>(5);
   const [variantCount, setVariantCount] = useState<number>(2);
   const [difficulty, setDifficulty] = useState<string>("medium");
   const [includeSolutions, setIncludeSolutions] = useState<boolean>(true);
-  const [useTemplateGenerator, setUseTemplateGenerator] =
-    useState<boolean>(true); // NAUJAS: šabloninis vs AI
 
   // Generavimo būsena
   const [isGenerating, setIsGenerating] = useState(false);
@@ -139,7 +137,6 @@ export default function TestGeneratorPage() {
         difficulty,
         include_solutions: includeSolutions,
         save_to_db: false,
-        use_template_generator: useTemplateGenerator,
       });
 
       setGeneratedTest(data);
@@ -160,7 +157,6 @@ export default function TestGeneratorPage() {
     variantCount,
     difficulty,
     includeSolutions,
-    useTemplateGenerator,
   ]);
 
   // Kopijuoti į clipboard
@@ -272,11 +268,7 @@ export default function TestGeneratorPage() {
     <div>
       <PageHeader
         title="Kontrolinio generavimas"
-        description={
-          useTemplateGenerator
-            ? "Šabloninis generatorius (greitas, tikslus)"
-            : "AI generatorius (Gemini)"
-        }
+        description="Generatorius naudoja patikrintą uždavinių duomenų bazę"
         actions={
           <Link to="/kontroliniai">
             <Button variant="secondary">
@@ -298,49 +290,6 @@ export default function TestGeneratorPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-5">
-              {/* Generavimo metodas */}
-              <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Generavimo metodas
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setUseTemplateGenerator(true)}
-                    className={`rounded-lg p-3 text-left transition-colors border ${
-                      useTemplateGenerator
-                        ? "border-green-500 bg-green-50 ring-1 ring-green-500"
-                        : "border-gray-200 hover:bg-gray-50"
-                    }`}
-                  >
-                    <span className="block text-sm font-medium text-gray-900">
-                      📐 Šabloninis
-                    </span>
-                    <span className="block text-xs text-gray-500">
-                      Greitas, 100% tikslus
-                    </span>
-                  </button>
-                  <button
-                    onClick={() => setUseTemplateGenerator(false)}
-                    className={`rounded-lg p-3 text-left transition-colors border ${
-                      !useTemplateGenerator
-                        ? "border-purple-500 bg-purple-50 ring-1 ring-purple-500"
-                        : "border-gray-200 hover:bg-gray-50"
-                    }`}
-                  >
-                    <span className="block text-sm font-medium text-gray-900">
-                      🤖 AI (Gemini)
-                    </span>
-                    <span className="block text-xs text-gray-500">
-                      Kūrybiškas, lėtesnis
-                    </span>
-                  </button>
-                </div>
-                {useTemplateGenerator && (
-                  <p className="mt-2 text-xs text-green-600">
-                    ✓ Rekomenduojama: greitas, tikslūs atsakymai, nemokamas
-                  </p>
-                )}
-              </div>
 
               {/* Klasė */}
               <div>
@@ -421,6 +370,7 @@ export default function TestGeneratorPage() {
                 </label>
                 <input
                   type="range"
+                  title="Uždavinių skaičius"
                   min={2}
                   max={15}
                   value={taskCount}
@@ -501,7 +451,7 @@ export default function TestGeneratorPage() {
               </Button>
 
               <p className="text-center text-xs text-gray-500">
-                Generavimas gali užtrukti iki 30 sekundžių
+                Uždaviniai generuojami iš patikrintos duomenų bazės
               </p>
             </CardContent>
           </Card>
@@ -513,11 +463,7 @@ export default function TestGeneratorPage() {
             <Card>
               <CardContent className="py-16">
                 <PageLoader
-                  text={
-                    useTemplateGenerator
-                      ? "Generuojamas kontrolinis..."
-                      : "AI generuoja kontrolinį..."
-                  }
+                  text="Generuojamas kontrolinis..."
                 />
               </CardContent>
             </Card>
@@ -526,16 +472,14 @@ export default function TestGeneratorPage() {
           {!isGenerating && !generatedTest && (
             <Card>
               <CardContent className="py-16 text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-100">
-                  <Sparkles className="h-8 w-8 text-purple-500" />
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+                  <FileText className="h-8 w-8 text-blue-500" />
                 </div>
                 <h3 className="mb-2 text-lg font-semibold text-gray-900">
                   Pasirinkite nustatymus ir spauskite "Generuoti"
                 </h3>
                 <p className="text-gray-500">
-                  {useTemplateGenerator
-                    ? "Sistema sukurs kontrolinį darbą pagal jūsų pasirinkimus"
-                    : "AI sukurs kontrolinį darbą pagal jūsų pasirinkimus"}
+                  Sistema sukurs kontrolinį darbą iš patikrintos uždavinių bazės
                 </p>
               </CardContent>
             </Card>
@@ -586,7 +530,7 @@ export default function TestGeneratorPage() {
                       {/* NAUJAS: Išsaugoti ir generuoti PDF */}
                       {!savedExam ? (
                         <Button
-                          variant="primary"
+                          variant="default"
                           size="sm"
                           onClick={handleSaveAndGeneratePDF}
                           disabled={isSaving}
@@ -611,7 +555,7 @@ export default function TestGeneratorPage() {
                           </span>
                           {savedExam.student_pdf && (
                             <Button
-                              variant="primary"
+                              variant="default"
                               size="sm"
                               onClick={() =>
                                 window.open(

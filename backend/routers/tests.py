@@ -71,9 +71,7 @@ class CurriculumSummaryResponse(BaseModel):
 
 
 # === Generavimo schemas ===
-
-
-class GenerateTestRequest(BaseModel):
+class GenerateTestRequest(BaseModel):
     """Užklausa kontrolinio generavimui."""
 
     topic: Optional[str] = Field(
@@ -94,10 +92,6 @@ class GenerateTestRequest(BaseModel):
         default=False,
         description="Ar naudoti programos temas (curriculum)",
     )
-    curriculum_context: Optional[str] = Field(
-        default=None,
-        description="AI kontekstas iš difficulty_rules (generuojamas automatiškai)",
-    )
     grade_level: int = Field(..., ge=5, le=12, description="Klasė (5-12)")
     task_count: int = Field(default=5, ge=1, le=20, description="Uždavinių kiekis")
     variant_count: int = Field(default=2, ge=1, le=4, description="Variantų kiekis")
@@ -108,10 +102,6 @@ class GenerateTestRequest(BaseModel):
     save_to_db: bool = Field(default=False, description="Ar išsaugoti į DB")
     class_id: Optional[int] = Field(
         default=None, description="Klasės ID (jei save_to_db=True)"
-    )
-    use_template_generator: bool = Field(
-        default=True,
-        description="Ar naudoti šabloninį generatorių (True) ar AI/Gemini (False)",
     )
 
 
@@ -368,31 +358,14 @@ async def generate_test(
     request: GenerateTestRequest, db: AsyncSession = Depends(get_db)
 ) -> GenerateTestResponse:
     """
-    Generuoti kontrolinį darbą naudojant AI arba šablonus.
+    Generuoti kontrolinį darbą.
 
-    Palaiko du režimus:
-    1. Paprastas - topics sąrašas (šabloninis generatorius)
-    2. Programos - subtopics su difficulty_rules (AI generatorius su kontekstu)
+    Naudoja ProblemBank DB kaip pirminį šaltinį.
+    Jei DB tuščia — fallback į šablotinį generatorių.
     """
     from loguru import logger
 
-    # Jei naudojame programos temas - paruošiame kontekstą
-    curriculum_ctx = None
-    if request.use_curriculum and request.subtopics:
-        # Mappiname difficulty
-        diff_map = {"easy": "EASY", "medium": "MEDIUM", "hard": "HARD"}
-        diff_key = diff_map.get(request.difficulty, "MEDIUM")
-        curriculum_ctx = build_prompt_context(
-            request.subtopics, diff_key, request.grade_level
-        )
-        logger.info(
-            f"Programos kontekstas paruoštas: {len(request.subtopics)} potemių, "
-            f"sunkumas={diff_key}"
-        )
-    elif request.curriculum_context:
-        curriculum_ctx = request.curriculum_context
-
-    # Nustatome temas - prioritetas `topics` masyvui
+    # Nustatome temas
     topics_list = (
         request.topics if request.topics else ([request.topic] if request.topic else [])
     )
@@ -411,8 +384,7 @@ async def generate_test(
     topic_display = ", ".join(topics_list)
 
     logger.info(
-        f"Generuojamas kontrolinis: temos={topics_list}, {request.grade_level} kl., "
-        f"šabloninis={request.use_template_generator}, curriculum={request.use_curriculum}"
+        f"Generuojamas kontrolinis: temos={topics_list}, {request.grade_level} kl."
     )
 
     generator = get_test_generator()
@@ -426,8 +398,7 @@ async def generate_test(
             variant_count=request.variant_count,
             difficulty=request.difficulty,
             include_solutions=request.include_solutions,
-            use_template_generator=request.use_template_generator,
-            curriculum_context=curriculum_ctx,  # Naujas parametras
+            db=db,  # Perduodame DB sesiją uždavinių paieškai
         )
     except Exception as e:
         logger.error(f"Generavimo klaida: {e}")
@@ -445,7 +416,6 @@ async def generate_test(
             variant_service = VariantService(db)
             task_service = TaskService(db)
 
-            # Sukuriame kontrolinį
             test_data = TestCreate(
                 title=generated.title,
                 class_id=request.class_id,
@@ -455,7 +425,6 @@ async def generate_test(
             test = await test_service.create(test_data)
             saved_test_id = test.id
 
-            # Sukuriame variantus ir užduotis
             for variant in generated.variants:
                 variant_obj = await variant_service.create(
                     VariantCreate(name=variant.variant_name, test_id=test.id)
@@ -476,7 +445,6 @@ async def generate_test(
 
         except Exception as e:
             logger.error(f"Išsaugojimo klaida: {e}")
-            # Nesustabdome, grąžiname sugeneruotą be išsaugojimo
 
     # Konvertuojame į response
     variants_response = []

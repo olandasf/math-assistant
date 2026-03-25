@@ -12,7 +12,7 @@ from typing import Optional
 
 from config import BASE_DIR
 
-from .gemini_vision import GeminiVisionResult, get_gemini_vision_client
+from .gemini import GeminiVisionResult, get_gemini_vision_client
 from .novita_vision import NovitaVisionResult, get_novita_vision_client
 from .openai_vision import OpenAIVisionResult, get_openai_vision_client
 from .together_vision import TogetherVisionResult, get_together_vision_client
@@ -364,13 +364,17 @@ def reset_ocr_service():
 
     # SVARBU: Taip pat perkrauname visus vision klientų singleton'us
     # kad nauji API raktai būtų paimti iš DB
-    from .gemini_vision import get_gemini_vision_client
+    from .gemini import get_gemini_vision_client
     from .novita_vision import reset_novita_vision_client
     from .openai_vision import get_openai_vision_client
 
-    # Reset Gemini singleton
-    import services.ocr.gemini_vision as _gv
-    _gv._gemini_vision = None
+    get_gemini_vision_client.cache_clear() if hasattr(
+        get_gemini_vision_client, "cache_clear"
+    ) else None
+    
+    # Taip pat nunuliname modulio kintamuosius
+    import services.ocr.gemini as _gv
+    _gv._gemini_vision_client = None
 
     # Reset OpenAI singleton
     import services.ocr.openai_vision as _ov

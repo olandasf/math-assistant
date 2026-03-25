@@ -30,6 +30,7 @@ import {
   Zap,
   Cloud,
 } from "lucide-react";
+import { apiClient } from "@/api/client";
 
 interface ApiConfig {
   name: string;
@@ -235,15 +236,7 @@ function ApiCard({ config }: { config: ApiConfig }) {
       });
 
       // Also send to backend
-      const response = await fetch("/api/v1/settings/api-keys", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-
-      if (!response.ok) {
-        throw new Error("Nepavyko išsaugoti");
-      }
+      await apiClient.post("/settings/api-keys", values);
 
       setStatus({
         isConnected: false,
@@ -284,15 +277,10 @@ function ApiCard({ config }: { config: ApiConfig }) {
     console.log(`[Settings] Request body: ${requestBody}`);
 
     try {
-      const response = await fetch(config.testEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: requestBody,
-      });
+      const endpoint = config.testEndpoint.replace("/api/v1", "");
+      const { data } = await apiClient.post(endpoint, values);
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (data.success) {
         setStatus({
           isConnected: true,
           isLoading: false,

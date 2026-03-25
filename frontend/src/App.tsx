@@ -15,6 +15,7 @@ import { ExportsPage } from "@/pages/Exports";
 import { ResultsPage, SubmissionsListPage } from "@/pages/Results";
 import { TemplatesPage } from "@/pages/Templates";
 import { QuickCheckPage } from "@/pages/QuickCheck";
+import { ProblemBankPage } from "@/pages/ProblemBank";
 import { LoginPage } from "@/pages/Login";
 import { useAuthStore } from "@/stores/authStore";
 
@@ -42,6 +43,7 @@ function ProtectedRoutes() {
         <Route path="rezultatai" element={<SubmissionsListPage />} />
         <Route path="rezultatai/:submissionId" element={<ResultsPage />} />
         <Route path="statistika" element={<StatisticsPage />} />
+        <Route path="uzduotys" element={<ProblemBankPage />} />
         <Route path="eksportai" element={<ExportsPage />} />
         <Route path="sablonai" element={<TemplatesPage />} />
         <Route path="nustatymai" element={<SettingsPage />} />

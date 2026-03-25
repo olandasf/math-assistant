@@ -106,7 +106,7 @@ for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":8000" ^| findstr "LISTENING
     taskkill /F /PID %%a >nul 2>&1
 )
 
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":5173" ^| findstr "LISTENING" 2^>nul') do (
+for /f "tokens=5" %%a in ('netstat -aon ^| findstr ":3000" ^| findstr "LISTENING" 2^>nul') do (
     echo [INFO] Stabdomas frontend (PID: %%a)
     taskkill /F /PID %%a >nul 2>&1
 )
@@ -158,7 +158,7 @@ echo [6/7] Paleidziamas frontend serveris...
 
 echo @echo off > "%ROOT_DIR%_run_frontend.bat"
 echo chcp 65001 ^>nul >> "%ROOT_DIR%_run_frontend.bat"
-echo title Frontend Server - Port 5173 >> "%ROOT_DIR%_run_frontend.bat"
+echo title Frontend Server - Port 3000 >> "%ROOT_DIR%_run_frontend.bat"
 echo cd /d "%FRONTEND_DIR%" >> "%ROOT_DIR%_run_frontend.bat"
 echo npm run dev >> "%ROOT_DIR%_run_frontend.bat"
 
@@ -168,7 +168,7 @@ echo [INFO] Laukiama kol frontend pasileis...
 set "FRONTEND_READY=0"
 for /L %%i in (1,1,20) do (
     timeout /t 1 /nobreak >nul
-    netstat -an | findstr "127.0.0.1:5173" | findstr "LISTENING" >nul 2>&1
+    netstat -an | findstr "0.0.0.0:3000" | findstr "LISTENING" >nul 2>&1
     if not errorlevel 1 (
         set "FRONTEND_READY=1"
         goto :frontend_ready
@@ -189,7 +189,7 @@ echo ==============================================================
 echo   SISTEMA SEKMINGAI PALEISTA!
 echo ==============================================================
 echo.
-echo   Frontend:  http://localhost:5173
+echo   Frontend:  http://localhost:3000
 echo   Backend:   http://localhost:8000
 echo   API Docs:  http://localhost:8000/docs
 echo.
@@ -202,7 +202,7 @@ echo ==============================================================
 echo.
 
 timeout /t 3 /nobreak >nul
-start "" "http://localhost:5173"
+start "" "http://localhost:3000"
 
 echo Spauskite bet kuri klavisa, kad uzdarytumete si langa...
 echo (Backend ir Frontend liks veikti fone)

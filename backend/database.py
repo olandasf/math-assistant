@@ -1,5 +1,6 @@
 """
 Duomenų bazės konfigūracija ir sesijos valdymas.
+Palaiko SQLite (dev) ir PostgreSQL (produkcija).
 """
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
@@ -9,27 +10,38 @@ from typing import AsyncGenerator
 from config import settings
 
 
-import sqlite3 as _sqlite3
+_is_sqlite = settings.DATABASE_URL.startswith("sqlite")
 
-# Enable WAL mode for SQLite to allow concurrent reads/writes
-# This prevents deadlocks between async aiosqlite and sync sqlite3 connections
-def _set_sqlite_pragma(dbapi_conn, connection_record):
-    cursor = dbapi_conn.cursor()
-    cursor.execute("PRAGMA journal_mode=WAL")
-    cursor.execute("PRAGMA busy_timeout=5000")
-    cursor.close()
+# Engine konfigūracija priklausomai nuo DB tipo
+if _is_sqlite:
+    import sqlite3 as _sqlite3
+    from sqlalchemy import event
 
-from sqlalchemy import event
+    # SQLite WAL mode for concurrent reads/writes
+    def _set_sqlite_pragma(dbapi_conn, connection_record):
+        cursor = dbapi_conn.cursor()
+        cursor.execute("PRAGMA journal_mode=WAL")
+        cursor.execute("PRAGMA busy_timeout=5000")
+        cursor.close()
 
-# Async engine
-engine = create_async_engine(
-    settings.DATABASE_URL,
-    echo=settings.DEBUG,  # SQL logging
-    future=True
-)
+    engine = create_async_engine(
+        settings.DATABASE_URL,
+        echo=settings.DEBUG,
+        future=True,
+    )
+    event.listen(engine.sync_engine, "connect", _set_sqlite_pragma)
 
-# Register WAL mode pragma on every new connection
-event.listen(engine.sync_engine, "connect", _set_sqlite_pragma)
+else:
+    # PostgreSQL — su connection pool
+    engine = create_async_engine(
+        settings.DATABASE_URL,
+        echo=settings.DEBUG,
+        future=True,
+        pool_size=10,
+        max_overflow=20,
+        pool_pre_ping=True,
+    )
+
 
 # Session factory
 async_session_maker = async_sessionmaker(
@@ -68,8 +80,9 @@ async def init_db() -> None:
             statistics,
             ocr_result,
             setting,
-            backup
+            backup,
         )
+        from models import problem_bank  # BP 2022 uždavinių bankas
         await conn.run_sync(Base.metadata.create_all)
 
 

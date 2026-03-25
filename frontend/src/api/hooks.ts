@@ -838,5 +838,72 @@ export function useExamByQR(examId: string) {
   });
 }
 
+// === Problem Bank ===
+export interface ProblemBankStats {
+  total_problems: number;
+  by_source: Record<string, number>;
+  by_difficulty: Record<string, number>;
+  by_grade: Record<string, number>;
+  verified_count: number;
+  active_count: number;
+}
+
+export interface ProblemBankItem {
+  id: number;
+  source: string;
+  source_id: string | null;
+  question_lt: string;
+  question_en: string | null;
+  answer: string;
+  difficulty: string;
+  grade_min: number;
+  grade_max: number;
+  topic_id: string | null;
+  is_verified: boolean;
+  is_active: boolean;
+  times_used: number;
+  points: number;
+}
+
+export interface ProblemBankListResponse {
+  items: ProblemBankItem[];
+  total: number;
+  page: number;
+  per_page: number;
+  pages: number;
+}
+
+export function useProblemBankStats() {
+  return useQuery({
+    queryKey: ["problemBank", "stats"],
+    queryFn: async () => {
+      const { data } = await apiClient.get<ProblemBankStats>(
+        "/problem-bank/stats",
+      );
+      return data;
+    },
+  });
+}
+
+export function useProblemBank(params: {
+  page?: number;
+  per_page?: number;
+  grade?: number;
+  difficulty?: string;
+  source?: string;
+  search?: string;
+}) {
+  return useQuery({
+    queryKey: ["problemBank", params],
+    queryFn: async () => {
+      const { data } = await apiClient.get<ProblemBankListResponse>(
+        "/problem-bank",
+        { params },
+      );
+      return data;
+    },
+  });
+}
+
 // === Export ===
 export * from "./types";
