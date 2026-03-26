@@ -1,0 +1,473 @@
+[
+    {
+        "cycle": 1,
+        "cycle_name": "KVADRATINĖ IR KUBINĖ ŠAKNYS",
+        "duration": "12 pamokos",
+        "topics": [
+            {
+                "name": "1.1. Kvadratinė šaknis",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.2. Kubinė šaknis",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.3. Iracionalieji skaičiai",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.4. Palyginame",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.5. Sudedame ir atimame",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.6. Šaknis iš sandaugos",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.7. Šaknis iš trupmenos",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.8. Iškeliame prieš šaknies ženklą, įkeliame į pošaknį",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.9. Skaitinių reiškinių su šaknimis pertvarkiai",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            },
+            {
+                "name": "1.10. Raidinių reiškinių su šaknimis pertvarkiai",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "saknys"
+            }
+        ]
+    },
+    {
+        "cycle": 2,
+        "cycle_name": "SKAIČIŲ AIBĖS",
+        "duration": "6 pamokos",
+        "topics": [
+            {
+                "name": "2.1. Skaičių aibės",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "sveikieji"
+            },
+            {
+                "name": "2.2. Skaičių aibės poaibis",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "sveikieji"
+            },
+            {
+                "name": "2.3. Realieji skaičiai",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "sveikieji"
+            },
+            {
+                "name": "2.4. Veiksmai su realiaisiais skaičiais",
+                "duration": "1 pamoka",
+                "global_area": "skaiciai",
+                "global_subtopic": "sveikieji"
+            }
+        ]
+    },
+    {
+        "cycle": 3,
+        "cycle_name": "FINANSINIAI SKAIČIAVIMAI",
+        "duration": "7 pamokos",
+        "topics": [
+            {
+                "name": "3.1. Valiutų kursai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "finansiniai"
+            },
+            {
+                "name": "3.2. Paprastosios ir sudėtinės palūkanos",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "finansiniai"
+            },
+            {
+                "name": "3.3. Paprastosios palūkanos ir grafikai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "finansiniai"
+            },
+            {
+                "name": "3.4. Pirkimas išsimokėtinai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "finansiniai"
+            },
+            {
+                "name": "3.5. Mažėjančiosios palūkanos",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "finansiniai"
+            }
+        ]
+    },
+    {
+        "cycle": 4,
+        "cycle_name": "REIŠKINIAI",
+        "duration": "13 pamokos",
+        "topics": [
+            {
+                "name": "4.1. Vienanaris ir daugianaris",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.2. Atskliautimas",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.3. Daugianarių daugyba",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.4. Dvinario kėlimas kvadratu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.5. Dviejų narių sumos dauginimas iš tų narių skirtumo",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.6. Bendrojo dauginamojo iškėlimas prieš skliaustus",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.7. Skaidymas dauginamaisiais grupavimo būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            },
+            {
+                "name": "4.8. Skaidymas dauginamaisiais taikant greitosios daugybos formules",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "daugianariai"
+            }
+        ]
+    },
+    {
+        "cycle": 5,
+        "cycle_name": "TIESINIŲ LYGČIŲ SISTEMOS",
+        "duration": "14 pamokos",
+        "topics": [
+            {
+                "name": "5.1. Tiesinė lygtis su dviem nežinomaisiais",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "tiesines_lygtys"
+            },
+            {
+                "name": "5.2. Tiesinės lygties su dviem nežinomaisiais grafikas",
+                "duration": "1 pamoka",
+                "global_area": "funkcijos",
+                "global_subtopic": "grafikai"
+            },
+            {
+                "name": "5.3. Tiesinių lygčių su dviem nežinomaisiais sistema",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.4. Tiesinių lygčių sistemos sprendinių skaičius",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.5. Sprendžiame tiesinių lygčių sistemas keitimo būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.6. Sprendžiame tiesinių lygčių sistemas sulyginimo būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.7. Sprendžiame tiesinių lygčių sistemas sudėties būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.8. Judėjimo uždaviniai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "judejimo_uzdaviniai"
+            },
+            {
+                "name": "5.9. Įvairūs tekstiniai uždaviniai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "judejimo_uzdaviniai"
+            },
+            {
+                "name": "5.5. Sprendžiame tiesinių lygčių sistemas keitimo būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.6. Sprendžiame tiesinių lygčių sistemas sulyginimo būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.7. Sprendžiame tiesinių lygčių sistemas sudėties būdu",
+                "duration": "1 pamoka",
+                "global_area": "algebra",
+                "global_subtopic": "lygtys_sistemos"
+            },
+            {
+                "name": "5.8. Judėjimo uždaviniai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "judejimo_uzdaviniai"
+            },
+            {
+                "name": "5.9. Įvairūs tekstiniai uždaviniai",
+                "duration": "1 pamoka",
+                "global_area": "tikimybes",
+                "global_subtopic": "judejimo_uzdaviniai"
+            }
+        ]
+    },
+    {
+        "cycle": 6,
+        "cycle_name": "VEKTORIAI",
+        "duration": "5 pamokos",
+        "topics": [
+            {
+                "name": "6.1. Vektoriaus sąvoka",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "6.2. Vektorių lygumas",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "6.3. Vektorių sudėtis",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "6.4. Vektorių atimtis",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "6.5. Vektoriaus daugyba iš skaičiaus",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            }
+        ]
+    },
+    {
+        "cycle": 7,
+        "cycle_name": "PLOKŠTUMOS FIGŪROS",
+        "duration": "10 pamokos",
+        "topics": [
+            {
+                "name": "7.1. Pitagoro teorema",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "7.2. Atvirkštinė Pitagoro teorema",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "7.3. Atstumas tarp dviejų koordinačių plokštumos taškų",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "koordinates"
+            },
+            {
+                "name": "7.4. Stačiojo trikampio statinis, esantis prieš 30° kampą",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "7.5. Lygiašonis ir lygiakraštis trikampiai",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "7.6. Trikampio vidurio linija",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "7.7. Trapecijos vidurio linija",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "keturkampiai"
+            },
+            {
+                "name": "7.6. Trikampio vidurio linija",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "7.7. Trapecijos vidurio linija",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "keturkampiai"
+            }
+        ]
+    },
+    {
+        "cycle": 8,
+        "cycle_name": "ERDVINIAI KŪNAI",
+        "duration": "7 pamokos",
+        "topics": [
+            {
+                "name": "8.1. Stačioji prizmė",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "erdvines_figuros"
+            },
+            {
+                "name": "8.2. Taisyklingoji piramidė",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "erdvines_figuros"
+            },
+            {
+                "name": "8.3. Ritinys",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "erdvines_figuros"
+            },
+            {
+                "name": "8.4. Kūgis",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "erdvines_figuros"
+            },
+            {
+                "name": "8.5. Rutulys ir sfera",
+                "duration": "1 pamoka",
+                "global_area": "geometrija",
+                "global_subtopic": "erdvines_figuros"
+            }
+        ]
+    },
+    {
+        "cycle": 9,
+        "cycle_name": "DUOMENYS",
+        "duration": "7 pamokos",
+        "topics": [
+            {
+                "name": "9.1. Empirinis skirstinys",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "duomenu_rinkimas"
+            },
+            {
+                "name": "9.2. Sukauptasis ir sukauptasis santykinis dažniai",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "duomenu_rinkimas"
+            },
+            {
+                "name": "9.3. Histograma",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "diagramos"
+            },
+            {
+                "name": "9.4. Empirinio skirstinio tankis",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "duomenu_rinkimas"
+            },
+            {
+                "name": "9.5. Imties skaitinės charakteristikos",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "vidurkis_mediana_moda"
+            },
+            {
+                "name": "9.6. Kvartiliai",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "vidurkis_mediana_moda"
+            },
+            {
+                "name": "9.7. Stačiakampė diagrama su „ūsais“",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "diagramos"
+            },
+            {
+                "name": "9.7. Stačiakampė diagrama su „ūsais“",
+                "duration": "1 pamoka",
+                "global_area": "statistika",
+                "global_subtopic": "diagramos"
+            }
+        ]
+    }
+]

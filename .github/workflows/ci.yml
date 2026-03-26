@@ -28,7 +28,7 @@ jobs:
       - name: Lint with flake8
         run: |
           cd backend
-          flake8 . --max-line-length=120 --exclude=__pycache__,migrations,.venv --count --exit-zero --statistics
+          flake8 . --max-line-length=120 --exclude=__pycache__,migrations,.venv,venv --count --statistics --extend-ignore=E501,W503,W504,E402,E731
 
       - name: Security audit
         run: |

@@ -1,7 +1,6 @@
 """Gemini Vision OCR client."""
 import base64
 import os
-import sqlite3
 import time
 from pathlib import Path
 from typing import Optional
@@ -14,18 +13,37 @@ from .parsers import parse_response
 
 
 def _get_gemini_api_key_from_db() -> Optional[str]:
-    """Gauti Gemini API raktą iš duomenų bazės."""
+    """Gauti Gemini API raktą iš aplinkos kintamojo arba duomenų bazės."""
+    # 1. Prioritetas: aplinkos kintamasis (nustatytas main.py startupe)
+    env_key = os.environ.get("GEMINI_API_KEY")
+    if env_key:
+        return env_key
+
+    # 2. Fallback: tiesioginė DB prieiga (sinchroninė, naudoti tik jei env nėra)
     try:
         db_path = BASE_DIR / "database" / "math_teacher.db"
         if not db_path.exists():
             return None
+        import sqlite3
         conn = sqlite3.connect(str(db_path), timeout=5)
         cursor = conn.cursor()
         cursor.execute("SELECT value FROM settings WHERE key = 'gemini_api_key'")
         row = cursor.fetchone()
         conn.close()
         if row and row[0]:
-            return row[0]
+            value = row[0]
+            # Dešifruoti jei šifruotas (enc: prefiksas)
+            if value.startswith("enc:"):
+                logger.debug("Gemini API raktas šifruotas, bandoma dešifruoti...")
+                try:
+                    from utils.crypto_utils import decrypt_value
+                    secret = os.environ.get("SECRET_KEY", "")
+                    if secret:
+                        value = decrypt_value(value, secret)
+                except Exception:
+                    logger.warning("Nepavyko dešifruoti Gemini API rakto")
+                    return None
+            return value
     except Exception as e:
         logger.warning(f"Nepavyko nuskaityti Gemini API rakto iš DB: {e}")
     return None
@@ -34,8 +52,8 @@ def _get_gemini_api_key_from_db() -> Optional[str]:
 class GeminiVisionClient:
     """Gemini Vision API klientas OCR tikslams - palaiko Google AI Studio (API key) ir Vertex AI."""
 
-    AI_STUDIO_MODEL = "gemini-3.1-pro-preview"
-    VERTEX_AI_MODEL = "google/gemini-3.1-pro-preview"
+    AI_STUDIO_MODEL = "gemini-3-flash-preview"
+    VERTEX_AI_MODEL = "google/gemini-3-flash-preview"
     PROJECT_ID = "mtematika-471410"
     LOCATION = "global"
 

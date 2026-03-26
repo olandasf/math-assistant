@@ -29,7 +29,7 @@ class GeminiClient:
     """Google Gemini API klientas."""
 
     # Rekomenduojamas modelis lietuvių kalbai
-    DEFAULT_MODEL = "gemini-3.1-pro-preview"
+    DEFAULT_MODEL = "gemini-3-flash-preview"
 
     # API endpoint
     BASE_URL = "https://generativelanguage.googleapis.com/v1beta"

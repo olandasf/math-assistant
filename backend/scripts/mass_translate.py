@@ -1,17 +1,18 @@
+import sys
+from pathlib import Path
+
+# Pridėti backend į path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from services.huggingface_loader import RawProblem
 from services.task_translator import get_task_translator, TranslatedProblem
 from models.problem_bank import ProblemBank
 from database import async_session_maker
 import asyncio
-import sys
 import argparse
 import json
-from pathlib import Path
 from loguru import logger
 from sqlalchemy import select
-
-# Pridėti backend į path
-sys.path.insert(0, str(Path(__file__).parent.parent))
 
 
 async def run_translation(limit: int = 100):
@@ -88,6 +89,10 @@ async def run_translation(limit: int = 100):
                 logger.error(f"Klaida verčiant problem_id={pid}: {e}")
                 error_count += 1
                 await session.rollback()
+                
+                if "429" in str(e) or "API raktas" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+                    logger.error("🛑 Stabdome masinį vertimą dėl API limitų ar trūkstamo rakto!")
+                    break
 
     logger.info(f"Baigta. Išversta: {translated_count}, Klaidos: {error_count}")
 

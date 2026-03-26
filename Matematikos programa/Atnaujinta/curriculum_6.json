@@ -1,0 +1,444 @@
+{
+  "grade": 6,
+  "source": "BP 2022 + Horizontai vadovėlis, 2024",
+  "total_hours": 148,
+  "competencies": {
+    "A": {
+      "title": "Gilus supratimas ir argumentavimas",
+      "subcodes": {
+        "A1": "Tinkamai atlieka matematines procedūras, argumentuoja",
+        "A2": "Tyrinėja matematinius objektus, formuluoja hipotezes",
+        "A3": "Sukuria nuoseklią, logiškai pagrįstą sprendimą",
+        "A4": "Planuoja, stebi, įsivertina mokymosi procesą"
+      }
+    },
+    "B": {
+      "title": "Matematinis komunikavimas",
+      "subcodes": {
+        "B1": "Analizuoja ir interpretuoja įvairiomis formomis pateiktą informaciją",
+        "B2": "Atpažįsta, apibrėžia ir vartoja matematinius faktus",
+        "B3": "Kuria, pristato matematinį pranešimą"
+      }
+    },
+    "C": {
+      "title": "Problemų sprendimas",
+      "subcodes": {
+        "C1": "Analizuoja problemines situacijas, pasiūlo matematinį modelį",
+        "C2": "Pasiūlo, vertina alternatyvias strategijas, sudaro planą",
+        "C3": "Įvertina rezultatus, daro pagrįstas išvadas"
+      }
+    }
+  },
+  "cycles": [
+    {
+      "id": "6-I",
+      "number": 1,
+      "title": "Sveikieji skaičiai",
+      "hours_recommended": "12",
+      "global_area": "skaiciai",
+      "goal": "Tinkamai vartoti sąvokas, atlikti veiksmus su sveikaisiais skaičiais, sieti su natūraliųjų skaičių aibės pertvarkymais.",
+      "topics": [
+        {
+          "id": "6-I-1",
+          "title": "Sveikieji skaičiai ir jų palyginimas",
+          "concepts": ["Neigiamieji sveikieji skaičiai", "teigiamieji sveikieji skaičiai", "priešingas skaičius", "sveikųjų skaičių aibė"],
+          "learning_objectives": [
+            "Apibrėžti sveikųjų skaičių sąvokas",
+            "Atidėti skaičius skaičių tiesėje",
+            "Palyginti sveikuosius skaičius"
+          ],
+          "evaluation_criteria": [
+            "Apibrėžia sveikųjų skaičių sąvokas",
+            "Atideda sveikuosius skaičius skaičių tiesėje",
+            "Palygina sveikuosius skaičius"
+          ],
+          "global_subtopic": "sveikieji"
+        },
+        {
+          "id": "6-I-2",
+          "title": "Sveikųjų skaičių sudėtis ir atimtis",
+          "concepts": ["Sveikųjų skaičių sudėtis", "atimtis"],
+          "learning_objectives": ["Atlikti sudėties ir atimties veiksmus su sveikaisiais skaičiais"],
+          "evaluation_criteria": ["Sudeda ir atima sveikuosius skaičius", "Taiko veiksmų pertvarkymo dėsnius"],
+          "global_subtopic": "sveikieji"
+        },
+        {
+          "id": "6-I-3",
+          "title": "Sveikųjų skaičių daugyba ir dalyba",
+          "concepts": ["Sveikųjų skaičių daugyba", "dalyba"],
+          "learning_objectives": ["Atlikti daugybos ir dalybos veiksmus su sveikaisiais skaičiais"],
+          "evaluation_criteria": ["Daugina ir dalija sveikuosius skaičius", "Nustato sandaugos ir dalmens ženklą"],
+          "global_subtopic": "sveikieji"
+        },
+        {
+          "id": "6-I-4",
+          "title": "Koordinačių plokštuma",
+          "concepts": ["Koordinačių plokštuma", "koordinatiniai ketvirčiai", "sveikųjų skaičių porų vaizdavimas"],
+          "learning_objectives": [
+            "Apibrėžti koordinačių plokštumą ir ketvirčius",
+            "Pažymėti skaičių poras taškais koordinačių plokštumoje"
+          ],
+          "evaluation_criteria": [
+            "Apibrėžia koordinačių plokštumą ir ketvirtį",
+            "Atideda taškus ir įvardija koordinates"
+          ],
+          "global_subtopic": "koordinates"
+        },
+        {
+          "id": "6-I-5",
+          "title": "Koordinačių metodas ir jo taikymas",
+          "concepts": ["Koordinačių metodas"],
+          "learning_objectives": ["Nustatyti objekto vietą pasitelkiant koordinates"],
+          "evaluation_criteria": ["Taiko koordinačių metodą realaus turinio uždaviniuose"],
+          "global_subtopic": "koordinates"
+        }
+      ]
+    },
+    {
+      "id": "6-II",
+      "number": 2,
+      "title": "Racionalieji skaičiai",
+      "hours_recommended": "6",
+      "global_area": "skaiciai",
+      "goal": "Tinkamai vartoti sąvokas, spręsti realaus turinio uždavinius su racionaliaisiais skaičiais.",
+      "topics": [
+        {
+          "id": "6-II-1",
+          "title": "Racionalieji skaičiai",
+          "concepts": ["Racionalusis skaičius", "racionaliųjų skaičių aibė"],
+          "learning_objectives": ["Suprasti ir paaiškinti racionaliojo skaičiaus sąvoką"],
+          "evaluation_criteria": ["Apibrėžia racionaliojo skaičiaus sąvoką", "Nustato ar skaičius priklauso aibei"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-II-2",
+          "title": "Trupmena kaip dalmuo",
+          "concepts": ["Trupmenų užrašymas dalmeniu"],
+          "learning_objectives": ["Paaiškinti trupmeną kaip dalmenį", "Racionalųjį skaičių užrašyti trupmena"],
+          "evaluation_criteria": ["Paaiškina trupmenos matematinę reikšmę", "Paverčia mišrųjį skaičių trupmena"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-II-3",
+          "title": "Baigtiniai ir begaliniai dešimtainiai skaičiai",
+          "concepts": ["Baigtinis dešimtainis skaičius", "begalinis periodinis skaičius"],
+          "learning_objectives": ["Skaičių išreikšti dešimtainiu", "Nustatyti periodą"],
+          "evaluation_criteria": ["Užrašo dešimtainiu skaičiumi", "Nustato periodą"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-II-4",
+          "title": "Racionaliųjų skaičių palyginimas",
+          "concepts": ["Racionaliųjų skaičių vieta tiesėje", "apvalinimas"],
+          "learning_objectives": ["Palyginti racionaliuosius skaičius", "Apvalinti iki nurodyto skyriaus"],
+          "evaluation_criteria": ["Palygina racionaliuosius skaičius", "Suapvalina iki nurodyto skyriaus"],
+          "global_subtopic": "trupmenos"
+        }
+      ]
+    },
+    {
+      "id": "6-III",
+      "number": 3,
+      "title": "Trikampių lygumas",
+      "hours_recommended": "12",
+      "global_area": "geometrija",
+      "goal": "Spręsti realaus turinio uždavinius, kurti trikampių lygumų modelius ir taisykles.",
+      "topics": [
+        {
+          "id": "6-III-1",
+          "title": "Lygių elementų braižymas",
+          "concepts": ["Lygių atkarpų braižymas", "lygių kampų braižymas"],
+          "learning_objectives": ["Braižyti lygias atkarpas ir kampus naudojant braižymo įrankius"],
+          "evaluation_criteria": ["Braižo lygias atkarpas ir kampus"],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "6-III-2",
+          "title": "Trikampių braižymas",
+          "concepts": ["Lygių trikampių braižymas"],
+          "learning_objectives": ["Braižyti lygius trikampius naudojant braižymo įrankius"],
+          "evaluation_criteria": ["Modeliuoja ir braižo lygius trikampius"],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "6-III-3",
+          "title": "Trikampio egzistavimo taisyklė",
+          "concepts": ["Trikampio egzistavimas"],
+          "learning_objectives": ["Suformuluoti trikampio egzistavimo taisyklę"],
+          "evaluation_criteria": ["Suformuluoja taisyklę", "Patikrina spręsdamas uždavinius"],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "6-III-4",
+          "title": "Lygūs trikampiai ir jų lygumo požymiai",
+          "concepts": ["Trikampio lygumo požymiai"],
+          "learning_objectives": ["Suformuluoti trikampių lygumo požymius", "Taikyti praktiškai"],
+          "evaluation_criteria": ["Suformuluoja lygumo požymius", "Sprendžia praktinio taikymo uždavinius"],
+          "global_subtopic": "trikampiai"
+        }
+      ]
+    },
+    {
+      "id": "6-IV",
+      "number": 4,
+      "title": "Veiksmai su racionaliaisiais skaičiais",
+      "hours_recommended": "12",
+      "global_area": "skaiciai",
+      "goal": "Argumentuoti sprendžiant uždavinius su racionaliaisiais skaičiais, taikyti skaičiavimo dėsnius.",
+      "topics": [
+        {
+          "id": "6-IV-1",
+          "title": "Teigiamųjų trupmenų ir dešimtainių skaičių daugyba",
+          "concepts": ["Teigiamųjų trupmenų daugyba", "daugybos dėsniai"],
+          "learning_objectives": ["Dauginti trupmenas ir dešimtainius", "Taikyti daugybos dėsnius"],
+          "evaluation_criteria": ["Daugina trupmenas ir dešimtainius", "Taiko daugybos dėsnius"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-IV-2",
+          "title": "Teigiamųjų trupmenų ir dešimtainių skaičių dalyba",
+          "concepts": ["Teigiamųjų trupmenų dalyba", "atvirkštinis skaičius"],
+          "learning_objectives": ["Dalyti trupmenas ir dešimtainius", "Rasti atvirkštinį skaičių"],
+          "evaluation_criteria": ["Dalija trupmenas", "Randa atvirkštinį skaičių"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-IV-3",
+          "title": "Racionaliųjų skaičių sudėtis ir atimtis",
+          "concepts": ["Racionaliųjų skaičių sudėtis", "sudėties dėsniai", "atimtis"],
+          "learning_objectives": ["Sudėti ir atimti racionaliuosius skaičius"],
+          "evaluation_criteria": ["Sudeda ir atima racionaliuosius skaičius", "Taiko skaičiavimo dėsnius"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-IV-4",
+          "title": "Racionaliųjų skaičių daugyba ir dalyba",
+          "concepts": ["Racionaliųjų skaičių daugyba", "dalyba"],
+          "learning_objectives": ["Dauginti ir dalyti racionaliuosius skaičius"],
+          "evaluation_criteria": ["Daugina ir dalija racionaliuosius skaičius", "Nustato veiksmo ženklą"],
+          "global_subtopic": "trupmenos"
+        },
+        {
+          "id": "6-IV-5",
+          "title": "Veiksmų su racionaliaisiais skaičiais taikymas",
+          "concepts": ["Praktinis taikymas"],
+          "learning_objectives": ["Spręsti įvairaus konteksto uždavinius"],
+          "evaluation_criteria": ["Sprendžia įvairaus konteksto uždavinius"],
+          "global_subtopic": "trupmenos"
+        }
+      ]
+    },
+    {
+      "id": "6-V",
+      "number": 5,
+      "title": "Tiesioginis proporcingumas",
+      "hours_recommended": "12",
+      "global_area": "funkcijos",
+      "goal": "Tinkamai vartoti proporcingumo sąvokas, taikyti proporciją sprendžiant uždavinius.",
+      "topics": [
+        {
+          "id": "6-V-1",
+          "title": "Tarpusavyje susiję dydžiai",
+          "concepts": ["Dydis", "susiję dydžiai", "vienarūšiai dydžiai", "kintamieji dydžiai"],
+          "learning_objectives": ["Atpažinti dydžius, nustatyti jų sąryšius"],
+          "evaluation_criteria": ["Atskiria skaičius ir dydžius", "Nustato dydžių rūšį"],
+          "global_subtopic": "tiesioginis_proporcingumas"
+        },
+        {
+          "id": "6-V-2",
+          "title": "Tiesiogiai proporcingi dydžiai",
+          "concepts": ["Tiesioginis proporcingumas"],
+          "learning_objectives": ["Nustatyti tiesiogiai proporcingus dydžius", "Apskaičiuoti proporcingumo koeficientą"],
+          "evaluation_criteria": ["Atpažįsta proporcingumą", "Apskaičiuoja koeficientą"],
+          "global_subtopic": "tiesioginis_proporcingumas"
+        },
+        {
+          "id": "6-V-3",
+          "title": "Grafikas",
+          "concepts": ["Grafikas", "priklausomas kintamasis", "nepriklausomas kintamasis"],
+          "learning_objectives": ["Braižyti proporcingumo grafikuos", "Skaityti grafikus"],
+          "evaluation_criteria": ["Nubraižo grafiką", "Skaito informaciją iš grafiko"],
+          "global_subtopic": "grafikai"
+        },
+        {
+          "id": "6-V-4",
+          "title": "Proporcija",
+          "concepts": ["Santykis", "proporcija"],
+          "learning_objectives": ["Sudaryti proporcijas", "Įvardyti proporcijos narius"],
+          "evaluation_criteria": ["Apibrėžia proporciją", "Sudaro proporciją"],
+          "global_subtopic": "proporcijos"
+        },
+        {
+          "id": "6-V-5",
+          "title": "Pagrindinė proporcijos taisyklė",
+          "concepts": ["Proporcijos taisyklė"],
+          "learning_objectives": ["Taikyti pagrindinę proporcijos taisyklę"],
+          "evaluation_criteria": ["Sudaro proporciją ir taiko taisyklę"],
+          "global_subtopic": "proporcijos"
+        },
+        {
+          "id": "6-V-6",
+          "title": "Uždavinių sprendimas su procentais sudarant proporciją",
+          "concepts": ["Procentai"],
+          "learning_objectives": ["Taikyti proporcijos taisyklę su procentais"],
+          "evaluation_criteria": ["Sudaro proporcijas su procentais", "Sprendžia praktinius uždavinius"],
+          "global_subtopic": "procentai"
+        }
+      ]
+    },
+    {
+      "id": "6-VI",
+      "number": 6,
+      "title": "Lygtys",
+      "hours_recommended": "12",
+      "global_area": "algebra",
+      "goal": "Spręsti įvairaus tipo lygtis, analizuoti įvairia forma pateiktas lygtis.",
+      "topics": [
+        {
+          "id": "6-VI-1",
+          "title": "Skaitiniai reiškiniai ir pertvarkymai",
+          "concepts": ["Skaitinių reiškinių pertvarkymo dėsniai"],
+          "learning_objectives": ["Pakartoti skaitinius reiškinius ir jų dėsnius"],
+          "evaluation_criteria": ["Paaiškina pertvarkymo dėsnius", "Taiko juos skaičiuodamas"],
+          "global_subtopic": "reiskiniai"
+        },
+        {
+          "id": "6-VI-2",
+          "title": "Raidiniai reiškiniai ir pertvarkymai",
+          "concepts": ["Raidiniai reiškiniai"],
+          "learning_objectives": ["Pertvarkyti reiškinius su raidėmis"],
+          "evaluation_criteria": ["Taiko pertvarkymo dėsnius raidiniams reiškiniams"],
+          "global_subtopic": "reiskiniai"
+        },
+        {
+          "id": "6-VI-3",
+          "title": "Lygtys ir jų sprendimas",
+          "concepts": ["Lygtis", "nežinomasis", "sprendinys"],
+          "learning_objectives": ["Spręsti pirmojo laipsnio lygtis"],
+          "evaluation_criteria": ["Išsprendžia pirmojo laipsnio lygtį"],
+          "global_subtopic": "tiesines_lygtys"
+        },
+        {
+          "id": "6-VI-4",
+          "title": "Tekstinių uždavinių sprendimas sudarant lygtį",
+          "concepts": ["Lygčių sudarymas, sprendimas"],
+          "learning_objectives": ["Sudaryti ir spręsti lygtį pagal tekstinį uždavinį"],
+          "evaluation_criteria": ["Sudaro lygtį", "Išsprendžia ir patikrina atsakymą"],
+          "global_subtopic": "tiesines_lygtys"
+        }
+      ]
+    },
+    {
+      "id": "6-VII",
+      "number": 7,
+      "title": "Finansiniai skaičiavimai",
+      "hours_recommended": "10",
+      "global_area": "tikimybes",
+      "goal": "Taikyti procentų žinias, suprasti finansinių sprendimų pasekmes.",
+      "topics": [
+        {
+          "id": "6-VII-1",
+          "title": "Procentai ir jų skaičiavimas",
+          "concepts": ["Procentai"],
+          "learning_objectives": ["Apskaičiuoti procentą nuo skaičiaus"],
+          "evaluation_criteria": ["Apskaičiuoja procentą nuo skaičiaus"],
+          "global_subtopic": "procentai"
+        },
+        {
+          "id": "6-VII-2",
+          "title": "Nuolaidos ir antkainis",
+          "concepts": ["Nuolaida", "antkainis", "pelnas"],
+          "learning_objectives": ["Spręsti pirkimo-pardavimo uždavinius"],
+          "evaluation_criteria": ["Sprendžia pirkimo-pardavimo uždavinius"],
+          "global_subtopic": "finansiniai"
+        }
+      ]
+    },
+    {
+      "id": "6-VIII",
+      "number": 8,
+      "title": "Plokščiosios figūros",
+      "hours_recommended": "12",
+      "global_area": "geometrija",
+      "goal": "Nagrinėti trikampių ir keturkampių savybes, taikyti perimetro ir ploto formules.",
+      "topics": [
+        {
+          "id": "6-VIII-1",
+          "title": "Trikampio kampų suma",
+          "concepts": ["Trikampio vidinių kampų suma"],
+          "learning_objectives": ["Taikyti trikampio kampų sumos savybę"],
+          "evaluation_criteria": ["Taiko trikampio kampų sumos savybę"],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "6-VIII-2",
+          "title": "Trikampio rūšys",
+          "concepts": ["Lygiakraštis", "lygiašonis", "įvairiakraštis", "smailusis", "bukasis", "statusis"],
+          "learning_objectives": ["Klasifikuoti trikampius pagal kraštines ir kampus"],
+          "evaluation_criteria": ["Klasifikuoja trikampius"],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "6-VIII-3",
+          "title": "Perimetras ir plotas",
+          "concepts": ["Perimetras", "plotas", "formulės"],
+          "learning_objectives": ["Apskaičiuoti figūrų perimetrą ir plotą"],
+          "evaluation_criteria": ["Apskaičiuoja perimetrą ir plotą"],
+          "global_subtopic": "perimetras_plotas"
+        }
+      ]
+    },
+    {
+      "id": "6-IX",
+      "number": 9,
+      "title": "Duomenys ir interpretavimas",
+      "hours_recommended": "7",
+      "global_area": "statistika",
+      "goal": "Rinkti duomenis, juos analizuoti ir interpretuoti.",
+      "topics": [
+        {
+          "id": "6-IX-1",
+          "title": "Duomenų rinkimas ir vaizdavimas",
+          "concepts": ["Stulpelinė diagrama", "dažnių lentelė"],
+          "learning_objectives": ["Sudaryti dažnių lenteles", "Braižyti diagramas"],
+          "evaluation_criteria": ["Sudaro dažnių lenteles", "Braižo diagramas"],
+          "global_subtopic": "diagramos"
+        },
+        {
+          "id": "6-IX-2",
+          "title": "Vidurkis ir mediana",
+          "concepts": ["Imties vidurkis", "mediana"],
+          "learning_objectives": ["Apskaičiuoti vidurkį ir medianą"],
+          "evaluation_criteria": ["Apskaičiuoja vidurkį", "Nustato medianą"],
+          "global_subtopic": "vidurkis_mediana_moda"
+        }
+      ]
+    },
+    {
+      "id": "6-X",
+      "number": 10,
+      "title": "Tikimybės ir interpretavimas",
+      "hours_recommended": "9",
+      "global_area": "tikimybes",
+      "goal": "Spręsti tikimybių uždavinius, interpretuoti rezultatus.",
+      "topics": [
+        {
+          "id": "6-X-1",
+          "title": "Atsitiktiniai įvykiai",
+          "concepts": ["Atsitiktinis įvykis", "baigtys"],
+          "learning_objectives": ["Surašyti visas galimas baigtis"],
+          "evaluation_criteria": ["Surašo baigtis", "Nustato tikimybes"],
+          "global_subtopic": "atsitiktiniai_ivykiai"
+        },
+        {
+          "id": "6-X-2",
+          "title": "Tikimybės skaičiavimas",
+          "concepts": ["Tikimybė", "klasikinė tikimybės formulė"],
+          "learning_objectives": ["Apskaičiuoti tikimybę"],
+          "evaluation_criteria": ["Apskaičiuoja tikimybę", "Interpretuoja rezultatus"],
+          "global_subtopic": "atsitiktiniai_ivykiai"
+        }
+      ]
+    }
+  ]
+}

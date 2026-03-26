@@ -1,0 +1,689 @@
+{
+  "grade": 7,
+  "source": "BP 2022 + Horizontai vadovėlis, 2024",
+  "total_hours": 148,
+  "cycles": [
+    {
+      "id": "7-I",
+      "number": 1,
+      "title": "Laipsniai",
+      "hours_recommended": "10-12",
+      "global_area": "skaiciai",
+      "goal": "Susipažinus su laipsniais, kurių rodikliai yra sveikieji skaičiai, išsiaiškinus jų savybes, taikyti žinias sprendžiant praktinio turinio uždavinius.",
+      "topics": [
+        {
+          "id": "7-I-1",
+          "title": "Laipsnis",
+          "concepts": ["Laipsnis", "laipsnio pagrindas", "laipsnio rodiklis"],
+          "learning_objectives": [
+            "Apibrėžti, kas yra laipsnis, laipsnio pagrindas ir rodiklis",
+            "Skaičių pakelti laipsniu, kurio rodiklis yra natūralusis skaičius"
+          ],
+          "evaluation_criteria": [
+            "Tinkamai vartoja sąvokas: laipsnis, laipsnio pagrindas, laipsnio rodiklis",
+            "Skaičių pakelia laipsniu, kurio rodiklis yra natūralusis skaičius",
+            "Skiria skliaustelio reikšmę keldamas skaičių natūraliuoju skaičiumi"
+          ],
+          "global_subtopic": "laipsniai"
+        },
+        {
+          "id": "7-I-2",
+          "title": "Laipsnių su vienodais pagrindais daugyba ir dalyba",
+          "concepts": ["Laipsnių su vienodais pagrindais daugyba", "dalyba"],
+          "learning_objectives": [
+            "Pagrįsti laipsnių su vienodais pagrindais daugybos ir dalybos savybes",
+            "Taikyti laipsnių savybes sprendžiant uždavinius"
+          ],
+          "evaluation_criteria": [
+            "Pagrindžia laipsnių su vienodais pagrindais daugybos ir dalybos savybes",
+            "Spręsdamas uždavinius taiko laipsnių su vienodais pagrindais savybes"
+          ],
+          "global_subtopic": "laipsniai"
+        },
+        {
+          "id": "7-I-3",
+          "title": "Laipsnių su vienodais rodikliais daugyba ir dalyba",
+          "concepts": ["Laipsnių su vienodais rodikliais daugyba", "dalyba"],
+          "learning_objectives": [
+            "Pagrįsti laipsnių su vienodais rodikliais daugybos ir dalybos savybes",
+            "Taikyti laipsnių savybes sprendžiant uždavinius"
+          ],
+          "evaluation_criteria": [
+            "Pagrindžia laipsnių su vienodais rodikliais daugybos ir dalybos savybes",
+            "Spręsdamas uždavinius taiko laipsnių su vienodais rodikliais savybes"
+          ],
+          "global_subtopic": "laipsniai"
+        },
+        {
+          "id": "7-I-4",
+          "title": "Laipsnio kėlimas laipsniu",
+          "concepts": ["Laipsnio kėlimas laipsniu"],
+          "learning_objectives": [
+            "Pagrįsti laipsnio kėlimo laipsniu savybę",
+            "Taikyti laipsnių savybes sprendžiant uždavinius"
+          ],
+          "evaluation_criteria": [
+            "Pagrindžia laipsnio kėlimo laipsniu savybę",
+            "Spręsdamas uždavinius taiko laipsnio kėlimo laipsniu savybę"
+          ],
+          "global_subtopic": "laipsniai"
+        },
+        {
+          "id": "7-I-5",
+          "title": "Laipsnis su sveikuoju rodikliu",
+          "concepts": ["Laipsnis su sveikuoju neigiamuoju rodikliu", "laipsnis pakeltas nuliniu laipsniu"],
+          "learning_objectives": [
+            "Apibrėžti laipsnį su nuliniu ir sveikuoju neigiamuoju rodikliu",
+            "Skaičių pakelti laipsniu, kurio rodiklis yra sveikasis skaičius",
+            "Įsitikinti, kad laipsnių savybės galioja ir su neigiamais rodikliais"
+          ],
+          "evaluation_criteria": [
+            "Paaiškina, kaip skaičių pakelti laipsniu su sveikuoju rodikliu",
+            "Skaičių pakelia laipsniu, kurio rodiklis yra sveikasis skaičius"
+          ],
+          "global_subtopic": "laipsniai"
+        },
+        {
+          "id": "7-I-6",
+          "title": "Veiksmai su laipsniais",
+          "concepts": ["Veiksmų atlikimo tvarka, kai reiškinyje yra ir laipsnių"],
+          "learning_objectives": [
+            "Aptarti veiksmų atlikimo tvarką reiškinyje su laipsniais",
+            "Sprendžiant uždavinius įžvelgti ir taikyti laipsnių savybes"
+          ],
+          "evaluation_criteria": [
+            "Žino veiksmų atlikimo tvarką reiškinyje su laipsniais",
+            "Atpažįsta ir taiko laipsnių savybes, argumentuoja"
+          ],
+          "global_subtopic": "veiksmu_tvarka"
+        },
+        {
+          "id": "7-I-7",
+          "title": "Standartinė skaičiaus išraiška",
+          "concepts": ["Standartinė skaičiaus išraiška", "skaičiaus eilė"],
+          "learning_objectives": [
+            "Apibrėžti standartinę skaičiaus išraišką",
+            "Labai didelius ir mažus skaičius užrašyti standartine išraiška"
+          ],
+          "evaluation_criteria": [
+            "Vartoja sąvokas: standartinė skaičiaus išraiška, skaičiaus eilė",
+            "Užrašo skaičius standartine išraiška, juos perskaito ir palygina"
+          ],
+          "global_subtopic": "standartine_israiska"
+        }
+      ]
+    },
+    {
+      "id": "7-II",
+      "number": 2,
+      "title": "Nelygybės",
+      "hours_recommended": "12-14",
+      "global_area": "algebra",
+      "goal": "Susipažinus su nelygybėmis, išsiaiškinus, kaip užrašyti ir pavaizduoti jų sprendinius, taikyti žinias sprendžiant praktinio turinio uždavinius.",
+      "topics": [
+        {
+          "id": "7-II-1",
+          "title": "Skaitinių nelygybių savybės",
+          "concepts": ["Skaitinių nelygybių savybės"],
+          "learning_objectives": [
+            "Apibūdinti ir taikyti skaitinių nelygybių savybes"
+          ],
+          "evaluation_criteria": [
+            "Įvardija skaitinių nelygybių savybes",
+            "Spręsdamas tekstinius uždavinius taiko nelygybių savybes"
+          ],
+          "global_subtopic": "nelygybes"
+        },
+        {
+          "id": "7-II-2",
+          "title": "Skaičių intervalai",
+          "concepts": ["Skaičių intervalas", "begalybė", "nelygybės sprendinys", "griežtoji/negriežtoji nelygybė"],
+          "learning_objectives": [
+            "Pavaizduoti nelygybės sprendinius skaičių tiesėje ir užrašyti intervalu"
+          ],
+          "evaluation_criteria": [
+            "Tinkamai vartoja sąvokas: intervalas, begalybė, sprendinys",
+            "Pažymi sprendinius skaičių tiesėje ir užrašo intervalu"
+          ],
+          "global_subtopic": "nelygybes"
+        },
+        {
+          "id": "7-II-3",
+          "title": "Pirmojo laipsnio nelygybių sprendimas",
+          "concepts": ["Pirmojo laipsnio nelygybė", "nelygybės sprendinys"],
+          "learning_objectives": [
+            "Išspręsti pirmojo laipsnio nelygybę",
+            "Sprendinius pavaizduoti skaičių tiesėje ir užrašyti intervalu"
+          ],
+          "evaluation_criteria": [
+            "Pritaikęs žinias apie skaitinių nelygybių savybes, išsprendžia pirmojo laipsnio nelygybę",
+            "Pažymi sprendinius skaičių tiesėje ir užrašo intervalu",
+            "Spręsdamas sudėtingesnes nelygybes siūlo sprendimo strategijas"
+          ],
+          "global_subtopic": "nelygybes"
+        },
+        {
+          "id": "7-II-4",
+          "title": "Tekstinių uždavinių sprendimas sudarant nelygybes",
+          "concepts": ["Nelygybės sprendiniai"],
+          "learning_objectives": [
+            "Sprendžiant tekstinius uždavinius sudaryti nelygybę, ją išspręsti, patikrinti atsakymą"
+          ],
+          "evaluation_criteria": [
+            "Analizuoja sąlygą, pasirenka nežinomąjį",
+            "Sudaro nelygybę ir ją išsprendžia",
+            "Patikrina atsakymą"
+          ],
+          "global_subtopic": "nelygybes"
+        },
+        {
+          "id": "7-II-5",
+          "title": "Pirmojo laipsnio nelygybių sistemos",
+          "concepts": ["Nelygybių sistema", "nelygybių sistemos sprendinys"],
+          "learning_objectives": [
+            "Pavaizduoti nelygybių sistemos sprendinius skaičių tiesėje ir užrašyti intervalu"
+          ],
+          "evaluation_criteria": [
+            "Vartoja sąvokas: nelygybių sistema, sistemos sprendinys",
+            "Pažymi sistemos sprendinius skaičių tiesėje ir užrašo intervalu"
+          ],
+          "global_subtopic": "nelygybes"
+        },
+        {
+          "id": "7-II-6",
+          "title": "Tiesinių nelygybių sistemų sprendimas",
+          "concepts": ["Tiesinių nelygybių sistemų sprendimas", "dviguboji nelygybė"],
+          "learning_objectives": [
+            "Išspręsti nelygybių sistemą",
+            "Pavaizduoti sprendinius skaičių tiesėje",
+            "Apibrėžti dvigubąją nelygybę"
+          ],
+          "evaluation_criteria": [
+            "Paaiškina ir taiko nelygybių sistemos sprendimo algoritmą",
+            "Pažymi sprendinius skaičių tiesėje ir užrašo intervalu"
+          ],
+          "global_subtopic": "nelygybes"
+        },
+        {
+          "id": "7-II-7",
+          "title": "Tekstinių uždavinių sprendimas sudarant nelygybių sistemas",
+          "concepts": ["Nelygybių sistemos sprendiniai"],
+          "learning_objectives": [
+            "Sprendžiant tekstinius uždavinius sudaryti nelygybių sistemą, ją išspręsti"
+          ],
+          "evaluation_criteria": [
+            "Analizuoja sąlygą, pasirenka nežinomąjį",
+            "Sudaro nelygybių sistemą ir ją išsprendžia",
+            "Patikrina atsakymą"
+          ],
+          "global_subtopic": "nelygybes"
+        }
+      ]
+    },
+    {
+      "id": "7-III",
+      "number": 3,
+      "title": "Dydžių proporcingumas",
+      "hours_recommended": "8-10",
+      "global_area": "funkcijos",
+      "goal": "Susipažinus su atvirkščiai proporcingais dydžiais, taikyti žinias sprendžiant praktinio turinio uždavinius.",
+      "topics": [
+        {
+          "id": "7-III-1",
+          "title": "Atvirkščiai proporcingi dydžiai",
+          "concepts": ["Atvirkštinis proporcingumas", "proporcingumo koeficientas"],
+          "learning_objectives": [
+            "Apibrėžti atvirkščiai proporcingus dydžius",
+            "Taikyti atvirkštinio proporcingumo savybę",
+            "Apskaičiuoti proporcingumo koeficientą"
+          ],
+          "evaluation_criteria": [
+            "Vartoja sąvokas: atvirkštinis proporcingumas, koeficientas, hiperbolė",
+            "Taiko atvirkštinį proporcingumą spręsdamas uždavinius"
+          ],
+          "global_subtopic": "atvirkstinis_proporcingumas"
+        },
+        {
+          "id": "7-III-2",
+          "title": "Dviejų kintamųjų sąryšio išraiškos",
+          "concepts": ["Priklausomas ir nepriklausomas kintamasis", "grafikas", "hiperbolė", "I/O lentelės"],
+          "learning_objectives": [
+            "Įvardyti priklausomą ir nepriklausomą kintamąjį",
+            "Analizuoti duomenis formule, lentele, grafiku",
+            "Atskirti tiesiogiai ir atvirkščiai proporcingus dydžius"
+          ],
+          "evaluation_criteria": [
+            "Paaiškina priklausomą ir nepriklausomą kintamąjį",
+            "Užrašo priklausomybę formule, lentele, grafiškai",
+            "Nustato dydžių proporcingumo tipą"
+          ],
+          "global_subtopic": "grafikai"
+        },
+        {
+          "id": "7-III-3",
+          "title": "Dydžių proporcingumas gyvenimiškose situacijose",
+          "concepts": ["Kelio, laiko, greičio sąryšis", "darbo uždaviniai"],
+          "learning_objectives": [
+            "Taikyti tiesioginį ir atvirkštinį proporcingumą judėjimo ir darbo uždaviniuose",
+            "Sudaryti sprendimo planą ir patikrinti atsakymą"
+          ],
+          "evaluation_criteria": [
+            "Sprendžia judėjimo uždavinius veikiant aplinkos veiksniams",
+            "Sprendžia darbo uždavinius",
+            "Patikrina atsakymo prasmingumą"
+          ],
+          "global_subtopic": "judejimo_uzdaviniai"
+        }
+      ]
+    },
+    {
+      "id": "7-IV",
+      "number": 4,
+      "title": "Plokščiosios figūros",
+      "hours_recommended": "10-12",
+      "global_area": "geometrija",
+      "goal": "Išsiaiškinus geometrijos figūrų savybes, taikyti žinias sprendžiant uždavinius.",
+      "topics": [
+        {
+          "id": "7-IV-1",
+          "title": "Atkarpos ir kampo dalijimas pusiau",
+          "concepts": ["Lygios atkarpos", "atkarpos vidurio taškas", "kampo pusiaukampinė"],
+          "learning_objectives": [
+            "Rasti atkarpos vidurio tašką",
+            "Nubrėžti kampo pusiaukampinę",
+            "Taikyti atkarpos vidurio taško savybę"
+          ],
+          "evaluation_criteria": [
+            "Nubrėžia atkarpos vidurio tašką",
+            "Spręsdamas uždavinius taiko atkarpos vidurio taško savybę",
+            "Padalija kampą pusiau"
+          ],
+          "global_subtopic": "kampai"
+        },
+        {
+          "id": "7-IV-2",
+          "title": "Trikampio pusiaukampinės",
+          "concepts": ["Pusiaukampinė", "hipotezė", "apibrėžtis", "teorema", "išvada"],
+          "learning_objectives": [
+            "Nubrėžti trikampio pusiaukampinę",
+            "Rasti trikampio pusiaukampinių susikirtimo tašką",
+            "Spręsti trikampio kampų uždavinius"
+          ],
+          "evaluation_criteria": [
+            "Paaiškina trikampio pusiaukampinę",
+            "Nubrėžia pusiaukampinę smailiam, bukam ir statiniam trikampiui",
+            "Taiko pusiaukampinės savybę"
+          ],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "7-IV-3",
+          "title": "Trikampio pusiaukraštinės",
+          "concepts": ["Pusiaukraštinė"],
+          "learning_objectives": [
+            "Nubrėžti trikampio pusiaukraštinę",
+            "Rasti trikampio pusiaukraštinių susikirtimo tašką"
+          ],
+          "evaluation_criteria": [
+            "Paaiškina trikampio pusiaukraštinę",
+            "Nubrėžia pusiaukraštinę skirtingiems trikampiams"
+          ],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "7-IV-4",
+          "title": "Trikampio aukštinės",
+          "concepts": ["Aukštinė", "pagrindas"],
+          "learning_objectives": [
+            "Nubrėžti trikampio aukštines",
+            "Rasti aukštinių susikirtimo tašką"
+          ],
+          "evaluation_criteria": [
+            "Paaiškina trikampio aukštinę",
+            "Nubrėžia aukštinę skirtingiems trikampiams"
+          ],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "7-IV-5",
+          "title": "Tiesių tarpusavio padėtys",
+          "concepts": ["Susikertančios tiesės", "statmenos tiesės", "lygiagrečios tiesės", "kirstinė", "atitinkamieji kampai"],
+          "learning_objectives": [
+            "Nubrėžti susikertančias, statmenas, lygiagrečias tieses",
+            "Nubrėžti statmeną tiesę per nurodytą tašką",
+            "Pavaizduoti atstumus"
+          ],
+          "evaluation_criteria": [
+            "Atpažįsta ir nubrėžia susikertančias, statmenas, lygiagrečias tieses",
+            "Naudoja tinkamus žymenis (⊥ ir ∥)",
+            "Brėžinyje atpažįsta atitinkamuosius, vidaus priešinius ir vidaus vienašalius kampus"
+          ],
+          "global_subtopic": "tieses_lygiagretumas"
+        },
+        {
+          "id": "7-IV-6",
+          "title": "Tiesių lygiagretumo požymiai",
+          "concepts": ["Tiesių lygiagretumo požymiai"],
+          "learning_objectives": [
+            "Įvardyti kampų pavadinimus ir jų savybes",
+            "Spręsti uždavinius su tiesių lygiagretumu"
+          ],
+          "evaluation_criteria": [
+            "Brėžinyje atpažįsta kampus",
+            "Taiko lygiagrečiųjų tiesių savybes"
+          ],
+          "global_subtopic": "tieses_lygiagretumas"
+        },
+        {
+          "id": "7-IV-7",
+          "title": "Braižymo uždaviniai",
+          "concepts": ["Skriestuvas", "liniuotė be padalų", "kampainis"],
+          "learning_objectives": [
+            "Naudojant skriestuvą ir liniuotę nubrėžti figūras",
+            "Naudoti skaitmenines priemones brėžiniams"
+          ],
+          "evaluation_criteria": [
+            "Nubrėžia figūras naudodamas skriestuvą ir liniuotę",
+            "Naudoja skaitmenines priemones"
+          ],
+          "global_subtopic": "braizybos_uzdaviniai"
+        }
+      ]
+    },
+    {
+      "id": "7-V",
+      "number": 5,
+      "title": "Iškilieji keturkampiai",
+      "hours_recommended": "10-12",
+      "global_area": "geometrija",
+      "goal": "Išsiaiškinus keturkampių savybes, taikyti žinias sprendžiant uždavinius, klasifikuoti keturkampius.",
+      "topics": [
+        {
+          "id": "7-V-1",
+          "title": "Lygiagretainis",
+          "concepts": ["Lygiagretainis", "lygiagretainio savybės"],
+          "learning_objectives": [
+            "Apibrėžti lygiagretainį",
+            "Išsiaiškinti lygiagretainio savybes",
+            "Taikyti savybes sprendžiant uždavinius"
+          ],
+          "evaluation_criteria": [
+            "Apibrėžia lygiagretainį",
+            "Paaiškina savybes",
+            "Taiko savybes spręsdamas uždavinius"
+          ],
+          "global_subtopic": "keturkampiai"
+        },
+        {
+          "id": "7-V-2",
+          "title": "Stačiakampis",
+          "concepts": ["Stačiakampis", "stačiakampio savybės"],
+          "learning_objectives": ["Apibrėžti stačiakampį", "Taikyti savybes sprendžiant uždavinius"],
+          "evaluation_criteria": ["Apibrėžia stačiakampį", "Taiko savybes"],
+          "global_subtopic": "keturkampiai"
+        },
+        {
+          "id": "7-V-3",
+          "title": "Rombas",
+          "concepts": ["Rombas", "rombo savybės"],
+          "learning_objectives": ["Apibrėžti rombą", "Taikyti rombo savybes"],
+          "evaluation_criteria": ["Apibrėžia rombą", "Taiko rombo savybes"],
+          "global_subtopic": "keturkampiai"
+        },
+        {
+          "id": "7-V-4",
+          "title": "Kvadratas",
+          "concepts": ["Kvadratas", "kvadrato savybės"],
+          "learning_objectives": ["Apibrėžti kvadratą", "Taikyti savybes"],
+          "evaluation_criteria": ["Apibrėžia kvadratą", "Taiko savybes"],
+          "global_subtopic": "keturkampiai"
+        },
+        {
+          "id": "7-V-5",
+          "title": "Trapecija ir keturkampių klasifikacija",
+          "concepts": ["Trapecija", "trapecijos rūšys", "keturkampių klasifikacija"],
+          "learning_objectives": [
+            "Apibrėžti trapeciją ir jos rūšis",
+            "Klasifikuoti keturkampius pagal lygiagrečių kraštinių skaičių"
+          ],
+          "evaluation_criteria": [
+            "Apibrėžia trapeciją ir jos rūšis",
+            "Klasifikuoja keturkampius"
+          ],
+          "global_subtopic": "keturkampiai"
+        },
+        {
+          "id": "7-V-6",
+          "title": "Apibrėžtis, teorema, sąlyginis teiginys",
+          "concepts": ["Apibrėžtis", "teorema", "atvirkštinė teorema", "sąlyginiai teiginiai"],
+          "learning_objectives": [
+            "Kas yra apibrėžtis, teorema, hipotezė, išvada",
+            "Formuluoti atvirkštinį teiginį"
+          ],
+          "evaluation_criteria": [
+            "Aiškinasi apibrėžties, teoremos sąvokas",
+            "Formuluoja atvirkštinį teiginį"
+          ],
+          "global_subtopic": "trikampiai"
+        },
+        {
+          "id": "7-V-7",
+          "title": "Figūrų lygumas koordinačių plokštumoje",
+          "concepts": ["Transformacijos", "figūrų lygumas"],
+          "learning_objectives": [
+            "Pagrįsti figūrų lygumą nurodant transformacijų seką",
+            "Apibūdinti transformaciją koordinatėmis"
+          ],
+          "evaluation_criteria": [
+            "Pagrindžia figūrų lygumą",
+            "Apibūdina transformacijos seką koordinatėmis"
+          ],
+          "global_subtopic": "transformacijos"
+        }
+      ]
+    },
+    {
+      "id": "7-VI",
+      "number": 6,
+      "title": "Perimetras ir plotas",
+      "hours_recommended": "10-12",
+      "global_area": "geometrija",
+      "goal": "Išsiaiškinus ploto formules, taikyti žinias sprendžiant matematinio ir realaus konteksto uždavinius.",
+      "topics": [
+        {
+          "id": "7-VI-1",
+          "title": "Trikampio plotas",
+          "concepts": ["Trikampio plotas"],
+          "learning_objectives": ["Pagrįsti trikampio ploto formulę", "Apskaičiuoti trikampio plotą"],
+          "evaluation_criteria": ["Paaiškina trikampio ploto formulę", "Apskaičiuoja trikampio plotą"],
+          "global_subtopic": "perimetras_plotas"
+        },
+        {
+          "id": "7-VI-2",
+          "title": "Lygiagretainio plotas",
+          "concepts": ["Lygiagretainio plotas"],
+          "learning_objectives": ["Pagrįsti lygiagretainio ploto formulę", "Apskaičiuoti lygiagretainio plotą"],
+          "evaluation_criteria": ["Paaiškina lygiagretainio ploto formulę", "Apskaičiuoja lygiagretainio plotą"],
+          "global_subtopic": "perimetras_plotas"
+        },
+        {
+          "id": "7-VI-3",
+          "title": "Trapecijos plotas",
+          "concepts": ["Trapecijos vidurio linija", "trapecijos plotas"],
+          "learning_objectives": ["Pagrįsti trapecijos ploto formulę", "Apskaičiuoti trapecijos plotą"],
+          "evaluation_criteria": ["Paaiškina trapecijos ploto formulę", "Apskaičiuoja trapecijos plotą"],
+          "global_subtopic": "perimetras_plotas"
+        },
+        {
+          "id": "7-VI-4",
+          "title": "Apskritimo ilgis",
+          "concepts": ["Skaičius π", "apskritimo ilgis"],
+          "learning_objectives": ["Apibrėžti π", "Apskaičiuoti apskritimo ilgį"],
+          "evaluation_criteria": ["Apibūdina π", "Taiko apskritimo ilgio formulę"],
+          "global_subtopic": "apskritimai"
+        },
+        {
+          "id": "7-VI-5",
+          "title": "Skritulio plotas",
+          "concepts": ["Skritulio plotas"],
+          "learning_objectives": ["Apskaičiuoti skritulio plotą"],
+          "evaluation_criteria": ["Taiko skritulio ploto formulę"],
+          "global_subtopic": "apskritimai"
+        },
+        {
+          "id": "7-VI-6",
+          "title": "Apskritimo ir skritulio dalys",
+          "concepts": ["Apskritimo lankas", "skritulio išpjova"],
+          "learning_objectives": ["Apskaičiuoti skritulio dalies plotą", "Apskaičiuoti apskritimo lanko dalies ilgį"],
+          "evaluation_criteria": ["Apskaičiuoja skritulio dalies plotą", "Apskaičiuoja apskritimo lanko dalies ilgį"],
+          "global_subtopic": "apskritimai"
+        }
+      ]
+    },
+    {
+      "id": "7-VII",
+      "number": 7,
+      "title": "Erdvinės figūros",
+      "hours_recommended": "8-10",
+      "global_area": "geometrija",
+      "goal": "Susipažinus su erdvinėmis figūromis, taikyti žinias sprendžiant uždavinius.",
+      "topics": [
+        {
+          "id": "7-VII-1",
+          "title": "Erdvinės figūros: prizmė, piramidė, ritinys, kūgis",
+          "concepts": ["Stačioji prizmė", "piramidė", "ritinys", "kūgis", "aukštinė", "apotema", "sudaromoji"],
+          "learning_objectives": ["Atpažinti erdvines figūras ir jų elementus"],
+          "evaluation_criteria": ["Vartoja sąvokas tinkamai", "Atpažįsta figūras modeliuose ir brėžiniuose"],
+          "global_subtopic": "erdvines_figuros"
+        },
+        {
+          "id": "7-VII-2",
+          "title": "Ritinio paviršiaus plotas",
+          "concepts": ["Ritinio paviršiaus plotas"],
+          "learning_objectives": ["Apibrėžti ritinio paviršiaus ploto formulę", "Taikyti formulę"],
+          "evaluation_criteria": ["Pagrindžia formulę", "Taiko formulę"],
+          "global_subtopic": "turis"
+        },
+        {
+          "id": "7-VII-3",
+          "title": "Kūgio paviršiaus plotas",
+          "concepts": ["Kūgio paviršiaus plotas"],
+          "learning_objectives": ["Apibrėžti kūgio paviršiaus ploto formulę", "Taikyti formulę"],
+          "evaluation_criteria": ["Pagrindžia formulę", "Taiko formulę"],
+          "global_subtopic": "turis"
+        },
+        {
+          "id": "7-VII-4",
+          "title": "Erdvinių figūrų tūris",
+          "concepts": ["Stačiosios prizmės tūris", "ritinio tūris", "kūgio tūris", "piramidės tūris"],
+          "learning_objectives": ["Taikyti tūrio formules sprendžiant uždavinius"],
+          "evaluation_criteria": ["Taiko tūrio formules"],
+          "global_subtopic": "turis"
+        }
+      ]
+    },
+    {
+      "id": "7-VIII",
+      "number": 8,
+      "title": "Duomenys ir interpretavimas",
+      "hours_recommended": "8-10",
+      "global_area": "statistika",
+      "goal": "Nagrinėti duomenų rinkinių kintamumą, imčių sudarymo klausimus.",
+      "topics": [
+        {
+          "id": "7-VIII-1",
+          "title": "Imtis ir imties atranka",
+          "concepts": ["Imtis", "populiacija", "imties dydis", "reprezentatyvioji imtis", "atsitiktinumas"],
+          "learning_objectives": ["Apibrėžti populiaciją, imtį", "Organizuoti atsitiktinę atranką"],
+          "evaluation_criteria": ["Vartoja sąvokas tinkamai", "Paaiškina atsitiktinę atranką"],
+          "global_subtopic": "imtis_atranka"
+        },
+        {
+          "id": "7-VIII-2",
+          "title": "Imčių sudarymo būdai",
+          "concepts": ["Sisteminė atranka", "sluoksninė atranka", "lizdinė atranka"],
+          "learning_objectives": ["Apibrėžti imties sudarymo būdus", "Interpretuoti duomenų rinkinių kintamumą"],
+          "evaluation_criteria": ["Analizuoja imties sudarymo būdus", "Paaiškina duomenų kintamumą"],
+          "global_subtopic": "imtis_atranka"
+        },
+        {
+          "id": "7-VIII-3",
+          "title": "Duomenų vaizdavimas",
+          "concepts": ["Skritulinė diagrama"],
+          "learning_objectives": ["Pateikti duomenis skrituline diagrama"],
+          "evaluation_criteria": ["Pateikia duomenis diagrama", "Analizuoja diagramos duomenis"],
+          "global_subtopic": "diagramos"
+        }
+      ]
+    },
+    {
+      "id": "7-IX",
+      "number": 9,
+      "title": "Finansiniai skaičiavimai",
+      "hours_recommended": "8-10",
+      "global_area": "tikimybes",
+      "goal": "Taikyti procentų žinias, sudaryti biudžetą, analizuoti finansinių institucijų siūlymus.",
+      "topics": [
+        {
+          "id": "7-IX-1",
+          "title": "Procentinis didėjimas ir mažėjimas",
+          "concepts": ["Procentai"],
+          "learning_objectives": ["Spręsti uždavinius su procentiniu didėjimu/mažėjimu"],
+          "evaluation_criteria": ["Sprendžia procentinio didėjimo/mažėjimo uždavinius", "Patikrina atsakymą"],
+          "global_subtopic": "procentai"
+        },
+        {
+          "id": "7-IX-2",
+          "title": "Biudžetas ir finansiniai tikslai",
+          "concepts": ["Biudžetas", "finansinis tikslas"],
+          "learning_objectives": ["Sukurti ir koreguoti biudžetą"],
+          "evaluation_criteria": ["Sukuria biudžetą", "Seka ir koreguoja biudžetą"],
+          "global_subtopic": "finansiniai"
+        },
+        {
+          "id": "7-IX-3",
+          "title": "Palūkanos",
+          "concepts": ["Palūkanos", "palūkanų norma"],
+          "learning_objectives": ["Apskaičiuoti palūkanas", "Palyginti finansinius siūlymus"],
+          "evaluation_criteria": ["Apskaičiuoja palūkanas", "Priima finansinį sprendimą"],
+          "global_subtopic": "finansiniai"
+        },
+        {
+          "id": "7-IX-4",
+          "title": "Sąskaitos ir mokesčiai",
+          "concepts": ["Sąskaitos", "palūkanos", "mokesčiai"],
+          "learning_objectives": ["Nagrinėti sąskaitų ir palūkanų normų pavyzdžius"],
+          "evaluation_criteria": ["Nagrinėja ir analizuoja finansinius pavyzdžius"],
+          "global_subtopic": "finansiniai"
+        }
+      ]
+    }
+  ],
+  "competencies": {
+    "A": {
+      "title": "Gilus supratimas ir argumentavimas",
+      "subcodes": {
+        "A1": "Tinkamai atlieka matematines procedūras, argumentuoja",
+        "A2": "Tyrinėja matematinius objektus, formuluoja hipotezes",
+        "A3": "Sukuria nuoseklią, logiškai pagrįstą sprendimą",
+        "A4": "Planuoja, stebi, įsivertina mokymosi procesą"
+      }
+    },
+    "B": {
+      "title": "Matematinis komunikavimas",
+      "subcodes": {
+        "B1": "Analizuoja ir interpretuoja įvairiomis formomis pateiktą informaciją",
+        "B2": "Atpažįsta, apibrėžia ir vartoja matematinius faktus",
+        "B3": "Kuria, pristato matematinį pranešimą"
+      }
+    },
+    "C": {
+      "title": "Problemų sprendimas",
+      "subcodes": {
+        "C1": "Analizuoja problemines situacijas, pasiūlo matematinį modelį",
+        "C2": "Pasiūlo, vertina alternatyvias strategijas, sudaro planą",
+        "C3": "Įvertina rezultatus, daro pagrįstas išvadas"
+      }
+    }
+  }
+}

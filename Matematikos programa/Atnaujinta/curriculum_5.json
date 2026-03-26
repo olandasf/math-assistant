@@ -1,0 +1,310 @@
+[
+    {
+        "cycle": 1,
+        "cycle_name": "Natūralieji",
+        "duration": "skaičiai 19 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "1. Natūralieji skaičiai ir dešimtainė skaičiavimo sistema",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "2. Veiksmai su natūraliaisiais skaičiais",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "3. Natūraliųjų skaičių palyginimas",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "4. Natūraliųjų skaičių apvalinimas",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "5. Romėniškaisiais skaitmenimis rašomi skaičiai",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "6. Dalumo požymiai",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "dalumas"
+            },
+            {
+                "name": "9. Perstatomumo, jungiamumo ir skirstomumo dėsniai",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "veiksmu_tvarka"
+            },
+            {
+                "name": "10. Skaičiaus skaidymas pirminiais daugikliais",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "dalumas"
+            }
+        ]
+    },
+    {
+        "cycle": 2,
+        "cycle_name": "Trupmenos",
+        "duration": "22 pamokos",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "4. Trupmenų sudėtis ir atimtis",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "trupmenos"
+            },
+            {
+                "name": "5. Mišriųjų skaičių sudėtis ir atimtis",
+                "duration": "3 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "trupmenos"
+            },
+            {
+                "name": "6. Natūraliojo skaičiaus daugyba iš trupmenos arba mišriojo skaičiaus",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "trupmenos"
+            },
+            {
+                "name": "7. Veiksmų su trupmenomis dėsniai",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "veiksmu_tvarka"
+            }
+        ]
+    },
+    {
+        "cycle": 3,
+        "cycle_name": "Dešim­",
+        "duration": "tainiai skaičiai ir procentai 19 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "1. Dešimtainiai skaičiai",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "trupmenos"
+            },
+            {
+                "name": "2. Dešimtainių skaičių palyginimas, apvalinimas",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "trupmenos"
+            },
+            {
+                "name": "3. Procentai",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "procentai"
+            },
+            {
+                "name": "4. Veiksmai su dešimtainiais skaičiais",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "trupmenos"
+            },
+            {
+                "name": "5. Dalies ir visumos radimas",
+                "duration": "2 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "procentai"
+            }
+        ]
+    },
+    {
+        "cycle": 4,
+        "cycle_name": "Reiškiniai",
+        "duration": "ir lygtys 14 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "1. Skaičių sekos",
+                "duration": "1 pamoka(os)",
+                "global_area": "algebra",
+                "global_subtopic": "sekos"
+            },
+            {
+                "name": "2. Raidiniai reiškiniai",
+                "duration": "1 pamoka(os)",
+                "global_area": "algebra",
+                "global_subtopic": "reiskiniai"
+            },
+            {
+                "name": "3. Raidinio reiškinio prastinimas",
+                "duration": "1 pamoka(os)",
+                "global_area": "algebra",
+                "global_subtopic": "reiskiniai"
+            }
+        ]
+    },
+    {
+        "cycle": 5,
+        "cycle_name": "Transfor­",
+        "duration": "macijos 11 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "1. Simetriškos figūros",
+                "duration": "2 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "transformacijos"
+            },
+            {
+                "name": "2. Simetriškų figūrų atkūri mas, užbaigimas",
+                "duration": "1 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "transformacijos"
+            },
+            {
+                "name": "3. Figūrų transformacijos",
+                "duration": "2 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "transformacijos"
+            }
+        ]
+    },
+    {
+        "cycle": 6,
+        "cycle_name": "Plokščio­",
+        "duration": "sios geome­ trinės figūros 19 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "1. Ilgio matavimo vienetai",
+                "duration": "1 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "matavimo_vienetai"
+            },
+            {
+                "name": "2. Ploto matavimo vienetai",
+                "duration": "1 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "matavimo_vienetai"
+            },
+            {
+                "name": "3. Kampų rūšys. Kampų matavimas",
+                "duration": "1 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "kampai"
+            },
+            {
+                "name": "4. Trikampio kampų suma",
+                "duration": "1 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "trikampiai"
+            },
+            {
+                "name": "5. Kvadrato ir stačiakampio perimetro ir ploto formulės",
+                "duration": "2 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "perimetras_plotas"
+            },
+            {
+                "name": "8. Plokščiųjų figūrų pertvarkymas",
+                "duration": "1 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "transformacijos"
+            }
+        ]
+    },
+    {
+        "cycle": 7,
+        "cycle_name": "Erdvinės",
+        "duration": "geometrinės figūros 19 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "5. Stačiakampio gretasienio paviršiaus plotas ir tūris",
+                "duration": "2 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "turis"
+            },
+            {
+                "name": "6. Sudėtingesnių erdvinių figūrų paviršiaus plotas ir tūris",
+                "duration": "2 pamoka(os)",
+                "global_area": "geometrija",
+                "global_subtopic": "turis"
+            }
+        ]
+    },
+    {
+        "cycle": 9,
+        "cycle_name": "Tikimybės",
+        "duration": "11 pamokų",
+        "topics": [
+            {
+                "name": "Pakartojame",
+                "duration": "1 pamoka(os)",
+                "global_area": "skaiciai",
+                "global_subtopic": "naturalieji"
+            },
+            {
+                "name": "1. Stochastinis bandymas",
+                "duration": "1 pamoka(os)",
+                "global_area": "tikimybes",
+                "global_subtopic": "atsitiktiniai_ivykiai"
+            },
+            {
+                "name": "2. Bandymai, kurių baigtys vienodai arba nevienodai galimos",
+                "duration": "2 pamoka(os)",
+                "global_area": "tikimybes",
+                "global_subtopic": "atsitiktiniai_ivykiai"
+            },
+            {
+                "name": "3. Bandymo baigties tikimybė",
+                "duration": "2 pamoka(os)",
+                "global_area": "tikimybes",
+                "global_subtopic": "atsitiktiniai_ivykiai"
+            }
+        ]
+    }
+]

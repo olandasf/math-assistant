@@ -500,8 +500,10 @@ class TaskTranslator:
 
         except Exception as e:
             logger.error(f"Klaida verčiant uždavinį: {e}")
-            # Fallback: grąžinti su baziniu vertimu
-            return self._fallback_translation(problem)
+            # Visada propaguojame klaidas — fallback anglišku tekstu
+            # gadina duomenų bazę (uždavinys pažymimas kaip "išverstas"
+            # nors iš tikrųjų liko angliškai)
+            raise
 
     async def generate_variations(
         self, problem: TranslatedProblem, count: int = 2

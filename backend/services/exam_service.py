@@ -195,9 +195,9 @@ class ExamService:
         if not answer:
             return None
 
-        # Pašaliname vienetų žymėjimus
-        clean = answer.replace("cm", "").replace("m", "").replace("kg", "")
-        clean = clean.replace("€", "").replace("Lt", "").replace("vnt", "")
+        import re
+        # Pašaliname vienetų žymėjimus (tik kaip atskirus žodžius/prie skaičių)
+        clean = re.sub(r'\s*(cm²|cm|mm|km|kg|m²|m|€|Lt|vnt|l)\b', '', answer)
         clean = clean.strip()
 
         # Jei yra "x = 27" tipo, imame skaičių

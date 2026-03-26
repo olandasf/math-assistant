@@ -63,8 +63,9 @@ async def init_db() -> None:
     Sukuria visas lenteles jei neegzistuoja.
     """
     async with engine.begin() as conn:
-        # Import all models to register them
-        from models import problem_bank  # BP 2022 uždavinių bankas
+        # Import all models to register them with Base.metadata
+        import models  # noqa: F401 — visi modeliai (Student, Test, Task, etc.)
+        from models.admin_user import AdminUser  # noqa: F401 — admin lentelė
         await conn.run_sync(Base.metadata.create_all)
 
 

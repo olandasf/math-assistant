@@ -2,9 +2,7 @@
 AdminUser modelis - administratoriaus prisijungimo duomenys.
 """
 
-from datetime import datetime
-
-from sqlalchemy import Column, DateTime, Integer, String
+from sqlalchemy import Column, DateTime, Integer, String, func
 
 from database import Base
 
@@ -19,8 +17,8 @@ class AdminUser(Base):
     hashed_password = Column(String(255), nullable=False)
 
     # Timestamps
-    created_at = Column(DateTime, default=datetime.utcnow)
-    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
     def __repr__(self) -> str:
         return f"<AdminUser(username='{self.username}')>"

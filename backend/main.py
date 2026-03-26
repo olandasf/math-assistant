@@ -84,7 +84,7 @@ async def load_api_keys_from_db():
                     select(Setting).where(Setting.key == "gemini_model")
                 )
                 model_setting = result.scalar_one_or_none()
-                model = model_setting.value if model_setting else "google/gemini-3.1-pro-preview"
+                model = model_setting.value if model_setting else "google/gemini-3-flash-preview"
 
                 if api_key:
                     configure_gemini(api_key, model)
